@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+						   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/jsp/"/>
+	<property name="suffix" value=".jsp"/>
+  </bean>
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+  <context:component-scan base-package="project.qrpay.controller"/>
+
+  <mvc:default-servlet-handler/>
+  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+	<property name="order" value="0"/>
+  </bean>
+  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
+  <!-- <mvc:interceptors> -->
+<!-- 	<mvc:interceptor> -->
+<!-- 	  <mvc:mapping path="/**"/> -->
+<!-- 	  <mvc:exclude-mapping path="/favicon.ico"/> -->
+<!-- 	  <mvc:exclude-mapping path="/**/css/**"/> -->
+<!-- 	  <mvc:exclude-mapping path="/**/js/**"/> -->
+<!-- 	  <mvc:exclude-mapping path="/**/img/**"/> -->
+<!-- 	  <bean class="org.dateplanner.interceptor.DebuggingInterceptor"/> -->
+<!-- 	</mvc:interceptor> -->
+	<!-- <mvc:interceptor>
+	  <mvc:mapping path="/user/mypage/**"/>
+	  <mvc:mapping path="/user/updateForm"/>
+	  <mvc:mapping path="/user/update"/>
+	  <mvc:mapping path="/package/**"/>
+	  <mvc:mapping path="/post/write/**"/>
+	  <mvc:mapping path="/post/write"/>
+	  <mvc:mapping path="/post/img/**"/>
+	  <mvc:mapping path="/post/doWrite/**"/>
+	  <mvc:mapping path="/post/view/**"/>
+	  <mvc:mapping path="/post/update/**"/>
+	  <mvc:mapping path="/post/doUpdate/**"/>
+	  <mvc:mapping path="/post/doDelete/**"/>
+	  <mvc:mapping path="/post/delete/**"/>
+	  <mvc:mapping path="/post/comment/**"/>
+	  <mvc:mapping path="/post/like"/>
+	  <mvc:mapping path="/**/commentUpdate"/>
+	  <mvc:mapping path="/**/commentInsert"/>
+	  <mvc:mapping path="/**/reCommentInsert"/>
+	  <mvc:mapping path="/**/commentDelete"/>
+	  <mvc:mapping path="/package/create/**"/>
+	  <mvc:mapping path="/package/img/**"/>
+	  <mvc:mapping path="/package/doCreate/**"/>
+	  <mvc:mapping path="/package/update/**"/>
+	  <mvc:mapping path="/package/doUpdate/**"/>
+	  <mvc:mapping path="/package/doDelete/**"/>
+	  <mvc:mapping path="/user/logout"/>
+	  <mvc:mapping path="/user/page/**"/>
+	  
+	  <bean class="org.dateplanner.interceptor.FalseLoginInterceptor"/>
+	</mvc:interceptor> -->
+	
+<!-- 	<mvc:interceptor>
+		<mvc:mapping path="/user/login"/>
+		<mvc:mapping path="/user/doLogin"/>
+		<mvc:mapping path="/user/doJoin"/>
+	  <bean class="org.dateplanner.interceptor.TureLoginInterceptor"/>
+	</mvc:interceptor>
+ -->	
+  <!-- </mvc:interceptors> -->
+</beans>

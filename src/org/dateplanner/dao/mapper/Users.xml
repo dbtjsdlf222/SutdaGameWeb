@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dateplanner.dao.UsersDAO">
+  
+  <insert id="insert" parameterType="User">
+	INSERT INTO
+	  users(id, name, `key`, nickname, profile, region_no, introduction)
+	VALUES
+	  (#{id}, #{name}, #{key}, #{nickname}, #{profile}, #{regionNo}, #{introduction})
+  </insert>
+  
+  <select id="selectIdExist" parameterType="String" resultType="boolean">
+	SELECT
+	  COUNT(*)
+	FROM
+	  users
+	WHERE
+	  id = #{id}
+  </select>
+  
+  <select id="selectByNo" parameterType="int" resultType="User">
+	SELECT
+	  no, id, name, `key`, nickname, profile, region_no regionNo, introduction
+	FROM
+	  users
+	WHERE
+	  no = #{no}
+  </select>
+  
+  <select id="selectById" parameterType="String" resultType="User">
+	SELECT
+	  no, id, name, `key`, nickname, profile, region_no regionNo, introduction
+	FROM
+	  users
+	WHERE
+	  id = #{id}
+  </select>
+  
+  <update id="update" parameterType="User">
+    UPDATE 
+      users 
+    SET
+      `key` = #{key}, profile = #{profile}, region_no = #{regionNo}, introduction = #{introduction}
+    WHERE
+     `no` = #{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+  	DELETE FROM users 
+  	WHERE `no` = {no}
+  </delete>
+</mapper>

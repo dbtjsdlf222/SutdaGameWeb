@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dateplanner.dao.PackagesDAO">
+  
+  <insert id="insert" parameterType="Package">
+	INSERT INTO
+	  package(no, place_no, `order`)
+	VALUES
+	 <foreach collection="placeList" item="place" index="i" separator=", ">(#{post.no}, #{place.no}, #{i})</foreach>
+  </insert>
+  
+  <select id="selectPackage" parameterType="int" resultType="Post">
+	SELECT
+	  b.no no, title, content, image, user_no userNo, b.region_no regtionNo, packageable, b.regdate regdate,
+	  u.no 'user.no', u.nickname 'user.nickname'
+	FROM
+	  board b
+	LEFT JOIN
+	  package p
+	ON
+	  b.no = place_no
+	JOIN
+	  users u
+	ON
+	  user_no = u.no
+	WHERE
+	  b.no = #{no}
+	OR
+	  p.no = #{no}
+	ORDER BY `order`
+  </select>
+  
+</mapper>

@@ -1,0 +1,1 @@
+function fileUpload(url,files,success){var data=new FormData();$.each(files,function(i,v){data.append(i,v)});$.ajax(url,{data:data,type:"POST",cache:false,contentType:false,processData:false,success:success})}
