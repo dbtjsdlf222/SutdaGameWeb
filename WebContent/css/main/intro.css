@@ -1,0 +1,74 @@
+#container{
+    width: 1280px;
+    height: 150px;
+    margin: auto;
+    display: block;
+}
+header{
+    height: 100px;
+    padding: 10px;
+    background-size: cover;
+    color: midnightblue;
+}
+header h1{
+    color: white;
+    font-size: 50px;
+    float: left;
+    width: 20%;
+    margin-left: 30px;
+    color: midnightblue;
+}
+header nav{
+    width: 60%;
+    float: left;
+}
+nav ul{
+    list-style-type: none;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+nav ul li{
+    display: inline;
+    margin-right: 120px;
+    font-size: 30px;
+}
+a{
+    text-decoration: none;
+    color: midnightblue;
+}
+.login{
+    width: 100px;
+    height: 30px;
+    border: 3px solid midnightblue;
+    padding-top: 6px;
+    border-radius: 10%;
+    text-align: center;
+    color: midnightblue;
+    font-size: 20px;
+    font-weight: bold;
+    float: right;
+}
+.login{
+    margin-top: 50px;
+}
+legend{
+    border: 1px solid black;
+}
+.map{
+    width: 800px;
+    height: 500px;
+}
+legend{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+fieldset{
+    margin-left: 100px;
+    width: 800px;
+    height: 800px;
+    margin: 55px;
+    display: block;
+    float: left;
+    padding: 10px;
+}

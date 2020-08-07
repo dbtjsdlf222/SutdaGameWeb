@@ -1,0 +1,138 @@
+#container{
+    width: 1280px;
+    height: 150px;
+    margin: auto;
+    display: block;
+}
+header{
+    height: 100px;
+    padding: 10px;
+    background-size: cover;
+    color: midnightblue;
+}
+header h1{
+    color: white;
+    font-size: 50px;
+    float: left;
+    width: 20%;
+    margin-left: 30px;
+    color: midnightblue;
+}
+header nav{
+    width: 60%;
+    float: left;
+}
+nav ul{
+    list-style-type: none;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+nav ul li{
+    display: inline;
+    margin-right: 120px;
+    font-size: 30px;
+}
+a{
+    text-decoration: none;
+    color: midnightblue;
+}
+.login{
+    width: 100px;
+    height: 30px;
+    border: 3px solid midnightblue;
+    padding-top: 6px;
+    border-radius: 15%;
+    text-align: center;
+    color: midnightblue;
+    font-size: 20px;
+    font-weight: bold;
+    float: right;
+}
+.login{
+    margin-top: 50px;
+}
+h1{
+    text-align: center;
+    color: midnightblue;
+    font-size: 50px;
+}
+input[type="text"]{
+    width: 400px;
+    height: 40px;
+}
+input[type="password"]{
+    width: 400px;
+    height: 40px;
+}
+input[value="로그인"]{
+    background-color: midnightblue;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    width: 410px;
+    height: 50px;
+    cursor: pointer;
+}
+form{
+    position: relative;
+    left: 40%;
+}
+.tab ul li{
+    list-style-type: none;
+    display: inline;
+    position: relative;
+    left: 38.5%;
+    margin-left: 40px;
+}
+.tab .tabs li{
+    position: relative;
+    left: 118%;
+}
+textarea{
+    width: 385px;
+    height: 400px;
+    padding: 10px;
+    line-height: 1.5em;
+    border-radius: 5%;
+}
+input[value="비회원 로그인"]{
+    background-color: midnightblue;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    width: 410px;
+    height: 50px;
+    cursor: pointer;
+}
+.checkbox{
+    cursor: pointer;
+}
+#agree{
+    cursor: pointer;
+}
+[data-tab-content]{
+    display: none;
+}
+.active[data-tab-content]{
+    display: block;
+}
+.tabs{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    cursor: pointer;
+}
+.tabs li{
+    margin-right: 150px;
+}
+.tab{
+    padding: 10px;
+}
+.tab.active{
+    color: midnightblue;
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -1,0 +1,103 @@
+#container{
+    width: 1280px;
+    height: 150px;
+    margin: auto;
+    display: block;
+}
+header{
+    height: 100px;
+    padding: 10px;
+    background-size: cover;
+    color: midnightblue;
+}
+header h1{
+    color: white;
+    font-size: 50px;
+    float: left;
+    width: 20%;
+    margin-left: 30px;
+    color: midnightblue;
+}
+header nav{
+    width: 60%;
+    float: left;
+}
+nav ul{
+    list-style-type: none;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+nav ul li{
+    display: inline;
+    margin-right: 120px;
+    font-size: 30px;
+}
+a{
+    text-decoration: none;
+    color: midnightblue;
+}
+.login{
+    width: 100px;
+    height: 30px;
+    border: 3px solid midnightblue;
+    padding-top: 6px;
+    border-radius: 10%;
+    text-align: center;
+    color: midnightblue;
+    font-size: 20px;
+    font-weight: bold;
+    float: right;
+}
+.login{
+    margin-top: 50px;
+}
+h1{
+    text-align: center;
+    color: midnightblue;
+    font-size: 50px;
+}
+fieldset{
+    display: inline;
+    width: 900px;
+    height: auto;
+    position: relative;
+    left: 25%;
+    color: midnightblue;
+    line-height: 40px;
+    font-size: 20px;
+    border-radius: 5%;
+    border-color: midnightblue;
+}
+legend{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+#join_info{
+    list-style: none;
+}
+#privacy{
+    list-style: none;
+}
+#store{
+    list-style: none;
+}
+input[type="text"], input[type="password"], input[type="email1"], input[type="email2"]{
+    width: 300px;
+    height: 30px;
+}
+fieldset ul li select{
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+}
+input[value="가입"], input[value="취소"]{
+    background-color: midnightblue;
+    color: white;
+    font-size: 15px;
+    width: 300px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    left: 150px;
+}
