@@ -1,5 +1,5 @@
 package project.qrpay.dao;
 
-public class dao {
-
+public interface MainDAO {
+	
 }
