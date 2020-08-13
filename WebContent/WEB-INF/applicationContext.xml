@@ -32,9 +32,14 @@
   </tx:advice>
 
 <!-- DAO 등록 단 -->
-  <bean id="mainDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <bean id="ownerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	<property name="mapperInterface" value="org.dateplanner.dao.MainDAO"/>
+	<property name="mapperInterface" value="org.dateplanner.dao.OwnerDAO"/>
+  </bean>
+  
+  <bean id="orderDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<property name="mapperInterface" value="org.dateplanner.dao.OrderDAO"/>
   </bean>
 
 </beans>
