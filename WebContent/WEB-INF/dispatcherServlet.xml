@@ -18,53 +18,21 @@
   </bean>
   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
 
-  <!-- <mvc:interceptors> -->
-<!-- 	<mvc:interceptor> -->
-<!-- 	  <mvc:mapping path="/**"/> -->
-<!-- 	  <mvc:exclude-mapping path="/favicon.ico"/> -->
-<!-- 	  <mvc:exclude-mapping path="/**/css/**"/> -->
-<!-- 	  <mvc:exclude-mapping path="/**/js/**"/> -->
-<!-- 	  <mvc:exclude-mapping path="/**/img/**"/> -->
-<!-- 	  <bean class="org.dateplanner.interceptor.DebuggingInterceptor"/> -->
-<!-- 	</mvc:interceptor> -->
-	<!-- <mvc:interceptor>
-	  <mvc:mapping path="/user/mypage/**"/>
-	  <mvc:mapping path="/user/updateForm"/>
-	  <mvc:mapping path="/user/update"/>
-	  <mvc:mapping path="/package/**"/>
-	  <mvc:mapping path="/post/write/**"/>
-	  <mvc:mapping path="/post/write"/>
-	  <mvc:mapping path="/post/img/**"/>
-	  <mvc:mapping path="/post/doWrite/**"/>
-	  <mvc:mapping path="/post/view/**"/>
-	  <mvc:mapping path="/post/update/**"/>
-	  <mvc:mapping path="/post/doUpdate/**"/>
-	  <mvc:mapping path="/post/doDelete/**"/>
-	  <mvc:mapping path="/post/delete/**"/>
-	  <mvc:mapping path="/post/comment/**"/>
-	  <mvc:mapping path="/post/like"/>
-	  <mvc:mapping path="/**/commentUpdate"/>
-	  <mvc:mapping path="/**/commentInsert"/>
-	  <mvc:mapping path="/**/reCommentInsert"/>
-	  <mvc:mapping path="/**/commentDelete"/>
-	  <mvc:mapping path="/package/create/**"/>
-	  <mvc:mapping path="/package/img/**"/>
-	  <mvc:mapping path="/package/doCreate/**"/>
-	  <mvc:mapping path="/package/update/**"/>
-	  <mvc:mapping path="/package/doUpdate/**"/>
-	  <mvc:mapping path="/package/doDelete/**"/>
-	  <mvc:mapping path="/user/logout"/>
+  <mvc:interceptors>
+	<mvc:interceptor>
+	  <mvc:mapping path="/logout"/>
 	  <mvc:mapping path="/user/page/**"/>
-	  
-	  <bean class="org.dateplanner.interceptor.FalseLoginInterceptor"/>
-	</mvc:interceptor> -->
-	
-<!-- 	<mvc:interceptor>
-		<mvc:mapping path="/user/login"/>
-		<mvc:mapping path="/user/doLogin"/>
-		<mvc:mapping path="/user/doJoin"/>
-	  <bean class="org.dateplanner.interceptor.TureLoginInterceptor"/>
+	  <bean class="project.qrpay.interceptor.FalseLoginInterceptor"/>
 	</mvc:interceptor>
- -->	
-  <!-- </mvc:interceptors> -->
+
+	<mvc:interceptor>
+		<mvc:mapping path="/login"/>
+		<mvc:mapping path="/loginAction"/>
+		<mvc:mapping path="/join"/>
+		<mvc:mapping path="/joinAction"/>
+	  <bean class="project.qrpay.interceptor.TureLoginInterceptor"/>
+	</mvc:interceptor>
+
+  </mvc:interceptors>
+  
 </beans>

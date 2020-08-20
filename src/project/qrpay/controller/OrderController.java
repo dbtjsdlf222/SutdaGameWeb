@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import project.qrpay.service.MainService;
 
 @Controller @RequestMapping("main")
-public class HomeController {
+public class OrderController {
 	
 	@Autowired
 	MainService mainService;
