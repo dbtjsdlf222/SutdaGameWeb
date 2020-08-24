@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.qrpay.dao.BoardDAO" >
+
+	<insert id="insertBoard">
+		INSERT INTO QA_board (title, content, writer_no, secret) 
+		VALUES ('title 1', 'content 1', 1, 1);
+	</insert>
+	
+	<update id="updateBoard" parameterType="BoardVO">
+		UPDATE QA_board
+		SET title=#{title}, content=#{content}, write_date=now()
+		WHERE no=#{no}
+	</update>
+	
+	<select id="selectBoardList" resultType="BoardVO">
+		SELECT no, 
+			   title,
+			   content, 
+			   (SELECT * FROM tb1) UNION (SELECT * FROM tb2),
+			   writer_no,
+			   write_date as writeDate
+		FROM board
+	</select>
+	
+	<select id="selectOneBoard" parameterType="int" resultType="BoardVO">
+		SELECT no, title, content, writer, write_date as writeDate
+		FROM board
+		WHERE no=#{no}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board
+		WHERE no=#{no}		
+	</delete>
+	
+<!--
+CREATE TABLE QA_board
+(
+    `no`          INT            NOT NULL    AUTO_INCREMENT COMMENT '번호',
+    `title`       VARCHAR(45)    NOT NULL    COMMENT '제목',
+    `content`     VARCHAR(45)    NOT NULL    COMMENT '내용',
+    `writer_no`   VARCHAR(45)    NOT NULL    COMMENT '작성자 번호',
+    `write_date`  TIMESTAMP      NOT NULL    DEFAULT CURRENT_TIMESTAMP COMMENT '작성일',
+    `secret`      TINYINT        NOT NULL    DEFAULT 0 COMMENT '비밀글 여부',
+    PRIMARY KEY (no)
+);
+-->
+
+</mapper>
