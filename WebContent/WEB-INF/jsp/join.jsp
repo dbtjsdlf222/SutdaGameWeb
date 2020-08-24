@@ -96,4 +96,41 @@
         </form>
     </div>
 </body>
+<script>
+
+	// 아이디 정규식
+	var idCheck = RegExp(/^[A-Za-z0-9_]{5,12}$/);						//영어 + 숫자 정규식 (5~12자 입력 가능)
+	var id2Check = RegExp(/[~!@#$%^&*()_+|<>?:{}ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);		//특수문자 + 한글 정규식 (아이디에 특수문자와 한글을 거르기 위함)
+	$('#user_id').keyup(function() {
+		$('#idtag').text("");
+		if (id2Check.test($('#user_id').val())) 
+			$('#idtag').text("특수문자와 한글은 사용불가합니다.").css({"font-size":"13px","margin-right":"0"});
+		else if (idCheck.test($('#user_id').val()))
+			$('#idtag').text("사용가능한 아이디입니다.").css({"margin-right":"30px"});
+		}); // #user_id
+
+	// 비밀번호 정규식
+	var pwCheck = RegExp(/(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$/); //숫자 + 특수문자 + 영어 정규식 (숫자,특수문자,영어를 1개이상 들어가고 8~20자 이하)
+	var pw2Check = RegExp()
+	$('#user_pw').keyup(function() {
+		$('#pwtag').text("");
+		if (pwCheck.test($('#user_pw').val()))
+			$('#pwtag').text("사용가능한 비밀번호입니다.").css({"margin-right":"25px"});
+		}); // #user_pw
+	
+	//라이센스 정규식
+	var licenseCheck = RegExp(/(\d{3}).(\d{2}).(\d{5}));		//숫자 정규식 (숫자3개+숫자2개+숫자5개 입력 가능)
+	var license2Check = RegExp(/[~!@#$%^&*()_+|<>?:{}ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-zA-Z]/); //특수문자 + 한글 + 영어 정규식 
+	$('#license1').keyup(function() {
+		if (licenseCheck.test($('#license1').val()))
+			$('#licensetag').text("확").css({"margin-right":"25px"});				
+		});
+
+	//이메일 정규식
+	var 
+
+	
+
+
+</script>
 </html>
