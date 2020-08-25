@@ -154,7 +154,7 @@ input[type="submit"]{
             <li>
                 <label for="email">이메일</label><br>
                 <input type="email" id="email1" name="email1">&emsp;@&emsp;<input type="email" id="email2" name="email2">&emsp;
-                <select id="mail_server" name="mail_server">
+                <select id="mail_server" name="email2">
                 	<option value="직접 입력">직접 입력</option>
                     <option value="naver.com">naver.com</option>
                     <option value="gmail.com">gmail.com</option>

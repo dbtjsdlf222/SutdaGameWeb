@@ -14,7 +14,9 @@
 </head>
 <body>
 	<header>
-		
+		<div class="store-nav">
+			
+		</div>
 	</header>
 </body>
 </html>
