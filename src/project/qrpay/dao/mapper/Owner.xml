@@ -12,7 +12,7 @@
 	</select>
 
 	<select id="selectID" parameterType="String" resultType="int">
-		SELECT 
+		SELECT
 			count(*)
 		FROM
 			owner

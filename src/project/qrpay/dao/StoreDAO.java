@@ -2,6 +2,7 @@ package project.qrpay.dao;
 
 import project.qrpay.vo.MenuVO;
 import project.qrpay.vo.OwnerVO;
+import project.qrpay.vo.StoreVO;
 
 public interface StoreDAO {
 	public void seleteSotre(int no);
