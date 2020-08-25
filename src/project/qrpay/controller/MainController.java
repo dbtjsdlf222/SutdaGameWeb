@@ -48,11 +48,17 @@ public class MainController {
 	
 	@RequestMapping("join")
 	public String join(HttpSession session, @RequestParam Map<String, String> map) {
+		
 			return "join";
 	} //login
 	
 	@RequestMapping("joinAction")
 	public String joinAction(HttpSession session, @RequestParam Map<String, String> map) {
+		map.put("license", map.get("license1").concat(map.get("license2")).concat(map.get("license3")));
+		map.put("email", map.get("email1")
+		System.out.println(map.put("license", map.get("license1").concat(map.get("license2")).concat(map.get("license3"))));
+		if(mainService.joinOwner(map) != null)
+			return "main";
 		
 		return "redirect:main";
 	} //login
