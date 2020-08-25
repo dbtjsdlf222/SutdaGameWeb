@@ -16,8 +16,8 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping("/boardList")
-	public ModelAndView boardList(HttpSession session) {
-		ModelAndView mav = new ModelAndView("boardList"); 
+	public ModelAndView boardList() {
+		ModelAndView mav = new ModelAndView("boardList");
 		mav.addObject("boardList", boardService.selectBoardList());
 		return mav;
 	}
