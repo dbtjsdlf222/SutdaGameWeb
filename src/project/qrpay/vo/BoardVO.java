@@ -2,8 +2,6 @@ package project.qrpay.vo;
 
 import java.sql.Date;
 
-import lombok.Data;
-
 public class BoardVO {
    private int no;
    private int writerNo;
@@ -30,7 +28,8 @@ public class BoardVO {
       this.title = title;
       this.content = content;
    }
-
+   
+   	//BoardVO getters
 	public int getNo() { return no; }
 	public String getTitle() { return title; }
 	public String getContent() { return content; }
@@ -38,6 +37,7 @@ public class BoardVO {
 	public String getWriterName() { return writerName; }
 	public Date getWriteDate() { return writeDate; }
 	
+	//BoardVO setters
 	public void setNo(int no) {this.no = no;}
 	public void setTitle(String title) {this.title = title;}
 	public void setContent(String content) {this.content = content;}
