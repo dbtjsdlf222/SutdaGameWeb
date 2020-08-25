@@ -4,7 +4,7 @@
 
 	<insert id="insertBoard">
 		INSERT INTO QA_board (title, content, writer_no, secret) 
-		VALUES ('title 1', 'content 1', 1, 1);
+		VALUES (#{title}, #{content}, #{writerNo}, 1);
 	</insert>
 	
 	<update id="updateBoard" parameterType="BoardVO">

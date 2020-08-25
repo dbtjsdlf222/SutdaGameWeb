@@ -34,12 +34,12 @@
 <!-- DAO 등록 단 -->
 	<bean id="ownerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="org.dateplanner.dao.OwnerDAO"/>
+		<property name="mapperInterface" value="project.qrpay.dao.OwnerDAO"/>
 	</bean>
   
 	<bean id="orderDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="org.dateplanner.dao.OrderDAO"/>
+		<property name="mapperInterface" value="project.qrpay.dao.OrderDAO"/>
 	</bean>
   
 	<bean id="BoardDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
