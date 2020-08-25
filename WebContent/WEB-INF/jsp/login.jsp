@@ -158,11 +158,16 @@ textarea{
         </ul>
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
-                <form>
+                <form action="loginAction" method="post">
                     <span class="id"><input type="text" name="id" class="user_id" placeholder="아이디를 입력하세요."></span><br><br>
                     <span class="pw"><input type="password" name="pw" class="user_pw" placeholder="비밀번호를 입력하세요."></span><br><br>
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
+                <c:set var="msg" value=${msg}/>
+                <c:if test="${msg != null}">
+                	<c:out value="<script type='text/javascript'>alert('아이디나 비밀번호가 일치하지 않습니다.');</script>"/>
+                </c:if>
+
                 <ul class="login-option">
                     <span class="join"><a href="join">회원가입</a></span>&emsp;&emsp;&emsp;
                     <span class="id-search"><a href="#">아이디 찾기</a></span>&emsp;&emsp;&emsp;

@@ -92,7 +92,7 @@ footer p{
     </header>
 
     <div id="content">
-        <img id="slide" src="../image/slide1.png" name="slide">
+        <img id="slide" src="../../image/slide1.png" name="slide">
     </div>
 
     <div class="system-benefit">

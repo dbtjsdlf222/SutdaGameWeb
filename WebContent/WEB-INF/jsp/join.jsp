@@ -130,6 +130,7 @@ input[type="submit"]{
     
     <fieldset class="information">
     <legend>회원가입</legend>
+    	<form action="joinAction" method="post">
         <ul id="join_info">
             <li>
                 <label for="join_id">아이디<span class="essential"></span></label><br>
@@ -196,6 +197,7 @@ input[type="submit"]{
         	<input type="submit" value="가입">&emsp;
         	<input type="submit" value="취소">
         </div>
+        </form>
 	</fieldset>
 </body>
 
