@@ -3,7 +3,12 @@
 <mapper namespace="project.qrpay.dao.OwnerDAO" >
 
 	<select id="login" parameterType="OwnerVO">
-	
+		SELECT 
+			
+		FROM 
+			owner
+		WHERE
+			id=#{id}
 	</select>
 
 	<select id="selectID" parameterType="String" resultType="int">
@@ -23,6 +28,21 @@
 	public void insertMenu(MenuVO menuVO); 		//메뉴 등록
 	public void updateMenu(MenuVO menuVO);		//메뉴 수정
 	public void deleteMenu(MenuVO menuVO);		//메뉴 삭제
+ -->
+
+
+<!--
+CREATE TABLE owner
+(
+    `no`               INT            NOT NULL    AUTO_INCREMENT COMMENT '가입 번호', 
+    `name`             VARCHAR(16)    NOT NULL    COMMENT '성함', 
+    `phone`            INT(11)        NOT NULL    COMMENT '핸드폰 번호', 
+    `id`               VARCHAR(24)    NOT NULL    COMMENT '아이디', 
+    `pw`               VARCHAR(24)    NOT NULL    COMMENT '비밀번호', 
+    `email`            VARCHAR(32)    NOT NULL    COMMENT '이메일', 
+    `membership_date`  TIMESTAMP      NULL        DEFAULT CURRENT_TIMESTAMP COMMENT '가입일', 
+    PRIMARY KEY (no)
+);
  -->
 
 </mapper>
