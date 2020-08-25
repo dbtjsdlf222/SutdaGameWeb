@@ -90,13 +90,13 @@ input[id="license1"],input[id="license2"],input[id="license3"]{
 	width: 180px;
 	text-align: center;
 }
-input[type="email"]{
+input[id="email1"],input[id="email2"]{
 	width: 200px;
 	height: 40px;
 	padding-left: 10px;
 }
 select{
-	width: 200px;
+	width: 150px;
 	height: 45px;
 }
 input[type="submit"]{
@@ -148,11 +148,11 @@ input[type="submit"]{
             </li>
             <li>
                 <label for="license">사업자 등록번호</label><br>
-                <input type="text" id="license1" name="license1">&emsp;-&emsp;<input type="text" id="license2" name="license2">&emsp;-&emsp;<input type="text" id="license3" name="license3"><br><br>
+                <input type="text" id="license1" name="license1">&emsp;<b>-</b>&emsp;<input type="text" id="license2" name="license2">&emsp;<b>-</b>&emsp;<input type="text" id="license3" name="license3"><br><br>
             </li>
             <li>
                 <label for="email">이메일</label><br>
-                <input type="email" id="email1" name="email1">&emsp;@&emsp;<input type="email" id="email2" name="email2">&emsp;
+                <input type="text" id="email1" name="email1">&emsp;<b>@</b>&emsp;<input type="text" id="email2" name="email2">&emsp;
                 <select id="mail_server" name="email2">
                 	<option value="직접 입력">직접 입력</option>
                     <option value="naver.com">naver.com</option>
