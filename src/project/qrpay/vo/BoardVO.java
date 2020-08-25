@@ -6,9 +6,10 @@ import lombok.Data;
 
 public class BoardVO {
    private int no;
+   private int writerNo;
    private String title;
    private String content;
-   private int writer_no;
+   private String writerName;
    private Date writeDate;
 
    public BoardVO() { } 
@@ -21,7 +22,7 @@ public class BoardVO {
    public BoardVO(String title, String content, int writerNo) {
       this.title = title;
       this.content = content;
-      this.writer_no = writerNo;
+      this.writerNo = writerNo;
    }
 
    public BoardVO(int no, String title, String content) {
@@ -30,17 +31,19 @@ public class BoardVO {
       this.content = content;
    }
 
-	public int getNo() {return no;}
-	public String getTitle() {return title;}
-	public String getContent() {return content;}
-	public int getWriter() {return writer_no;}
-	public Date getWriteDate() {return writeDate;}
+	public int getNo() { return no; }
+	public String getTitle() { return title; }
+	public String getContent() { return content; }
+	public int getWriterNo()  { return writerNo; }
+	public String getWriterName() { return writerName; }
+	public Date getWriteDate() { return writeDate; }
 	
 	public void setNo(int no) {this.no = no;}
 	public void setTitle(String title) {this.title = title;}
 	public void setContent(String content) {this.content = content;}
-	public void setWriter(int writerNo) {this.writer_no = writerNo;}
-	public void setWriteDate(Date writeDate) {this.writeDate = writeDate;}
+	public void setWriterName(String writer_name) { this.writerName = writer_name; }
+	public void setWriterNo(int writer_no)  { this.writerNo = writer_no; }
+	public void setWriteDate(Date writeDate) { this.writeDate = writeDate; }
 
 }//main
 

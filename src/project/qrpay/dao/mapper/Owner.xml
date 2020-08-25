@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="project.qrpay.dao.OwnerDAO" >
+<mapper namespace="project.qrpay.dao.OwnerDAO">
 
 	<select id="login" parameterType="OwnerVO">
-		SELECT 
-			
-		FROM 
+		SELECT
+			*
+		FROM
 			owner
 		WHERE
-			id=#{id}
+			id=#{id} AND pw=#{pw}
 	</select>
 
 	<select id="selectID" parameterType="String" resultType="int">
 		SELECT 
 			count(*)
-		FROM 
+		FROM
 			owner
 		WHERE
 			id=#{id}
@@ -23,13 +23,8 @@
 <!--
  	public void join(OwnerVO ownerVO);			//회원가입
 	public OwnerVO login(OwnerVO ownerVO);		//로그인
-	public void selectTable(OwnerVO ownerVO);	//테이블 뷰
-	public MenuVO selectMenu(MenuVO menuVO); 	//메뉴 뷰
-	public void insertMenu(MenuVO menuVO); 		//메뉴 등록
-	public void updateMenu(MenuVO menuVO);		//메뉴 수정
-	public void deleteMenu(MenuVO menuVO);		//메뉴 삭제
+	
  -->
-
 
 <!--
 CREATE TABLE owner
@@ -40,7 +35,7 @@ CREATE TABLE owner
     `id`               VARCHAR(24)    NOT NULL    COMMENT '아이디', 
     `pw`               VARCHAR(24)    NOT NULL    COMMENT '비밀번호', 
     `email`            VARCHAR(32)    NOT NULL    COMMENT '이메일', 
-    `membership_date`  TIMESTAMP      NULL        DEFAULT CURRENT_TIMESTAMP COMMENT '가입일', 
+    `membership_date`  TIMESTAMP      NOT NULL    DEFAULT CURRENT_TIMESTAMP COMMENT '가입일', 
     PRIMARY KEY (no)
 );
  -->

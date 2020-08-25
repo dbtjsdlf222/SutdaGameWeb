@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.qrpay.dao.BoardDAO" >
-
+	
 	<insert id="insertBoard">
 		INSERT INTO QA_board (title, content, writer_no, secret) 
 		VALUES (#{title}, #{content}, #{writerNo}, #{secret});
@@ -9,29 +9,35 @@
 	
 	<update id="updateBoard" parameterType="BoardVO">
 		UPDATE QA_board
-		SET title=#{title}, content=#{content}, write_date=now()
+		SET title=#{title}, content=#{content}, write_date=now(),secret=#{secret}
 		WHERE no=#{no}
 	</update>
 	
 	<select id="selectBoardList" resultType="BoardVO">
-		SELECT no, 
-			   title,
-			   content, 
-			   (SELECT * FROM tb1) UNION (SELECT * FROM tb2),
-			   writer_no,
-			   write_date as writeDate
-		FROM board
+		SELECT 
+			no,
+			title,
+			content,
+			(SELECT name FROM owner WHERE no=#{writer_no}) as writerName,
+			write_date as writeDate
+		FROM
+			QA_board
 	</select>
 	
 	<select id="selectOneBoard" parameterType="int" resultType="BoardVO">
-		SELECT no, title, content, writer, write_date as writeDate
-		FROM board
+		SELECT 
+			no, 
+			title, 
+			content, 
+			writer,
+			write_date as writeDate
+		FROM QA_board
 		WHERE no=#{no}
 	</select>
 	
 	<delete id="deleteBoard" parameterType="int">
 		DELETE FROM board
-		WHERE no=#{no}		
+		WHERE no=#{no}
 	</delete>
 	
 <!--
@@ -44,7 +50,6 @@ CREATE TABLE QA_board
     `write_date`  TIMESTAMP      NOT NULL    DEFAULT CURRENT_TIMESTAMP COMMENT '작성일',
     `secret`      TINYINT        NOT NULL    DEFAULT 0 COMMENT '비밀글 여부',
     PRIMARY KEY (no)
-);
--->
+);-->
 
 </mapper>
