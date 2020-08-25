@@ -41,7 +41,7 @@ public class MainController {
 	
 	@RequestMapping("join")
 	public String join(HttpSession session, @RequestParam Map<String, String> map) {
-			return "redirect:main";
+			return "join";
 	} //login
 	
 	@RequestMapping("joinAction")
