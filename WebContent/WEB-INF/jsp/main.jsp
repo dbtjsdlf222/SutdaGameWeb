@@ -6,47 +6,102 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>메인 페이지</title>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src='js/jquery-3.5.1.min.js'></script>
+    <script src='js/jquery-migrate-1.4.1.min.js'></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <link href="main.css" rel="stylesheet" type="text/css">
 
-    <link href="css/main/main.css" rel="stylesheet" type="text/css">
-    <script>
-        $(function(){
-            $(".payinfo").mouseleave(function(){
-                $(".payment").fadeIn(500, "swing");
-            })
-            $(".payment").mouseenter(function(){
-                $(this).fadeOut(1500, "swing");
-            });
-        });
-    </script>
+<style type="text/css">
+.home{
+    margin-left: 30px;
+    font-size: 50px;
+    color: midnightblue;
+    font-weight: bold;
+    font-family: stencil;
+}
+.home a{
+    text-decoration: none;
+}
+.nav{
+    display: flex;
+    border-bottom: 2px solid midnightblue;
+    height: 100px;
+    align-items: center;
+}
+.nav-right-items{
+    display: flex;
+    margin-left: auto;
+    margin-right: 50px;
+    text-align: center;
+}
+.nav-item{
+    margin-left: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    color: midnightblue;
+    margin-right: 100px;
+}
+.login{
+    width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    margin-right: 50px;
+    text-align: center;
+}
+.login a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.system-benefit{
+    width: auto;
+    height: 500px;
+    background-color: midnightblue;
+}
+.system-explain{
+    width: auto;
+    height: 500px;
+}
+footer{
+    background-color: midnightblue;
+    width: 100%;
+    height: 70px;
+    display: block;
+}
+footer p{
+    text-align: center;
+    color: white;
+}
+</style>
 </head>
-<body> 
-    <header id="container">
-        <h1><a href="/">QRPAY</a></h1>
-        <nav>
-            <ul>
-                <li><a href="intro"><strong>소개</strong></a></li>
-                <li><a href="notice"><strong>공지사항</strong></a></li>
-                <li><a href="cs"><strong>고객센터</strong></a></li>
-            </ul>
-        </nav>
-        <a href="login.html"><div class="login">로그인</div></a>
+<body>
+    <header>
+    <div class="nav">
+        <div class="home"><a href="main">QRPAY</a></div>
+        <div class="nav-right-items">
+            <div class="nav-item">소개</div>
+            <div class="nav-item">공지사항</div>
+            <div class="nav-item">고객센터</div>
+        </div>
+        <div class="login"><a href="login">로그인</a></div>
+        <!-- <img src="/image/user.png"> -->
+    </div>
     </header>
-    <hr color="midnightblue" size="3px"/>
-    <br><br><br>
-    <section>
-        <article>
-            <h3>QR코드로 간편하게 주문하고 결제하자!</h3>
-            <img class="payment" src="img/payment.PNG">
-            <br><br><br><br><br><br><br>
-            <dl class="payinfo">
-                <dt>QR페이로 모든걸 해결!</dt>
-                <dd>테이블에 있는 QR코드를 스마트폰으로 스캔 해 보세요</dd>
-            </dl>
-        </article>
-    </section>
+
+    <div id="content">
+        <img id="slide" src="../image/slide1.png" name="slide">
+    </div>
+
+    <div class="system-benefit">
+        <img src="image/benefit.png">
+    </div>
+
+    <div class="system-explain">
+		설명
+    </div>
     <footer>
         <p></p>
         <p>서울특별시 구로구 디지털로 306 2층(구로동 182-13, 대륭포스트타워2차)<br/>
