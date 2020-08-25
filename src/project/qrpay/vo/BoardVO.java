@@ -29,13 +29,15 @@ public class BoardVO {
       this.title = title;
       this.content = content;
    }
-
+   
+   	//BoardVO getters
 	public int getNo() {return no;}
 	public String getTitle() {return title;}
 	public String getContent() {return content;}
 	public int getWriter() {return writer_no;}
 	public Date getWriteDate() {return writeDate;}
 	
+	//BoardVO setters
 	public void setNo(int no) {this.no = no;}
 	public void setTitle(String title) {this.title = title;}
 	public void setContent(String content) {this.content = content;}
