@@ -13,7 +13,7 @@ public class MainService {
 	OwnerDAO ownerDAO;
 	
 	public OwnerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
-	
+	 
 	
 	
 } //MainService class
