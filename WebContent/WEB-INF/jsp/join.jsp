@@ -10,92 +10,195 @@
     <script src='js/jquery-migrate-1.4.1.min.js'></script>
     <script src="js/jquery-ui.min.js"></script>
     <link href="join.css" rel="stylesheet" type="text/css">
+    
+<style>
+.home{
+    margin-left: 30px;
+    font-size: 50px;
+    color: midnightblue;
+    font-weight: bold;
+    font-family: stencil;
+}
+.home a{
+    text-decoration: none;
+}
+.nav{
+    display: flex;
+    border-bottom: 2px solid midnightblue;
+    height: 100px;
+    align-items: center;
+}
+.nav-right-items{
+    display: flex;
+    margin-left: auto;
+    margin-right: 50px;
+    text-align: center;
+}
+.nav-item{
+    margin-left: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    color: midnightblue;
+    margin-right: 100px;
+    display: block;
+}
+.login{
+    width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    margin-right: 50px;
+    text-align: center;
+}
+header{
+    margin-bottom: 100px;
+}
+.login a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.information{
+	border: 1px solid midnightblue;
+	width: 800px;
+	height: auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin: auto;
+	color: midnightblue;
+}
+legend{
+	text-align: center;
+	font-size: 30px;
+	color: midnightblue;
+}
+.information ul{
+	list-style-type: none;
+}
+input[type="text"]{
+	width: 380px;
+	height: 40px;
+	padding-left: 10px;
+}
+input[type="password"]{
+	width: 380px;
+	height: 40px;
+	padding-left: 10px;
+}
+input[id="license1"],input[id="license2"],input[id="license3"]{
+	width: 180px;
+	text-align: center;
+}
+input[type="email"]{
+	width: 200px;
+	height: 40px;
+	padding-left: 10px;
+}
+select{
+	width: 200px;
+	height: 45px;
+}
+input[type="submit"]{
+	width: 200px;
+	height: 40px;
+	background-color: midnightblue;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
+}
+#commit{
+	text-align: center;
+}
+ </style>
 </head>
 <body>
-    <header id="container">
-        <h1><a href="main.html">QRPAY</a></h1>
-        <nav>
-            <ul>
-                <li><a href="intro"><strong>소개</strong></a></li>
-                <li><a href="notice"><strong>공지사항</strong></a></li>
-                <li><a href="cs"><strong>고객센터</strong></a></li>
-            </ul>
-        </nav>
-        <a href="login.html"><div class="login">로그인</div></a>
-    </header>
-    <hr color="midnightblue" size="3px"/>
-    <br><br><h1>QRPAY</h1><br><br>
-    <div>
-        <form>
-            <fieldset>
-                <legend>회원가입</legend>
-                <ul id="join_info">
-                    <li>
-                        <label for="join_id">아이디<span class="essential"></span></label><br>
-                        <input type="text" id="join_id" name="join_id" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12">
-                    </li>
-                    <li>
-                        <label for="join_pw">비밀번호</label><br>
-                        <input type="password" id="join_pw" name="join_pw" placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><br>
-                        <input type="password" id="join_pwc" name="join_pwc" placeholder="비밀번호 확인">
-                    </li>
-                </ul>
-                <ul id="privacy">
-                    <li>
-                        <label for="name">이름</label><br>
-                        <input type="text" id="name" name="name">
-                    </li>
-                    <li>
-                        <label for="license">사업자 등록번호</label><br>
-                        <input type="text" id="license1" name="license1">&emsp;-&emsp;<input type="text" id="license2" name="license2">
-                    </li>
-                    <li>
-                        <label for="email">이메일</label><br>
-                        <input type="email1" id="email1" name="email1">&emsp;@&emsp;<input type="email2" id="email2" name="email2">
-                        <select id="mail_server" name="mail_server">
-                            <option value="naver.com">naver.com</option>
-                            <option value="gmail.com">gmail.com</option>
-                            <option value="daum.net">daum.net</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="phone">전화번호</label><br>
-                        <select id="phone1" name="phone1">
-                            <option value="010">010</option>
-                            <option value="011">011</option>
-                            <option value="017">017</option>
-                            <option value="018">018</option>
-                        </select>
-                        <input type="text" id="phone2" name="phone2">
-                    </li>
-                </ul>
-                <ul id="store">
-                    <li>
-                        <label for="store_info">가게 종류</label><br>
-                        <select id="store_type" name="store_type">
-                            <option value="food">음식점</option>
-                            <option value="bar">술집</option>
-                            <option value="junk">패스트푸드점</option>
-                            <option value="cafe">카페</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="store_name">상호 명</label><br>
-                        <input type="text" id="store_name" name="store_name">
-                    </li>
-                    <li>
-                        <label for="store_address">가게 주소</label><br>
-                        <input type="text" id="store_address1" name="store_address1"><br>
-                        <input type="text" id="store_address2" name="store_address2">
-                    </li>
-                </ul>
-                <input type="submit" value="가입">&emsp;
-                <input type="submit" value="취소"><br>
-                <input type="checkbox" value="">개인정보 수집 및 이용
-            </fieldset>
-        </form>
+    <header>
+    <div class="nav">
+        <div class="home"><a href="main">QRPAY</a></div>
+        <div class="nav-right-items">
+            <div class="nav-item">소개</div>
+            <div class="nav-item">공지사항</div>
+            <div class="nav-item">고객센터</div>
+        </div>
+        <div class="login"><a href="login">로그인</a></div>
+        <!-- <img src="/image/user.png"> -->
     </div>
+    </header>
+    
+    <fieldset class="information">
+    <legend>회원가입</legend>
+        <ul id="join_info">
+            <li>
+                <label for="join_id">아이디<span class="essential"></span></label><br>
+                <input type="text" id="join_id" name="join_id" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12"><br><br>
+            </li>
+            <li>
+                <label for="join_pw">비밀번호</label><br>
+                <input type="password" id="join_pw" name="join_pw" placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><br><br>
+                <input type="password" id="join_pwc" name="join_pwc" placeholder="비밀번호 확인"><br><br>
+            </li>
+        </ul>
+        <ul id="privacy">
+			<li>
+                <label for="name">이름</label><br>
+                <input type="text" id="name" name="name"><br><br>
+            </li>
+            <li>
+                <label for="license">사업자 등록번호</label><br>
+                <input type="text" id="license1" name="license1">&emsp;-&emsp;<input type="text" id="license2" name="license2">&emsp;-&emsp;<input type="text" id="license3" name="license3"><br><br>
+            </li>
+            <li>
+                <label for="email">이메일</label><br>
+                <input type="email" id="email1" name="email1">&emsp;@&emsp;<input type="email" id="email2" name="email2">&emsp;
+                <select id="mail_server" name="mail_server">
+                	<option value="직접 입력">직접 입력</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="daum.net">daum.net</option>
+                </select>
+            </li>
+            <li>
+                <br><label for="phone">전화번호</label><br>
+                <select id="phone1" name="phone1">
+                	<option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                </select>
+                <input type="text" id="phone2" name="phone2"><br><br>
+            </li>
+        </ul>
+        <ul id="store">
+            <li>
+   		    	<label for="store_info">가게 종류</label><br>
+                <select id="store_type" name="store_type">
+                    <option value="food">음식점</option>
+                    <option value="bar">술집</option>
+                    <option value="junk">패스트푸드점</option>
+                    <option value="cafe">카페</option>
+                </select>
+            </li>
+            <li>
+                <br><label for="store_name">상호 명</label><br>
+                <input type="text" id="store_name" name="store_name"><br><br>
+            </li>
+            <li>
+                <label for="store_address">가게 주소</label><br>
+                <input type="text" id="store_address1" name="store_address1"><br><br>
+                <input type="text" id="store_address2" name="store_address2" placeholder="상세 주소">
+            </li>
+        </ul>
+        <div id="commit">
+        	<input type="checkbox" value="">개인정보 수집 및 이용 <a href="#">[이용 약관]</a><br><br>
+        	<input type="submit" value="가입">&emsp;
+        	<input type="submit" value="취소">
+        </div>
+	</fieldset>
 </body>
+
 <script>
 
 	// 아이디 정규식
