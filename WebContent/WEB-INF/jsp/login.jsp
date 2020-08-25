@@ -6,11 +6,9 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>로그인 페이지</title>
-    <script src='js/jquery-3.5.1.min.js'></script>
-    <script src='js/jquery-migrate-1.4.1.min.js'></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="login.js" defer></script>
-    <link href="login.css" rel="stylesheet" type="text/css">
+   	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
     const tabs = document.querySelectorAll('[data-tab-target]')
     const tabContents = document.querySelectorAll('[data-tab-content]')
@@ -27,6 +25,12 @@
             target.classList.add('active')
         })
     })
+    
+    
+    <c:set var="msg" value="${msg}"/>
+            <c:if test="${msg != null}">
+              	alert('아이디나 비밀번호가 일치하지 않습니다.');
+            </c:if>
     </script>
 <style>
 .home{
@@ -163,10 +167,6 @@ textarea{
                     <span class="pw"><input type="password" name="pw" class="user_pw" placeholder="비밀번호를 입력하세요."></span><br><br>
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
-                <c:set var="msg" value="${msg}"/>
-                <c:if test="${msg != null}">
-                	<c:out value="<script type='text/javascript'>alert('아이디나 비밀번호가 일치하지 않습니다.');</script>"/>
-                </c:if>
 
                 <ul class="login-option">
                     <span class="join"><a href="join">회원가입</a></span>&emsp;&emsp;&emsp;
