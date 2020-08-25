@@ -1,8 +1,5 @@
 package project.qrpay.vo;
 
-import lombok.Data;
-
-@Data
 public class OwnerVO {
 	//사장님 table
 	private int no; 				//가입번호

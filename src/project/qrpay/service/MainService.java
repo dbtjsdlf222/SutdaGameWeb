@@ -12,7 +12,7 @@ public class MainService {
 	@Autowired
 	OwnerDAO ownerDAO;
 	
-	public OwnerVO loginOwner(OwnerVO ownerVO) { return ownerDAO.login(ownerVO);}
+	public OwnerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
 	
 	
 	

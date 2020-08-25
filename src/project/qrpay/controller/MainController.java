@@ -35,7 +35,11 @@ public class MainController {
 	
 	@RequestMapping("loginAction")
 	public String loginAction(HttpSession session,@RequestParam(required = true) String id, @RequestParam(required = true) String pw) {
-		session.getAttribute("loginInfo", mainService.loginOwner(););
+		Owner
+		if(mainService.loginOwner(id,pw) != null) {
+			
+		}
+		session.getAttribute("loginInfo", );
 		return "redirect:main";
 	} //login
 	
