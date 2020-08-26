@@ -35,6 +35,7 @@ public class MainController {
 			return "redirect:main";
 	} //login
 	
+	//로그인 액션
 	@RequestMapping(value="loginAction", method=RequestMethod.POST)
 	public String loginAction(Model model,HttpSession session,@RequestParam(required = true) String id, @RequestParam(required = true) String pw) {
 		OwnerVO ownerVO;
@@ -44,22 +45,22 @@ public class MainController {
 		}
 		model.addAttribute("msg","false");
 		return "login";
-	} //login
+	} //loginAction
 	
+	//회원가입
 	@RequestMapping("join")
 	public String join(HttpSession session, @RequestParam Map<String, String> map) {
 		
 			return "join";
-	} //login
+	} //join
 	
+	//회원가입 액션
 	@RequestMapping("joinAction")
 	public String joinAction(HttpSession session, @RequestParam Map<String, String> map) {
 		map.put("license", map.get("license1").concat(map.get("license2")).concat(map.get("license3")));
-		map.put("email", map.get("email1")
-		System.out.println(map.put("license", map.get("license1").concat(map.get("license2")).concat(map.get("license3"))));
-		if(mainService.joinOwner(map) != null)
-			return "main";
+		mainService.joinOwner(map);
+		return "main";
 		
-		return "redirect:main";
-	} //login
-} //class 
+	} //joinAction
+	
+} //MainController class 

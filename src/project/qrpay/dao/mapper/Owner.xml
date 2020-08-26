@@ -20,6 +20,10 @@
 			id=#{id}
 	</select>
 
+	<insert id="join" parameterType="Map">
+	INSERT INTO owner(name, phone, id, pw, email, membership_date) VALUES(#{name}, #{phone}, #{id}, #{pw}, #{email}, now());
+	</insert>
+
 <!--
  	public void join(OwnerVO ownerVO);			//회원가입
 	public OwnerVO login(OwnerVO ownerVO);		//로그인

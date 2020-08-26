@@ -15,7 +15,7 @@ public class MainService {
 	OwnerDAO ownerDAO;
 	
 	public OwnerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
-	public Map joinOwner(Map map) { return ownerDAO.join(map); }
+	public void joinOwner(Map map) { ownerDAO.join(map); }
 	 
 	
 	
