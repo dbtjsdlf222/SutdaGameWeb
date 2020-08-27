@@ -5,22 +5,30 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>매장 관리 페이지</title>
+    <title>메뉴 관리</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-    <frameset rows="15%, 85%" frameborder="1">
-        <frame src="header.html">
-        <frameset cols="10%, 90%">
-            <frame src="category.html">
-            <frame src="" name="screen">
-        </frameset>
-        <frame src="">
-    </frameset>
-
+<style>
+body{
+    background-color: midnightblue;
+    text-align: center;
+    align-items: center;
+}
+#menu-add{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    font-size: 100px;
+    color: midnightblue;
+    padding: 30px;
+}
+a{
+    text-decoration: none;
+}
+</style>
 </head>
 <body>
-    
+    <a href="menu-add.html" target="screen"><div id="menu-add">+</div></a>
 </body>
 </html>
