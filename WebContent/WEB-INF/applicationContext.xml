@@ -32,12 +32,12 @@
 	</tx:advice>
 
 <!-- DAO 등록 단 -->
-	<bean id="ownerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<bean id="OwnerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 		<property name="mapperInterface" value="project.qrpay.dao.OwnerDAO"/>
 	</bean>
   
-	<bean id="orderDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<bean id="OrderDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 		<property name="mapperInterface" value="project.qrpay.dao.OrderDAO"/>
 	</bean>
@@ -45,5 +45,15 @@
 	<bean id="BoardDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 		<property name="mapperInterface" value="project.qrpay.dao.BoardDAO"/>
+	</bean>
+	
+	<bean id="StoreDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="mapperInterface" value="project.qrpay.dao.StoreDAO"/>
+	</bean>
+	
+	<bean id="MenuDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="mapperInterface" value="project.qrpay.dao.MenuDAO"/>
 	</bean>
 </beans>
