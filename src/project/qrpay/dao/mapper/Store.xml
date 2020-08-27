@@ -21,7 +21,7 @@
 			#{tableCount}
 		);
 	</insert>
-	
+	 
 	<select id="selectStore" parameterType="int" resultType="StoreVO">
 		SELECT 
 			store_no,
