@@ -31,6 +31,7 @@
         <a href="menuSet" target="screen"><li>메뉴 관리</li></a>
         <a href="salesSet" target="screen"><li>매출 관리</li></a>
         <a href="employeeSet" target="screen"><li>직원 관리</li></a>
+        <a href="tableSet" target="screen"><li>테이블 관리</li></a>
     </div>
 </body>
 </html>
