@@ -25,10 +25,16 @@ public class StoreController {
 		return "category";
 	}
 	
-	@RequestMapping("screen")
-	public String screen() {
+	@RequestMapping("menuSet")
+	public String menuSet() {
 		
-		return "screen";
+		return "menuSet";
+	}
+	
+	@RequestMapping("menuAdd")
+	public String menuAdd() {
+		
+		return "menuAdd";
 	}
 	
 } //StoreController();
