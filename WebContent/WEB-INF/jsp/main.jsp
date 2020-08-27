@@ -6,10 +6,9 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>메인 페이지</title>
-    <script src='js/jquery-3.5.1.min.js'></script>
-    <script src='js/jquery-migrate-1.4.1.min.js'></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <link href="main.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <style type="text/css">
 .home{
