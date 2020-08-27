@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.qrpay.dao.StoreDAO">
+
 	<insert id="insertStore" parameterType="StoreVO">
 		INSERT INTO store(
 			store_no,
@@ -11,8 +12,8 @@
 			owner_no,
 			table_count)
 		VALUES
-			#{store_no },
-			#{store_name },
+			#{storeNo },
+			#{storeName },
 			#{type },
 			#{licenseNumber },
 			#{address },
@@ -21,19 +22,41 @@
 		);
 	</insert>
 	
-	<select id="selectMenu" parameterType="int" resultType="MenuVO">
-		SELECT
+	<select id="selectStore" parameterType="int" resultType="StoreVO">
+		SELECT 
+			store_no,
+			store_name,
+			type,
+			license_number,
+			address,
+			owner_no,
+			table_count
+		FROM 
+			store
+		WHERE
+			no=#{no}
 	</select>
+	
+	<update id="updateStore" parameterType="StoreVO">
+		UPDATE 
+			store 
+		SET
+			store_name= #{storeName},
+			type= #{type},
+			address= #{address},
+			owner_no= #{owner_no},
+			table_count= #{tableCount}
+		WHERE
+			store_no = #{storeNo}			
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE store
+		WHERE store_no=#{storeNo}
+	</delete>
 	
 </mapper>
 <!-- 
-	public void selectTable(OwnerVO ownerVO);	//테이블 뷰
-	public MenuVO selectMenu(MenuVO menuVO); 	//메뉴 뷰
-	public void insertMenu(MenuVO menuVO); 		//메뉴 등록
-	public void updateMenu(MenuVO menuVO);		//메뉴 수정
-	public void deleteMenu(MenuVO menuVO);		//메뉴 삭제
- -->
-<!--
 CREATE TABLE store
 (
     `store_no`        INT             NOT NULL    AUTO_INCREMENT COMMENT '업장 번호', 
