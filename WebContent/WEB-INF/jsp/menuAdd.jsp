@@ -22,10 +22,10 @@ body{
 
 </head>
 <body>
-    <form action="upload.jsp" method="post">
+    <form action="upload.jsp" method="post" enctype="multipart/form-data">
         <div id="img-view"><img src="img-upload.png"><br></div>
         <div id="menu-info">
-            <input type="file" value="파일 선택" name="file" enctype="multipart/form-data"><br>
+            <input type="file" value="이미지 선택" name="file"><br>
             <input type="text" placeholder="음식 명"><br>
             <input type="text" placeholder="가격"><br>
             <select id="menu-category" name="menu-category"></select>
