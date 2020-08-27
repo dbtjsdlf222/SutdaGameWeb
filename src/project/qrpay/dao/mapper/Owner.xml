@@ -4,7 +4,13 @@
 
 	<select id="login" parameterType="OwnerVO" resultType="OwnerVO">
 		SELECT
-			*
+			`no`,
+			`name`,
+			`phone`,
+			`id`,
+			`pw`,
+			`email`,
+			`join_date` as joinDate
 		FROM
 			owner
 		WHERE
@@ -20,35 +26,51 @@
 			id=#{id}
 	</select>
 	
-	<insert id="join">
+	<insert id="join" parameterType="hashMap">
 		INSERT INTO owner(
+			`name`,
+			`phone`,
+			`id`,
+			`pw`,
+			`email`)
+		VALUES(
+			{name},
+			{phone },
+			{id },
+			{pw },
+			{email}
+		);
+	</insert>
+	
+	<select id="selectOwner" parameterType="int">
+		SELECT 
 			`no`,
 			`name`,
 			`phone`,
 			`id`,
 			`pw`,
 			`email`,
-			`join_date`,
-			`email_site`)
-		VALUES(
-			{no },
-			{name},
-			{phone },
-			{id },
-			{pw },
-			{email },
-			{joinDate},
-			{emailSite }
-		);
-	</insert>
+			`join_date` as joinDate
+		FROM
+			owner
+		WHERE 
+			no=#{no}
+	</select>
+
+	<update id="updateOwner" parameterMap="OwnerVO">
+		UPDATE
+			owner 
+		SET(
+			`phone` =#{phone},
+			`pw`=#{pw},
+			`email`=#{email})
+		WHERE no=#{no}
+	</update>
 	
-<!--
-	public void join(OwnerVO ownerVO);			//회원가입
-	public void seleteOwner(int no);
-	public void updateOwner(OwnerVO ownerVO);
-	public void deleteOwner(int no);
-	
- -->
+	<delete id="deleteOwner" parameterType="int">
+		DELETE FROM owner
+		WHERE no=#{no}
+	</delete>
 
 <!--
 CREATE TABLE owner
