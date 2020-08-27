@@ -29,6 +29,6 @@ a{
 </style>
 </head>
 <body>
-    <a href="menu-add.html" target="screen"><div id="menu-add">+</div></a>
+    <a href="menuAdd" target="screen"><div id="menuAdd">+</div></a>
 </body>
 </html>

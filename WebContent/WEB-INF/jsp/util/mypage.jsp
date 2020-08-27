@@ -11,6 +11,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <a href="store-set"><div>매장 관리</div></a>
+    <a href="storeSet"><div>매장 관리</div></a>
 </body>
 </html>

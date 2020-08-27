@@ -7,7 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>메뉴 추가</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <style>
 body{
@@ -22,15 +22,16 @@ body{
 
 </head>
 <body>
-    <form action="upload.jsp" method="post" enctype="multipart/form-data">
-        <div id="img-view"><img src="img-upload.png"><br></div>
-        <div id="menu-info">
-            <input type="file" value="이미지 선택" name="file"><br>
-            <input type="text" placeholder="음식 명"><br>
-            <input type="text" placeholder="가격"><br>
-            <select id="menu-category" name="menu-category"></select>
-            <option value="메인">메인</option>
-            <option value="사이드">사이드</option>
+    <form action="/store/menu/upload" method="post" enctype="multipart/form-data">
+        <div id="imgView"><img src="imgUpload.png"><br></div>
+        <div id="menuInfo">
+            <input type="file" value="이미지 선택" name="img"><br>
+            <input type="text" placeholder="음식 명" name="foodName"><br>
+            <input type="text" placeholder="가격" name="price"><br>
+            <select id="menu-category" name="menuCategory">
+               <option value="main">메인</option>
+               <option value="side">사이드</option>
+            </select>
         </div>
     </form>
 </body>

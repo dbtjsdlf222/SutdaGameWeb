@@ -11,9 +11,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <frameset rows="15%, 85%" frameborder="1">
-        <frame src="header.html">
+        <frame src="header">
         <frameset cols="10%, 90%">
-            <frame src="category.html">
+            <frame src="category">
             <frame src="" name="screen">
         </frameset>
         <frame src="">
