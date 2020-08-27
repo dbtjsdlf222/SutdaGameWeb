@@ -31,7 +31,10 @@ body{
             <select id="menu-category" name="menuCategory">
                <option value="main">메인</option>
                <option value="side">사이드</option>
+               <option value="liquor">주류</option>
             </select>
+            <input type="submit" value="+"><br><br><br>
+            <input type="submit" value="확인">
         </div>
     </form>
 </body>
