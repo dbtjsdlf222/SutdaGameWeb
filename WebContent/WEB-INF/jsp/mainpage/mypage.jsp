@@ -5,12 +5,18 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>내 정보 페이지</title>
+    <title>마이 페이지</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
 </head>
 <body>
-    <a href="storeSet"><div>매장 관리</div></a>
+<jsp:include page="header.jsp" flush="false">
+
+</jsp:include>
+	<div>
+		
+	</div>
 </body>
 </html>

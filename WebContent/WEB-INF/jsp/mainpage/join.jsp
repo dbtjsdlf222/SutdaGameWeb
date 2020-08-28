@@ -124,6 +124,9 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
  </style>
 </head>
 <body>
+<jsp:include page="header.jsp" flush="false">
+
+</jsp:include>
     <fieldset class="information">
     <legend>회원가입</legend>
     	<form action="joinAction" method="post">

@@ -33,6 +33,9 @@ footer p{
 </style>
 </head>
 <body>
+<jsp:include page="header.jsp" flush="false">
+
+</jsp:include>
     <div id="content">
         <img id="slide" src="../../image/slide1.png" name="slide">
     </div>
