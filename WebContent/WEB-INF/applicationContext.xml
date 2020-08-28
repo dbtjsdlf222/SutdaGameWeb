@@ -18,7 +18,7 @@
 		<property name="username" value="sunx"/>
 		<property name="password" value="sun123@@"/>
 	</bean>
-
+000000000
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
@@ -49,7 +49,7 @@
 	
 	<bean id="StoreDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="project.qrpay.dao.StoreDAO"/>
+		<property name="mapperInterface" value="project.qrpy.dao.StoreDAO"/>
 	</bean>
 	
 	<bean id="MenuDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">

@@ -25,6 +25,7 @@ public class OwnerController {
 	public String loginAction(Model model,HttpSession session,@RequestParam(required = true) String id, @RequestParam(required = true) String pw) {
 		OwnerVO ownerVO;
 		if((ownerVO=ownerService.loginOwner(id,pw)) != null) {
+			System.out.println("Ownercontroller:28");
 			session.setAttribute("loginInfo", ownerVO);
 			return "main";
 		}
@@ -38,6 +39,12 @@ public class OwnerController {
 		
 			return "join";
 	} //join
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginInfo");
+		return "main";
+	} //logout
 	
 	//회원가입 액션
 	@RequestMapping("joinAction")

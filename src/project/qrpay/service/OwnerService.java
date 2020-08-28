@@ -14,7 +14,10 @@ public class OwnerService {
 	@Autowired
 	OwnerDAO ownerDAO;
 	
-	public OwnerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
+	public OwnerVO loginOwner(String id, String pw) { 
+		System.out.println("OwnerService:18");	
+		return ownerDAO.login(id, pw);
+	}
 	public void joinOwner(Map<String,String> map) { ownerDAO.join(map); }
 	
-}
+} //OwnerService();
