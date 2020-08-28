@@ -43,9 +43,10 @@ public class OwnerController {
 	@RequestMapping("joinAction")
 	public String joinAction(HttpSession session, @RequestParam Map<String, String> map) {
 		map.put("license", map.get("license1").concat(map.get("license2")).concat(map.get("license3")));
+		map.put("phone", map.get("phone1").concat(map.get("phone2")));
+		map.put("email", map.get("email1").concat(map.get("email2")));
 		ownerService.joinOwner(map);
 		return "main";
-		
 	} //joinAction
 
 	
