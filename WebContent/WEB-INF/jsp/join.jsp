@@ -191,12 +191,12 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
         <ul id="join_info">
             <li>
                 <label for="join_id">아이디<span class="essential"></span></label><br>
-                <input type="text" id="join_id" name="join_id" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12"><br><br>
+                <input type="text" id="join_id" name="id" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12"><br><br>
             </li>
             <li>
                 <label for="join_pw">비밀번호</label><br>
-                <input type="password" id="join_pw" name="join_pw" placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><br><br>
-                <input type="password" id="join_pwc" name="join_pwc" placeholder="비밀번호 확인"><br><br>
+                <input type="password" id="join_pw" name="pw" placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><br><br>
+                <input type="password" id="join_pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
             </li>
         </ul>
         <ul id="privacy">
