@@ -33,7 +33,7 @@ public class MenuController {
 	
 	@RequestMapping("add")
 	public String addMenu() {
-		return "menuAdd";
+		return "storepage/menuAdd";
 	} //update();
 	
 	@RequestMapping("updateAction")

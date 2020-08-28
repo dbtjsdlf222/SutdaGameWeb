@@ -23,14 +23,14 @@ public class MainController {
 	//메인
 	@RequestMapping(path={"/","main"})
 	public String main() {
-		return "main";
+		return "mainpage/main";
 	} // main
 	
 	//로그인
 	@RequestMapping("login")
 	public String login(HttpSession session) {
-		if(session.getAttribute("loginInfo") == null) 
-			return "login";
+		if(session.getAttribute("loginInfo") == null)
+			return "mainpage/login";
 		 else 
 			return "redirect:main";
 	} //login

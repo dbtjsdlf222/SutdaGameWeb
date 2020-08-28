@@ -14,7 +14,7 @@ public class OrderController {
 	
 	@RequestMapping("/")
 	public String main() {
-		return "main";   
+		return "mainpage/main";   
 	} 
 	
 } //class 

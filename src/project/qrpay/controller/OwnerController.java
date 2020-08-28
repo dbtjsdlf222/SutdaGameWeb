@@ -27,23 +27,23 @@ public class OwnerController {
 		if((ownerVO=ownerService.loginOwner(id,pw)) != null) {
 			System.out.println("Ownercontroller:28");
 			session.setAttribute("loginInfo", ownerVO);
-			return "main";
+			return "mainpage/main";
 		}
 		model.addAttribute("msg","false");
-		return "login";
+		return "mainpage/login";
 	} //loginAction
 	
 	//회원가입
 	@RequestMapping("join")
 	public String join(HttpSession session, @RequestParam Map<String, String> map) {
 		
-			return "join";
+			return "mainpage/join";
 	} //join
 	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginInfo");
-		return "main";
+		return "mainpage/main";
 	} //logout
 	
 	//회원가입 액션
@@ -53,7 +53,7 @@ public class OwnerController {
 		map.put("phone", map.get("phone1").concat(map.get("phone2")));
 		map.put("email", map.get("email1").concat(map.get("email2")));
 		ownerService.joinOwner(map);
-		return "main";
+		return "mainpage/main";
 	} //joinAction
 
 	

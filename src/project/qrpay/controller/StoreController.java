@@ -10,31 +10,31 @@ public class StoreController {
 	@RequestMapping("/")
 	public String main() {
 		
-		return "storeSet";
+		return "storepage/storeSet";
 	} //main();
 	
 	@RequestMapping("header")
 	public String header() {
 		
-		return "header";
+		return "storepage/header";
 	}
 	
 	@RequestMapping("category")
 	public String category() {
 		
-		return "category";
+		return "storepage/category";
 	}
 	
 	@RequestMapping("menuSet")
 	public String menuSet() {
 		
-		return "menuSet";
+		return "storepage/menuSet";
 	}
 	
 	@RequestMapping("menuAdd")
 	public String menuAdd() {
 		
-		return "menuAdd";
+		return "storepage/menuAdd";
 	}
 	
 } //StoreController();

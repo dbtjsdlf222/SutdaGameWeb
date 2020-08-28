@@ -33,53 +33,6 @@
             </c:if>
     </script>
 <style>
-.home{
-    margin-left: 30px;
-    font-size: 50px;
-    color: midnightblue;
-    font-weight: bold;
-    font-family: stencil;
-}
-.home a{
-    text-decoration: none;
-}
-.nav{
-    display: flex;
-    border-bottom: 2px solid midnightblue;
-    height: 100px;
-    align-items: center;
-}
-.nav-right-items{
-    display: flex;
-    margin-left: auto;
-    margin-right: 50px;
-    text-align: center;
-}
-.nav-item{
-    margin-left: 30px;
-    font-size: 30px;
-    font-weight: bold;
-    color: midnightblue;
-    margin-right: 100px;
-}
-.login{
-    width: 100px;
-    height: 40px;
-    padding-top: 10px;
-    border-radius: 10%;
-    background-color: midnightblue;
-    margin-right: 50px;
-    text-align: center;
-}
-header{
-    margin-bottom: 100px;
-}
-.login a{
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-}
 .tab{
     text-align: center;
     color: midnightblue;
@@ -142,19 +95,9 @@ textarea{
     
 </head>
 <body>
-    <header>
-    <div class="nav">
-        <div class="home"><a href="main">QRPAY</a></div>
-        <div class="nav-right-items">
-            <div class="nav-item">소개</div>
-            <div class="nav-item">공지사항</div>
-            <div class="nav-item">고객센터</div>
-        </div>
-        <div class="login"><a href="login">로그인</a></div>
-        <!-- <img src="/image/user.png"> -->
-    </div>
-    </header>
+<jsp:include page="header.jsp" flush="false">
 
+</jsp:include>
     <div class="tab">
         <ul class="tabs">
             <span data-tab-target="#user" class="active tab">회원 로그인</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
