@@ -174,7 +174,7 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
         <ul id="store">
             <li>
    		    	<label for="store_info">가게 종류</label><br>
-                <select id="store_type" name="store_type">
+                <select id="store_type" name="storeType">
                     <option value="food">음식점</option>
                     <option value="bar">술집</option>
                     <option value="junk">패스트푸드점</option>

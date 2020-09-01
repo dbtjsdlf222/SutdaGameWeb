@@ -27,19 +27,19 @@
 	</select>
 	
 	<insert id="join" parameterType="Map">
-		INSERT INTO owner(
+		INSERT 
+		INTO owner(
 			`name`,
 			`phone`,
 			`id`,
 			`pw`,
-			`email`)
+			`email` )
 		VALUES(
-			{name},
-			{phone },
-			{id },
-			{pw },
-			{email}
-		);
+			#{name},
+			#{phone },
+			#{id },
+			#{pw },
+			#{email} )
 	</insert>
 	
 	<select id="selectOwner" parameterType="int">

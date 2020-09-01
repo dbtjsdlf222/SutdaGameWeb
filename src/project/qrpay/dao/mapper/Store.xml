@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.qrpay.dao.StoreDAO">
 
-	<insert id="insertStore" parameterType="StoreVO">
+	<insert id="insertStore" parameterType="Map">
 		INSERT INTO store(
-			store_no,
 			store_name,
 			type,
 			license_number,
@@ -12,9 +11,8 @@
 			owner_no,
 			table_count)
 		VALUES
-			#{storeNo },
 			#{storeName },
-			#{type },
+			#{storeType },
 			#{licenseNumber },
 			#{address },
 			#{ownerNo },
@@ -50,7 +48,7 @@
 			store_no = #{storeNo}			
 	</update>
 	
-	<delete id="delete" parameterType="int">
+	<delete id="deleteStore" parameterType="int">
 		DELETE store
 		WHERE store_no=#{storeNo}
 	</delete>
