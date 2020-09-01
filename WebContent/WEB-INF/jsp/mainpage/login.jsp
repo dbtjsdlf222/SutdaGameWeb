@@ -95,9 +95,7 @@ textarea{
     
 </head>
 <body>
-<jsp:include page="header.jsp" flush="false">
-
-</jsp:include>
+<jsp:include page="header.jsp" flush="false" />
     <div class="tab">
         <ul class="tabs">
             <span data-tab-target="#user" class="active tab">회원 로그인</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
