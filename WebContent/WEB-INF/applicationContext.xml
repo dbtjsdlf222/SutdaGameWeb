@@ -48,7 +48,7 @@
 	
 	<bean id="StoreDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="project.qrpy.dao.StoreDAO"/>
+		<property name="mapperInterface" value="project.qrpay.dao.StoreDAO"/>
 	</bean>
 	
 	<bean id="MenuDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
