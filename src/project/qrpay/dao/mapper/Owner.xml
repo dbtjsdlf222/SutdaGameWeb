@@ -33,13 +33,17 @@
 			`phone`,
 			`id`,
 			`pw`,
-			`email` )
+			`email`, 
+			`bank_account`,
+			`bank_name`)
 		VALUES(
 			#{name},
 			#{phone },
 			#{id },
 			#{pw },
-			#{email} )
+			#{email}, 
+			#{bankAccount},
+			#{bankName})
 	</insert>
 	
 	<select id="selectOwner" parameterType="int">
@@ -57,7 +61,7 @@
 			no=#{no}
 	</select>
 
-	<update id="updateOwner" parameterType="OwnerVO">
+	<update id="updateOwner" parameterMap="OwnerVO">
 		UPDATE
 			owner 
 		SET(
