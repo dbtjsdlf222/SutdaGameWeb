@@ -124,9 +124,7 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
  </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="false">
-
-</jsp:include>
+<jsp:include page="header.jsp" flush="false"/>
     <fieldset class="information">
     <legend>회원가입</legend>
     	<form action="joinAction" method="post">
@@ -169,6 +167,10 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
                     <option value="018">018</option>
                 </select>
                 <input type="text" id="phone2" name="phone2"><br><br>
+            </li>
+            <li>
+            	<label for="text">계좌번호</label><br>
+            	<input type="text" id="account" name="account">
             </li>
         </ul>
         <ul id="store">
@@ -232,12 +234,6 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
 		if (licenseCheck.test($('#license1').val()))
 			$('#licensetag').text("확").css({"margin-right":"25px"});				
 		});
-
-	//이메일 정규식
-	var 
-
-	
-
 
 </script>
 </html>
