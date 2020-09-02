@@ -83,6 +83,13 @@ input[type="text"]{
 	height: 40px;
 	padding-left: 10px;
 }
+input[type="button"]{
+	width: 100px;
+	height: 30px;
+	background-color: midnightblue;
+	border-radius: 5%;
+	color: white;
+}
 input[type="password"]{
 	width: 380px;
 	height: 40px;
