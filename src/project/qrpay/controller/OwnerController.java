@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project.qrpay.service.OwnerService;
+import project.qrpay.service.StoreService;
 import project.qrpay.vo.OwnerVO;
 
 @Controller @RequestMapping("owner")
@@ -19,6 +20,9 @@ public class OwnerController {
 	
 	@Autowired
 	OwnerService ownerService;
+	
+	@Autowired
+	StoreService storeService;
 	
 	//로그인 액션
 	@RequestMapping(value="loginAction", method=RequestMethod.POST)
@@ -49,13 +53,12 @@ public class OwnerController {
 	//회원가입 액션
 	@RequestMapping("joinAction")
 	public String joinAction(HttpSession session, @RequestParam Map<String, String> map) {
-		map.put("license", map.get("license1").concat(map.get("license2")).concat(map.get("license3")));
+		map.put("licenseNumber", map.get("license1").concat(map.get("license2")).concat(map.get("license3")));
 		map.put("phone", map.get("phone1").concat(map.get("phone2")));
 		map.put("email", map.get("email1").concat(map.get("email2")));
 		ownerService.joinOwner(map);
+		storeService.insertStore(map);
 		return "mainpage/main";
 	} //joinAction
 
-	
-	
 } //OwnerController();

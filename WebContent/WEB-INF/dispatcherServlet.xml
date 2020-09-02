@@ -22,7 +22,11 @@
 	<mvc:interceptor>
 	  <mvc:mapping path="/logout"/>
 	  <mvc:mapping path="/user/page/**"/>
-	  <bean class="project.qrpay.interceptor.FalseLoginInterceptor"/>
+	  <bean class="project.qrpay.interceptor.SessionAttributeCheckInterceptor">
+	    <constructor-arg value="loginInfo"/>
+	    <constructor-arg value="false"/>
+	    <constructor-arg value="/login"/>
+	  </bean>
 	</mvc:interceptor>
 
 	<mvc:interceptor>
@@ -30,7 +34,11 @@
 		<mvc:mapping path="/loginAction"/>
 		<mvc:mapping path="/join"/>
 		<mvc:mapping path="/joinAction"/>
-	  <bean class="project.qrpay.interceptor.TureLoginInterceptor"/>
+	  <bean class="project.qrpay.interceptor.SessionAttributeCheckInterceptor">
+	    <constructor-arg value="loginInfo"/>
+	    <constructor-arg value="true"/>
+	    <constructor-arg value="../"/>
+	  </bean>
 	</mvc:interceptor>
 
   </mvc:interceptors>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-						    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-						    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-						    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+						   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+						   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+						   http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 	<context:component-scan base-package="project.qrpay.service"/>
-  
+
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath*:project/qrpay/dao/mapper/**/*.xml"/>
@@ -18,6 +19,7 @@
 		<property name="username" value="sunx"/>
 		<property name="password" value="sun123@@"/>
 	</bean>
+
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
@@ -30,29 +32,6 @@
 		</tx:attributes>
 	</tx:advice>
 
-<!-- DAO 등록 단 -->
-	<bean id="OwnerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="project.qrpay.dao.OwnerDAO"/>
-	</bean>
-  
-	<bean id="OrderDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="project.qrpay.dao.OrderDAO"/>
-	</bean>
-  
-	<bean id="BoardDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="project.qrpay.dao.BoardDAO"/>
-	</bean>
-	
-	<bean id="StoreDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="project.qrpay.dao.StoreDAO"/>
-	</bean>
-	
-	<bean id="MenuDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="mapperInterface" value="project.qrpay.dao.MenuDAO"/>
-	</bean>
+	<mybatis:scan base-package="project.qrpay.dao"/>
+
 </beans>
