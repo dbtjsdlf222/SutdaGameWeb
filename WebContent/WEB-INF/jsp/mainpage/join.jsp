@@ -146,7 +146,7 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
             </li>
             <li>
                 <label for="license">사업자 등록번호</label><br>
-                <input type="text" id="license1" name="license1">&emsp;<b>-</b>&emsp;<input type="text" id="license2" name="license2">&emsp;<b>-</b>&emsp;<input type="text" id="license3" name="license3"><br><br>
+                <input type="text" id="license1" name="license1" maxlength="3">&emsp;<b>-</b>&emsp;<input type="text" id="license2" name="license2" maxlength="2">&emsp;<b>-</b>&emsp;<input type="text" id="license3" name="license3" maxlength="5"><br><br>
             </li>
             <li>
                 <label for="email">이메일</label><br>
