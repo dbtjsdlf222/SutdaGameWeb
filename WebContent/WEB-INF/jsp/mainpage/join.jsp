@@ -166,11 +166,11 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
                     <option value="017">017</option>
                     <option value="018">018</option>
                 </select>
-                <input type="text" id="phone2" name="phone2"><br><br>
+                <input type="text" id="phone2" name="phone2" maxlength="8"><br><br>
             </li>
             <li>
             	<label for="text">계좌번호</label><br>
-            	<input type="text" id="account" name="account">
+            	<input type="text" id="account" name="account" placeholder="'-'없이 입력하세요">
             </li>
         </ul>
         <ul id="store">
