@@ -40,8 +40,7 @@ public class OwnerController {
 	//회원가입
 	@RequestMapping("join")
 	public String join(HttpSession session, @RequestParam Map<String, String> map) {
-		
-			return "mainpage/join";
+		return "mainpage/join";
 	} //join
 	
 	@RequestMapping("logout")
