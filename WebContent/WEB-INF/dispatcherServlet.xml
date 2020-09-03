@@ -13,10 +13,11 @@
   <context:component-scan base-package="project.qrpay.controller"/>
 
   <mvc:default-servlet-handler/>
+  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
 	<property name="order" value="0"/>
+	<property name="useTrailingSlashMatch" value="false"/>
   </bean>
-  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
 
   <mvc:interceptors>
 	<mvc:interceptor>

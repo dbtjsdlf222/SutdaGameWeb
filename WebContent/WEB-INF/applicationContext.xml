@@ -6,7 +6,6 @@
 						   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 						   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 						   http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
-	<context:component-scan base-package="project.qrpay.service"/>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
@@ -28,10 +27,11 @@
 	</aop:config>
 	<tx:advice id="tx" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="*"/>
+			<tx:method name="*" rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
 
 	<mybatis:scan base-package="project.qrpay.dao"/>
+	<context:component-scan base-package="project.qrpay.service"/>
 
 </beans>
