@@ -29,11 +29,13 @@
     text-decoration: none;
 }
 .title{
-	margin-left: 30px;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
     color: midnightblue;
-    margin-right: 100px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 .logout{
     width: 100px;
@@ -60,5 +62,7 @@
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
+    
+    
 </body>
 </html>
