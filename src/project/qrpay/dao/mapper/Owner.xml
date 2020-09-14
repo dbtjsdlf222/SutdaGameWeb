@@ -61,7 +61,7 @@
 			no=#{no}
 	</select>
 
-	<update id="updateOwner" parameterMap="OwnerVO">
+	<update id="updateOwner" parameterType="OwnerVO">
 		UPDATE
 			owner 
 		SET(
