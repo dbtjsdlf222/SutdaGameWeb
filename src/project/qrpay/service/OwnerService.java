@@ -16,6 +16,6 @@ public class OwnerService {
 	
 	public OwnerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
 	public void joinOwner(Map<String,String> map) { ownerDAO.join(map); }
-	public OwnerVO selectOwner(int no) { return ownerDAO.seleteOwner(no); }
+	public OwnerVO selectOwner(int no) { return ownerDAO.selectOwner(no); }
 	
 } //OwnerService();

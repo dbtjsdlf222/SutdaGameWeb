@@ -8,7 +8,7 @@ import project.qrpay.vo.OwnerVO;
 
 public interface OwnerDAO {
 	public void join(Map<String,String> map);			//회원가입
-	public OwnerVO seleteOwner(@Param("no") int no);
+	public OwnerVO selectOwner(@Param("no") int no);
 	public void updateOwner(OwnerVO ownerVO);
 	public void deleteOwner(@Param("no") int no);
 	public int selectID(@Param("id") String id);
