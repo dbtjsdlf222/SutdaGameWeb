@@ -46,7 +46,7 @@
 			#{bankName})
 	</insert>
 	
-	<select id="selectOwner" parameterType="int">
+	<select id="selectOwner" parameterType="int" resultType="OwnerVO">
 		SELECT 
 			`no`,
 			`name`,
@@ -54,7 +54,9 @@
 			`id`,
 			`pw`,
 			`email`,
-			`join_date` as joinDate
+			`join_date` as joinDate,
+			`bank_account`,
+			`bank_name`
 		FROM
 			owner
 		WHERE 

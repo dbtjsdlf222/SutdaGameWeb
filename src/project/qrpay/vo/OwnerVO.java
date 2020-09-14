@@ -1,17 +1,18 @@
 package project.qrpay.vo;
 
+import java.util.Date;
 import java.util.Map;
 
 public class OwnerVO {
 //owner DB
    private int no;             	//가입번호
    private String name;         //이름
-   private int phone;           //연락처
+   private String phone;           //연락처
    private String id;           //아이디
    private String pw;           //비밀번호
    private String email;      	//이메일
    private String email2;      	//이메일 뒤에
-   private int membershipDate;   //가입일
+   private Date membershipDate;   //가입일
    private int bankAccount;   //은행 계좌
    private String bankName;   //은행 계좌
    
@@ -32,7 +33,7 @@ public class OwnerVO {
 		this.id = map.get("id");
 		this.pw = map.get("pw");
 		this.email = map.get("email");
-		this.membershipDate = map.get("membershipDate");
+		this.membershipDate = new Date();
 		this.bankAccount = map.get("bankAccount");
 		this.bankName = map.get("bankName");
 		this.storeName = map.get("storeName");
