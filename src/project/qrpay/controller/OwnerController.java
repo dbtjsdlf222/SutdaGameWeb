@@ -36,5 +36,21 @@ public class OwnerController {
 		model.addAttribute("msg","false");
 		return "mainpage/login";
 	} //loginAction
+	
+	@RequestMapping(path={"/","mypage"})
+	public String mypage() {
+		return "mainpage/mypage";
+	} // mypage
+	
+	@RequestMapping(path={"/","main"})
+	public String main() {
+		return "mainpage/main";
+	} // main
+	
+	@RequestMapping(path={"/","logout"})
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginInfo");
+		return "mainpage/main";
+	} // main
 
 } //OwnerController();

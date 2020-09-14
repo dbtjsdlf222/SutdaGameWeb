@@ -15,6 +15,7 @@
     display: flex;
     border-bottom: 2px solid midnightblue;
     height: 100px;
+    margin: auto;
     align-items: center;
 }
 .home{
@@ -27,10 +28,12 @@
 .home a{
     text-decoration: none;
 }
-title{
-	font-size: 20px;
-	font-weight: bold;
-	color: white;
+.title{
+	margin-left: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    color: midnightblue;
+    margin-right: 100px;
 }
 .logout{
     width: 100px;
