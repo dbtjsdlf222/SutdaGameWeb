@@ -55,6 +55,36 @@
     font-size: 20px;
     font-weight: bold;
 }
+.logout{
+	width: 150px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    margin-right: 50px;
+    text-align: center;
+}
+.logout a{
+	text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.mypage{
+	width: 150px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    margin-right: 50px;
+    text-align: center;
+}
+.mypage a{
+	text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -66,9 +96,19 @@
             <div class="nav-item">공지사항</div>
             <div class="nav-item">고객센터</div>
         </div>
-        <div class="login"><a href="login">로그인</a></div>
-        <!-- <img src="/image/user.png"> -->
+        <% if(session.getAttribute("loginInfo")==null){ %>
+        
+	        <div class="login"><a href="login">로그인</a></div>
+        <% } else{ %>
+        	<div class="logout">로그아웃</div>
+        	<div class="mypage"><a href="mypage">마이페이지</a></div>
+        	
+        <% } %>
     </div>
     </header>
+    
+    <script>
+		
+    </script>
 </body>
 </html>

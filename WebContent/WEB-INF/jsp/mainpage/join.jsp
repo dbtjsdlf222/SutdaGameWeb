@@ -68,6 +68,7 @@
 	padding-top: 50px;
 	padding-bottom: 50px;
 	margin: auto;
+	margin-top: 100px;
 	color: midnightblue;
 }
 legend{
