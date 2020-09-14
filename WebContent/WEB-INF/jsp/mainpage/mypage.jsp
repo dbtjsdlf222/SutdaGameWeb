@@ -15,6 +15,7 @@
     display: flex;
     border-bottom: 2px solid midnightblue;
     height: 100px;
+    margin: auto;
     align-items: center;
 }
 .home{
@@ -27,10 +28,14 @@
 .home a{
     text-decoration: none;
 }
-title{
-	font-size: 20px;
-	font-weight: bold;
-	color: white;
+.title{
+    font-size: 50px;
+    font-weight: bold;
+    color: midnightblue;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 .logout{
     width: 100px;
@@ -57,5 +62,7 @@ title{
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
+    
+    
 </body>
 </html>
