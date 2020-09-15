@@ -64,7 +64,17 @@
 }
 .myinfo{
 	margin: auto;
+	margin-bottom: 50px;
 	color: midnightblue;
+}
+input[type="submit"]{
+	width: 100px;
+	height: 40px;
+	background-color: midnightblue;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
 }
 </style>
 </head>
@@ -79,7 +89,8 @@
 	<% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
 	<% StoreVO storeInfo=(StoreVO)request.getAttribute("storeInfo"); %>
     <div class="profile"></div>
-    <table class="myinfo">
+    <div class="myinfo">
+    <table>
     	<tr>
     		<td>이름</td>
     		<td><%=ownerInfo.getName() %></td>
@@ -101,8 +112,7 @@
     		<td><%=storeInfo.getAddress() %></td>
     	</tr>
     </table>
-    
-    <div class="ownerSet">
+    	<span class="infoRevise"><input type="submit" value="정보 수정"></span>
     </div>
 </body>
 </html>
