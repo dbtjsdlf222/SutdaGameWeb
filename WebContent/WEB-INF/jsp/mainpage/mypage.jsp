@@ -1,3 +1,5 @@
+<%@page import="project.qrpay.vo.StoreVO"%>
+<%@page import="project.qrpay.vo.OwnerVO"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -52,6 +54,18 @@
     font-size: 20px;
     font-weight: bold;
 }
+.profile{
+	margin: auto;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	width: 100px;
+	height: 100px;
+	background-color: midnightblue;
+}
+.myinfo{
+	margin: auto;
+	color: midnightblue;
+}
 </style>
 </head>
 <body>
@@ -62,7 +76,33 @@
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
+	<% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
+	<% StoreVO storeInfo=(StoreVO)request.getAttribute("storeInfo"); %>
+    <div class="profile"></div>
+    <table class="myinfo">
+    	<tr>
+    		<td>이름</td>
+    		<td><%=ownerInfo.getName() %></td>
+    	</tr>
+    	<tr>
+    		<td>이메일</td>
+    		<td><%=ownerInfo.getEmail() %></td>
+    	</tr>
+    	<tr>
+    		<td>전화번호</td>
+    		<td><%=ownerInfo.getPhone() %></td>
+    	</tr>
+    	<tr>	
+    		<td>가게이름</td>
+    		<td><%=storeInfo.getStoreName() %></td>
+    	</tr>
+    	<tr>
+    		<td>가게주소</td>
+    		<td><%=storeInfo.getAddress() %></td>
+    	</tr>
+    </table>
     
-    
+    <div class="ownerSet">
+    </div>
 </body>
 </html>

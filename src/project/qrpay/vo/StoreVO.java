@@ -27,4 +27,10 @@ public class StoreVO {
 		public void setAddress(String address) {this.address = address;}
 		public void setOwnerNo(int ownerNo) {this.ownerNo = ownerNo;}
 		public void setTableCount(int tableCount) {this.tableCount = tableCount;}
+		@Override
+		public String toString() {
+			return "StoreVO [storeNo=" + storeNo + ", storeName=" + storeName + ", type=" + type + ", licenseNumber="
+					+ licenseNumber + ", address=" + address + ", ownerNo=" + ownerNo + ", tableCount=" + tableCount
+					+ "]";
+		}
 }

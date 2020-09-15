@@ -22,13 +22,13 @@
 	 
 	<select id="selectStore" parameterType="int" resultType="StoreVO">
 		SELECT 
-			store_no,
-			store_name,
+			store_no as storeNo,
+			store_name as storeName,
 			type,
-			license_number,
+			license_number as licenseNumber,
 			address,
-			owner_no,
-			table_count
+			owner_no as ownerNo,
+			table_count as tableCount
 		FROM 
 			store
 		WHERE

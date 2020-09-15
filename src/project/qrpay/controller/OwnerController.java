@@ -42,6 +42,7 @@ public class OwnerController {
 		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
 		model.addAttribute("myInfo", ownerService.selectOwner(vo.getNo()));
 		model.addAttribute("storeInfo", storeService.selectStore(vo.getNo()));
+		System.out.println(storeService.selectStore(vo.getNo()));
 		return "mainpage/mypage";
 	} // mypage
 	

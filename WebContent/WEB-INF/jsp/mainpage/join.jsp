@@ -196,12 +196,11 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
                 <input type="text" id="store_name" name="store_name"><br><br>
             </li>
             <li>
-            	<br><label for="store_name">가게 주소</label><br>
-                <input type="text" id="sample6_postcode" placeholder="우편번호">
+            	<br><label for="store_address">가게 주소</label><br>
+                <input type="text" id="sample6_postcode" name="store_postcode" placeholder="우편번호">
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br><br>
-				<input type="text" id="sample6_address" placeholder="주소"><br><br>
-				<input type="text" id="sample6_detailAddress" placeholder="상세주소"><br><br>
-				<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+				<input type="text" id="sample6_address" name="store_address" placeholder="주소"><br><br>
+				<input type="text" id="sample6_detailAddress" name="store_address2" placeholder="상세주소"><br><br>
             </li>
         </ul>
         <div id="commit">

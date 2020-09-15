@@ -55,8 +55,8 @@
 			`pw`,
 			`email`,
 			`join_date` as joinDate,
-			`bank_account`,
-			`bank_name`
+			`bank_account` as bankAccount,
+			`bank_name` as bankName
 		FROM
 			owner
 		WHERE 
