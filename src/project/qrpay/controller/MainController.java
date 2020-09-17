@@ -6,19 +6,24 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project.qrpay.service.MainService;
-import project.qrpay.vo.OwnerVO;
+import project.qrpay.service.OwnerService;
+import project.qrpay.service.StoreService;
 
 @Controller @RequestMapping("/")
 public class MainController {
 	
 	@Autowired
 	MainService mainService;
+	
+	@Autowired
+	OwnerService ownerService;
+	
+	@Autowired
+	StoreService storeService;
 	
 	//메인
 	@RequestMapping(path={"/","main"})

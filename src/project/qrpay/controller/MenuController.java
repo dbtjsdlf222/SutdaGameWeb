@@ -1,10 +1,14 @@
 package project.qrpay.controller;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,22 +17,39 @@ import org.springframework.web.multipart.MultipartFile;
 public class MenuController {
 	
 	@RequestMapping("upload")
-	public String insertAction(@RequestParam Map<String,String> map, @RequestParam("img") MultipartFile file) {
+	public String insertAction(@RequestParam Map<String,String> map, @RequestParam("img") MultipartFile file,HttpServletRequest request) {
 		  	System.out.println("파일 이름 : " + file.getOriginalFilename());
 	        System.out.println("파일 크기 : " + file.getSize());
 	        
-	        try (FileOutputStream fos = new FileOutputStream("/image/menu" + file.getOriginalFilename());
-	             InputStream is = file.getInputStream();) {
-	        	int readCount = 0;
-	            byte[] buffer = new byte[1024];
-	            while ((readCount = is.read(buffer)) != -1) {
-	                fos.write(buffer, 0, readCount);
-	            }
-	        } catch (Exception ex) {
-	            throw new RuntimeException("file Save Error");
-	        }
+	        UUID uid = UUID.randomUUID();
+	        String savedName = uid.toString();
+	        
+	        try {
+	        	File Folder = new File("재범업.txt");
+    		    Folder.mkdir(); //폴더 생성합니다.
+    		    
+    		    String root_path = request.getSession().getServletContext().getRealPath("/");  
+
+    		    String attach_path = "/upload/menu";
+    		    String filename = file.getOriginalFilename();
+
+    		    File f = new File(root_path + attach_path + filename);
+    		   file.transferTo(f);
+    		  } catch (Exception e) {
+    		   System.out.println(e.getMessage());
+    		  }  
+    		    
+    		    
+//				File target = new File("img/menu");
+//				FileCopyUtils.copy(file.getBytes(), target);
+//			}
+//	        catch (IOException e) {
+//				e.printStackTrace();
+//			}
+			return savedName;
+//	        
 	 
-		return "";
+//		return "";
 	} //insert();
 	
 	@RequestMapping("add")

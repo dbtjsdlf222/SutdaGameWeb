@@ -47,7 +47,7 @@ input[type="submit"]{
 
 </head>
 <body>
-    <form action="store/menu/upload" method="post" enctype="multipart/form-data">
+    <form action="/store/menu/upload" method="post" enctype="multipart/form-data">
         <div id="imgView"><img src="imgUpload.png" width="400px"></div>
         <div id="menu-info">
             <table>

@@ -1,7 +1,5 @@
 package project.qrpay.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,21 +35,21 @@ public class OwnerController {
 		return "mainpage/login";
 	} //loginAction
 	
-	@RequestMapping(path={"/","mypage"})
+	@RequestMapping("mypage")
 	public String mypage(Model model, HttpSession session) {
 		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
 		model.addAttribute("myInfo", ownerService.selectOwner(vo.getNo()));
 		model.addAttribute("storeInfo", storeService.selectStore(vo.getNo()));
 		System.out.println(storeService.selectStore(vo.getNo()));
 		return "mainpage/mypage";
-	} // mypage
+	} // my page
 	
-	@RequestMapping(path={"/","main"})
+	@RequestMapping("main")
 	public String main() {
 		return "mainpage/main";
 	} // main
 	
-	@RequestMapping(path={"/","logout"})
+	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginInfo");
 		return "mainpage/main";
