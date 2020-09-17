@@ -35,9 +35,6 @@
 }
 .nav-item{
     margin-left: 30px;
-    font-size: 30px;
-    font-weight: bold;
-    color: midnightblue;
     margin-right: 100px;
 }
 .login{
@@ -70,6 +67,12 @@
     font-size: 20px;
     font-weight: bold;
 }
+.nav-item a{
+	text-decoration: none;
+	font-size: 30px;
+    font-weight: bold;
+    color: midnightblue;
+}
 </style>
 </head>
 <body>
@@ -77,9 +80,9 @@
     <div class="nav">
         <div class="home"><a href="main">QRPAY</a></div>
         <div class="nav-right-items">
-            <div class="nav-item">소개</div>
-            <div class="nav-item">공지사항</div>
-            <div class="nav-item">고객센터</div>
+            <div class="nav-item"><a href="intro">소개</a></div>
+            <div class="nav-item"><a href="notice">공지사항</a></div>
+            <div class="nav-item"><a href="sc">고객센터</a></div>
         </div>
         <% if(session.getAttribute("loginInfo")==null){ %>
         

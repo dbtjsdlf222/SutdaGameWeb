@@ -19,31 +19,34 @@ th{
 	background-color: #eeeeee;
 	text-align: center;
 }
+textarea{
+	width: 800px;
+	height: 500px;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="false"/>
 	<div class="container">
 		<div class="row">
+		<form method="post" action="mainpage/sc/writeAction">
 			<table class="stripe">
 				<thead>
 					<tr>
-						<th>게시물 번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
+						<th colspan="2">게시판 글쓰기 양식</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><input type="text" class="form-control" placeholder="글 제목" name="board_title" maxlength="30"></td>
+					</tr>
+					<tr>
+						<td><textarea class="form-control" placeholder="내용을 입력하세요" name="board_content" maxlength="4096"></td>
 					</tr>
 				</tbody>
 			</table>
-			<a href="write" class="write_btn">글 작성</a>
+			<input type="submit" class="write_btn" value="글 작성">
+		</form>
 		</div>
 	</div>
 </body>
