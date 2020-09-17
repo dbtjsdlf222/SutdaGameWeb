@@ -15,9 +15,9 @@ body{
     text-align: center;
     align-items: center;
 }
-#menu-add{
+#menuAdd{
     width: 200px;
-    height: 200px;
+    height: 190px;
     background-color: white;
     font-size: 100px;
     color: midnightblue;
@@ -29,6 +29,6 @@ a{
 </style>
 </head>
 <body>
-    <a href="menuAdd" target="screen"><div id="menuAdd">+</div></a>
+    <div id="menuAdd"><a href="menuAdd" target="screen">+</a></div>
 </body>
 </html>

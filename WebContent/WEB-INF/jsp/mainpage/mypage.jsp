@@ -76,6 +76,20 @@ input[type="submit"]{
 	font-size: 20px;
 	cursor: pointer;
 }
+.storeSetButton{
+	width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    text-align: center;
+}
+.storeSetButton a{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -112,7 +126,8 @@ input[type="submit"]{
     		<td><%=storeInfo.getAddress() %></td>
     	</tr>
     </table>
-    	<span class="infoRevise"><input type="submit" value="정보 수정"></span>
+    	<div class="infoRevise"><input type="submit" value="정보 수정"></span>
     </div>
+    <div class="storeSetButton"><a href="/store/">매장 관리</a></div>
 </body>
 </html>
