@@ -32,7 +32,7 @@
 			no = #{no};
 	</select>
 	
-	<select id="selectAllMenu" parameterType="int" resultSets="MenuVO">
+	<select id="selectAllMenu" parameterType="int" resultType="MenuVO">
 	
 	</select>
 	
