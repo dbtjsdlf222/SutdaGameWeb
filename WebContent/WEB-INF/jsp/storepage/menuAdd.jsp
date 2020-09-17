@@ -47,7 +47,7 @@ input[type="submit"]{
 
 </head>
 <body>
-    <form action="upload" method="post" enctype="multipart/form-data">
+    <form action="store/menu/upload" method="post" enctype="multipart/form-data">
         <div id="imgView"><img src="imgUpload.png" width="400px"></div>
         <div id="menu-info">
             <table>
@@ -57,11 +57,11 @@ input[type="submit"]{
                 </tr>
                 <tr>
                     <td>메뉴 명</td>
-                    <td><input type="text"><br></td>
+                    <td><input type="text" name="name"><br></td>
                 </tr>
                 <tr>
-                    <td>가격</td>
-                    <td><input type="text"><br></td>
+                    <td>English name</td>
+                    <td><input type="text" name="eng_name"><br></td>
                 </tr>
                 <tr>
                     <td>카테고리</td>
@@ -75,9 +75,13 @@ input[type="submit"]{
                     </td>
                 </tr>
                 <tr>
+                    <td>가격</td>
+                    <td><input type="text" name="price"><br></td>
+                </tr>
+                <tr>
                     <td>메뉴 소개</td>
                     <td>
-                    <textarea></textarea>
+                    <textarea name="description"></textarea>
                     </td>
                 </tr>
             </table><br>

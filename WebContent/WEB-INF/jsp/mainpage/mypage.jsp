@@ -67,6 +67,9 @@
 	margin-bottom: 50px;
 	color: midnightblue;
 }
+.mypage-option{
+	margin: auto;
+}
 .infoRevise{
 	width: 100px;
     height: 40px;
@@ -74,6 +77,8 @@
     border-radius: 10%;
     background-color: midnightblue;
     text-align: center;
+    float: left;
+    margin-right: 50px;
 }
 .infoRevise a{
 	text-decoration: none;
@@ -81,13 +86,53 @@
 	font-size: 20px;
 	font-weight: bold;
 }
-.storeSetButton{
+.join_cancel{
 	width: 100px;
     height: 40px;
     padding-top: 10px;
     border-radius: 10%;
     background-color: midnightblue;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
     text-align: center;
+    float: left;
+    margin-right: 50px;
+}
+.subscribe{
+	width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+    margin-right: 50px;
+}
+.subscribe_cancel{
+	width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+    margin-right: 50px;
+}
+.storeSetButton{
+	width: 150px;
+    height: 50px;
+    padding-top: 15px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    text-align: center;
+    float: left;
 }
 .storeSetButton a{
 	text-decoration: none;
@@ -108,8 +153,7 @@
 	<% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
 	<% StoreVO storeInfo=(StoreVO)request.getAttribute("storeInfo"); %>
     <div class="profile"></div>
-    <div class="myinfo">
-    <table>
+    <table class="myinfo">
     	<tr>
     		<td>이름</td>
     		<td><%=ownerInfo.getName() %></td>
@@ -131,8 +175,12 @@
     		<td><%=storeInfo.getAddress() %></td>
     	</tr>
     </table>
-    </div>
-    <div class="infoRevise"><a href="infoRevise">정보수정</a></div>
-    <div class="storeSetButton"><a href="/store/">매장 관리</a></div>
+    	<div class="mypage-option">
+    		<div class="infoRevise"><a href="infoRevise">정보 수정</a></div>
+    		<div class="join_cancel">회원 탈퇴</div>
+    		<div class="subscribe">구독 신청</div>
+    		<div class="subscribe_cancel">구독 취소</div><br><br><br>
+    		<div class="storeSetButton"><a href="/store/">매장 관리</a></div>
+    	</div>
 </body>
 </html>
