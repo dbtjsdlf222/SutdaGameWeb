@@ -25,14 +25,12 @@ public class MenuController {
 	        String savedName = uid.toString();
 	        
 	        try {
-	        	File Folder = new File("재범업.txt");
+	        	File Folder = new File(request.getSession().getServletContext().getRealPath("/")+"/재범업.txt");
     		    Folder.mkdir(); //폴더 생성합니다.
     		    
     		    String root_path = request.getSession().getServletContext().getRealPath("/");  
-
-    		    String attach_path = "/upload/menu";
+    		    String attach_path = "/upload/menu/";
     		    String filename = file.getOriginalFilename();
-
     		    File f = new File(root_path + attach_path + filename);
     		   file.transferTo(f);
     		  } catch (Exception e) {
