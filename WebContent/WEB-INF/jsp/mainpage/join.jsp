@@ -206,7 +206,7 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
         <div id="commit">
         	<input type="checkbox" value="">개인정보 수집 및 이용 <a href="#">[이용 약관]</a><br><br>
         	<input type="submit" value="가입">&emsp;
-        	<input type="submit" value="취소">
+        	<input type="reset" value="취소">
         </div>
         </form>
 	</fieldset>

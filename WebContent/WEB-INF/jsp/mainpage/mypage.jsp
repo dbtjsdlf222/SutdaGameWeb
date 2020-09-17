@@ -67,14 +67,19 @@
 	margin-bottom: 50px;
 	color: midnightblue;
 }
-input[type="submit"]{
+.infoRevise{
 	width: 100px;
-	height: 40px;
-	background-color: midnightblue;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    text-align: center;
+}
+.infoRevise a{
+	text-decoration: none;
 	color: white;
-	font-weight: bold;
 	font-size: 20px;
-	cursor: pointer;
+	font-weight: bold;
 }
 .storeSetButton{
 	width: 100px;
@@ -126,8 +131,8 @@ input[type="submit"]{
     		<td><%=storeInfo.getAddress() %></td>
     	</tr>
     </table>
-    	<div class="infoRevise"><input type="submit" value="정보 수정"></span>
     </div>
+    <div class="infoRevise"><a href="infoRevise">정보수정</a></div>
     <div class="storeSetButton"><a href="/store/">매장 관리</a></div>
 </body>
 </html>

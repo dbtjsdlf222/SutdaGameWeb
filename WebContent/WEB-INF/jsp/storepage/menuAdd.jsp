@@ -53,7 +53,7 @@ input[type="submit"]{
             <table>
                 <tr>
                     <td>사진 선택</td>
-                    <td><input type="file" value="파일 선택" name="file"><br></td>
+                    <td><input type="file" value="파일 선택" name="img"><br></td>
                 </tr>
                 <tr>
                     <td>메뉴 명</td>
@@ -66,7 +66,7 @@ input[type="submit"]{
                 <tr>
                     <td>카테고리</td>
                     <td>
-                        <select id="menu-category" name="menu-category">
+                        <select id="menu-category" name="menu_category">
                             <option value="main">메인</option>
                             <option value="side">사이드</option>
                             <option value="liquor">주류</option>
@@ -82,7 +82,7 @@ input[type="submit"]{
                 </tr>
             </table><br>
             <input type="submit" value="확인">
-            <input type="submit" value="취소">
+            <input type="reset" value="취소">
         </div>
     </form>
 </body>
