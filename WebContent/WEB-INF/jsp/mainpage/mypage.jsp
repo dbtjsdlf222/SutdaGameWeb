@@ -67,9 +67,6 @@
 	margin-bottom: 50px;
 	color: midnightblue;
 }
-.mypage-option{
-	margin: auto;
-}
 .infoRevise{
 	width: 100px;
     height: 40px;
@@ -175,12 +172,11 @@
     		<td><%=storeInfo.getAddress() %></td>
     	</tr>
     </table>
-    	<div class="mypage-option">
-    		<div class="infoRevise"><a href="infoRevise">정보 수정</a></div>
-    		<div class="join_cancel">회원 탈퇴</div>
-    		<div class="subscribe">구독 신청</div>
-    		<div class="subscribe_cancel">구독 취소</div><br><br><br>
-    		<div class="storeSetButton"><a href="/store/">매장 관리</a></div>
-    	</div>
+    	<div class="infoRevise"><a href="infoRevise">정보 수정</a></div>
+    	<div class="join_cancel">회원 탈퇴</div>
+   		<div class="subscribe">구독 신청</div>
+    	<div class="subscribe_cancel">구독 취소</div><br><br><br>
+    	<div class="storeSetButton"><a href="/store/">매장 관리</a></div>
+    	<a href="https://ko.qr-code-generator.com/"><img src=""></a>
 </body>
 </html>
