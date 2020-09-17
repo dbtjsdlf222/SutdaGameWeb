@@ -32,11 +32,11 @@
 			no = #{no};
 	</select>
 	
-	<select id="selectAllMenu" parameterType="int" resultSets="ArrayList<MenuVO>">
+	<select id="selectAllMenu" parameterType="int" resultSets="MenuVO">
 	
 	</select>
 	
-	<update id="updateBoard" parameterType="BoardVO">
+<!-- 	<update id="updateBoard" parameterType="BoardVO">
 		UPDATE QA_board
 		SET title=#{title}, content=#{content}, write_date=now(),secret=#{secret}
 		WHERE no=#{no}
@@ -67,7 +67,7 @@
 	<delete id="deleteBoard" parameterType="int">
 		DELETE FROM board
 		WHERE no=#{no}
-	</delete>
+	</delete> -->
 	
 <!--
 CREATE TABLE QA_board
