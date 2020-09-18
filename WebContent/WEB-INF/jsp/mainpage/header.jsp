@@ -88,7 +88,7 @@
         
 	        <div class="login"><a href="/login">로그인</a></div>
         <% } else{ %>
-        	<div class="mypage"><a href="/mypage">마이페이지</a></div>
+        	<div class="mypage"><a href="/owner/mypage">마이페이지</a></div>
         	
         <% } %>
     </div>

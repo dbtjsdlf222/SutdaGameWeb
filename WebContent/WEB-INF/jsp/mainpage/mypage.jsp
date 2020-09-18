@@ -30,7 +30,7 @@
 .home a{
     text-decoration: none;
 }
-.title{
+.mypage{
     font-size: 50px;
     font-weight: bold;
     color: midnightblue;
@@ -143,7 +143,7 @@
 	<header>
     <div class="nav">
         <div class="home"><a href="main">QRPAY</a></div>
-        <div class="title">마이 페이지</div>
+        <div class="mypage">마이 페이지</div>
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
