@@ -9,7 +9,6 @@ public class StoreController {
 	
 	@RequestMapping("/")
 	public String main() {
-		
 		return "storepage/storeSet";
 	} //main();
 	
@@ -36,5 +35,12 @@ public class StoreController {
 		
 		return "storepage/menuAdd";
 	}
+	
+	@RequestMapping("createQR")
+	public String QRcreate() {
+		
+		return "storepage/menuAdd";
+	}
+	
 	
 } //StoreController();
