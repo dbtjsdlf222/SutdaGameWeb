@@ -10,20 +10,8 @@
     <title>게시판</title>
 </head>
 <style>
-header{
-    display: flex;
-    padding: 20px;
-}
-h1{
-    margin: auto;
-}
-input[value="로그아웃"]{
-    height: 50px;
-    align-items: center;
-    margin-top: 10px;
-    margin-right: 50px;
-}
 fieldset{
+	margin-top: 150px;
     margin-left: 100px;
     margin-right: 100px;
     width: auto;
@@ -32,6 +20,8 @@ fieldset{
 }
 legend{
     text-align: center;
+    font-size: 20px;
+    font-weight: bold;
 }
 table{
     border: solid 1px black;
@@ -64,17 +54,19 @@ table{
 }
 
 input[value="글 작성"]{
-	width: 150px;
+	width: 100px;
+	height: 40px;
+	color: white;
+	font-size: 15px;
+    font-weight: bold;
+    border-radius: 10%;
+	background-color: midnightblue;
     float: right;
     margin-top: 10px;
 }
 </style>
 <body>
-    <header>
-        <h1><strong>게시판</strong></h1>
-        <a href="logout"><input type="submit" value="로그아웃"></a>
-    </header>
-    <hr size="3px"/>
+    <jsp:include page="../mainpage/header.jsp" flush="false" />
     <div id="boardList">
         <fieldset>
             <legend>게시판 목록</legend>

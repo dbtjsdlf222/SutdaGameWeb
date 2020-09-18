@@ -9,19 +9,6 @@
     <title>게시물 작성</title>
 </head>
 <style>
-    header{
-        display: flex;
-        padding: 20px;
-    }
-    h1{
-        margin: auto;
-    }
-    input[value="로그아웃"]{
-        height: 50px;
-        align-items: center;
-        margin-top: 10px;
-        margin-right: 50px;
-    }
     #write{
         margin: auto;
         padding-left: 50px;
@@ -48,11 +35,7 @@
     
 </style>
 <body>
-    <header>
-        <h1><strong>게시판</strong></h1>
-        <a href="logout"><input type="submit" value="로그아웃"></a>
-    </header>
-    <hr size="3px"/>    
+    <jsp:include page="../mainpage/header.jsp" flush="false" />
     <div id="write">
          <form action="board/insertBoard">
         	<input type="text" name="title" id="title" placeholder="제목을 입력하세요.">
