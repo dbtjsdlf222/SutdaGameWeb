@@ -29,7 +29,7 @@
 			no, 
 			title, 
 			content, 
-			writer,
+			(SELECT name FROM owner WHERE no=#{writer_no}) as writerName,,
 			write_date as writeDate
 		FROM QA_board
 		WHERE no=#{no}
