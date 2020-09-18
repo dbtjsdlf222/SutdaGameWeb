@@ -7,7 +7,7 @@
 		VALUES (#{title}, #{content}, #{writerNo}, #{secret});
 	</insert>
 	
-	<update id="updateBoard" parameterType="BoardVO">
+	<update id="updateBoard" parameterType="project.qrpay.vo.BoardVO">
 		UPDATE QA_board
 		SET title=#{title}, content=#{content}, write_date=now(),secret=#{secret}
 		WHERE no=#{no}
