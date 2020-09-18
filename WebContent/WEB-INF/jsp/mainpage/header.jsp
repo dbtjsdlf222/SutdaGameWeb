@@ -78,17 +78,17 @@
 <body>
 	<header>
     <div class="nav">
-        <div class="home"><a href="main">QRPAY</a></div>
+        <div class="home"><a href="/main">QRPAY</a></div>
         <div class="nav-right-items">
-            <div class="nav-item"><a href="intro">소개</a></div>
-            <div class="nav-item"><a href="notice">공지사항</a></div>
-            <div class="nav-item"><a href="sc">고객센터</a></div>
+            <div class="nav-item"><a href="/intro">소개</a></div>
+            <div class="nav-item"><a href="/notice">공지사항</a></div>
+            <div class="nav-item"><a href="/board">고객센터</a></div>
         </div>
         <% if(session.getAttribute("loginInfo")==null){ %>
         
 	        <div class="login"><a href="/login">로그인</a></div>
         <% } else{ %>
-        	<div class="mypage"><a href="mypage">마이페이지</a></div>
+        	<div class="mypage"><a href="/mypage">마이페이지</a></div>
         	
         <% } %>
     </div>
