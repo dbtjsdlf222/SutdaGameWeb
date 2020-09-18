@@ -89,7 +89,7 @@ input[value="글 작성"]{
                 <tr>
                     <td><c:out value="${post.no}"/></td>
                     <td><a href="board?no=${post.no}">${post.title}</a></td>
-                    <td>${post.writer}</td>
+                    <td>${post.writerName}</td>
                     <td>${post.writeDate}</td>
                 </tr>
 			</c:forEach>

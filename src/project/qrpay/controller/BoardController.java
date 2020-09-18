@@ -1,7 +1,5 @@
 package project.qrpay.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +13,21 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping("/boardList")
+	@RequestMapping("/")
+	public String main() {
+		return "redirect:boardList";
+	}
+	
+	@RequestMapping("boardList")
 	public ModelAndView boardList() {
-		ModelAndView mav = new ModelAndView("boardList");
+		ModelAndView mav = new ModelAndView("board/boardList");
 		mav.addObject("boardList", boardService.selectBoardList());
 		return mav;
 	}
 	
 	@RequestMapping("board")
 	public ModelAndView board(int no) {
-		ModelAndView mav = new ModelAndView("view");
+		ModelAndView mav = new ModelAndView("board/view");
 		mav.addObject("post",boardService.selectOntBoard(no));
 		return mav;
 	}

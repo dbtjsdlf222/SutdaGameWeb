@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import project.qrpay.service.BoardService;
 import project.qrpay.service.MainService;
 import project.qrpay.service.OwnerService;
 import project.qrpay.service.StoreService;
@@ -24,6 +26,9 @@ public class MainController {
 	
 	@Autowired
 	StoreService storeService;
+	
+	@Autowired
+	BoardService boardService;
 	
 	//메인
 	@RequestMapping(path={"/","main"})
@@ -62,5 +67,12 @@ public class MainController {
 			storeService.insertStore(map);
 			return "mainpage/main";
 		} //joinAction
+		
+		@RequestMapping("boardList")
+		public ModelAndView boardList() {
+			ModelAndView mav = new ModelAndView("boardList");
+			mav.addObject("boardList", boardService.selectBoardList());
+			return mav;
+		}
 		
 } //MainController class 
