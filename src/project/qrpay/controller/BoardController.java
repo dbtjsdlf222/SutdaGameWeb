@@ -1,11 +1,15 @@
 package project.qrpay.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.qrpay.service.BoardService;
+import project.qrpay.vo.BoardVO;
+import project.qrpay.vo.OwnerVO;
 
 @Controller @RequestMapping("board")
 public class BoardController {
@@ -32,4 +36,23 @@ public class BoardController {
 		return mav;
 	}
 	
+	@RequestMapping("write")
+	public String write() {		
+		return "board/write";
+	}
+	
+	@RequestMapping("insertBoard")
+	public String insertBoard(String title, String content, HttpSession session) {
+		
+		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
+		
+		BoardVO bvo = new BoardVO();
+		bvo.setTitle(title);
+		bvo.setContent(content);
+		bvo.setWriterNo(vo.getNo());
+		
+		boardService.insertBoard(bvo);
+		
+		return "redirect:/board/boardList";
+	}
 }

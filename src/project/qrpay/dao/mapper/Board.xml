@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.qrpay.dao.BoardDAO" >
 	
-	<insert id="insertBoard">
-		INSERT INTO QA_board (title, content, writer_no, secret) 
-		VALUES (#{title}, #{content}, #{writerNo}, #{secret});
+	<insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO QA_board (title, content, writer_no) 
+		VALUES (#{title}, #{content}, #{writerNo});
 	</insert>
 	
 	<update id="updateBoard" parameterType="project.qrpay.vo.BoardVO">

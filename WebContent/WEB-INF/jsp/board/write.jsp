@@ -37,7 +37,7 @@
 <body>
     <jsp:include page="../mainpage/header.jsp" flush="false" />
     <div id="write">
-         <form action="board/insertBoard">
+         <form action="/board/insertBoard">
         	<input type="text" name="title" id="title" placeholder="제목을 입력하세요.">
         	<textarea id="contents" name="content" placeholder="내용을 입력하세요."></textarea>
         	<input type="submit" id="confirm" value="확인">

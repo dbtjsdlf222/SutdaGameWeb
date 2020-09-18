@@ -68,11 +68,4 @@ public class MainController {
 			return "mainpage/main";
 		} //joinAction
 		
-		@RequestMapping("boardList")
-		public ModelAndView boardList() {
-			ModelAndView mav = new ModelAndView("boardList");
-			mav.addObject("boardList", boardService.selectBoardList());
-			return mav;
-		}
-		
 } //MainController class 

@@ -82,7 +82,7 @@
         <div class="nav-right-items">
             <div class="nav-item"><a href="/intro">소개</a></div>
             <div class="nav-item"><a href="/notice">공지사항</a></div>
-            <div class="nav-item"><a href="board/boardList">고객센터</a></div>
+            <div class="nav-item"><a href="/board/boardList">고객센터</a></div>
         </div>
         <% if(session.getAttribute("loginInfo")==null){ %>
         
