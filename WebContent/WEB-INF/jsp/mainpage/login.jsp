@@ -9,28 +9,6 @@
    	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-	<script>
-	    const tabs = document.querySelectorAll('[data-tab-target]')
-	    const tabContents = document.querySelectorAll('[data-tab-content]')
-	    tabs.forEach(tab => {
-	        tab.addEventListener('click', () => {
-	            const target = document.querySelector(tab.dataset.tabTarget)
-	            tabContents.forEach(tabContent => {
-	                tabContent.classList.remove('active')
-	            })
-	            tabs.forEach(tab => {
-	                tab.classList.remove('active')
-	            })
-	            tab.classList.add('active')
-	            target.classList.add('active')
-	        })
-	    })
-
-	    <c:set var="msg" value="${msg}"/>
-	            <c:if test="${msg != null}">
-	              	alert('아이디나 비밀번호가 일치하지 않습니다.');
-	            </c:if>
-    </script>
 <style>
 .tab{
     text-align: center;
@@ -98,8 +76,8 @@ textarea{
 <jsp:include page="header.jsp" flush="false" />
     <div class="tab">
         <ul class="tabs">
-            <span data-tab-target="#user" class="active-tab">회원 로그인</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            <span data-tab-target="#unuser" class="tab">비회원 로그인</span>
+            <a id="userTab" data-toggle="tab" class="active-tab">회원 로그인</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <a id="unuserTab" data-toggle="tab" class="tab">비회원 로그인</a>
         </ul>
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
@@ -114,7 +92,6 @@ textarea{
                     <span class="join"><a href="join">회원가입</a></span>&emsp;&emsp;&emsp;
                     <span class="id-search"><a href="#">아이디 찾기</a></span>&emsp;&emsp;&emsp;
                     <span class="pw-search"><a href="#">비밀번호 찾기</a></span>
-                    </li>
                 </ul>
             </div>
             <div id="unuser" data-tab-content>
@@ -139,6 +116,20 @@ textarea{
             </div>
         </div>
     </div>
-    
+    <script>
+	    <c:set var="msg" value="${msg}"/>
+	            <c:if test="${msg != null}">
+	              	alert('아이디나 비밀번호가 일치하지 않습니다.');
+	            </c:if>
+
+	    $('#userTab').click(function(){
+			$('#user').show();
+			$('#unuser').hide();
+		    })
+		$('#unuserTab').click(function(){
+			$('#user').hide();
+			$('#unuser').show();
+		    })
+    </script>
 </body>
 </html>

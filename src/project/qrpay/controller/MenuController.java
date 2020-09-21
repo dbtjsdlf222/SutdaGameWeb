@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,7 @@ public class MenuController {
 	MenuService menuService;
 	
 	@RequestMapping("upload")
-	public String insertAction(@RequestParam MenuVO menuVO, @RequestParam("img") MultipartFile file,HttpServletRequest request,HttpSession session) {
+	public String insertAction(MenuVO menuVO, @RequestParam("img") MultipartFile file,HttpServletRequest request,HttpSession session) {
 	        
 	        UUID uid = UUID.randomUUID();
 	        String savedName = uid.toString();
@@ -37,7 +38,7 @@ public class MenuController {
     		    File f = new File(imgName);
     		    file.transferTo(f);
     		    
-    		    System.out.println(menuVO);
+    		    System.out.println(imgName);
     		    
     		    menuVO.setStoreNo(((OwnerVO)session.getAttribute("loginInfo")).getNo());
     		    menuVO.setImg(imgName);
