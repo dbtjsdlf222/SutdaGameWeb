@@ -9,28 +9,27 @@
    	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script>
-    const tabs = document.querySelectorAll('[data-tab-target]')
-    const tabContents = document.querySelectorAll('[data-tab-content]')
-        tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = document.querySelector(tab.dataset.tabTarget)
-            tabContents.forEach(tabContent => {
-                tabContent.classList.remove('active')
-            })
-            tabs.forEach(tab => {
-                tab.classList.remove('active')
-            })
-            tab.classList.add('active')
-            target.classList.add('active')
-        })
-    })
-    
-    
-    <c:set var="msg" value="${msg}"/>
-            <c:if test="${msg != null}">
-              	alert('아이디나 비밀번호가 일치하지 않습니다.');
-            </c:if>
+	<script>
+	    const tabs = document.querySelectorAll('[data-tab-target]')
+	    const tabContents = document.querySelectorAll('[data-tab-content]')
+	    tabs.forEach(tab => {
+	        tab.addEventListener('click', () => {
+	            const target = document.querySelector(tab.dataset.tabTarget)
+	            tabContents.forEach(tabContent => {
+	                tabContent.classList.remove('active')
+	            })
+	            tabs.forEach(tab => {
+	                tab.classList.remove('active')
+	            })
+	            tab.classList.add('active')
+	            target.classList.add('active')
+	        })
+	    })
+
+	    <c:set var="msg" value="${msg}"/>
+	            <c:if test="${msg != null}">
+	              	alert('아이디나 비밀번호가 일치하지 않습니다.');
+	            </c:if>
     </script>
 <style>
 .tab{
@@ -93,7 +92,7 @@ textarea{
     padding: 0px;
 }
 </style>
-    
+
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false" />
@@ -111,9 +110,11 @@ textarea{
                 </form>
 
                 <ul class="login-option">
+                	<li>
                     <span class="join"><a href="join">회원가입</a></span>&emsp;&emsp;&emsp;
                     <span class="id-search"><a href="#">아이디 찾기</a></span>&emsp;&emsp;&emsp;
                     <span class="pw-search"><a href="#">비밀번호 찾기</a></span>
+                    </li>
                 </ul>
             </div>
             <div id="unuser" data-tab-content>
@@ -138,5 +139,6 @@ textarea{
             </div>
         </div>
     </div>
+    
 </body>
 </html>

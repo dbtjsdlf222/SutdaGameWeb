@@ -61,7 +61,7 @@ input[type="submit"]{
                 </tr>
                 <tr>
                     <td>English name</td>
-                    <td><input type="text" name="eng_name"><br></td>
+                    <td><input type="text" name="engName"><br></td>
                 </tr>
                 <tr>
                     <td>카테고리</td>
