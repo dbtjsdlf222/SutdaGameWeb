@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@ input[type="submit"]{
 
 </head>
 <body>
-    <form action="/store/menu/upload" method="post" enctype="multipart/form-data" >
+    <form:form commandName="menuVO" action="/store/menu/upload" method="post" enctype="multipart/form-data" >
         <div id="imgView"><img src="imgUpload.png" width="400px"></div>
         <div id="menu-info">
             <table>
@@ -88,6 +89,6 @@ input[type="submit"]{
             <input type="submit" value="확인">
             <input type="reset" value="취소">
         </div>
-    </form>
+    </form:form>
 </body>
 </html>

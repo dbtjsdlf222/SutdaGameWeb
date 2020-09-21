@@ -27,6 +27,7 @@ public class MenuController {
 	@RequestMapping("upload")
 	public String insertAction(MenuVO menuVO, @RequestParam("img") MultipartFile file,HttpServletRequest request,HttpSession session) {
 	        
+		
 	        UUID uid = UUID.randomUUID();
 	        String savedName = uid.toString();
 	        
@@ -39,7 +40,11 @@ public class MenuController {
     		    file.transferTo(f);
     		    
     		    System.out.println(imgName);
-    		    
+//    		    MenuVO menuVO = new MenuVO();
+//    		    menuVO.setName(name);
+//    		    menuVO.setName(engName);
+//    		    menuVO.setName(price);
+//    		    menuVO.setName(description);
     		    menuVO.setStoreNo(((OwnerVO)session.getAttribute("loginInfo")).getNo());
     		    menuVO.setImg(imgName);
     		    
