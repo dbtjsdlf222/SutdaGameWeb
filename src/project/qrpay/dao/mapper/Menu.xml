@@ -3,8 +3,8 @@
 <mapper namespace="project.qrpay.dao.MenuDAO" >
 	
 	<insert id="menuAdd"  parameterType="MenuVO">
-		INSERT INTO menu (name, eng_name, price, description, img, no)
-		VALUES (#{name}, #{engName}, #{price}, #{description}, #{img}, #{storeNo});
+		INSERT INTO menu (name, eng_name, price, description, img, owner_no)
+		VALUES (#{name}, #{engName}, #{price}, #{description}, #{img}, #{ownerNo});
 	</insert>
 
 	<insert id="a"  parameterType="MenuVO">
