@@ -54,7 +54,7 @@ input[type="submit"]{
             <table>
                 <tr>
                     <td>사진 선택</td>
-                    <td><input type="file" value="파일 선택" name="img"><br></td>
+                    <td><input type="file" value="파일 선택" name="imgFile"><br></td>
                 </tr>
                 <tr>
                     <td>메뉴 명</td>

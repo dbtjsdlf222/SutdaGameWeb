@@ -56,7 +56,7 @@
     </header>
     <hr size="3px"/>
     <div id="write">
-         <form action="board/updateBoard">
+         <form action="/board/QAupdateBoard">
         	<input type="text" name="title" id="title" placeholder="제목을 입력하세요." value="${post.title}">
         	<textarea id="contents" name="content" placeholder="내용을 입력하세요.">${post.content }</textarea>
         	<input type="hidden" value="${post.no }" name="no"/>

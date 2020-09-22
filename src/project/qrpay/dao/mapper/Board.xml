@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.qrpay.dao.BoardDAO" >
 	
-	<insert id="insertBoard" parameterType="BoardVO">
+	<insert id="QAinsertBoard" parameterType="BoardVO">
 		INSERT INTO QA_board (title, content, writer_no) 
 		VALUES (#{title}, #{content}, #{writerNo});
 	</insert>
 	
-	<update id="updateBoard" parameterType="project.qrpay.vo.BoardVO">
+	<update id="QAupdateBoard" parameterType="BoardVO">
 		UPDATE QA_board
-		SET title=#{title}, content=#{content}, write_date=now(),secret=#{secret}
+		SET title=#{title}, content=#{content}, write_date=now()
 		WHERE no=#{no}
 	</update>
 	
-	<select id="selectBoardList" resultType="BoardVO">
+	<select id="QAselectBoardList" resultType="BoardVO">
 		SELECT b.no,
 		title,
 		content,
@@ -24,7 +24,7 @@
 		ON b.writer_no = o.no
 	</select>
 	
-	<select id="selectOneBoard" parameterType="int" resultType="BoardVO">
+	<select id="QAselectOneBoard" parameterType="int" resultType="BoardVO">
 		SELECT b.no,
 		title,
 		content,
@@ -36,8 +36,32 @@
 		WHERE b.no=#{no}
 	</select>
 	
-	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM board
+	<delete id="QAdeleteBoard" parameterType="int">
+		DELETE FROM QA_board
+		WHERE no=#{no}
+	</delete>
+	
+	<insert id="FQinsertBoard" parameterType="BoardVO">
+		INSERT INTO FQ_board (title, content) 
+		VALUES (#{title}, #{content});
+	</insert>
+	
+	<select id="FQselectBoardList" resultType="BoardVO">
+		SELECT 
+			no,
+			title,
+			content
+		FROM FQ_board
+	</select>
+	
+	<update id="FQupdateBoard" parameterType="BoardVO">
+		UPDATE FQ_board
+		SET title=#{title}, content=#{content}
+		WHERE no=#{no}
+	</update>
+	
+	<delete id="FQdeleteBoard" parameterType="int">
+		DELETE FROM FQ_board
 		WHERE no=#{no}
 	</delete>
 	
