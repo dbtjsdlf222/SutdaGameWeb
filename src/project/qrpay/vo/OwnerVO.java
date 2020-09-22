@@ -17,8 +17,8 @@ public class OwnerVO {
    private Date membershipDate;   //가입일
    private int bankAccount;   //은행 계좌
    private String bankName;   //은행 계좌
-   
-//store DB
+
+   //store DB
    private int storeNo;         //업장 번호
    private String storeName;      //가게 이름
    private String type;         //가게 타입 ex)술집, 카페, 음식점
