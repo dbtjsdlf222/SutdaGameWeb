@@ -11,46 +11,46 @@
 </head>
 <style>
 fieldset{
-	margin-top: 150px;
+	margin-top: 100px;
     margin-left: 100px;
     margin-right: 100px;
     width: auto;
     height: auto;
     padding: 50px;
+    border: 1px solid midnightblue;
 }
 legend{
     text-align: center;
     font-size: 20px;
     font-weight: bold;
+    color: midnightblue;
 }
 table{
-    border: solid 1px black;
+    border: 1px solid #eeeeee;
+    background-color: #eeeeee;
     text-align: center;
-    padding: 5px;
     width: 1600px;
+    font-size: 15px;
 }
 #post_no{
     width: 5%;
-    border-bottom: solid 1px black;
-    padding-bottom: 5px;
+    background-color: #dddddd;
+    font-weight: bold;
 }
 #post_title{
     width: 70%;
-    border-left: solid 1px black;
-    border-bottom: solid 1px black;
-    padding-bottom: 5px;
+    background-color: #dddddd;
+    font-weight: bold;
 }
 #user_id{
     width: 15%;
-    border-left: solid 1px black;
-    border-bottom: solid 1px black;
-    padding-bottom: 5px;
+    background-color: #dddddd;
+    font-weight: bold;
 }
 #post_date{
     width: 10%;
-    border-left: solid 1px black;
-    border-bottom: solid 1px black;
-    padding-bottom: 5px;
+    background-color: #dddddd;
+    font-weight: bold;
 }
 
 input[value="글 작성"]{
@@ -63,6 +63,7 @@ input[value="글 작성"]{
 	background-color: midnightblue;
     float: right;
     margin-top: 10px;
+    cursor: pointer;
 }
 </style>
 <body>
