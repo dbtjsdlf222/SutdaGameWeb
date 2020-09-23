@@ -130,8 +130,24 @@
     background-color: midnightblue;
     text-align: center;
     float: left;
+    margin-right: 50px;
 }
 .storeSetButton a{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+.customerViewButton{
+	width: 150px;
+    height: 50px;
+    padding-top: 15px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    text-align: center;
+    float: left;
+}
+.customerViewButton a{
 	text-decoration: none;
 	color: white;
 	font-size: 20px;
