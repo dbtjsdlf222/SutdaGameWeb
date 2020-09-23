@@ -177,6 +177,7 @@
    		<div class="subscribe">구독 신청</div>
     	<div class="subscribe_cancel">구독 취소</div><br><br><br>
     	<div class="storeSetButton"><a href="/store/">매장 관리</a></div>
+    	<div class="customerViewButton"><a href="/customer/">소비자 뷰(beta)</a></div>
     	<a href="https://ko.qr-code-generator.com/"><img src=""></a>
 </body>
 </html>

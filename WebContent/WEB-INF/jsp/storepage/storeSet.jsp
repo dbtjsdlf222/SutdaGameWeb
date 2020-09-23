@@ -16,7 +16,6 @@
             <frame src="storeCategory">
             <frame src="" name="storeScreen">
         </frameset>
-        <frame src="">
     </frameset>
 
 </head>

@@ -10,13 +10,10 @@
 	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-    <frameset rows="10%, 85%" frameborder="1">
-        <frame src="header">
-        <frameset cols="10%, 90%">
-            <frame src="category">
-            <frame src="" name="screen">
-        </frameset>
-        <frame src="">
+    <frameset rows="10%, 20%, 70%" frameborder="1">
+    	<frame src="customerHeader">
+    	<frame src="customerCategory">
+    	<frame src="" name="customerScreen">
     </frameset>
 
 </head>
