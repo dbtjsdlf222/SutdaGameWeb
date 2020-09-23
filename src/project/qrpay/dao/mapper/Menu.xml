@@ -2,7 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.qrpay.dao.MenuDAO" >
 	
-	<insert id="menuAdd"  parameterType="MenuVO">
+	<insert id="addMenu"  parameterType="MenuVO">
+		INSERT INTO menu (name, eng_name, price, description, img, store_no)
+		VALUES (#{name}, #{engName}, #{price}, #{description}, #{img}, #{storeNo});
+	</insert>
+
+	<insert id="a"  parameterType="MenuVO">
 		INSERT INTO menu (name, eng_name, price, description, img, no)
 		VALUES (#{name}, #{engName}, #{price}, #{description}, #{img}, #{storeNo});
 	</insert>
@@ -33,7 +38,17 @@
 	</select>
 	
 	<select id="selectAllMenu" parameterType="int" resultType="MenuVO">
-	
+	SELECT
+			name,
+			eng_name,
+			price,
+			description,
+			img,
+			sold_out,
+			store_no
+		FROM
+			menu
+		WHERE store_no = #{storeNo};
 	</select>
 	
 <!-- 	<update id="updateBoard" parameterType="BoardVO">

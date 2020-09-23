@@ -25,14 +25,15 @@ public class BoardController {
 	@RequestMapping("boardList")
 	public ModelAndView boardList() {
 		ModelAndView mav = new ModelAndView("board/boardList");
-		mav.addObject("boardList", boardService.selectBoardList());
+		mav.addObject("boardList", boardService.QAselectBoardList());
+		mav.addObject("FQboardList", boardService.FQselectBoardList());
 		return mav;
 	}
 	
 	@RequestMapping("board")
 	public ModelAndView board(int no) {
 		ModelAndView mav = new ModelAndView("board/view");
-		mav.addObject("post",boardService.selectOntBoard(no));
+		mav.addObject("post",boardService.QAselectOntBoard(no));
 		return mav;
 	}
 	
@@ -41,7 +42,7 @@ public class BoardController {
 		return "board/write";
 	}
 	
-	@RequestMapping("insertBoard")
+	@RequestMapping("QAinsertBoard")
 	public String insertBoard(String title, String content, HttpSession session) {
 		
 		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
@@ -51,8 +52,31 @@ public class BoardController {
 		bvo.setContent(content);
 		bvo.setWriterNo(vo.getNo());
 		
-		boardService.insertBoard(bvo);
+		boardService.QAinsertBoard(bvo);
 		
 		return "redirect:/board/boardList";
 	}
+	
+	@RequestMapping("QAupdateBoard")
+	public String updateBoard(String title, String content, int no, HttpSession session) {
+		
+		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
+		
+		BoardVO bvo = new BoardVO();
+		bvo.setTitle(title);
+		bvo.setContent(content);
+		bvo.setWriterNo(vo.getNo());
+		bvo.setNo(no);
+		
+		boardService.QAupdateBoard(bvo);
+		
+		return "redirect:/board/boardList";
+	}
+	
+	@RequestMapping("QAdeleteBoard")
+	public String deleteBoard(int no) {
+		boardService.QAdeleteBoard(no);
+		return "redirect:/board/boardList";
+	}
+	
 }

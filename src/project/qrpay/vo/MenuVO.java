@@ -1,17 +1,19 @@
 package project.qrpay.vo;
 
-import lombok.Data;
 
-@Data
 public class MenuVO {
 	private int no;					//번호
 	private String name;			//이름
-	private String engName;		//영어 이름
+	private String engName;			//영어 이름
 	private String price;			//가격
 	private String description;		//메뉴 설명
 	private String img;				//이미지
 	private boolean soldOut;		//소진 여부
 	private int storeNo;			//업장 번호
+	private String category;		//카테고리
+	
+	public String getCategory() { return category;  }
+	public void setCategory(String category) { this.category = category; }
 	
 	//MenuVO getters
 	public int getNo() {return no;}
@@ -33,4 +35,10 @@ public class MenuVO {
 	public void setSoldOut(boolean soldOut) {this.soldOut = soldOut;}
 	public void setStoreNo(int storeNo) {this.storeNo = storeNo;}
 	
-}//main
+	@Override
+	public String toString() {
+		return "MenuVO [name=" + name + ", engName=" + engName + ", price=" + price + ", description=" + description
+				+ "]";
+	}
+	
+} //main

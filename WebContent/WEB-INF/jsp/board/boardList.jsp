@@ -65,9 +65,24 @@ input[value="글 작성"]{
     margin-top: 10px;
     cursor: pointer;
 }
+
+.FQ_title,.FQ_content{
+	width: 1600px;
+	 height:30px;
+	 padding:10px;
+}
+
+.FQ_title {
+	 background-color: #e0e0e0;
+	 margin-top:20px;
+}
+.FQ_content{
+	background-color: gray;
+}
 </style>
 <body>
     <jsp:include page="../mainpage/header.jsp" flush="false" />
+    
     <div id="boardList">
         <fieldset>
             <legend>게시판 목록</legend>
@@ -89,6 +104,16 @@ input[value="글 작성"]{
             </table>         
             <a href="write"><input type="submit" value="글 작성" name="write"></a>
         </fieldset>
+        <fieldset>
+            <legend>자주 하는 질문</legend>
+        <div id="boardList">
+		<c:forEach var="post" items="${FQboardList}" varStatus="status">
+			 <div class="FQ_title"><c:out value="${post.title}"/></div>
+			 <div class="FQ_content"><c:out value="${post.content}"/></div>
+		</c:forEach>
+  		</div>		
+       </fieldset>
+        
     </div>
 </body>
 </html>

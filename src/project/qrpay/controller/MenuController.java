@@ -1,6 +1,7 @@
 package project.qrpay.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,36 +27,39 @@ public class MenuController {
 	@Autowired
 	MenuService menuService;
 	
-	@RequestMapping("upload")
-	public String insertAction(MenuVO menuVO, @RequestParam("img") MultipartFile file,HttpServletRequest request,HttpSession session) {
+	@RequestMapping(value = "upload", method = RequestMethod.POST)
+	public String insertAction(MenuVO menuVO, Model model, @RequestParam("imgFile") MultipartFile file,HttpServletRequest request,HttpSession session) {
 	        
-		
+			System.out.println(menuVO);
+			
 	        UUID uid = UUID.randomUUID();
 	        String savedName = uid.toString();
+	        OwnerVO loginInfo = (OwnerVO)session.getAttribute("loginInfo");
 	        
-	        try {
-    		    String root_path = request.getSession().getServletContext().getRealPath("/");  
-    		    String attach_path = "/upload_img/menu/";
-    		    String fileType = "."+file.getOriginalFilename().split("[.]")[1];
-    		    String imgName = root_path + attach_path + savedName + fileType;
-    		    File f = new File(imgName);
-    		    file.transferTo(f);
-    		    
-    		    System.out.println(imgName);
-//    		    MenuVO menuVO = new MenuVO();
-//    		    menuVO.setName(name);
-//    		    menuVO.setName(engName);
-//    		    menuVO.setName(price);
-//    		    menuVO.setName(description);
-    		    menuVO.setStoreNo(((OwnerVO)session.getAttribute("loginInfo")).getNo());
-    		    menuVO.setImg(imgName);
-    		    
-    		    menuService.addMenu(menuVO);
-    		    
-    		  } catch (Exception e) {
-    		   e.printStackTrace();
-    		  }  
-			return savedName;
+	        String root_path = request.getSession().getServletContext().getRealPath("/");  
+	        String attach_path = "/upload_img/menu/";
+	        String fileType = "."+file.getOriginalFilename().split("[.]")[1];
+		    File fileMk = new File(root_path + attach_path);
+		    fileMk.mkdirs();
+		    
+		    String imgName = root_path + attach_path + savedName + fileType;
+		    File f = new File(imgName);
+		    try {
+				file.transferTo(f);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		    System.out.println(imgName);
+		    menuVO.setStoreNo(loginInfo.getNo());
+		    menuVO.setImg(savedName + fileType);
+		    menuService.addMenu(menuVO);
+	        
+	        model.addAttribute("menuList",menuService.selectAllMenu(loginInfo.getStoreNo()));
+	        model.addAttribute("imgRoot",root_path + attach_path);
+	        
+			return "board/menuView";
 	} //insert();
 	
 	@RequestMapping("add")

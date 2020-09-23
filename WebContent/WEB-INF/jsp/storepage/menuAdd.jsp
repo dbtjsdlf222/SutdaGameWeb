@@ -48,13 +48,13 @@ input[type="submit"]{
 
 </head>
 <body>
-    <form:form commandName="menuVO" action="/store/menu/upload" method="post" enctype="multipart/form-data" >
+    <form action="/store/menu/upload" method="post" enctype="multipart/form-data" >
         <div id="imgView"><img src="imgUpload.png" width="400px"></div>
         <div id="menu-info">
             <table>
                 <tr>
                     <td>사진 선택</td>
-                    <td><input type="file" value="파일 선택" name="img"><br></td>
+                    <td><input type="file" value="파일 선택" name="imgFile"><br></td>
                 </tr>
                 <tr>
                     <td>메뉴 명</td>
@@ -68,10 +68,9 @@ input[type="submit"]{
                     <td>카테고리</td>
                     <td>
                         <select id="menu-category" name="menu_category">
-                            <option value="main">메인</option>
-                            <option value="side">사이드</option>
-                            <option value="liquor">주류</option>
-                            <option value="option">옵션</option>
+                            <option value="1">메인</option>
+                            <option value="2">사이드</option>
+                            <option value="3">주류</option>
                         </select>
                     </td>
                 </tr>
@@ -89,6 +88,6 @@ input[type="submit"]{
             <input type="submit" value="확인">
             <input type="reset" value="취소">
         </div>
-    </form:form>
+    </form>
 </body>
 </html>
