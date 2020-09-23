@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,10 +55,9 @@ public class MenuController {
 		    menuVO.setImg(savedName + fileType);
 		    menuService.addMenu(menuVO);
 	        
-	        model.addAttribute("menuList",menuService.selectAllMenu(loginInfo.getStoreNo()));
-	        model.addAttribute("imgRoot",root_path + attach_path);
+	        model.addAttribute("menuList",menuService.selectAllMenu(loginInfo.getNo()));
 	        
-			return "board/menuView";
+			return "storepage/menuView";
 	} //insert();
 	
 	@RequestMapping("add")

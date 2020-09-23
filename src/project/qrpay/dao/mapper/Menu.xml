@@ -24,6 +24,7 @@
 	
 	<select id="selectMenu" parameterType="int" resultType="MenuVO">
 		SELECT
+			no,
 			name,
 			eng_name,
 			price,
@@ -38,7 +39,8 @@
 	</select>
 	
 	<select id="selectAllMenu" parameterType="int" resultType="MenuVO">
-	SELECT
+		SELECT
+			no,
 			name,
 			eng_name,
 			price,
