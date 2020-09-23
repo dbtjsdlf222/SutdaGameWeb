@@ -14,14 +14,15 @@
         background-color: midnightblue;
     }
     .header{
-        padding-top: 10px;
-        align-items: center;
+    	padding-top: 8px;
+    	text-align: center;
+        font-size: 50px;
+        font-family: stencil;
+        color: white;
     }
 </style>
 </head>
 <body>
-    <div class="header">
-        <img src="logo.png">
-    </div>
+    <div class="header">QRPAY</div>
 </body>
 </html>
