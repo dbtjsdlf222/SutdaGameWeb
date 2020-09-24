@@ -15,10 +15,12 @@
 		color: midnightblue;
 		font-size: 15px;
 		font-weight: bold;
-		width: 150px;
+		width: 200px;
 		height: 40px;
+		text-align: center;
 	}
 	input[type="submit"]{
+		margin-left: 20px;
 		background-color: midnightblue;
 		color: white;
 		font-size: 15px;
@@ -30,8 +32,8 @@
 </style>
 </head>
 <body>
-	<form action="tableAction" method="get">
-	<input type="text" name="tableNo" placeholder="테이블 번호를 입력해주세요."><input type="submit" value="확인">
-	</form>
+		<form action="tableAction" method="get">
+		<input type="text" name="tableNo" placeholder="테이블 번호를 입력해주세요."><input type="submit" value="확인">
+		</form>
 </body>
 </html>

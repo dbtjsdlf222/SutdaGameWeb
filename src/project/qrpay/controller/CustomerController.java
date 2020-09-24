@@ -12,16 +12,21 @@ public class CustomerController {
 		return "customerpage/customerView";
 	} //main();
 	
+	@RequestMapping("tableNo")
+	public String tableNo() {
+		return "customerpage/tableNo";
+	} //tableNo();
+	
 	@RequestMapping("header")
 	public String header() {
 		
 		return "customerpage/customerHeader";
-	}
+	} //header();
 	
 	@RequestMapping("category")
 	public String category() {
 		
 		return "customerpage/customerCategory";
-	}	
+	} //category();
 	
 } //CustomerController();

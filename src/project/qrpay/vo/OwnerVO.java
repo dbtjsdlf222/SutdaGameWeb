@@ -88,6 +88,5 @@ public class OwnerVO {
    public void setAddress(String address) {this.address = address;}
    public void setOwnerNo(int ownerNo) {this.ownerNo = ownerNo;}
    public void setTableCount(int tableCount) {this.tableCount = tableCount;}
-
    
-} //main
+}
