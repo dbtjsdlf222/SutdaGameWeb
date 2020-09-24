@@ -12,9 +12,9 @@
     <link media="(max-width: 800px)">
 
     <frameset rows="10%, 20%, 70%" frameborder="1">
-    	<frame src="customerHeader">
-    	<frame src="customerCategory">
-    	<frame src="" name="customerScreen">
+    	<frame src="header">
+    	<frame src="category">
+    	<frame src="" name="screen">
     </frameset>
 
 </head>

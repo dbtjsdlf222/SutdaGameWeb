@@ -12,13 +12,13 @@ public class StoreController {
 		return "storepage/storeSet";
 	} //main();
 	
-	@RequestMapping("storeHeader")
+	@RequestMapping("header")
 	public String header() {
 		
 		return "storepage/storeHeader";
 	}
 	
-	@RequestMapping("storeCategory")
+	@RequestMapping("category")
 	public String category() {
 		
 		return "storepage/storeCategory";
