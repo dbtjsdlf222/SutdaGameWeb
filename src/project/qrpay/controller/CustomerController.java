@@ -12,13 +12,13 @@ public class CustomerController {
 		return "customerpage/customerView";
 	} //main();
 	
-	@RequestMapping("customerHeader")
+	@RequestMapping("header")
 	public String header() {
 		
 		return "customerpage/customerHeader";
 	}
 	
-	@RequestMapping("customerCategory")
+	@RequestMapping("category")
 	public String category() {
 		
 		return "customerpage/customerCategory";
