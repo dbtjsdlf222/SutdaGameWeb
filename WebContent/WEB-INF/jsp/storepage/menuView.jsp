@@ -14,7 +14,7 @@
    			이름: <c:out value="${menu.name}"/><br/>
    			영문명: <c:out value="${menu.engName}"/><br/>
    			가격: <c:out value="${menu.price}"/><br/>
-   			성명: <c:out value="${menu.description}"/><br/>
+   			설명: <c:out value="${menu.description}"/><br/>
 			 <img src="/upload_img/menu/<c:out value="${menu.img}"/>" width="300px" height="300px"><br/><br/>
 		</c:forEach>
 </body>

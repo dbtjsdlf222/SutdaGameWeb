@@ -14,14 +14,15 @@
         background-color: midnightblue;
     }
     .header{
-        padding-top: 10px;
-        align-items: center;
+        padding-top: 30px;
+        text-align: center;
+        font-size: 80px;
+        font-family: stencil;
+        color: white;
     }
 </style>
 </head>
 <body>
-    <div class="storeHeader">
-        <img src="logo.png">
-    </div>
+    <div class="header">QRPay</div>
 </body>
 </html>
