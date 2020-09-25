@@ -194,6 +194,6 @@
     	<div class="subscribe_cancel">구독 취소</div><br><br><br>
     	<div class="storeSetButton"><a href="/store/">매장 관리</a></div>
     	<div class="customerViewButton"><a href="/customer/tableNo">소비자 뷰(beta)</a></div>
-    	<a href="https://ko.qr-code-generator.com/"><img src=""></a>
+    	<a href="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=http://sunx.cafe24.com/customer/tableNo?no=<%=storeInfo.getStoreNo() %>">QR코드 생성</a>
 </body>
 </html>
