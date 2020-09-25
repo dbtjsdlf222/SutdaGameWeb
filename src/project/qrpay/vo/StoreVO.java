@@ -7,7 +7,6 @@ public class StoreVO {
 		private String type;			//가게 타입 ex)술집, 카페, 음식점
 		private int licenseNumber;		//가게 사업자 번호
 		private String address;			//가게 주소
-		private int ownerNo;			//업주 정보 
 		private int tableCount;		//테이블 개수
 		
 		//가게 getters
@@ -16,7 +15,6 @@ public class StoreVO {
 		public String getType() {return type;}
 		public int getLicenseNumber() {return licenseNumber;}
 		public String getAddress() {return address;}
-		public int getOwnerNo() {return ownerNo;}
 		public int getTableCount() {return tableCount;}
 		
 		//가게 setters
@@ -25,12 +23,11 @@ public class StoreVO {
 		public void setType(String type) {this.type = type;}
 		public void setLicenseNumber(int licenseNumber) {this.licenseNumber = licenseNumber;}
 		public void setAddress(String address) {this.address = address;}
-		public void setOwnerNo(int ownerNo) {this.ownerNo = ownerNo;}
 		public void setTableCount(int tableCount) {this.tableCount = tableCount;}
 		@Override
 		public String toString() {
 			return "StoreVO [storeNo=" + storeNo + ", storeName=" + storeName + ", type=" + type + ", licenseNumber="
-					+ licenseNumber + ", address=" + address + ", ownerNo=" + ownerNo + ", tableCount=" + tableCount
+					+ licenseNumber + ", address=" + address + ", tableCount=" + tableCount
 					+ "]";
 		}
 }

@@ -8,7 +8,7 @@
 			type,
 			license_number,
 			address,
-			owner_no,
+			store_no,
 			table_count)
 		VALUES
 			#{storeName },
@@ -27,12 +27,12 @@
 			type,
 			license_number as licenseNumber,
 			address,
-			owner_no as ownerNo,
+			store_no as storeNo,
 			table_count as tableCount
 		FROM 
 			store
 		WHERE
-			owner_no=#{no}
+			store_no=#{no}
 	</select>
 	
 	<update id="updateStore" parameterType="StoreVO">
@@ -42,7 +42,7 @@
 			store_name= #{storeName},
 			type= #{type},
 			address= #{address},
-			owner_no= #{owner_no},
+			store_no= #{ownerNo},
 			table_count= #{tableCount}
 		WHERE
 			store_no = #{storeNo}			
@@ -62,7 +62,7 @@ CREATE TABLE store
     `type`            VARCHAR(45)     NOT NULL    COMMENT '사업 종류', 
     `license_number`  INT(10)         NOT NULL    COMMENT '사업자 등록번호', 
     `address`         VARCHAR(128)    NOT NULL    COMMENT '업장 주소', 
-    `owner_no`        INT             NOT NULL    COMMENT '업주 정보 FK', 
+    ```        INT             NOT NULL    COMMENT '업주 정보 FK', 
     `table_count`     INT             NOT NULL    DEFAULT 0 COMMENT '테이블 개수', 
     PRIMARY KEY (store_no)
 );
