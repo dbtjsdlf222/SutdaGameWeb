@@ -13,7 +13,7 @@ public class CustomerController {
 	} //main();
 	
 	@RequestMapping("tableNo")
-	public String tableNo() {
+	public String tableNo(int no) {
 		return "customerpage/tableNo";
 	} //tableNo();
 	
