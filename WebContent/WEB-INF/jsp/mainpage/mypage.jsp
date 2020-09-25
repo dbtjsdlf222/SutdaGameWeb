@@ -67,6 +67,9 @@
 	margin-bottom: 50px;
 	color: midnightblue;
 }
+.asd{
+    margin: auto;
+}
 .infoRevise{
 	width: 100px;
     height: 40px;
@@ -75,7 +78,6 @@
     background-color: midnightblue;
     text-align: center;
     float: left;
-    margin-right: 50px;
 }
 .infoRevise a{
 	text-decoration: none;
@@ -94,7 +96,6 @@
     font-weight: bold;
     text-align: center;
     float: left;
-    margin-right: 50px;
 }
 .subscribe{
 	width: 100px;
@@ -107,7 +108,6 @@
     font-weight: bold;
     text-align: center;
     float: left;
-    margin-right: 50px;
 }
 .subscribe_cancel{
 	width: 100px;
@@ -120,7 +120,6 @@
     font-weight: bold;
     text-align: center;
     float: left;
-    margin-right: 50px;
 }
 .storeSetButton{
 	width: 150px;
@@ -130,7 +129,6 @@
     background-color: midnightblue;
     text-align: center;
     float: left;
-    margin-right: 50px;
 }
 .storeSetButton a{
 	text-decoration: none;
@@ -153,6 +151,30 @@
 	font-size: 20px;
 	font-weight: bold;
 }
+.qrCreate{
+    width: 150px;
+    height: 50px;
+    padding-top: 15px;
+    border-radius: 10%;
+    background-color: midnightblue;
+    text-align: center;
+    float: left;
+}
+.qrCreate a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.wrap1 div{
+    margin-left: 15%;
+    margin-bottom: 50px;
+    display: block;
+}
+.wrap2 div{
+    margin-left: 17%;
+    display: block;
+}
 </style>
 </head>
 <body>
@@ -163,38 +185,41 @@
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
-	<% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
-	<% StoreVO storeInfo=(StoreVO)request.getAttribute("storeInfo"); %>
+	<!-- <% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
+	<% StoreVO storeInfo=(StoreVO)request.getAttribute("storeInfo"); %> -->
     <div class="profile"></div>
     <table class="myinfo">
     	<tr>
     		<td>이름</td>
-    		<td><%=ownerInfo.getName() %></td>
+    		<td>&emsp;<%=ownerInfo.getName() %></td>
     	</tr>
     	<tr>
     		<td>이메일</td>
-    		<td><%=ownerInfo.getEmail() %></td>
+    		<td>&emsp;<%=ownerInfo.getEmail() %></td>
     	</tr>
     	<tr>
     		<td>전화번호</td>
-    		<td><%=ownerInfo.getPhone() %></td>
+    		<td>&emsp;<%=ownerInfo.getPhone() %></td>
     	</tr>
     	<tr>	
     		<td>가게이름</td>
-    		<td><%=storeInfo.getStoreName() %></td>
+    		<td>&emsp;<%=storeInfo.getStoreName() %></td>
     	</tr>
     	<tr>
     		<td>가게주소</td>
-    		<td><%=storeInfo.getAddress() %></td>
+    		<td>&emsp;<%=storeInfo.getAddress() %></td>
     	</tr>
     </table>
-    	<div class="infoRevise"><a href="infoRevise">정보 수정</a></div>
-    	<div class="join_cancel">회원 탈퇴</div>
-   		<div class="subscribe">구독 신청</div>
-    	<div class="subscribe_cancel">구독 취소</div><br><br><br>
-    	<div class="storeSetButton"><a href="/store/">매장 관리</a></div>
-    	<div class="customerViewButton"><a href="/customer/tableNo">소비자 뷰(beta)</a></div>
-    		
-    	<a href="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%=request.getContextPath()%>/customer/tableNo?no=<%=storeInfo.getStoreNo() %>">QR코드 생성</a>
+        <div class="wrap1">
+            <div class="infoRevise"><a href="infoRevise">정보 수정</a></div>
+            <div class="join_cancel">회원 탈퇴</div>
+            <div class="subscribe">구독 신청</div>
+            <div class="subscribe_cancel">구독 취소</div>
+        </div>
+        <div class="wrap2">
+            <div class="storeSetButton"><a href="/store/">매장 관리</a></div>
+            <div class="customerViewButton"><a href="/customer/tableNo">소비자 뷰(beta)</a></div>
+            <div class="qrCreate"><a href="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%=request.getContextPath()%>/customer/tableNo?no=<%=storeInfo.getStoreNo() %>">QR코드 생성</a></div>
+        </div>
 </body>
 </html>
