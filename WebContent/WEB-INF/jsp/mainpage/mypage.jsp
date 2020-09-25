@@ -66,6 +66,7 @@
 	margin: auto;
 	margin-bottom: 50px;
 	color: midnightblue;
+	font-size: 20px;
 }
 .asd{
     margin: auto;
@@ -168,7 +169,7 @@
 }
 .wrap1 div{
     margin-left: 15%;
-    margin-bottom: 50px;
+    margin-bottom: 150px;
     display: block;
 }
 .wrap2 div{
@@ -218,8 +219,8 @@
         </div>
         <div class="wrap2">
             <div class="storeSetButton"><a href="/store/">매장 관리</a></div>
-            <div class="customerViewButton"><a href="/customer/tableNo">소비자 뷰(beta)</a></div>
-            <div class="qrCreate"><a href="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%=request.getContextPath()%>/customer/tableNo?no=<%=storeInfo.getStoreNo() %>">QR코드 생성</a></div>
+            <div class="customerViewButton"><a href="/customer/tableNo">소비자 뷰(beta)</a></div><br/>
+        	<a href="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%=request.getContextPath()%>/customer/tableNo?no=<%=storeInfo.getStoreNo() %>"><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=sunx.cafe24.com/customer/tableNo?no=<%=storeInfo.getStoreNo() %>" alt="qr코드"/></a>
         </div>
 </body>
 </html>

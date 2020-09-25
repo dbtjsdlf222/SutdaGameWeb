@@ -34,6 +34,7 @@
 <body>
 		<form action="tableAction" method="get">
 		<input type="text" name="tableNo" placeholder="테이블 번호를 입력해주세요."><input type="submit" value="확인">
+		<input type="hidden" name="storeNo">
 		</form>
 </body>
 </html>
