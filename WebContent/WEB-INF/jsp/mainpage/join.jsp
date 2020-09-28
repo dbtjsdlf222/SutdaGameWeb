@@ -236,11 +236,17 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
 	
 	//라이센스 정규식
 	var licenseCheck = RegExp(/(\d{3}).(\d{2}).(\d{5}));		//숫자 정규식 (숫자3개+숫자2개+숫자5개 입력 가능)
-	var license2Check = RegExp(/[~!@#$%^&*()_+|<>?:{}ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-zA-Z]/); //특수문자 + 한글 + 영어 정규식 
 	$('#license1').keyup(function() {
 		if (licenseCheck.test($('#license1').val()))
 			$('#licensetag').text("확").css({"margin-right":"25px"});				
 		});
-
+	$('#license2').keyup(function() {
+		if (licenseCheck.test($('#license1').val()))
+			$('#licensetag').text("확").css({"margin-right":"25px"});				
+		});
+	$('#license3').keyup(function() {
+		if (licenseCheck.test($('#license1').val()))
+			$('#licensetag').text("확").css({"margin-right":"25px"});				
+		});
 </script>
 </html>
