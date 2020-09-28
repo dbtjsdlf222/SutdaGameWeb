@@ -11,7 +11,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    function sample6_execDaumPostcode() {
+    function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -44,17 +44,17 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                    document.getElementById("extraAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                    document.getElementById("extraAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById('postCode').value = data.zonecode;
+                document.getElementById("roadAddress").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById("detailAddress").focus();
             }
         }).open();
     }
@@ -109,7 +109,7 @@ select{
 	width: 150px;
 	height: 45px;
 }
-input[type="submit"]{
+input[type="submit"], input[type="reset"]{
 	width: 200px;
 	height: 40px;
 	background-color: midnightblue;
@@ -118,11 +118,11 @@ input[type="submit"]{
 	font-size: 20px;
 	cursor: pointer;
 }
-input[id="sample6_postcode"], input[id="sample6_extraAddress"]{
+input[id="postCode"], input[id="extraAddress"]{
 	width: 150px;
 	height: 30px;
 }
-input[id="sample6_address"], input[id="sample6_detailAddress"]{
+input[id="roadAddress"], input[id="detailAddress"]{
 	width: 500px;
 	height: 40px;
 }
@@ -197,10 +197,11 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
             </li>
             <li>
             	<br><label for="store_address">가게 주소</label><br>
-                <input type="text" id="sample6_postcode" name="store_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br><br>
-				<input type="text" id="sample6_address" name="store_address" placeholder="주소"><br><br>
-				<input type="text" id="sample6_detailAddress" name="store_address2" placeholder="상세주소"><br><br>
+				<input type="text" id="postCode" placeholder="우편번호">
+				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+				<input type="text" id="roadAddress" placeholder="주소"><br>
+				<input type="text" id="detailAddress" placeholder="상세주소">
+				<input type="text" id="extraAddress" placeholder="참고항목">
             </li>
         </ul>
         <div id="commit">
@@ -235,18 +236,18 @@ input[id="sample6_address"], input[id="sample6_detailAddress"]{
 		}); // #user_pw
 	
 	//라이센스 정규식
-	var licenseCheck = RegExp(/(\d{3}).(\d{2}).(\d{5}));		//숫자 정규식 (숫자3개+숫자2개+숫자5개 입력 가능)
-	$('#license1').keyup(function() {
-		if (licenseCheck.test($('#license1').val()))
-			$('#licensetag').text("확").css({"margin-right":"25px"});				
-		});
-	$('#license2').keyup(function() {
-		if (licenseCheck.test($('#license1').val()))
-			$('#licensetag').text("확").css({"margin-right":"25px"});				
-		});
-	$('#license3').keyup(function() {
-		if (licenseCheck.test($('#license1').val()))
-			$('#licensetag').text("확").css({"margin-right":"25px"});				
-		});
+// 	var licenseCheck = RegExp(/(\d{3}).(\d{2}).(\d{5}));		/* //숫자 정규식 (숫자3개+숫자2개+숫자5개 입력 가능) */
+// 	$('#license1').keyup(function() {
+// 		if (licenseCheck.test($('#license1').val()))
+// 			$('#licensetag').text("확").css({"margin-right":"25px"});
+// 		});
+// 	$('#license2').keyup(function() {
+// 		if (licenseCheck.test($('#license1').val()))
+// 			$('#licensetag').text("확").css({"margin-right":"25px"});
+// 		});
+// 	$('#license3').keyup(function() {
+// 		if (licenseCheck.test($('#license1').val()))
+// 			$('#licensetag').text("확").css({"margin-right":"25px"});
+// 		});
 </script>
 </html>
