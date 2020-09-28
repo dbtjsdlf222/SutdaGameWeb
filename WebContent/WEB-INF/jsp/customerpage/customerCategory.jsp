@@ -29,17 +29,17 @@
 </head>
 <body>
     <div class="nav">
-        <a href="SetMenu" target="screen"><li>Set Menu</li></a>
-        <a href="SpecialMenu" target="screen"><li>Special Menu</li></a>
-        <a href="SignatureMenu" target="screen"><li>Signature Menu</li></a>
-        <a href="Chicken" target="screen"><li>Chicken</li></a>
-        <a href="Pasta" target="screen"><li>Pasta</li></a>
-        <a href="Salad" target="screen"><li>Salad</li></a>
-        <a href="Snack" target="screen"><li>Snack</li></a>
-        <a href="Soup" target="screen"><li>Soup</li></a>
-        <a href="Beer" target="screen"><li>Beer</li></a>
-        <a href="Cocktail" target="screen"><li>Cocktail</li></a>
-        <a href="Beverage" target="screen"><li>Beverage</li></a>
+        <a href="SetMenu" target="customerScreen"><li>Set Menu</li></a>
+        <a href="SpecialMenu" target="customerScreen"><li>Special Menu</li></a>
+        <a href="SignatureMenu" target="customerScreen"><li>Signature Menu</li></a>
+        <a href="Chicken" target="customerScreen"><li>Chicken</li></a>
+        <a href="Pasta" target="customerScreen"><li>Pasta</li></a>
+        <a href="Salad" target="customerScreen"><li>Salad</li></a>
+        <a href="Snack" target="customerScreen"><li>Snack</li></a>
+        <a href="Soup" target="customerScreen"><li>Soup</li></a>
+        <a href="Beer" target="customerScreen"><li>Beer</li></a>
+        <a href="Cocktail" target="customerScreen"><li>Cocktail</li></a>
+        <a href="Beverage" target="customerScreen"><li>Beverage</li></a>
     </div>
 </body>
 </html>

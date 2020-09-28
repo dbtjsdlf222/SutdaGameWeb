@@ -14,7 +14,7 @@
     <frameset rows="10%, 20%, 70%" frameborder="1">
     	<frame src="header">
     	<frame src="category">
-    	<frame src="" name="screen">
+    	<frame src="" name="customerScreen">
     </frameset>
 
 </head>

@@ -29,4 +29,10 @@ public class CustomerController {
 		return "customerpage/customerCategory";
 	} //category();
 	
+	@RequestMapping("customerScreen")
+	public String customerScreen() {
+		
+		return "../storepage/menuSet";
+	}
+	
 } //CustomerController();
