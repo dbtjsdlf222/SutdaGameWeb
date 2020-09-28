@@ -35,15 +35,15 @@ footer p{
 <body>
 <jsp:include page="header.jsp" flush="false" />
     <div id="content">
-        <img id="slide" src="../image/slide1.png" name="slide">
+        <img id="slide" src="/img/slide1.png" name="slide">
     </div>
 
     <div class="system-benefit">
-        <img src="image/benefit.png">
+        <img src="/img/benefit.png">
     </div>
 
     <div class="system-explain">
-		설명
+		QRPAY~~
     </div>
     <footer>
         <p></p>
