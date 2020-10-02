@@ -1,7 +1,5 @@
 package project.qrpay.service;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,7 @@ public class OwnerService {
 	OwnerDAO ownerDAO;
 	
 	public OwnerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
-	public void joinOwner(Map<String,String> map) { ownerDAO.join(map); }
+	public void joinOwner(OwnerVO ownerVO) { ownerDAO.join(ownerVO); }
 	public OwnerVO selectOwner(int no) { return ownerDAO.selectOwner(no); }
 	
 } //OwnerService();

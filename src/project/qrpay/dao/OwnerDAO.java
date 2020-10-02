@@ -1,13 +1,11 @@
 package project.qrpay.dao;
 
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Param;
 
 import project.qrpay.vo.OwnerVO;
 
 public interface OwnerDAO {
-	public void join(Map<String,String> map);			//회원가입
+	public void join(OwnerVO ownerVO);			//회원가입
 	public OwnerVO selectOwner(@Param("no") int no);
 	public void updateOwner(OwnerVO ownerVO);
 	public void deleteOwner(@Param("no") int no);

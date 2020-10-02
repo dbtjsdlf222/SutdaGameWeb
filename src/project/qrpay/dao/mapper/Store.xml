@@ -2,22 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.qrpay.dao.StoreDAO">
 
-	<insert id="insertStore" parameterType="Map">
+	<insert id="insertStore" parameterType="StoreVO">
 		INSERT INTO store(
 			store_name,
 			type,
 			license_number,
 			address,
 			store_no,
-			table_count)
+			table_count,
+			address,
+			post_code,
+			detail_address,
+			extra_address )
 		VALUES
 			#{storeName },
-			#{storeType },
+			#{type },
 			#{licenseNumber },
 			#{address },
-			#{ownerNo },
-			#{tableCount}
-		);
+			#{storeNo },
+			#{tableCount},
+			#{postAddress},
+			#{detailAddress},
+			#{extraAddress} );
 	</insert>
 	 
 	<select id="selectStore" parameterType="int" resultType="StoreVO">

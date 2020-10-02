@@ -7,15 +7,15 @@ public class OwnerVO {
 //owner DB
    private int no;             	//가입번호
    private String name;         //이름
-   private String phone;           //연락처
+   private String phone;        //연락처
    private String id;           //아이디
    private String pw;           //비밀번호
    private String email;      	//이메일
-   private Date membershipDate;   //가입일
-   private int bankAccount;   //은행 계좌
-   private String bankName;   //은행 계좌
+   private Date membershipDate; //가입일
+   private int bankAccount;   	//은행 계좌
+   private String bankName;   	//은행명
 
-   private StoreVO storeVO = new StoreVO();
+   private StoreVO store = new StoreVO();
    
    public OwnerVO() {}
    
@@ -49,7 +49,7 @@ public class OwnerVO {
    public Date getMembershipDate() {return membershipDate;}
    public int getBankAccount() { return bankAccount; }
    public String getBankName() { return bankName; }
-   public StoreVO getStoreVO() { return storeVO; }
+   public StoreVO getStore() { return store; }
    
 //사장님 setters
    public void setNo(int no) {this.no = no;}
@@ -61,9 +61,14 @@ public class OwnerVO {
    public void setMembershipDate(Date membershipDate) {this.membershipDate = membershipDate;}
    public void setBankAccount(int bankAccount) { this.bankAccount = bankAccount; }
    public void setBankName(String bankName) { this.bankName = bankName; }
-   public void setStoreVO(StoreVO storeVO) { this.storeVO = storeVO; }
-   
-   
+   public void setStore(StoreVO store) { this.store = store; }
+
+@Override
+public String toString() {
+	return "OwnerVO [no=" + no + ", name=" + name + ", phone=" + phone + ", id=" + id + ", pw=" + pw + ", email="
+			+ email + ", membershipDate=" + membershipDate + ", bankAccount=" + bankAccount + ", bankName=" + bankName
+			+ ", store=" + store + "]";
+}
    
 ////가게 getters
 //   public int getStoreNo() {return storeNo;}
@@ -82,5 +87,5 @@ public class OwnerVO {
 //   public void setAddress(String address) {this.address = address;}
 //   public void setOwnerNo(int ownerNo) {this.ownerNo = ownerNo;}
 //   public void setTableCount(int tableCount) {this.tableCount = tableCount;}
-//   
+   
 }

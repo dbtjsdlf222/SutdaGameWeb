@@ -26,7 +26,7 @@
 			id=#{id}
 	</select>
 	
-	<insert id="join" parameterType="Map">
+	<insert id="join" parameterType="OwnerVO">
 		INSERT 
 		INTO owner(
 			`name`,
