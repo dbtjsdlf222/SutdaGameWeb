@@ -29,9 +29,11 @@
 </head>
 <body>
     <div class="categoryContainer">
-    	<c:set>
-    		
-    	</c:set>
-    </div>
+    <c:forEach var="item" items="${categoryInfo}" begin=0>
+	    ${item.no}
+	    ${item.name}
+	    ${item.storeNo}
+	</c:forEach>
+</div>
 </body>
 </html>

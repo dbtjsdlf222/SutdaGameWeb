@@ -22,7 +22,7 @@ public class CustomerController {
 		return "customerpage/customerView";
 	} //main();
 	
-	@RequestMapping("tableNo")
+	@RequestMapping("tableAction")
 	public String tableNo(int no) {
 		return "customerpage/tableNo";
 	} //tableNo();
