@@ -3,7 +3,7 @@ package project.qrpay.vo;
 public class CategoryVO {
 	private int no;
 	private String name;
-	private int menuNo;
+	private int storeNo;
 	
 	public int getNo() { return no; }
 	public void setNo(int no) {
@@ -15,10 +15,10 @@ public class CategoryVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getMenuNo() {
-		return menuNo;
+	public int getStoreNo() {
+		return storeNo;
 	}
-	public void setMenuNo(int menuNo) {
-		this.menuNo = menuNo;
+	public void setStoreNo(int storeNo) {
+		this.storeNo = storeNo;
 	}
 }

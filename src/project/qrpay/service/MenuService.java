@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.qrpay.dao.MenuDAO;
+import project.qrpay.vo.CategoryVO;
 import project.qrpay.vo.MenuVO;
 
 @Service
@@ -18,5 +19,8 @@ public class MenuService {
 	public void addMenu(MenuVO menuVO) { menuDAO.addMenu(menuVO); }
 	public void updateMenu(MenuVO menuVO) { menuDAO.updateMenu(menuVO);	}
 	public void deleteMenu(int no) { menuDAO.deleteMenu(no); }
+	public ArrayList<CategoryVO> selectCategoryList(int storeNo){
+		return menuDAO.selectCategoryList(storeNo);
+	}
 	
 } //MenuService();

@@ -11,7 +11,7 @@ public class OwnerVO {
    private String id;           //아이디
    private String pw;           //비밀번호
    private String email;      	//이메일
-   private Date membershipDate; //가입일
+   private Date joinDate; //가입일
    private int bankAccount;   	//은행 계좌
    private String bankName;   	//은행명
 
@@ -46,7 +46,7 @@ public class OwnerVO {
    public String getId() {return id;}
    public String getPw() {return pw;}
    public String getEmail() {return email;}
-   public Date getMembershipDate() {return membershipDate;}
+   public Date getJoinDate() {return joinDate;}
    public int getBankAccount() { return bankAccount; }
    public String getBankName() { return bankName; }
    public StoreVO getStore() { return store; }
@@ -58,7 +58,7 @@ public class OwnerVO {
    public void setId(String id) {this.id = id;}
    public void setPw(String pw) {this.pw = pw;}
    public void setEmail(String email) {this.email = email;}
-   public void setMembershipDate(Date membershipDate) {this.membershipDate = membershipDate;}
+   public void setJoinDate(Date joinDate) {this.joinDate = joinDate;}
    public void setBankAccount(int bankAccount) { this.bankAccount = bankAccount; }
    public void setBankName(String bankName) { this.bankName = bankName; }
    public void setStore(StoreVO store) { this.store = store; }
@@ -66,7 +66,7 @@ public class OwnerVO {
 @Override
 public String toString() {
 	return "OwnerVO [no=" + no + ", name=" + name + ", phone=" + phone + ", id=" + id + ", pw=" + pw + ", email="
-			+ email + ", membershipDate=" + membershipDate + ", bankAccount=" + bankAccount + ", bankName=" + bankName
+			+ email + ", joinDate=" + joinDate + ", bankAccount=" + bankAccount + ", bankName=" + bankName
 			+ ", store=" + store + "]";
 }
    

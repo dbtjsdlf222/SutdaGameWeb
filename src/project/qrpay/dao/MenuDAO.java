@@ -18,5 +18,5 @@ public interface MenuDAO {
 	public void addCategory(CategoryVO cateVO);			//카테고리 추가
 	public void deleteCategory(@Param("no")int no);		//카테고리 삭제
 	public void updateCategory(@Param("no")int no);		//카테고리 수정
-	
+	public ArrayList<CategoryVO> selectCategoryList (@Param("storeNo") int storeNo);
 } //MenuDAO
