@@ -26,7 +26,7 @@
 			id=#{id}
 	</select>
 	
-	<insert id="join" parameterType="OwnerVO">
+	<insert id="join" parameterType="OwnerVO" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
 		INSERT 
 		INTO owner(
 			`name`,

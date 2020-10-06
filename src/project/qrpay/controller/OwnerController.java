@@ -42,7 +42,7 @@ public class OwnerController {
 		model.addAttribute("storeInfo", storeService.selectStore(vo.getNo()));
 		System.out.println(storeService.selectStore(vo.getNo()));
 		return "mainpage/mypage";
-	} // my page
+	} // mypage
 	
 	@RequestMapping("main")
 	public String main() {

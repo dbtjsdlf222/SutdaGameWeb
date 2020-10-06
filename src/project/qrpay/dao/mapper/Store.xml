@@ -10,11 +10,10 @@
 			address,
 			store_no,
 			table_count,
-			address,
 			post_code,
 			detail_address,
 			extra_address )
-		VALUES
+		VALUES(
 			#{storeName },
 			#{type },
 			#{licenseNumber },

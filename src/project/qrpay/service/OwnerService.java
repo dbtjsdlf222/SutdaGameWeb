@@ -13,7 +13,7 @@ public class OwnerService {
 	OwnerDAO ownerDAO;
 	
 	public OwnerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
-	public void joinOwner(OwnerVO ownerVO) { ownerDAO.join(ownerVO); }
+	public int joinOwner(OwnerVO ownerVO) { return ownerDAO.join(ownerVO); }
 	public OwnerVO selectOwner(int no) { return ownerDAO.selectOwner(no); }
 	
 } //OwnerService();

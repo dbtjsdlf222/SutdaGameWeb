@@ -157,8 +157,8 @@
             <li>
                 <label for="license">사업자 등록번호</label><br>
                 <input type="text" class="license" maxlength="3" pattern="[0-9]+" required>&emsp;<b>-</b>&emsp;
-                <input type="text" class="license" name="store.licenseNumber"maxlength="2" pattern="[0-9]+" required>&emsp;<b>-</b>&emsp;
-                <input type="text" class="license" name="license" pattern="[0-9]+" maxlength="5" required><br><br>
+                <input type="text" class="license" maxlength="2" pattern="[0-9]+" required>&emsp;<b>-</b>&emsp;
+                <input type="text" class="license" name="store.licenseNumber" pattern="[0-9]+" maxlength="5" required><br><br>
             </li>
             <li>
                 <label for="email">이메일</label><br>
@@ -199,7 +199,7 @@
         <ul id="store">
             <li>
    		    	<label for="store_type">가게 종류</label><br>
-                <select id="store_type" name="store_type" required>
+                <select id="store_type" name="store.type" required>
                     <option value="food">음식점</option>
                     <option value="bar">술집</option>
                     <option value="junk">패스트푸드점</option>
@@ -208,19 +208,19 @@
             </li>
             <li>
                 <br><label for="store_name">상호 명</label><br>
-                <input type="text" id="store_name" name="store_name" required><br><br>
+                <input type="text" id="store_name" name="store.storeName" required><br><br>
             </li>
             <li>
                 <br><label for="tableCount">업장 테이블 개수</label><br>
-                <input type="number" id="tableCount" name="tableCount" required><br><br>
+                <input type="number" id="tableCount" name="store.tableCount" min=1 max=100 required><br><br>
             </li>
             <li>
             	<br><label for="store_address">가게 주소</label><br>
-				<input type="text" id="postCode" placeholder="우편번호" name="postAddress" readonly>
+				<input type="text" id="postCode" placeholder="우편번호" name="store.postAddress" readonly>
 				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="roadAddress" name="address" placeholder="주소" readonly required> <br>
-				<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" maxlength='15'>
-				<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" maxlength='15'>
+				<input type="text" id="roadAddress" name="store.address" placeholder="주소" readonly required> <br>
+				<input type="text" id="detailAddress" name="store.detailAddress" placeholder="상세주소" maxlength='15'>
+				<input type="text" id="extraAddress" name="store.extraAddress" placeholder="참고항목" maxlength='15'>
             </li>
         </ul>
         <div id="commit">
@@ -243,7 +243,8 @@
 		
 	});
 
-	$("form").on("submit", function() {
+	$("form").submit(function() {
+		alert("Qweqwe");
 		var result='';
 		
 		if($("#join_pw").val()!=("#join_pwc").val()) {
@@ -252,9 +253,8 @@
 		}
 
 
-		var arr = [ 'phone', 'email', 'license' ];
-
-		for(var i=0; i < arr.length; i++) {
+		var arr = [ 'phone', 'email', 'store.licenseNumber' ];
+		for(var i=0; i < 3; i++) {
 
             result='';
             
@@ -262,19 +262,17 @@
 				result +=$(this).val();
 			});
 			
-			$('input[name="'+arr[i]+'"]').val(result);
-
-			alert($('input[name="'+arr[i]+'"]').val());
+			$('input[name='+arr[i]+']').val(result);
 		}
 
-		$("input[name='license']").attr('name','store.licenseNumber');
-		$("input[name='store_name']").attr('name','store.storeName');
-		$("input[name='store_type']").attr('name','store.type');
-		$("input[name='address']").attr('name','store.address');
-		$("input[name='postAddress']").attr('name','store.postAddress');
-		$("input[name='detailAddress']").attr('name','store.detailAddress');
-		$("input[name='extraAddress']").attr('name','store.extraAddress');
-		$("input[name='tableCount']").attr('name','store.tableCount');
+// 		$("input[name=license]").attr('name','store.licenseNumber');
+// 		$("input[name=store_name]").attr('name','store.storeName');
+// 		$("input[name=store_type]").attr('name','store.type');
+// 		$("input[name=address]").attr('name','store.address');
+// 		$("input[name=postAddress]").attr('name','store.postAddress');
+// 		$("input[name=detailAddress]").attr('name','store.detailAddress');
+// 		$("input[name=extraAddress]").attr('name','store.extraAddress');
+// 		$("input[name=tableCount]").attr('name','store.tableCount');
 		
 	 });
 

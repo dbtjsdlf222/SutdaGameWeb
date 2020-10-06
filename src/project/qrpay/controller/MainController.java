@@ -61,12 +61,8 @@ public class MainController {
 		@RequestMapping("joinAction")
 		public String joinAction(HttpSession session, OwnerVO ownerVO) {
 			System.out.println(ownerVO);
-			ownerService.joinOwner(ownerVO);
-			System.out.println(ownerVO.getNo());
-			System.out.println(ownerVO.getNo());
-			System.out.println(ownerVO.getNo());
-			System.out.println(ownerVO.getNo());
-			ownerVO.getStore().setStoreNo(ownerVO.getNo());
+			int ownerNo = ownerService.joinOwner(ownerVO);
+			ownerVO.getStore().setStoreNo(ownerNo);
 			System.out.println(ownerVO.getStore());
 			storeService.insertStore(ownerVO.getStore());
 			return "mainpage/main";

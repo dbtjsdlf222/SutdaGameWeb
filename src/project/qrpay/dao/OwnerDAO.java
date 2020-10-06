@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import project.qrpay.vo.OwnerVO;
 
 public interface OwnerDAO {
-	public void join(OwnerVO ownerVO);			//회원가입
+	public int join(OwnerVO ownerVO);			//회원가입
 	public OwnerVO selectOwner(@Param("no") int no);
 	public void updateOwner(OwnerVO ownerVO);
 	public void deleteOwner(@Param("no") int no);

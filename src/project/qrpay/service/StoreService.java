@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.qrpay.dao.StoreDAO;
-import project.qrpay.vo.OwnerVO;
 import project.qrpay.vo.StoreVO;
 
 @Service
