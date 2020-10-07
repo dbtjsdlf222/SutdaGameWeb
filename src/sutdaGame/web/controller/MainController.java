@@ -10,22 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import sutdaGame.web.service.BoardService;
-import sutdaGame.web.service.MainService;
 import sutdaGame.web.service.OwnerService;
-import sutdaGame.web.service.StoreService;
 import sutdaGame.web.vo.OwnerVO;
 
 @Controller @RequestMapping("/")
 public class MainController {
 	
 	@Autowired
-	MainService mainService;
-	
-	@Autowired
 	OwnerService ownerService;
-	
-	@Autowired
-	StoreService storeService;
 	
 	@Autowired
 	BoardService boardService;
@@ -62,9 +54,6 @@ public class MainController {
 		public String joinAction(HttpSession session, OwnerVO ownerVO) {
 			System.out.println(ownerVO);
 			int ownerNo = ownerService.joinOwner(ownerVO);
-			ownerVO.getStore().setStoreNo(ownerNo);
-			System.out.println(ownerVO.getStore());
-			storeService.insertStore(ownerVO.getStore());
 			return "mainpage/main";
 		} //joinAction
 		
