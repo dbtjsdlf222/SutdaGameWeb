@@ -11,30 +11,44 @@
 <style type="text/css">
 .home{
     margin-left: 30px;
-    padding-bottom: 10px;
+    margin-right: 30px;
+}
+.home a{
+    text-decoration: none;
     font-size: 50px;
     color: #0A4600;
     font-weight: bold;
     font-family: stencil;
 }
-.home a{
-    text-decoration: none;
-}
 .nav{
     display: flex;
-    border-bottom: 2px solid #0A4600;
-    height: 100px;
-    align-items: center;
+    margin: auto;
+    padding-top: 30px;
+/*     border-bottom: 2px solid #0A4600; */
+    height: 200px;
 	list-style: none;
 }
-.top-menu ul{
+.dept01{
     display: flex;
     list-style: none;
-    margin-right: 50px;
     text-align: center;
 }
+.dept01 li span{
+	margin-right: 65px;
+}
+.dept01 li span a{
+	font-size: 25px;
+	color: #0A4600;
+	font-weight: bold;
+}
 .dept02{
-	display: none;
+ 	display: none;
+	list-style: none;
+	padding-left: 0px;
+}
+.dept02 li{
+	align-items: center;
+	padding-left: 0px;
 }
 .login{
     width: 100px;
@@ -80,7 +94,7 @@
 <body>
 	<header>
     <div class="nav">
-        <div class="home"><a href="/main"><img id="logo" src="/img/logo.png"></a></div>
+        <div class="home"><a href="/main">SUTDA</a></div>
         <div class="top-menu">
         	<ul class="dept01">
         		<li>
@@ -125,5 +139,15 @@
         <% } %>
     </div>
     </header>
+    <script>
+    $(document).on('mouseover', '.top-menu span', function () {
+        $('.dept02').slideDown(200);
+    });
+    $(document).on('mouseout', 'div', function () {
+        if (!$(this).hasClass('top-menu')) {
+            $('.dept02').slideUp(200);
+        }
+    });
+    </script>
 </body>
 </html>
