@@ -22,19 +22,19 @@
 }
 .nav{
     display: flex;
-    border-bottom: 2px solid darkgreen;
+    border-bottom: 2px solid #0A4600;
     height: 100px;
     align-items: center;
+	list-style: none;
 }
-.nav-right{
+.top-menu ul{
     display: flex;
-    margin-left: auto;
+    list-style: none;
     margin-right: 50px;
     text-align: center;
 }
-.nav-item{
-    margin-left: 20px;
-    margin-right: 80px;
+.dept02{
+	display: none;
 }
 .login{
     width: 100px;
@@ -75,25 +75,46 @@
     font-size: 20px;
     font-weight: bold;
 }
-.nav-item a{
-	text-decoration: none;
-	font-size: 30px;
-    font-weight: bold;
-    color: #0A4600;
-}
 </style>
 </head>
 <body>
 	<header>
     <div class="nav">
         <div class="home"><a href="/main"><img id="logo" src="/img/logo.png"></a></div>
-        <div class="nav-right">
-	        <div class="nav-item"><a href="/news">새 소식</a></div>
-	        <div class="nav-item"><a href="/reference">자료실</a></div>
-	        <div class="nav-item"><a href="/community">커뮤니티</a></div>
-       		<div class="nav-item"><a href="/shop">상점</a></div>
-	        <div class="nav-item"><a href="/rank">명예의 전당</a></div>
-	        <div class="nav-item"><a href="/customer">고객센터</a></div>
+        <div class="top-menu">
+        	<ul class="dept01">
+        		<li>
+        			<span><a href="/news">새 소식</a></span>
+        			<ul class="dept02">
+        				<li id="notice">공지사항</li>
+        				<li id="patch">패치노트</li>
+        				<li id="event">이벤트</li>
+        			</ul>
+        		</li>
+        		<li>
+        			<span><a href="/reference">자료실</a></span>
+        			<ul class="dept02">
+        				<li id="download">다운로드</li>
+        				<li id="guide">게임 가이드</li>
+        			</ul>
+        		</li>
+        		<li>
+        			<span><a href="/community">커뮤니티</a></span>
+        		</li>
+        		<li>
+        			<span><a href="/shop">상점</a></span>
+        		</li>
+        		<li>
+        			<span><a href="/rank">명예의 전당</a></span>
+        		</li>
+        		<li>
+        			<span><a href="/customer">고객센터</a></span>
+        			<ul class="dept02">
+        				<li id="1to1">1:1 문의</li>
+        				<li id="often">자주하는 질문</li>
+        			</ul>
+        		</li>
+        	</ul>
        	</div>
         <% if(session.getAttribute("loginInfo")==null){ %>
         
