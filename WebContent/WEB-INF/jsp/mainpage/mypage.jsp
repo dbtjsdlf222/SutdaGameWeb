@@ -1,4 +1,3 @@
-<%@page import="sutdaGame.web.vo.StoreVO"%>
 <%@page import="sutdaGame.web.vo.OwnerVO"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -184,8 +183,7 @@
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
-	<!-- <% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
-	<% StoreVO storeInfo=(StoreVO)request.getAttribute("storeInfo"); %> -->
+	<% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
     <div class="profile"></div>
     <table class="myinfo">
     	<tr>
@@ -196,29 +194,13 @@
     		<td>이메일</td>
     		<td>&emsp;<%=ownerInfo.getEmail() %></td>
     	</tr>
-    	<tr>
-    		<td>전화번호</td>
-    		<td>&emsp;<%=ownerInfo.getPhone() %></td>
-    	</tr>
-    	<tr>	
-    		<td>가게이름</td>
-    		<td>&emsp;<%=storeInfo.getStoreName() %></td>
-    	</tr>
-    	<tr>
-    		<td>가게주소</td>
-    		<td>&emsp;<%=storeInfo.getAddress() %></td>
-    	</tr>
     </table>
         <div class="wrap1">
             <div class="infoRevise"><a href="infoRevise">정보 수정</a></div>
             <div class="join_cancel">회원 탈퇴</div>
-            <div class="subscribe">구독 신청</div>
-            <div class="subscribe_cancel">구독 취소</div>
         </div>
         <div class="wrap2">
             <div class="storeSetButton"><a href="/store/">매장 관리</a></div>
-            <div class="customerViewButton"><a href="/customer/tableNo">소비자 뷰(beta)</a></div><br/>
-        	<a href="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%=request.getContextPath()%>/customer/tableNo?no=<%=storeInfo.getStoreNo() %>"><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=sunx.cafe24.com/customer/tableNo?no=<%=storeInfo.getStoreNo() %>" alt="qr코드"/></a>
         </div>
 </body>
 </html>
