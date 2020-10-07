@@ -97,16 +97,6 @@
 </body>
 
 <script>
-
-	$("#memail2").change(function(){
-		$("#mail_server").$("#mail_server option:eq(1)").attr("selected", "selected");
-	})
-		
-	$("#mail_server").change(function(){
-		$("#email2").val($(this).val());
-		
-	});
-
 	$("form").submit(function() {
 		alert("Qweqwe");
 		var result='';
@@ -116,8 +106,7 @@
 			return false;
 		}
 
-
-		var arr = [ 'phone', 'email', 'store.licenseNumber' ];
+		var arr = [ 'email' ];
 		for(var i=0; i < 3; i++) {
 
             result='';
