@@ -10,7 +10,7 @@
   </bean>
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
-  <context:component-scan base-package="project.qrpay.controller"/>
+  <context:component-scan base-package="sutdaGame.web.controller"/>
 
   <mvc:default-servlet-handler/>
   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
@@ -23,7 +23,7 @@
 	<mvc:interceptor>
 	  <mvc:mapping path="/logout"/>
 	  <mvc:mapping path="/user/page/**"/>
-	  <bean class="project.qrpay.interceptor.SessionAttributeCheckInterceptor">
+	  <bean class="sutdaGame.web.interceptor.SessionAttributeCheckInterceptor">
 	    <constructor-arg value="loginInfo"/>
 	    <constructor-arg value="false"/>
 	    <constructor-arg value="/login"/>
@@ -35,7 +35,7 @@
 		<mvc:mapping path="/loginAction"/>
 		<mvc:mapping path="/join"/>
 		<mvc:mapping path="/joinAction"/>
-	  <bean class="project.qrpay.interceptor.SessionAttributeCheckInterceptor">
+	  <bean class="sutdaGame.web.interceptor.SessionAttributeCheckInterceptor">
 	    <constructor-arg value="loginInfo"/>
 	    <constructor-arg value="true"/>
 	    <constructor-arg value="../"/>

@@ -9,8 +9,8 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath*:project/qrpay/dao/mapper/**/*.xml"/>
-		<property name="typeAliasesPackage" value="project.qrpay.vo"/>
+		<property name="mapperLocations" value="classpath*:sutdaGame/web/dao/mapper/**/*.xml"/>
+		<property name="typeAliasesPackage" value="sutdaGame.web.vo"/>
 	</bean>
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -23,7 +23,7 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	<aop:config>
-		<aop:advisor advice-ref="tx" pointcut="execution(public * project.qrpay.service.*Service.*(..))"/>
+		<aop:advisor advice-ref="tx" pointcut="execution(public * sutdaGame.web.service.*Service.*(..))"/>
 	</aop:config>
 	<tx:advice id="tx" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -31,7 +31,7 @@
 		</tx:attributes>
 	</tx:advice>
 
-	<mybatis:scan base-package="project.qrpay.dao"/>
-	<context:component-scan base-package="project.qrpay.service"/>
+	<mybatis:scan base-package="sutdaGame.web.dao"/>
+	<context:component-scan base-package="sutdaGame.web.service"/>
 
 </beans>

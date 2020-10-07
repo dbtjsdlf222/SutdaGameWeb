@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sutdaGame.web.dao.StoreDAO">
+
+	<insert id="insertStore" parameterType="StoreVO">
+		INSERT INTO store(
+			store_name,
+			type,
+			license_number,
+			address,
+			store_no,
+			table_count,
+			post_code,
+			detail_address,
+			extra_address )
+		VALUES(
+			#{storeName },
+			#{type },
+			#{licenseNumber },
+			#{address },
+			#{storeNo },
+			#{tableCount},
+			#{postAddress},
+			#{detailAddress},
+			#{extraAddress} );
+	</insert>
+	 
+	<select id="selectStore" parameterType="int" resultType="StoreVO">
+		SELECT 
+			store_no as storeNo,
+			store_name as storeName,
+			type,
+			license_number as licenseNumber,
+			address,
+			store_no as storeNo,
+			table_count as tableCount
+		FROM 
+			store
+		WHERE
+			store_no=#{no}
+	</select>
+	
+	<update id="updateStore" parameterType="StoreVO">
+		UPDATE 
+			store 
+		SET
+			store_name= #{storeName},
+			type= #{type},
+			address= #{address},
+			store_no= #{ownerNo},
+			table_count= #{tableCount}
+		WHERE
+			store_no = #{storeNo}			
+	</update>
+	
+	<delete id="deleteStore" parameterType="int">
+		DELETE store
+		WHERE store_no=#{storeNo}
+	</delete>
+	
+</mapper>
+<!-- 
+CREATE TABLE store
+(
+    `store_no`        INT             NOT NULL    AUTO_INCREMENT COMMENT '업장 번호', 
+    `store_name`      VARCHAR(45)     NOT NULL    COMMENT '업장 상호', 
+    `type`            VARCHAR(45)     NOT NULL    COMMENT '사업 종류', 
+    `license_number`  INT(10)         NOT NULL    COMMENT '사업자 등록번호', 
+    `address`         VARCHAR(128)    NOT NULL    COMMENT '업장 주소', 
+    ```        INT             NOT NULL    COMMENT '업주 정보 FK', 
+    `table_count`     INT             NOT NULL    DEFAULT 0 COMMENT '테이블 개수', 
+    PRIMARY KEY (store_no)
+);
+-->

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sutdaGame.web.dao.BoardDAO" >
+	
+	<insert id="QAinsertBoard" parameterType="BoardVO">
+		INSERT INTO QA_board (title, content, writer_no) 
+		VALUES (#{title}, #{content}, #{writerNo});
+	</insert>
+	
+	<update id="QAupdateBoard" parameterType="BoardVO">
+		UPDATE QA_board
+		SET title=#{title}, content=#{content}, write_date=now()
+		WHERE no=#{no}
+	</update>
+	
+	<select id="QAselectBoardList" resultType="BoardVO">
+		SELECT b.no,
+		title,
+		content,
+		IFNULL(o.name,"탈퇴한 사용자") as writerName,
+		write_date as writeDate
+		FROM QA_board b
+		LEFT join owner o
+		ON b.writer_no = o.no
+	</select>
+	
+	<select id="QAselectOneBoard" parameterType="int" resultType="BoardVO">
+		SELECT b.no,
+		title,
+		content,
+		IFNULL(o.name,"탈퇴한 사용자") as writerName,
+		write_date as writeDate
+		FROM QA_board b
+		LEFT join owner o
+		ON b.writer_no = o.no
+		WHERE b.no=#{no}
+	</select>
+	
+	<delete id="QAdeleteBoard" parameterType="int">
+		DELETE FROM QA_board
+		WHERE no=#{no}
+	</delete>
+	
+	<insert id="FQinsertBoard" parameterType="BoardVO">
+		INSERT INTO FQ_board (title, content) 
+		VALUES (#{title}, #{content});
+	</insert>
+	
+	<select id="FQselectBoardList" resultType="BoardVO">
+		SELECT 
+			no,
+			title,
+			content
+		FROM FQ_board
+	</select>
+	
+	<update id="FQupdateBoard" parameterType="BoardVO">
+		UPDATE FQ_board
+		SET title=#{title}, content=#{content}
+		WHERE no=#{no}
+	</update>
+	
+	<delete id="FQdeleteBoard" parameterType="int">
+		DELETE FROM FQ_board
+		WHERE no=#{no}
+	</delete>
+	
+<!--
+CREATE TABLE QA_board
+(
+    `no`          INT            NOT NULL    AUTO_INCREMENT COMMENT '번호',
+    `title`       VARCHAR(45)    NOT NULL    COMMENT '제목',
+    `content`     VARCHAR(45)    NOT NULL    COMMENT '내용',
+    `writer_no`   VARCHAR(45)    NOT NULL    COMMENT '작성자 번호',
+    `write_date`  TIMESTAMP      NOT NULL    DEFAULT CURRENT_TIMESTAMP COMMENT '작성일',
+    `secret`      TINYINT        NOT NULL    DEFAULT 0 COMMENT '비밀글 여부',
+    PRIMARY KEY (no)
+);-->
+
+</mapper>

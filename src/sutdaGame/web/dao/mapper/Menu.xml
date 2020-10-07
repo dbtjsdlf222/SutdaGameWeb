@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sutdaGame.web.dao.MenuDAO" >
+	
+	
+	<insert id="addMenu"  parameterType="MenuVO">
+		INSERT INTO menu (name, eng_name, price, description, img, store_no)
+		VALUES (#{name}, #{engName}, #{price}, #{description}, #{img}, #{storeNo});
+	</insert>
+
+	<insert id="a"  parameterType="MenuVO">
+		INSERT INTO menu (name, eng_name, price, description, img, no)
+		VALUES (#{name}, #{engName}, #{price}, #{description}, #{img}, #{storeNo});
+	</insert>
+	
+	<update id="updateMenu" parameterType="MenuVO">
+		UPDATE menu SET name = #{name}, eng_name = #{engName}, price = #{price}, description = #{description}, img = #{img}
+		WHERE store_no = #{storeNo};
+	</update>
+	
+	<delete id="deleteMenu" parameterType="int">
+		DELETE FROM menu
+		WHERE no = #{no};
+	</delete>
+	
+	<select id="selectCategoryList" parameterType="int" resultType="CategoryVO">
+		 SELECT
+		 	no,
+		 	name,
+		 	store_no as storeNo
+		 FROM
+		 	category
+		 WHERE
+		 	store_no=#{storeNo};
+	</select>
+	
+	<select id="selectMenu" parameterType="int" resultType="MenuVO">
+		SELECT
+			no,
+			name,
+			eng_name,
+			price,
+			description,
+			img,
+			sold_out,
+			store_no
+		FROM
+			menu
+		WHERE
+			no = #{no};
+	</select>
+	
+	<select id="selectAllMenu" parameterType="int" resultType="MenuVO">
+		SELECT
+			no,
+			name,
+			eng_name,
+			price,
+			description,
+			img,
+			sold_out,
+			store_no
+		FROM
+			menu
+		WHERE store_no = #{storeNo};
+	</select>
+	
+<!-- 	<update id="updateBoard" parameterType="BoardVO">
+		UPDATE QA_board
+		SET title=#{title}, content=#{content}, write_date=now(),secret=#{secret}
+		WHERE no=#{no}
+	</update>
+	
+	<select id="selectBoardList" resultType="BoardVO">
+		SELECT
+			no,
+			title,
+			content,
+			(SELECT name FROM owner WHERE no=#{writer_no}) as writerName,
+			write_date as writeDate
+		FROM
+			QA_board
+	</select>
+	
+	<select id="selectOneBoard" parameterType="int" resultType="BoardVO">
+		SELECT 
+			no, 
+			title, 
+			content, 
+			writer,
+			write_date as writeDate
+		FROM QA_board
+		WHERE no=#{no}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board
+		WHERE no=#{no}
+	</delete> -->
+	
+<!--
+CREATE TABLE QA_board
+(
+    `no`          INT            NOT NULL    AUTO_INCREMENT COMMENT '번호',
+    `title`       VARCHAR(45)    NOT NULL    COMMENT '제목',
+    `content`     VARCHAR(45)    NOT NULL    COMMENT '내용',
+    `writer_no`   VARCHAR(45)    NOT NULL    COMMENT '작성자 번호',
+    `write_date`  TIMESTAMP      NOT NULL    DEFAULT CURRENT_TIMESTAMP COMMENT '작성일',
+    `secret`      TINYINT        NOT NULL    DEFAULT 0 COMMENT '비밀글 여부',
+    PRIMARY KEY (no)
+);-->
+
+</mapper>
