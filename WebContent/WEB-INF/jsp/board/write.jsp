@@ -1,50 +1,113 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>게시물 작성</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css">
+	<title>글쓰기 - DatePlanner</title>
+	
+	<style>
+	@CHARSET "UTF-8";
+			input[name="packageable"] {
+			width:15px;
+			height:15px;
+		}
+		input[name="title"] {
+			height : 45px;
+			line-height: 45px;
+			text-indent :10px;
+			font-size:30px;
+		}
+		input[name="title"]:FOCUS { outline-style: none; }
+		table tr>td:NTH-CHILD(1) {
+			min-width: 100px;
+			padding: 20px;
+			text-align: center;
+			font-size:20px;
+			font-weight: 800;
+			background-color: #999;
+		}
+		.button:HOVER {
+			background-color: #000;
+			color: #fff;
+		}
+		.button {
+			transition: .4s ease;
+			float:right;
+		    width: 200px;
+		    height: 50px;
+		    font-size: 23px;
+		    font-weight: 600;
+		    background: center;
+		    border: 3px solid gray;
+		}
+        input{
+            width: 100%;
+        }
+
+        .jumbotron table{
+            font-size: 18px;
+        }
+
+        table tr td{
+            padding: 10px;
+        }
+
+        ul{
+            list-style: none;
+        }
+	</style>
+	
 </head>
-<style>
-    #write{
-        margin: auto;
-        padding-left: 50px;
-        padding-top: 20px;
-        text-align: center;
-    }
-    #title{
-        margin-bottom: 20px;
-        width: 800px;
-        height: 30px;
-    }
-    #contents{
-        width: 800px;
-        height: 500px;
-    }
-    #confirm, #cancel{
-    	width: 80px;
-    	height: 30px;
-    }
-    form{
-    	width:800px;
-    	margin-left:23%;
-    }
-    
-</style>
 <body>
-    <jsp:include page="../mainpage/header.jsp" flush="false" />
-    <div id="write">
-         <form action="/board/QAinsertBoard">
-        	<input type="text" name="title" id="title" placeholder="제목을 입력하세요.">
-        	<textarea id="contents" name="content" placeholder="내용을 입력하세요."></textarea>
-        	<input type="submit" id="confirm" value="확인">
-        	<a href="boardList">
-        		<button id="cancel">취소</button>
-        	</a>
-        </form>
-    </div>
+<jsp:include page="../mainpage/header.jsp" flush="false" />
+	<div class="container">
+		<form action="doWrite" method="POST">
+			<table border="1" style="width: 100%; border-collapse: collapse">
+				<tr><td>제목</td><td colspan="3"><input name="title" size="50" placeholder="제목"></td></tr>
+				<tr>
+					<td>내용</td>
+					<td colspan="3"><textarea id="summernote" name="content" required></textarea></td>
+				</tr>
+				<tr>
+					<td>게시글 배경사진</td>
+					<td colspan="3"><input id="imageInput" type="file"> <input id="image" type="hidden" name="image" readonly /></td>
+				</tr>
+			</table>
+				<input type="submit" class="button" value="글쓰기" />
+		</form>
+	</div>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.min.js"></script>
+	<script src="/js/FileUpload.js"></script>
+	<script>
+		var $inputTitle = $("input[name='title']"),
+			$inputContent = $("textarea[name='content']");
+		
+		$('form').submit(function(e){
+			if($inputTitle.val().length < 5 || $inputTitle.val().length > 50){ alert("제목은 5자에서 50자여야 합니다."); return false; }
+			if($inputContent.val().length < 10 || $inputContent.val().length > 2000){ alert("내용은 10자에서 2000자 사이여야 합니다."); return false; }
+			$(this).submit(function(e){e.preventDefault()})}
+		})
+		
+		var $image = $('#image'),
+			$summernote = $('#summernote');
+		
+		$('#imageInput').change(function() { fileUpload('img/upload', this.files, function(json) { $image.val(json.result) }) });
+		$('#summernote').summernote({
+			height: 400,
+			callbacks: {
+				onImageUpload: function(files) {
+					fileUpload('img/upload/list', files, function(json) {
+						$.each(json, function() { $summernote.summernote('editor.insertImage', '/post/img/'+this) })
+					})
+				}
+			}
+		})
+	</script>
 </body>
 </html>
