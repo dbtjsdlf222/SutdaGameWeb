@@ -128,7 +128,7 @@
 	    <scope>provided</scope>
 	</dependency>
 
-		<dependency>
+	<dependency>
 	  <groupId>org.apache.httpcomponents</groupId>
 	  <artifactId>httpclient</artifactId>
 	  <version>4.5.3</version>
@@ -139,7 +139,7 @@
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.3</version>
-		</dependency>
+	</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 	<dependency>
