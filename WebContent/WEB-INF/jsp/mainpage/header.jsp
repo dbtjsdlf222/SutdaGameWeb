@@ -95,14 +95,14 @@
 	        <div class="nav-item"><a href="/community">커뮤니티</a></div>
        		<div class="nav-item"><a href="/shop">상점</a></div>
 	        <div class="nav-item"><a href="/rank">명예의 전당</a></div>
-	        <div class="nav-item"><a href="/customer">고객센터</a></div>
+	        <div class="nav-item"><a href="/board/boardList">고객센터</a></div>
        	</div>
         <% if(session.getAttribute("loginInfo")==null){ %>
         
 	        <div class="login"><a href="/login">로그인</a></div>
 	        <div class="join"><a href="/join">회원가입</a></div>
         <% } else{ %>
-        	<div class="mypage"><img id="slide-menu" src="/img/samsun.png"></div>
+        	<div class="mypage"><a href="/mypage"><img id="slide-menu" src="/img/samsun.png"></a></div>
         <% } %>
     </div>
     </header>
