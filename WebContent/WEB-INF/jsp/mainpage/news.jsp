@@ -5,14 +5,8 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Page Title</title>
-    <script src='js/jquery-3.5.1.min.js'></script>
-    <script src='js/jquery-migrate-1.4.1.min.js'></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <link href="intro.css" rel="stylesheet" type="text/css">
-    <script>
-
-    </script>
+    <title>새 소식</title>
+    <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <body>
     <header id="container">

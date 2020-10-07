@@ -5,10 +5,8 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>로그인 페이지</title>
-   	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.x-git.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <title>로그인</title>
+   	<jsp:include page="../include/rel.jsp" flush="false" />
 <style>
 .tab{
     text-align: center;
