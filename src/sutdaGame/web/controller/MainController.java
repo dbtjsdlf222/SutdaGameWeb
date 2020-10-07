@@ -49,12 +49,48 @@ public class MainController {
 			return "mainpage/main";
 		} //logout
 		
-		//회원가입 액션
+	//회원가입 액션
 		@RequestMapping("joinAction")
 		public String joinAction(HttpSession session, OwnerVO ownerVO) {
 			System.out.println(ownerVO);
 			int ownerNo = ownerService.joinOwner(ownerVO);
 			return "mainpage/main";
 		} //joinAction
+		
+	//새소식
+		@RequestMapping("news")
+		public String news(HttpSession session) {
+			return "mainpage/news";
+		}	//news
+		
+	//자료실
+		@RequestMapping("reference")
+		public String reference(HttpSession session) {
+			return "mainpage/reference";
+		}	//reference
+		
+	//커뮤니티
+		@RequestMapping("community")
+		public String community(HttpSession session) {
+			return "mainpage/community";
+		}	//news
+		
+	//상점
+		@RequestMapping("shop")
+		public String shop(HttpSession session) {
+			return "mainpage/shop";
+		}	//shop
+		
+	//명예의 전당
+		@RequestMapping("rank")
+		public String rank(HttpSession session) {
+			return "mainpage/rank";
+		}	//rank
+		
+	//고객센터
+		@RequestMapping("customer")
+		public String customer(HttpSession session) {
+			return "mainpage/customer";
+		}	//customer
 		
 } //MainController class 

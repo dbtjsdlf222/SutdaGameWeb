@@ -95,7 +95,7 @@
 	        <div class="nav-item"><a href="/community">커뮤니티</a></div>
        		<div class="nav-item"><a href="/shop">상점</a></div>
 	        <div class="nav-item"><a href="/rank">명예의 전당</a></div>
-	        <div class="nav-item"><a href="/board/boardList">고객센터</a></div>
+	        <div class="nav-item"><a href="/customer">고객센터</a></div>
        	</div>
         <% if(session.getAttribute("loginInfo")==null){ %>
         
