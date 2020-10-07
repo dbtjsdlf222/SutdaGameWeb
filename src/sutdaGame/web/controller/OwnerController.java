@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import sutdaGame.web.service.OwnerService;
-import sutdaGame.web.service.StoreService;
 import sutdaGame.web.vo.OwnerVO;
 
 @Controller @RequestMapping("owner")
@@ -18,9 +17,6 @@ public class OwnerController {
 	
 	@Autowired
 	OwnerService ownerService;
-	
-	@Autowired
-	StoreService storeService;
 	
 	//로그인 액션
 	@RequestMapping(value="loginAction", method=RequestMethod.POST)
@@ -39,8 +35,6 @@ public class OwnerController {
 	public String mypage(Model model, HttpSession session) {
 		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
 		model.addAttribute("myInfo", ownerService.selectOwner(vo.getNo()));
-		model.addAttribute("storeInfo", storeService.selectStore(vo.getNo()));
-		System.out.println(storeService.selectStore(vo.getNo()));
 		return "mainpage/mypage";
 	} // mypage
 	

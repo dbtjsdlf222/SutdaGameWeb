@@ -14,8 +14,6 @@ public class OwnerVO  {
    private Date membershipDate; //가입일
    private Integer bankAccount;   	//은행 계좌
    private String bankName;   	//은행명
-
-   private StoreVO store;
    
    public OwnerVO() {}
    
@@ -49,7 +47,6 @@ public class OwnerVO  {
    public Date getMembershipDate() {return membershipDate;}
    public Integer getBankAccount() { return bankAccount; }
    public String getBankName() { return bankName; }
-   public StoreVO getStore() { return store; }
    
 //사장님 setters
    public void setNo(Integer no) {this.no = no;}
@@ -61,13 +58,12 @@ public class OwnerVO  {
    public void setMembershipDate(Date membershipDate) {this.membershipDate = membershipDate;}
    public void setBankAccount(Integer bankAccount) { this.bankAccount = bankAccount; }
    public void setBankName(String bankName) { this.bankName = bankName; }
-   public void setStore(StoreVO store) { this.store = store; }
 
 @Override
 public String toString() {
 	return "OwnerVO [no=" + no + ", name=" + name + ", phone=" + phone + ", id=" + id + ", pw=" + pw + ", email="
 			+ email + ", membershipDate=" + membershipDate + ", bankAccount=" + bankAccount + ", bankName=" + bankName
-			+ ", store=" + store + "]";
+			+ ", store=" + "]";
 }
    
 ////가게 getters
