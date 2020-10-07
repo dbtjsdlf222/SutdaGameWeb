@@ -35,7 +35,9 @@ footer p{
     <div id="content">
         <img id="slide" src="/img/slide1.png" name="slide">
     </div>
-
+	<div id="content2">
+		<img id="slide2" src="/img/slide2.png" name="slide2">
+	</div>
     <div class="system-benefit">
         <img src="/img/benefit.png">
     </div>

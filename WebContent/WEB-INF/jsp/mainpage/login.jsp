@@ -12,7 +12,7 @@
 <style>
 .tab{
     text-align: center;
-    color: midnightblue;
+    color: #0A4600;
     margin-top: 100px;
 }
 input[type="text"]{
@@ -28,7 +28,7 @@ input[type="password"]{
 input[type="submit"]{
     width: 400px;
     height: 40px;
-    background-color: midnightblue;
+    background-color: #0A4600;
     color: white;
     font-weight: bold;
     font-size: 20px;
@@ -42,10 +42,17 @@ form{
 }
 .login-option a{
     text-decoration: none;
-    color: midnightblue;
+    color: #0A4600;
 }
 .login-option{
     padding: 0px;
+    position: static;
+}
+.id-search{
+	margin-right: 100px;
+}
+.pw-search{
+	margin-left: 100px;
 }
 textarea{
     width: 600px;
@@ -61,7 +68,7 @@ textarea{
     display: block;
 }
 .tab.active{
-    color: midnightblue;
+    color: #0A4600;
     font-weight: bold;
 }
 .tabs{
@@ -88,9 +95,7 @@ textarea{
                 </form>
 
                 <ul class="login-option">
-                	<li>
-                    <span class="join"><a href="join">회원가입</a></span>&emsp;&emsp;&emsp;
-                    <span class="id-search"><a href="#">아이디 찾기</a></span>&emsp;&emsp;&emsp;
+                    <span class="id-search"><a href="#">아이디 찾기</a></span>
                     <span class="pw-search"><a href="#">비밀번호 찾기</a></span>
                 </ul>
             </div>
