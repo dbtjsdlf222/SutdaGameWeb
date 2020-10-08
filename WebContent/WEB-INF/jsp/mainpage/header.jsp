@@ -10,8 +10,8 @@
 
 <style type="text/css">
 .home{
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 .home a{
     text-decoration: none;
@@ -22,9 +22,8 @@
 }
 .nav{
     display: flex;
-    margin: auto;
     padding-top: 30px;
-/*     border-bottom: 2px solid #0A4600; */
+    border-bottom: 2px solid #0A4600;
     height: 200px;
 	list-style: none;
 }
@@ -33,11 +32,14 @@
     list-style: none;
     text-align: center;
 }
+.top-menu{
+	margin-right: 150px;
+}
 .dept01 li span{
-	margin-right: 65px;
+	margin-right: 70px;
 }
 .dept01 li span a{
-	font-size: 25px;
+	font-size: 30px;
 	color: #0A4600;
 	font-weight: bold;
 }
@@ -45,6 +47,7 @@
  	display: none;
 	list-style: none;
 	padding-left: 0px;
+	font-size: 20px;
 }
 .dept02 li{
 	align-items: center;
@@ -58,6 +61,7 @@
     background-color: #0A4600;
     margin-right: 50px;
     text-align: center;
+    float: right;
 }
 .login a{
     text-decoration: none;
@@ -73,6 +77,7 @@
     background-color: #0A4600;
     margin-right: 50px;
     text-align: center;
+    float: right;
 }
 .join a{
     text-decoration: none;
