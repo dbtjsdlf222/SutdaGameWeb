@@ -53,38 +53,12 @@ form{
 .pw-search{
 	margin-left: 100px;
 }
-/* textarea{ */
-/*     width: 600px; */
-/*     height: 300px; */
-/*     padding: 20px; */
-/*     line-height: 2em; */
-/*     border-radius: 5%; */
-/* } */
-/* [data-tab-content]{ */
-/*     display: none; */
-/* } */
-/* .active[data-tab-content]{ */
-/* 	display: block; */
-/* } */
-/* .tab.active{ */
-/*     color: #0A4600; */
-/*     font-weight: bold; */
-/* } */
-/* .tabs{ */
-/*     cursor: pointer; */
-/*     justify-content: space-around; */
-/*     padding: 0px; */
-/* } */
 </style>
 
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false" />
     <div class="tab">
-<!--         <ul class="tabs"> -->
-<!--             <a id="userTab" data-toggle="tab" class="active-tab">회원 로그인</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; -->
-<!--             <a id="unuserTab" data-toggle="tab" class="tab">비회원 로그인</a> -->
-<!--         </ul> -->
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
                 <form action="/owner/loginAction" method="post">
@@ -98,29 +72,6 @@ form{
                     <span class="pw-search"><a href="#">비밀번호 찾기</a></span>
                 </ul>
             </div>
-<!--             <div id="unuser" data-tab-content> -->
-<!--                 <form> -->
-<!--                     <textarea> -->
-<!-- 1. 비회원 로그인 시 홈페이지의 서비스 이용에 제한이 있습니다. -->
-<!-- 2. 서비스에 가입되어 있는 소상공인 분들은 회원로그인을 이용해 주시기 바랍니다. -->
-<!-- 3. Q&A게시판 이용 시 임시 비밀번호를 통해 이용해 주시기 바랍니다. -->
-<!-- 4. 비회원 로그인 후 작성하는 글들은 모두 공개설정 됩니다. -->
-<!-- 5. ===================================================================== -->
-<!-- 6. ===================================================================== -->
-<!-- 7. ===================================================================== -->
-<!-- 8. ===================================================================== -->
-<!-- 9. ===================================================================== -->
-<!-- 10. ==================================================================== -->
-<!-- 11. ==================================================================== -->
-<!-- 12. ==================================================================== -->
-<!-- 13. ==================================================================== -->
-<!-- 14. ==================================================================== -->
-<!-- 15. ==================================================================== -->
-<!--                     </textarea><br> -->
-<!--                     <label class="checkbox"><input type="checkbox" id="agree"><b>비회원 체크리스트에 동의합니다.</b></label><br> -->
-<!--                     <span class="login-sub"><input type="submit" value="로그인"></span> -->
-<!--                 </form> -->
-<!--             </div> -->
         </div>
     </div>
     <script>
@@ -128,15 +79,6 @@ form{
 	            <c:if test="${msg != null}">
 	              	alert('아이디나 비밀번호가 일치하지 않습니다.');
 	            </c:if>
-
-// 	    $('#userTab').click(function(){
-// 			$('#user').show();
-// 			$('#unuser').hide();
-// 		    })
-// 		$('#unuserTab').click(function(){
-// 			$('#user').hide();
-// 			$('#unuser').show();
-// 		    })
     </script>
 </body>
 </html>

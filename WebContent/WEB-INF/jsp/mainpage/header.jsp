@@ -29,7 +29,7 @@
 }
 .dept01{
     display: flex;
-    list-style: none;
+    list-style-type: none;
     text-align: center;
 }
 .top-menu{
@@ -45,7 +45,7 @@
 }
 .dept02{
  	display: none;
-	list-style: none;
+	list-style-type: none;
 	padding-left: 0px;
 	font-size: 20px;
 }

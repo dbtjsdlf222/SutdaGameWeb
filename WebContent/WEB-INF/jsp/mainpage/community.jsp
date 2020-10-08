@@ -18,11 +18,20 @@
 		<table>
 			<tr>
 				<td id="post_no">No.</td>
-				<td>제목</td>
-				<td>작성자</td>
-				<td>작성일</td>
+				<td id="post_title">제목</td>
+				<td id="user_id">작성자</td>
+				<td id="post_date">작성일</td>
 			</tr>
+			<c:forEach var="post" items="${boardList} varStatus="status>
+				<tr>
+					<td><c:out value="${post.no}"/></td>
+					<td><a href="board?no=${post.no}">${post.title}</a></td>
+			        <td>${post.writerName}</td>
+			        <td>${post.writeDate}</td>
+			    </tr>
+			</c:forEach>
 		</table>
+		<a href="wirte"><input type="submit" value="글 작성" name="write"></a>
 	</fieldset>
 </body>
 </html>

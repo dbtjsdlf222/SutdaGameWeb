@@ -56,8 +56,18 @@
     #commit{
         text-align: center;
     }
-    
+    #useTerms{
+    	display: none;
+    }
+    #useTerms ul{
+    	margin: auto;
+    	margin-top: 5px;
+    	margin-bottom: 5px;
+    	width: 500px;
+    	border: 1px solid #0A4600;
+    }
  </style>
+
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false"/>
@@ -84,9 +94,17 @@
                 <label for="email">이메일</label><br>
                 <input type="text" id="email" class="email" required>
             </li>
-        </ul>
+        </ul><br><br/>
         <div id="commit">
-        	<input type="checkbox" value="" required>개인정보 수집 및 이용 <a href="#">[이용 약관]</a><br><br>
+        	<input name="commit" type="checkbox" required>개인정보 수집 및 이용
+        	<div id="terms">이용 약관&emsp;<a href="#" id="detail">[자세히 보기]</a></div>
+        		<span id="useTerms">
+        			<ul>
+        				<li>회원가입내의 내용은 정보이용 목적으로 수집합니다.</li>
+        				<li>휴면계정으로 전환 시 삭제합니다.</li>
+        				<li>개인정보 유효기간은 1년으로 설정합니다.</li>
+        			</ul>
+        		</span>
         	<input type="submit" value="가입">&emsp;
         	<input type="reset" value="취소">
         </div>
@@ -95,27 +113,31 @@
 </body>
 
 <script>
+	$('#detail').click(function(){
+		$('#useTerms').toggle();
+		})
+	
 	$("form").submit(function() {
 		alert("Qweqwe");
 		var result='';
-		
+
 		if($("#join_pw").val()!=("#join_pwc").val()) {
 			alert("비밀번호를 확인해주세요");
 			return false;
 		}
-
+	
 		var arr = [ 'email' ];
 		for(var i=0; i < 3; i++) {
 
-            result='';
-            
+	        result='';
+	        
 			$('.'+arr[i]).map(function() {
 				result +=$(this).val();
 			});
-			
+
 			$('input[name='+arr[i]+']').val(result);
 		}
-	 });
+	});
 
 	// 아이디 정규식
 	var idCheck = RegExp(/^[A-Za-z0-9_]{5,12}$/);						//영어 + 숫자 정규식 (5~12자 입력 가능)
