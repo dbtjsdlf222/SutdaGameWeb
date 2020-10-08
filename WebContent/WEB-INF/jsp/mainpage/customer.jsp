@@ -9,9 +9,6 @@
     <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
-#boardList{
-	margin-top: 100px;
-}
 fieldset{
     margin: auto;
     border: 1px solid #0A4600;
