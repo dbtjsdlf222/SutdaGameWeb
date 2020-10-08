@@ -43,6 +43,7 @@ form{
     color: #0A4600;
 }
 .login-option{
+	margin-top: 20px;
     padding: 0px;
     position: static;
 }
@@ -63,7 +64,7 @@ form{
 /*     display: none; */
 /* } */
 /* .active[data-tab-content]{ */
-/*     display: block; */
+/* 	display: block; */
 /* } */
 /* .tab.active{ */
 /*     color: #0A4600; */

@@ -8,8 +8,21 @@
     <title>커뮤니티</title>
     <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
+<style>
+	
+</style>
 <body>
 	<jsp:include page="header.jsp" flush="false"/>
-	
+	<fieldset>
+		<legend>커뮤니티</legend>
+		<table>
+			<tr>
+				<td id="post_no">No.</td>
+				<td>제목</td>
+				<td>작성자</td>
+				<td>작성일</td>
+			</tr>
+		</table>
+	</fieldset>
 </body>
 </html>
