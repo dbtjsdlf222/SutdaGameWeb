@@ -5,17 +5,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import sutdaGame.web.service.BoardService;
+import sutdaGame.web.service.LikeService;
 import sutdaGame.web.vo.BoardVO;
-import sutdaGame.web.vo.OwnerVO;
+import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("board")
 public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	LikeService likeService;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -23,17 +27,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping("boardList")
-	public ModelAndView boardList() {
+	public ModelAndView boardList(@RequestParam int kind) {
 		ModelAndView mav = new ModelAndView("board/boardList");
-		mav.addObject("boardList", boardService.QAselectBoardList());
-		mav.addObject("FQboardList", boardService.FQselectBoardList());
+		mav.addObject("boardList", boardService.selectBoardList(kind));
 		return mav;
 	}
 	
 	@RequestMapping("board")
 	public ModelAndView board(int no) {
 		ModelAndView mav = new ModelAndView("board/view");
-		mav.addObject("post",boardService.QAselectOntBoard(no));
+		mav.addObject("post",boardService.selectOntBoard(no));
 		return mav;
 	}
 	
@@ -48,25 +51,25 @@ public class BoardController {
 		System.out.println(content);
 	}
 	
-	@RequestMapping("QAinsertBoard")
+	@RequestMapping("insertBoard")
 	public String insertBoard(String title, String content, HttpSession session) {
 		
-		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
+		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
 		
 		BoardVO bvo = new BoardVO();
 		bvo.setTitle(title);
 		bvo.setContent(content);
 		bvo.setWriterNo(vo.getNo());
 		
-		boardService.QAinsertBoard(bvo);
+		boardService.insertBoard(bvo);
 		
 		return "redirect:/board/boardList";
 	}
 	
-	@RequestMapping("QAupdateBoard")
+	@RequestMapping("updateBoard")
 	public String updateBoard(String title, String content, int no, HttpSession session) {
 		
-		OwnerVO vo = (OwnerVO)session.getAttribute("loginInfo");
+		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
 		
 		BoardVO bvo = new BoardVO();
 		bvo.setTitle(title);
@@ -74,15 +77,33 @@ public class BoardController {
 		bvo.setWriterNo(vo.getNo());
 		bvo.setNo(no);
 		
-		boardService.QAupdateBoard(bvo);
+		boardService.updateBoard(bvo);
 		
 		return "redirect:/board/boardList";
 	}
 	
-	@RequestMapping("QAdeleteBoard")
+	@RequestMapping("deleteBoard")
 	public String deleteBoard(int no) {
-		boardService.QAdeleteBoard(no);
+		boardService.deleteBoard(no);
 		return "redirect:/board/boardList";
 	}
 	
+//	/*aAjax*/
+//	@RequestMapping("like")
+//	public ResponseEntity<String> likeInsert(@RequestParam int no, HttpSession session) throws IOException {
+//		
+//		PlayerVO vo = new PlayerVO();
+//		vo = (PlayerVO)session.getAttribute("loginInfo");
+//		HashMap<String, Integer> params = new HashMap<String, Integer>();
+//		
+//		params.put("boardNo", no);
+//		params.put("playerNo", vo.getNo());
+//		
+//		if(likeService.userCheck(params) == 0)
+//		     { likeService.insertLike(params); }
+//		else { likeService.deleteLike(params); }
+//		
+//		return JsonUtil.convertToResponseEntity(likeService.selectCount(boardNo));
+//		
+//	} //like()
 }

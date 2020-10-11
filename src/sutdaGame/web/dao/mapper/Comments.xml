@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sutdaGame.web.dao.CommentsDAO">
+  
+  <insert id="insertComment" parameterType="Comment">
+    INSERT INTO comments
+      (`no`, `order`, board_no, user_no, content)
+    VALUES
+      ((SELECT IFNULL(MAX(no)+1, 0) FROM comments c), 0, #{boardNo}, #{user.no}, #{content})
+  </insert>
+  
+  <insert id="insertReply" parameterType="Comment">
+    INSERT INTO comments
+      (`no`, `order`, board_no, user_no, content)
+    VALUES
+      (#{no}, (SELECT MAX(`order`)+1 FROM comments c WHERE no = #{no}), #{boardNo}, #{user.no}, #{content})
+  </insert>
+  
+  <select id="selectReComment" resultType="Comment" parameterType="int">
+	SELECT
+      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname', u.profile 'user.profile'
+    FROM
+      comments c
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    WHERE
+      c.no = #{no}
+    ORDER BY `order` DESC
+  </select>
+  
+  <select id="selectByBoardNo" parameterType="int" resultType="Comment">
+	SELECT
+      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname', u.profile 'user.profile',
+      (SELECT COUNT(*) FROM comments WHERE `no`=c.no) replyCount
+    FROM
+      comments c
+    JOIN
+      users u
+    ON
+      user_no = u.no
+    WHERE
+      board_no = #{boardNo}
+    ORDER BY c.no DESC, `order` ASC
+    LIMIT #{page.startContent}, #{page.contentCount}
+  </select>
+  
+  <select id="selectCount" parameterType="int" resultType="int">
+	SELECT
+      COUNT(*)
+    FROM
+      comments
+    WHERE
+      board_no = #{boardNo}
+  </select>
+  
+  <update id="update" parameterType="Comment">
+    UPDATE
+      comments
+    SET
+      content = #{content}
+    WHERE 
+      `order` = #{orderNo}
+  	  AND
+  	  no = #{no}
+  </update>
+  
+  <delete id="commentDelete" parameterType="Comment">
+    DELETE FROM comments
+    WHERE
+  	  `no` = #{no}
+  </delete>
+  
+  <delete id="reCommentDelete" parameterType="Comment">
+    DELETE FROM comments
+    WHERE
+      `order` = #{orderNo}
+  	  AND
+  	  `no` = #{no}
+  </delete>
+</mapper>

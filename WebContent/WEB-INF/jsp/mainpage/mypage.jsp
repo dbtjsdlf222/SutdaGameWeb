@@ -1,4 +1,4 @@
-<%@page import="sutdaGame.web.vo.OwnerVO"%>
+<%@page import="sutdaGame.web.vo.PlayerVO"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -183,7 +183,9 @@
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
-	<% OwnerVO ownerInfo=(OwnerVO)request.getAttribute("myInfo"); %>
+	<%
+		PlayerVO ownerInfo=(PlayerVO)request.getAttribute("myInfo");
+	%>
     <div class="profile"></div>
     <table class="myinfo">
     	<tr>

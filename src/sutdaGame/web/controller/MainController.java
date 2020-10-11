@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.OwnerService;
-import sutdaGame.web.vo.OwnerVO;
+import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("/")
 public class MainController {
@@ -55,9 +55,9 @@ public class MainController {
 		
 	//회원가입 액션
 		@RequestMapping("joinAction")
-		public String joinAction(HttpSession session, OwnerVO ownerVO) {
-			System.out.println(ownerVO);
-			int ownerNo = ownerService.joinOwner(ownerVO);
+		public String joinAction(HttpSession session, PlayerVO playerVO) {
+			System.out.println(playerVO);
+			int ownerNo = ownerService.joinOwner(playerVO);
 			return "mainpage/main";
 		} //joinAction
 		

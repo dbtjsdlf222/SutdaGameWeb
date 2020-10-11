@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sutdaGame.web.dao.OwnerDAO">
 
-	<select id="login" parameterType="String" resultType="OwnerVO">
+	<select id="login" parameterType="String" resultType="PlayerVO">
 		SELECT
 			`no`,
 			`name`,
@@ -26,7 +26,7 @@
 			id=#{id}
 	</select>
 	
-	<insert id="join" parameterType="OwnerVO" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+	<insert id="join" parameterType="PlayerVO" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
 		INSERT 
 		INTO owner(
 			`name`,
@@ -46,7 +46,7 @@
 			#{bankName})
 	</insert>
 	
-	<select id="selectOwner" parameterType="int" resultType="OwnerVO">
+	<select id="selectOwner" parameterType="int" resultType="PlayerVO">
 		SELECT 
 			`no`,
 			`name`,
@@ -63,7 +63,7 @@
 			no=#{no}
 	</select>
 
-	<update id="updateOwner" parameterType="OwnerVO">
+	<update id="updateOwner" parameterType="PlayerVO">
 		UPDATE
 			owner 
 		SET(
