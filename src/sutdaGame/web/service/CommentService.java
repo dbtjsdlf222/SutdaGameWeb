@@ -2,17 +2,18 @@ package sutdaGame.web.service;
 
 import java.util.List;
 
-import org.dateplanner.dao.CommentsDAO;
-import org.dateplanner.vo.Comment;
-import org.dateplanner.vo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import sutdaGame.web.dao.CommentsDAO;
+import sutdaGame.web.vo.Comment;
+import sutdaGame.web.vo.Page;
 
 @Service
 public class CommentService {
 	
 	@Autowired
-	CommentsDAO commentDAO;
+	CommentsDAO commentDAO;	
 	
 	public boolean insertComment(Comment comment){ return commentDAO.insertComment(comment); }
 	public boolean insertReply(Comment reply){ return commentDAO.insertReply(reply); }

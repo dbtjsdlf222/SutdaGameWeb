@@ -3,8 +3,9 @@ package sutdaGame.web.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.dateplanner.vo.Comment;
-import org.dateplanner.vo.Page;
+
+import sutdaGame.web.vo.Comment;
+import sutdaGame.web.vo.Page;
 
 public interface CommentsDAO {
 	public boolean insertComment(Comment comment);
