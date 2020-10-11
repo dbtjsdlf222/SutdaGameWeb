@@ -38,8 +38,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping("write")
-	public String write() {		
-		return "mainpage/write";
+	public String write() {
+		return "board/write";
+	}
+	
+	@RequestMapping("writeAction")
+	public void writeAction(String title, String content) {
+		System.out.println(title);
+		System.out.println(content);
 	}
 	
 	@RequestMapping("QAinsertBoard")
