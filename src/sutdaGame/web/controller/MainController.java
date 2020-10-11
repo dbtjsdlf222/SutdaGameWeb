@@ -77,7 +77,7 @@ public class MainController {
 		@RequestMapping("community")
 		public String community(HttpSession session) {
 			return "mainpage/community";
-		}	//news
+		}	//community
 		
 	//상점
 		@RequestMapping("shop")

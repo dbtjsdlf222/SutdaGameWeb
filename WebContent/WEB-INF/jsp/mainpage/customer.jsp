@@ -9,147 +9,129 @@
     <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
-fieldset{
-    margin: auto;
-    border: 1px solid #0A4600;
-    width: auto;
-    height: auto;
+.container{
+	margin: auto;
 }
-legend{
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: #0A4600;
-}
-table{
-    border: 1px solid #eeeeee;
-    background-color: #eeeeee;
-    text-align: center;
-    width: 1600px;
-    font-size: 15px;
-    margin: auto;
-}
-#post_no{
-    background-color: #dddddd;
-    font-weight: bold;
-}
-#post_title{
-    background-color: #dddddd;
-    font-weight: bold;
-}
-#user_id{
-    background-color: #dddddd;
-    font-weight: bold;
-}
-#post_date{
-    background-color: #dddddd;
-    font-weight: bold;
-}
-
-input[value="글 작성"]{
-	width: 100px;
-	height: 40px;
-	color: white;
-	font-size: 15px;
-    font-weight: bold;
-    border-radius: 10%;
-	background-color: #0A4600;
-    float: right;
-    margin-top: 10px;
-    margin-right: 50px;
-    cursor: pointer;
-}
-
-.FQ_title,.FQ_content{
-	width: 1600px;
-	 height:30px;
-	 padding:10px;
-}
-
-.FQ_title {
-	 background-color: #e0e0e0;
-	 margin-top:20px;
-}
-.FQ_content{
-	background-color: gray;
-}
-[data-tab-content]{
-	display: none;
-}
-.active[data-tab-content]{
-	display: block;
-}
-.tab.active{
-	color: #0A4600;
+.title{
+	background-color: #A465FD;
+	padding-top: 10px;
 	font-weight: bold;
 }
-.tabs{
-	cursor: pointer;
-	justify-content: space-around;
-	padding: 0px;
+.title h1{
+	font-weight: bold;
+	padding-left: 20px;
 }
-.tab{
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background-color: #9E9E9E;
+	color: white;
+	display: inline-block;
+	cursor: pointer;
+	width: 49.8%;
+	font-size: 30px;
 	text-align: center;
-	margin-top: 100px;
-	color: #0A4600;
+}
+ul.tabs li.current{
+	background-color: #5C1DB5;
+	color: white;
+}
+.tab-content{
+	display: none;
+	background-color: #ededed;
+	padding: 20px;
+}
+.tab-content.current{
+	display: inherit;
+}
+.tab-content.current tr{
+	border-bottom: 1px solid white;
+}
+.tab-content.current p{
+	border-bottom: 1px solid white;
 	font-size: 20px;
+}
+.tab-content.current tr td:nth-child(1){
+	width: 200px;
+	font-size: 20px;
+	text-align: center;
+}
+.tab-content.current tr td:nth-child(2){
+	width: 800px;
+	font-size: 20px;
+	text-align: center;
+}
+.tab-content.current tr td:nth-child(3){
+	width: 300px;
+	font-size: 20px;
+	text-align: center;
+}
+.tab-content.current tr td:nth-child(4){
+	width: 300px;
+	font-size: 20px;
+	text-align: center;
 }
 </style>
 <body>
 	<jsp:include page="header.jsp" flush="false"/>
 	
-	<div class="tab">
-		<ul class="tabs">
-			<a id="userTab" data-toggle="tab" class="active-tab">1:1 문의</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			<a id="unuserTab" data-toggle="tab" class="tab">자주하는 질문</a>
-		</ul>
-		<div id="tab-content">
-			<div id="user" data-tab-content class="active">
-		        <fieldset>
-		            <legend>게시판 목록</legend>
-		            <table>
-		                <tr>
-		                    <td id="post_no">No.</td>
-		                    <td id="post_title">제목</td>
-		                    <td id="user_id">작성자</td>
-		                    <td id="post_date">작성일</td>
-		                </tr>
-					<c:forEach var="post" items="${boardList}" varStatus="status">
-		                <tr>
-		                    <td><c:out value="${post.no}"/></td>
-		                    <td><a href="board?no=${post.no}">${post.title}</a></td>
-		                    <td>${post.writerName}</td>
-		                    <td>${post.writeDate}</td>
-		                </tr>
-					</c:forEach>
-		            </table>         
-		            <a href="write"><input type="submit" value="글 작성" name="write"></a>
-		        </fieldset>
-	        </div>
-	        <div id="unuser" data-tab-content>
-		        <fieldset>
-		            <legend>자주 하는 질문</legend>
-				        <div id="FQboardList">
-							<c:forEach var="post" items="${FQboardList}" varStatus="status">
-								 <div class="FQ_title"><c:out value="${post.title}"/></div>
-								 <div class="FQ_content"><c:out value="${post.content}"/></div>
-							</c:forEach>
-				  		</div>		
-		       </fieldset>
-	       </div>
-	    </div>
-    </div>
-    
-    <script>
-		$('#userTab').click(function(){
-			$('#user').show();
-			$('#unuser').hide();
-			})
-		$('#unuserTab').click(function(){
-			$('#user').hide();
-			$('#unuser').show();
-			})
-    </script>
+<div class="container">
+	<div class="title">
+		<h1>고객센터</h1>
+	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">1:1문의</li>
+		<li class="tab-link" data-tab="tab-2">자주묻는 질문</li>
+	</ul>
+	</div>
+	<div id="tab-1" class="tab-content current">
+		<fieldset>
+			<table>
+				<tr>
+					<td id="post_no">No.</td>
+					<td id="post_title">제목</td>
+					<td id="user_id">작성자</td>
+					<td id="post_date">작성일</td>
+				</tr>
+				<c:forEach var="post" items="${boardList}" varStatus="status">
+				<tr>
+					<td><c:out value="${post.no}"/></td>
+					<td><a href="board?no=${post.no}">${post.title}</a></td>
+					<td>관리자</td>
+					<td>${post.writerDate}</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</fieldset>
+	</div>
+	<div id="tab-2" class="tab-content">
+		<fieldset>
+			<p>자주하는 질문</p>
+				<div id="FQboardList">
+				<c:forEach var="post" items="${FQboardList}" varStatus="status">
+					<div class="FQ_title"><c:out value="${post.title}"/></div>
+					<div class="FQ_content"><c:out value="${post.content}"/></div>
+				</c:forEach>
+				</div>		
+		</fieldset>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
 	
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+})
+</script>
 </body>
 </html>

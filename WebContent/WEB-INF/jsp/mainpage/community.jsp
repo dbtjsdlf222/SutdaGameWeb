@@ -9,31 +9,121 @@
     <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
-	
+.container{
+	margin: auto;
+}
+.title{
+	background-color: #FFFF24;
+	padding-top: 10px;
+	font-weight: bold;
+}
+.title h1{
+	font-weight: bold;
+	padding-left: 20px;
+}
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background-color: #9E9E9E;
+	color: white;
+	display: inline-block;
+	cursor: pointer;
+	width: 100%;
+	font-size: 30px;
+	text-align: center;
+}
+ul.tabs li.current{
+	background-color: #DBC000;
+	color: white;
+}
+.tab-content{
+	display: none;
+	background-color: #ededed;
+	padding: 20px;
+}
+.tab-content.current{
+	display: inherit;
+}
+.tab-content.current tr{
+	border-bottom: 1px solid white;
+}
+.tab-content.current p{
+	border-bottom: 1px solid white;
+	font-size: 20px;
+}
+.tab-content.current tr td:nth-child(1){
+	width: 200px;
+	font-size: 20px;
+	text-align: center;
+}
+.tab-content.current tr td:nth-child(2){
+	width: 800px;
+	font-size: 20px;
+	text-align: center;
+}
+.tab-content.current tr td:nth-child(3){
+	width: 300px;
+	font-size: 20px;
+	text-align: center;
+}
+.tab-content.current tr td:nth-child(4){
+	width: 300px;
+	font-size: 20px;
+	text-align: center;
+}
+.tab-content.current tr td:nth-child(5){
+	width: 300px;
+	font-size: 20px;
+	text-align: center;
+}
+input[type="button"]{
+	float: right;
+	background-color: #DBC000;
+	color: white;
+	border: none;
+	width: 150px;
+	height: 40px;
+	margin-top: 20px;
+	font-size: 15px;
+	font-weight: bold;
+}
 </style>
 <body>
 	<jsp:include page="header.jsp" flush="false"/>
-	<fieldset>
-		<legend>커뮤니티</legend>
-		<table>
-			<tr>
-				<td id="post_no">No.</td>
-				<td id="post_title">제목</td>
-				<td id="user_id">작성자</td>
-				<td id="post_like">추천</td>
-				<td id="post_date">작성일</td>
-			</tr>
-		<c:forEach var="post" items="${boardList} varStatus="status>
-			<tr>
-				<td><c:out value="${post.no}"/></td>
-				<td><a href="board?no=${post.no}">${post.title}</a></td>
-		        <td>${post.writerName}</td>
-		        <td>${post.like}</td>
-		        <td>${post.writeDate}</td>
-			</tr>
-		</c:forEach>
-		</table>
-		<a href="wirte"><input type="submit" value="글 작성" name="write"></a>
-	</fieldset>
+	
+<div class="container">
+	<div class="title">
+		<h1>커뮤니티</h1>
+	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">커뮤니티</li>
+	</ul>
+	</div>
+	<div id="tab-1" class="tab-content current">
+		<fieldset>
+			<table>
+				<tr>
+					<td id="post_no">No.</td>
+					<td id="post_title">제목</td>
+					<td id="user_id">작성자</td>
+					<td id="post_like">추천</td>
+					<td id="post_date">작성일</td>
+				</tr>
+			<c:forEach var="post" items="${boardList}" varStatus="status">
+				<tr>
+					<td><c:out value="${post.no}"/></td>
+					<td><a href="board?no=${post.no}">${post.title}</a></td>
+			        <td>${post.writerName}</td>
+			        <td>${post.like}</td>
+			        <td>${post.writeDate}</td>
+				</tr>
+			</c:forEach>
+			</table>
+			<a href="../board/wirte"><input type="button" value="글 작성" name="write"></a>
+		</fieldset>
+	</div>
+</div>
 </body>
 </html>
