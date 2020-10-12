@@ -6,50 +6,230 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>메인 페이지</title>
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" />
+	<link rel="stylesheet" href="/css/owl.theme.default.css" />
     <jsp:include page="../include/rel.jsp" flush="false" />
-
-<style type="text/css">
-.system-benefit{
-    width: auto;
-    height: 500px;
-    background-color: midnightblue;
+    
+<style>
+.main_banner{
+	position: relative;
 }
-.system-explain{
-    width: auto;
-    height: 500px;
+.main_banner .owl-prev{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100px;
+	outline: none;
+}
+.main_banner .owl-prev::before{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-position: -328px -651px;
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 38px;
+	content: "";
+	margin: auto;
+}
+.main_banner .owl-next{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	outline: none;
+	width: 100px;
+}
+.main_banner .owl-next::before{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-position: -1056px -369px;
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 38px;
+	content: "";
+	margin: auto;
+}
+.main_banner .item{
+	padding-top: 323px;
+	height: 800px;
+	box-sizing: border-box;
+	color: #fff;
+	text-align: center;
+}
+.main_banner .item .first{
+	background-color: midnightblue;
+}
+.main_banner .item .second{
+	background-color: lightgrey;
+}
+.main_banner .item .third{
+	background-color: lightblue;
+}
+.main_banner .item .title{
+	display: inline-block;
+	vertical-align: top;
+	line-height: 60px;
+	font-size: 50px;
+	letter-spacing: -2.5px;
+	font-weight: normal;
+	position: relative;
+}
+.main_banner .item .title .em{
+	display: block;
+}
+.main_banner .item .title::before{
+	position: absolute;
+	top: 35px;
+	left: -55px;
+	font-size: 124px;
+	font-weight: 100;
+	content: "[";
+}
+.main_banner .item .title::after{
+	position: absolute;
+	top: 35px;
+	left: -55px;
+	font-size: 124px;
+	font-weight: 100;
+	content: "]";
+}
+.main_banner .item .subtitle{
+	display: inline-block;
+	vertical-align: top;
+	display: block;
+	margin-top: 15px;
+	font-size: 24px;
+	line-height: normal;
+	letter-spacing: -1.2px;
+}
+@media screen and (max-width: 998px){
+	.main_banner{
+		height: 645px;
+	}
+	.main_banner .item{
+		background: no-repeat;
+		padding-top: 241px;
+		height: 645px;
+	}
+	.main_banner .item .title{
+		font-size: 35px;
+	}
+	.main_banner .item .title::before, .main_banner .item .title::after{
+		font-size: 92px;
+	}
+}
+@media screen and (max-width: 768px){
+	.main_banner{
+		height: 645px;
+	}
+	.main_banner .item{
+		padding-top: 241px;
+		height: 645px;
+	}
+	.main_banner .item .title{
+		font-size: 30px;
+	}
+	.main_banner .item .title::before, .main_banner .item .title::after{
+		font-size: 92px;
+	}
+	.main_banner .item .subtitle{
+		font-size: 20px;
+	}
+}
+@media screen and (max-width: 475px){
+	.main_banner{
+		height: 645px;
+	}
+	.main_banner .item{
+		background: no-repeat url("../img/mb_main_banner.png") 0/cover;
+		padding-top: 241px;
+		height: 645px;
+	}
+	.main_banner .item .title{
+		font-size: 24px;
+		line-height: 40px;
+	}
+	.main_banner .item .title::before, .main_banner .item .title::after{
+		top: 20px;
+		font-size: 70px;
+	}
+	.main_banner .item .title::before{
+		left: -30px;
+	}
+	.main_banner .item .title::after{
+		right: -30px;
+	}
+	.main_banner .item .subtitle{
+		font-size: 16px;
+	}
 }
 footer{
-    background-color: midnightblue;
     width: 100%;
     height: 70px;
     display: block;
 }
 footer p{
     text-align: center;
-    color: white;
+    color: #CACACA;
 }
 </style>
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false" />
-    <div id="content">
-        <img id="slide" src="/img/slide1.png" name="slide">
-    </div>
-	<div id="content2">
-		<img id="slide2" src="/img/slide2.png" name="slide2">
+    
+<div class="owl-carousel owl-theme">
+	<div class="main_banner owl-carousel owl-theme">
+		<div class="item first">
+			<h3 class="title">오픈기념<strong class="em">이벤트!!</strong></h3>
+			<span class="subtitle">2020.11 - 2020.12</span>
+		</div>
+		<div class="item second">
+			<h3 class="title">ㅁㄴㅇ<strong class="em">이벤트!!</strong></h3>
+			<span class="subtitle">2020.11 - 2020.12</span>
+		</div>
+		<div class="item first">
+			<h3 class="title">ㅂㅈㄷ<strong class="em">이벤트!!</strong></h3>
+			<span class="subtitle">2020.11 - 2020.12</span>
+		</div>
 	</div>
-    <div class="system-benefit">
-        <img src="/img/benefit.png">
-    </div>
-
-    <div class="system-explain">
-		QRPAY~~
-    </div>
+</div>
+    
     <footer>
         <p></p>
         <p>서울특별시 구로구 디지털로 306 2층(구로동 182-13, 대륭포스트타워2차)<br/>
         전화번호: 010-5716-0288 / E-mail: asino0226@gmail.com<br/>
         Copyrightⓒ2020QRPAY.All rights reserved.</p>
     </footer>
+    
+<script>
+	(function(window){
+		"use strict";
+
+		document.addEventListener("DOMContentLoaded", function(){
+
+		$(".owl-carousel").owlCarousel({
+			loop: true,
+			responsiveClass: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			dots: false,
+			nav: true,
+			responsive: {
+				0: {
+					items: 1
+					}
+				}
+			});
+			});
+		})();
+</script>
 </body>
 </html>
