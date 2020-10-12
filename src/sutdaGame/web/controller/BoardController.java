@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.LikeService;
+import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.vo.BoardVO;
 import sutdaGame.web.vo.PlayerVO;
 
@@ -33,6 +36,11 @@ public class BoardController {
 		return mav;
 	}
 	
+	@RequestMapping("boardListAJax")
+	public String boardListAJax(@RequestParam int kind) throws JsonProcessingException {
+		return JsonUtil.convertToJsonString(mav.addObject("boardList", boardService.selectBoardList(kind)));
+	}
+	
 	@RequestMapping("board")
 	public ModelAndView board(int no) {
 		ModelAndView mav = new ModelAndView("board/view");
@@ -51,7 +59,7 @@ public class BoardController {
 		System.out.println(content);
 	}
 	
-	@RequestMapping("insertBoard")
+	@RequestMapping(path="insertBoard",params = {"title","content"})
 	public String insertBoard(String title, String content, HttpSession session) {
 		
 		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
