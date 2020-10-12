@@ -21,14 +21,14 @@
 		WHERE
 		  board_no = #{boardNo}
 		  AND
-		  user_no = #{userNo}
+		  player_no = #{playerNo}
 	</select>
 	
 	<insert id="insertLike" parameterType="java.util.HashMap">
 		INSERT INTO 
-		  `sutda_like`(board_no, user_no)
+		  `sutda_like`(board_no, player_no)
 		VALUES
-		  (#{boardNo}, #{userNo})
+		  (#{boardNo}, #{playerNo})
 	</insert>
 	
 	<delete id="deleteLike" parameterType="java.util.HashMap">
@@ -37,7 +37,7 @@
 		WHERE 
 		  board_no = #{boardNo} 
 		  AND 
-		  user_no = #{userNo}
+		  player_no = #{playerNo}
 	</delete>
   
 </mapper>
