@@ -8,7 +8,7 @@
 		SELECT
 		  COUNT(*)
 		FROM
-		  `like`
+		  `sutda_like`
 		WHERE
 		  board_no = #{boardNo}
 	</select>
@@ -17,7 +17,7 @@
 		SELECT
 		  COUNT(*)
 		FROM
-		  `like`
+		  `sutda_like`
 		WHERE
 		  board_no = #{boardNo}
 		  AND
@@ -26,14 +26,14 @@
 	
 	<insert id="insertLike" parameterType="java.util.HashMap">
 		INSERT INTO 
-		  `like`(board_no, user_no)
+		  `sutda_like`(board_no, user_no)
 		VALUES
 		  (#{boardNo}, #{userNo})
 	</insert>
 	
 	<delete id="deleteLike" parameterType="java.util.HashMap">
 		DELETE 
-		  FROM `like`
+		  FROM `sutda_like`
 		WHERE 
 		  board_no = #{boardNo} 
 		  AND 

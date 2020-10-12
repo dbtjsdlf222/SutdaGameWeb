@@ -38,7 +38,6 @@
         input{
             width: 100%;
         }
-
         .jumbotron table{
             font-size: 18px;
         }
@@ -46,15 +45,12 @@
         ul{
             list-style: none;
         }
-        input[name='title']{
-        	
-        }
 	</style>
 </head>
 <body>
 <jsp:include page="../mainpage/header.jsp" flush="false" />
 	<div class="container">
-		<form action="/board/write" method="POST">
+		<form action="/board/writeAction" method="POST">
 			<table style="width: 100%; border-collapse: collapse">
 				<tr><td colspan="3"><input name="title" size="20" placeholder="제목"></td></tr>
 				<tr>
@@ -62,6 +58,7 @@
 				</tr>
 			</table>
 				<input type="submit" class="button" value="글쓰기" />
+				<input type="hidden" name="kindNo" value="${kindNo}" />
 		</form>
 	</div>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

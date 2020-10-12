@@ -4,7 +4,7 @@
 	
 	<insert id="insertBoard" parameterType="BoardVO">
 		INSERT INTO sutda_board (title, content, writer_no,kind_no)
-		VALUES (#{title}, #{content}, #{writerNo}, #{kind_no});
+		VALUES (#{title}, #{content}, #{writerNo}, #{kindNo});
 	</insert>
 	
 	<update id="updateBoard" parameterType="BoardVO">
@@ -23,6 +23,7 @@
 		LEFT JOIN player o
 		ON b.writer_no = o.no
 		WHERE kind_no=#{kindNo}
+		LIMIT #{page.startContent}, #{page.contentCount}
 	</select>
 	
 	<select id="selectOneBoard" parameterType="int" resultType="BoardVO">

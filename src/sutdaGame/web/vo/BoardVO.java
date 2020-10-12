@@ -1,5 +1,6 @@
 package sutdaGame.web.vo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class BoardVO {
@@ -8,7 +9,7 @@ public class BoardVO {
 	private String title;
 	private String content;
 	private Integer writerNo;
-	private Date writeDate;
+	private Timestamp writeDate;
 	private Integer view;
 	private Integer kindNo;
 	private String kindName;
@@ -53,11 +54,11 @@ public class BoardVO {
 		this.writerNo = writerNo;
 	}
 
-	public Date getWriteDate() {
+	public Timestamp getWriteDate() {
 		return writeDate;
 	}
 
-	public void setWriteDate(Date writeDate) {
+	public void setWriteDate(Timestamp writeDate) {
 		this.writeDate = writeDate;
 	}
 

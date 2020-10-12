@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import sutdaGame.web.dao.BoardDAO;
 import sutdaGame.web.vo.BoardVO;
+import sutdaGame.web.vo.Page;
 
 @Service
 public class BoardService {
@@ -16,7 +17,7 @@ public class BoardService {
 	
 	public void insertBoard(BoardVO boardVO) 	{ boardDAO.insertBoard(boardVO); }
 	public void updateBoard(BoardVO boardVO)	{ boardDAO.updateBoard(boardVO); }
-	public ArrayList<BoardVO> selectBoardList(int kindNo) { return boardDAO.selectBoardList(kindNo); }
+	public ArrayList<BoardVO> selectBoardList(int kindNo, Page page) { return boardDAO.selectBoardList(kindNo,page); }
 	public BoardVO selectOntBoard(int no) 	{ return boardDAO.selectOneBoard(no); }
 	public void deleteBoard(int no) 	  	{ boardDAO.deleteBoard(no); }
 	

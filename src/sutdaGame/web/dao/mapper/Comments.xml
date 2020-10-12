@@ -3,28 +3,28 @@
 <mapper namespace="sutdaGame.web.dao.CommentsDAO">
   
   <insert id="insertComment" parameterType="Comment">
-    INSERT INTO comments
-      (`no`, `order`, board_no, user_no, content)
+    INSERT INTO sutda_comment
+      (`no`, `order`, board_no, player_no, content)
     VALUES
-      ((SELECT IFNULL(MAX(no)+1, 0) FROM comments c), 0, #{boardNo}, #{user.no}, #{content})
+      ((SELECT IFNULL(MAX(no)+1, 0) FROM sutda_comment c), 0, #{boardNo}, #{player.no}, #{content})
   </insert>
   
   <insert id="insertReply" parameterType="Comment">
-    INSERT INTO comments
-      (`no`, `order`, board_no, user_no, content)
+    INSERT INTO sutda_comment
+      (`no`, `order`, board_no, player_no, content)
     VALUES
-      (#{no}, (SELECT MAX(`order`)+1 FROM comments c WHERE no = #{no}), #{boardNo}, #{user.no}, #{content})
+      (#{no}, (SELECT MAX(`order`)+1 FROM sutda_comment c WHERE no = #{no}), #{boardNo}, #{player.no}, #{content})
   </insert>
   
   <select id="selectReComment" resultType="Comment" parameterType="int">
 	SELECT
-      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname', u.profile 'user.profile'
+      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, p.no 'player.no', IFNULL(p.nickname 'player.nickname','탈퇴한 사용자')
     FROM
-      comments c
-    JOIN
-      users u
+      sutda_comment c
+    LEFT JOIN
+      player p
     ON
-      user_no = u.no
+      player_no = p.no
     WHERE
       c.no = #{no}
     ORDER BY `order` DESC
@@ -32,14 +32,14 @@
   
   <select id="selectByBoardNo" parameterType="int" resultType="Comment">
 	SELECT
-      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, u.no 'user.no', u.nickname 'user.nickname', u.profile 'user.profile',
-      (SELECT COUNT(*) FROM comments WHERE `no`=c.no) replyCount
+      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, p.no 'player.no', p.nickname 'player.nickname',
+      (SELECT COUNT(*) FROM sutda_comment WHERE `no`=c.no) replyCount
     FROM
-      comments c
+      sutda_comment c
     JOIN
-      users u
+      player p
     ON
-      user_no = u.no
+      player_no = p.no
     WHERE
       board_no = #{boardNo}
     ORDER BY c.no DESC, `order` ASC
@@ -50,14 +50,14 @@
 	SELECT
       COUNT(*)
     FROM
-      comments
+      sutda_comment
     WHERE
       board_no = #{boardNo}
   </select>
   
   <update id="update" parameterType="Comment">
     UPDATE
-      comments
+      sutda_comment
     SET
       content = #{content}
     WHERE 
@@ -67,13 +67,13 @@
   </update>
   
   <delete id="commentDelete" parameterType="Comment">
-    DELETE FROM comments
+    DELETE FROM sutda_comment
     WHERE
   	  `no` = #{no}
   </delete>
   
   <delete id="reCommentDelete" parameterType="Comment">
-    DELETE FROM comments
+    DELETE FROM sutda_comment
     WHERE
       `order` = #{orderNo}
   	  AND

@@ -2,13 +2,13 @@ package sutdaGame.web.vo;
 
 public class Page {
 
-	private int total;
+	private int total;		//총 몇개 게시물
 	private int contentCount;
-	private int pageCount;
-	private int start;
-	private int current;
-	private int end;
-	private boolean next;
+	private int pageCount;	//몇개를 출력할지
+	private int start;		//시작
+	private int current;	//현재 페이지
+	private int end;		//
+	private boolean next;	//다음 값이 있는지
 	
 	public Page(int total, int contentCount, int pageCount, int current) {
 		
