@@ -96,7 +96,9 @@ footer p{
 	        </form>
 		</div>        	
     </div>
-    <div id="likeBtn">b</div>
+    <div id="likeBtn"></div>
+    
+    <div class="commentList"><a href="board?no=${post.no }">${post.comment}</a></div>
     
     <footer>
         <p></p>
