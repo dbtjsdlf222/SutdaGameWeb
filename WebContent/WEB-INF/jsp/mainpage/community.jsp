@@ -36,7 +36,7 @@ ul.tabs li{
 	text-align: center;
 }
 ul.tabs li.current{
-	background-color: #DBC000;
+	border-bottom: 10px solid #DBC000;
 	color: white;
 }
 .tab-content{
@@ -121,7 +121,7 @@ input[type="button"]{
 				</tr>
 			</c:forEach>
 			</table>
-			<a href="../board/wirte"><input type="button" value="글 작성" name="write"></a>
+			<a href="../board/write"><input type="button" value="글 작성" name="write"></a>
 		</fieldset>
 	</div>
 </div>

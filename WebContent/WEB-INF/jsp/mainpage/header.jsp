@@ -9,16 +9,15 @@
     <jsp:include page="../include/rel.jsp" flush="false" />
 
 <style type="text/css">
+body{
+	background-color: #363636;
+}
 .home{
     margin-left: 50px;
     margin-right: 50px;
 }
-.home a{
-    text-decoration: none;
-    font-size: 50px;
-    color: #0A4600;
-    font-weight: bold;
-    font-family: stencil;
+.container{
+	padding: 0px;
 }
 .nav{
     display: flex;
@@ -40,14 +39,20 @@
 }
 .dept01 li span a{
 	font-size: 30px;
-	color: #0A4600;
+	color: #DB3A00;
 	font-weight: bold;
 }
 .dept02{
- 	display: none;
+ 	visibility: hidden;
+ 	opacity: 0;
+ 	transition: visibility 0s, opacity 0.5s ease-out;
 	list-style-type: none;
 	padding-left: 0px;
 	font-size: 20px;
+}
+.dept02 a{
+	color: #DB3A00;
+	text-decoration: none;
 }
 .dept02 li{
 	align-items: center;
@@ -58,7 +63,7 @@
     height: 40px;
     padding-top: 10px;
     border-radius: 10%;
-    background-color: #0A4600;
+    background-color: #DB3A00;
     margin-right: 50px;
     text-align: center;
     float: right;
@@ -74,7 +79,7 @@
     height: 40px;
     padding-top: 10px;
     border-radius: 10%;
-    background-color: #0A4600;
+    background-color: #DB3A00;
     margin-right: 50px;
     text-align: center;
     float: right;
@@ -94,43 +99,56 @@
     font-size: 20px;
     font-weight: bold;
 }
+.dept01:hover .dept02{
+	visibility: visible;
+	opacity: 1;
+}
 </style>
 </head>
 <body>
 	<header>
     <div class="nav">
-        <div class="home"><a href="/main">SUTDA</a></div>
+        <div class="home"><a href="/main"><img src="../img/logo.png"></a></div>
         <div class="top-menu">
         	<ul class="dept01">
         		<li>
         			<span><a href="/news">새 소식</a></span>
         			<ul class="dept02">
-        				<li id="notice">공지사항</li>
-        				<li id="patch">패치노트</li>
-        				<li id="event">이벤트</li>
+        				<li id="notice"><a href="boardList?kind=1">공지사항</a></li>
+        				<li id="patch"><a href="boardList?kind=2">패치노트</a></li>
+        				<li id="event"><a href="boardList?kind=3">이벤트</a></li>
         			</ul>
         		</li>
         		<li>
         			<span><a href="/reference">자료실</a></span>
         			<ul class="dept02">
-        				<li id="download">다운로드</li>
-        				<li id="guide">게임 가이드</li>
+        				<li id="download"><a href="boardList?kind=4">다운로드</a></li>
+        				<li id="guide"><a href="boardList?kind=5">게임 가이드</a></li>
         			</ul>
         		</li>
         		<li>
         			<span><a href="/community">커뮤니티</a></span>
+        			<ul class="dept02">
+        				<li id="community"><a href="boardList?kind=6">커뮤니티 게시판</a></li>
+        			</ul>
         		</li>
         		<li>
         			<span><a href="/shop">상점</a></span>
+        			<ul class="dept02">
+        				<li id="shop"><a href="boardList?kind=7">웹 샵</a></li>
+        			</ul>
         		</li>
         		<li>
         			<span><a href="/rank">명예의 전당</a></span>
+        			<ul class="dept02">
+        				<li id="rank"><a href="boardList?kind=8">랭킹</a></li>
+        			</ul>
         		</li>
         		<li>
         			<span><a href="/customer">고객센터</a></span>
         			<ul class="dept02">
-        				<li id="1to1">1:1 문의</li>
-        				<li id="often">자주하는 질문</li>
+        				<li id="QA"><a href="boardList?kind=9">1:1 문의</a></li>
+        				<li id="FQ"><a href="boardList?kind=10">자주하는 질문</a></li>
         			</ul>
         		</li>
         	</ul>
@@ -144,15 +162,5 @@
         <% } %>
     </div>
     </header>
-    <script>
-    $(document).on('mouseover', '.top-menu span', function () {
-        $('.dept02').slideDown(200);
-    });
-    $(document).on('mouseout', 'div', function () {
-        if (!$(this).hasClass('top-menu')) {
-            $('.dept02').slideUp(200);
-        }
-    });
-    </script>
 </body>
 </html>

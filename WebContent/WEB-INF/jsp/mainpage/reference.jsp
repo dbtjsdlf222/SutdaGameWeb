@@ -36,7 +36,7 @@ ul.tabs li{
 	text-align: center;
 }
 ul.tabs li.current{
-	background-color: #DB9700;
+	border-bottom: 10px solid #DB9700;
 	color: white;
 }
 .tab-content{
