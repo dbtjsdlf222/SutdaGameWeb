@@ -85,6 +85,11 @@ public class BoardController {
 		return "board/write";
 	}
 	
+	@RequestMapping("view")
+	public String view() {
+		return "board/view";
+	}
+	
 	@RequestMapping(path="writeAction",params= {"title","content","kindNo"})
 	public void writeAction(BoardVO boardVO, HttpSession session) {
 		boardVO.setWriterNo(((PlayerVO)session.getAttribute("loginInfo")).getNo());
