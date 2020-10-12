@@ -22,7 +22,7 @@ body{
 .nav{
     display: flex;
     padding-top: 30px;
-    border-bottom: 2px solid #0A4600;
+    border-bottom: 2px solid #DB3A00;
     height: 200px;
 	list-style: none;
 }
@@ -141,14 +141,14 @@ body{
         		<li>
         			<span><a href="/rank">명예의 전당</a></span>
         			<ul class="dept02">
-        				<li id="rank"><a href="boardList?kind=8">랭킹</a></li>
+        				<li id="rank">랭킹</li>
         			</ul>
         		</li>
         		<li>
         			<span><a href="/customer">고객센터</a></span>
         			<ul class="dept02">
-        				<li id="QA"><a href="boardList?kind=9">1:1 문의</a></li>
-        				<li id="FQ"><a href="boardList?kind=10">자주하는 질문</a></li>
+        				<li id="QA"><a href="boardList?kind=8">1:1 문의</a></li>
+        				<li id="FQ"><a href="boardList?kind=9	">자주하는 질문</a></li>
         			</ul>
         		</li>
         	</ul>
