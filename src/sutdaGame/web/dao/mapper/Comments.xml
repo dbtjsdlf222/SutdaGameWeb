@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sutdaGame.web.dao.CommentsDAO">
   
-  <insert id="insertComment" parameterType="Comment">
+  <insert id="insertComment" parameterType="CommentVO">
     INSERT INTO sutda_comment
       (`no`, `order`, board_no, player_no, content)
     VALUES
       ((SELECT IFNULL(MAX(no)+1, 0) FROM sutda_comment c), 0, #{boardNo}, #{player.no}, #{content})
   </insert>
   
-  <insert id="insertReply" parameterType="Comment">
+  <insert id="insertReply" parameterType="CommentVO">
     INSERT INTO sutda_comment
       (`no`, `order`, board_no, player_no, content)
     VALUES
       (#{no}, (SELECT MAX(`order`)+1 FROM sutda_comment c WHERE no = #{no}), #{boardNo}, #{player.no}, #{content})
   </insert>
   
-  <select id="selectReComment" resultType="Comment" parameterType="int">
+  <select id="selectReComment" resultType="CommentVO" parameterType="int">
 	SELECT
       c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, p.no 'player.no', IFNULL(p.nickname 'player.nickname','탈퇴한 사용자')
     FROM
@@ -28,9 +28,10 @@
     WHERE
       c.no = #{no}
     ORDER BY `order` DESC
+      LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
-  <select id="selectByBoardNo" parameterType="int" resultType="Comment">
+  <select id="selectByBoardNo" parameterType="int" resultType="CommentVO">
 	SELECT
       c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, p.no 'player.no', p.nickname 'player.nickname',
       (SELECT COUNT(*) FROM sutda_comment WHERE `no`=c.no) replyCount
@@ -41,7 +42,7 @@
     ON
       player_no = p.no
     WHERE
-      board_no = #{boardNo}
+      board_no = #{boardNo} AND `order` = 0
     ORDER BY c.no DESC, `order` ASC
     LIMIT #{page.startContent}, #{page.contentCount}
   </select>
@@ -55,7 +56,7 @@
       board_no = #{boardNo}
   </select>
   
-  <update id="update" parameterType="Comment">
+  <update id="update" parameterType="CommentVO">
     UPDATE
       sutda_comment
     SET
@@ -66,13 +67,13 @@
   	  no = #{no}
   </update>
   
-  <delete id="commentDelete" parameterType="Comment">
+  <delete id="commentDelete" parameterType="CommentVO">
     DELETE FROM sutda_comment
     WHERE
   	  `no` = #{no}
   </delete>
   
-  <delete id="reCommentDelete" parameterType="Comment">
+  <delete id="reCommentDelete" parameterType="CommentVO">
     DELETE FROM sutda_comment
     WHERE
       `order` = #{orderNo}

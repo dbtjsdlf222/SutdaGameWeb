@@ -93,25 +93,64 @@ footer p{
     text-align: center;
     color: #CACACA;
 }
+commentBox{
+	resize: none;
+}
+#writeComment{
+	width:150px;
+	height:150px;
+}
 </style>
 <body>
 <jsp:include page="../mainpage/header.jsp" flush="false" />
     <div class="container">
 	    <div id="write">
-	         <form action="/board/QAupdateBoard">
+	         <form action="/board/update">
 	        	<input type="text" name="title" id="title" placeholder="제목을 입력하세요." value="${post.title}">
 	        	<textarea id="contents" name="content" placeholder="내용을 입력하세요.">${post.content }</textarea>
 	        	<input type="hidden" value="${post.no }" name="no"/>
 	        	<button id="back" onclick="location.href='boardList'"> 뒤로가기</button>
 	        	<input type="submit" id="revise" value="수정">
-	        	<button id="cancel" onclick="location.href='board/deleteBoard?no=${post.no}'">게시글 삭제하기</button>
+	        	<button id="cancel" onclick="location.href='/board/delete?no=${post.no}'">게시글 삭제하기</button>
 	        	<div id="likeBtn"><img src="../img/likeBtn1.png" class="likeBtn1" width= 50px;><img src="../img/likeBtn2.png" class="likeBtn2" width= 50px;></div>
 	        </form>
 		</div>        	
     </div>
     <h3>댓글</h3>
+    <div>
+	    <textarea class="commentBox" placeholder="댓글 입력">
+	    
+	    </textarea>
+	    <button id="writeComment" value="댓글 치기" onclick="writeComment();">
+	    
+	    </button>
+    </div>
     <div class="commentList">
-    	<
+    	<c:choose>
+    		<c:when test="${comment eq null}">
+		    <table>
+				<c:forEach var="comment" items="${comment}" varStatus="status">
+					<tr>
+						<td>작성일:</td><td>${post.writeDate}</td>
+					</tr>
+					<tr>
+						<td><c:out value="${comment.player.nickname}" /></td>
+						<td><c:out value="${comment.content}" /></td>
+					</tr>
+					<tr>
+						<input placeholder="답글 달기[미완성]" class="reCommnet" /><button id="reCommentBtn" onclick="writeReComment();" data-commentNo='<c:out value="${comment.no}"/>'>답글 치기</button>
+					</tr>
+					<tr>
+						<td><button onclick="selectRecoment();" data-no="<c:out value="${comment.no }" />" data-p="1">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button></td>
+					<tr>
+				</c:forEach>
+				<button onclick="selectComent();">댓글 더 보기</button>
+			</table>
+	    		</c:when>
+    		<c:otherwise>
+    			<h3>댓글이 없습니다.</h3>
+    		</c:otherwise>
+    	</c:choose>
     </div>
     
     <footer>
@@ -120,5 +159,80 @@ footer p{
         전화번호: 010-5716-0288 / E-mail: asino0226@gmail.com<br/>
         Copyrightⓒ2020SUTDA.All rights reserved.</p>
     </footer>
+<script>
+	var mp=1;
+	var selectRecomment_p=1;
+	var selectComment_p=1;
+	function selectRecomment(){
+		$.ajax({
+	  		url:'/ajax/selectRecomment',
+		      data: {  no:$(this).data("no"),p:$(this).data("p") },
+		      success: function(data) {
+			      alert("댓글 불러오기 성공");
+		    	  $(this).data("p",$(this).data("p")+1);
+			     for(int i=0; i<data.length;i++){
+				     this.parent().parent().prepend(
+						     "<tr><td>작성일:</td><td>"+data[i].writeDate"+</td></tr>"+
+							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+" /></td></tr>");
+			     }
+		      },
+		      error:function(textStatus, errorThrown){
+	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	             self.close();
+	      }
+		});
+	}
+	function selectComment(){
+		$.ajax({
+			alert($(this).data("no")+" "+$(this).data("p"));
+	  		url:'/ajax/selectComment',
+		      data: {  no:$(this).data("no"),p:$(this).data("p") },
+		      success: function(data) {
+		    	  $(this).data("p",$(this).data("p")+1);
+			      alert("댓글 불러오기 성공");
+			     for(int i=0; i<data.length;i++){
+				     this.parent().parent().prepend(
+						     "<tr><td>작성일:</td><td>"+data[i].writeDate"+</td></tr>"+
+							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+" /></td></tr>");
+			     }
+		      },
+		      error:function(textStatus, errorThrown){
+	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	             self.close();
+	      }
+		});
+	}
+
+	function writeComment() {
+		alert("댓글 입력")
+		$.ajax({
+	  		url:'/ajax/commentInsert',
+		      data: {  content:$(".commentBox").val(), boardNo:${post.no } },
+		      success: function() {
+			      alert("댓글 입력 성공");
+		      },
+		      error:function(textStatus, errorThrown){
+	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	             self.close();
+	      }
+		});
+	}
+	
+	function writeReComment() {
+
+		alert("답글 입력")
+		$.ajax({
+	  		url:'/ajax/commentReInsert',
+		      data: {  content:$(this).parent().children(".reCommnet").val(), no:$(this).data("commentNo") },
+		      success: function() {
+			      alert("댓글 입력 성공");
+		      },
+	    	  error:function(textStatus, errorThrown){
+	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	             self.close();
+			}
+		});
+	}
+</script>
 </body>
 </html>

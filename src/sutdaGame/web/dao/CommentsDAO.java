@@ -4,16 +4,16 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import sutdaGame.web.vo.Comment;
+import sutdaGame.web.vo.CommentVO;
 import sutdaGame.web.vo.Page;
 
 public interface CommentsDAO {
-	public boolean insertComment(Comment comment);
-	public boolean insertReply(Comment reply);
-	public List<Comment> selectByBoardNo(@Param(value = "boardNo")int no, @Param(value = "page") Page page);
-	public List<Comment> selectReComment(int no);
-	public int selectCount(int boardNo);
-	public boolean update(Comment comment);
-	public boolean commentDelete(Comment comment);
-	public boolean reCommentDelete(Comment comment);
+	public boolean insertComment(CommentVO comment);
+	public boolean insertReply(CommentVO reply);
+	public List<CommentVO> selectByBoardNo(@Param(value = "boardNo")int no, @Param(value = "page") Page page);
+	public List<CommentVO> selectReComment(@Param(value = "no")int no, @Param(value = "page")Page page);
+	public int selectCount(@Param(value = "boardNo")int boardNo);
+	public boolean update(CommentVO comment);
+	public boolean commentDelete(CommentVO comment);
+	public boolean reCommentDelete(CommentVO comment);
 } //interface CommentsDAO;

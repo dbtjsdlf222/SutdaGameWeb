@@ -2,7 +2,7 @@ package sutdaGame.web.vo;
 
 import java.sql.Timestamp;
 
-public class Comment {
+public class CommentVO {
 	
 	private int no;
 	private Integer orderNo;
@@ -12,26 +12,26 @@ public class Comment {
 	private Timestamp regdate;
 	private int replyCount;
 
-	public Comment() { }
+	public CommentVO() { }
 	
-	public Comment(int boardNo, String content) {
+	public CommentVO(int boardNo, String content) {
 		this.boardNo = boardNo;
 		this.content = content;
 	}
 
-	public Comment(int boardNo, int no, int orderNo) {
+	public CommentVO(int boardNo, int no, int orderNo) {
 		this.boardNo=boardNo;
 		this.no = no;
 		this.orderNo = orderNo;
 	}
 	
-	public Comment(int no, Integer orderNo, String content) {
+	public CommentVO(int no, Integer orderNo, String content) {
 		this.no = no;
 		this.orderNo = orderNo;
 		this.content = content;
 	} //Comment();
 	
-	public Comment(int no, Integer orderNo) {
+	public CommentVO(int no, Integer orderNo) {
 		this.orderNo = orderNo;
 		this.no = no;
 	} //Comment();

@@ -31,7 +31,8 @@
 		title,
 		content,
 		IFNULL(o.name,"탈퇴한 사용자") as writerName,
-		write_date as writeDate
+		write_date as writeDate,
+		(SELECT COUNT(*) FROM `like` WHERE board_no = #{no}) as `like`
 		FROM sutda_board b
 		LEFT JOIN player o
 		ON b.writer_no = o.no
