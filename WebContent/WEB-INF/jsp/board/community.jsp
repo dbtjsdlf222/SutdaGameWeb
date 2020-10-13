@@ -31,7 +31,7 @@ ul.tabs li{
 	color: white;
 	display: inline-block;
 	cursor: pointer;
-	width: 100%;
+	width: 49.8%;
 	font-size: 30px;
 	text-align: center;
 }
@@ -98,7 +98,8 @@ input[type="button"]{
 	<div class="title">
 		<h1>커뮤니티</h1>
 	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">커뮤니티</li>
+		<li class="tab-link current" data-tab="tab-1">자유게시판</li>
+		<li class="tab-linkl" data-tab="tab-2">스크린샷 게시판</li>
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">
@@ -124,6 +125,44 @@ input[type="button"]{
 			<a href="/board/write"><input type="button" value="글 작성" name="write"></a>
 		</fieldset>
 	</div>
+	<div id="tab-2" class="tab-content">
+		<fieldset>
+			<table>
+				<tr>
+					<td id="post_no">No.</td>
+					<td id="post_title">제목</td>
+					<td id="user_id">작성자</td>
+					<td id="post_like">추천</td>
+					<td id="post_date">작성일</td>
+				</tr>
+			<c:forEach var="post" items="${boardList}" varStatus="status">
+				<tr>
+					<td><c:out value="${post.no}"/></td>
+					<td><a href="board/view/${post.no}">${post.title}</a></td>
+			        <td>${post.writerName}</td>
+			        <td>${post.like}</td>
+			        <td>${post.writeDate}</td>
+				</tr>
+			</c:forEach>
+			</table>
+			<a href="/board/write"><input type="button" value="글 작성" name="write"></a>
+		</fieldset>
+	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+})
+</script>
 </body>
 </html>

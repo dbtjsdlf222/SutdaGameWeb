@@ -59,34 +59,28 @@ body{
 	padding-left: 0px;
 }
 .login{
-    width: 100px;
+    width: 120px;
     height: 40px;
-    padding-top: 10px;
-    border-radius: 10%;
-    background-color: #DB3A00;
     margin-right: 50px;
     text-align: center;
     float: right;
 }
 .login a{
     text-decoration: none;
-    color: #363636;
+    color: #DB3A00;
     font-size: 20px;
     font-weight: bold;
 }
 .join{
     width: 120px;
     height: 40px;
-    padding-top: 10px;
-    border-radius: 10%;
-    background-color: #DB3A00;
     margin-right: 50px;
     text-align: center;
     float: right;
 }
 .join a{
     text-decoration: none;
-    color: #363636;
+    color: #DB3A00;
     font-size: 20px;
     font-weight: bold;
 }
@@ -114,28 +108,29 @@ body{
         		<li>
         			<span><a href="/news">새 소식</a></span>
         			<ul class="dept02">
-        				<li id="notice"><a href="boardList?kind=1">공지사항</a></li>
-        				<li id="patch"><a href="boardList?kind=2">패치노트</a></li>
-        				<li id="event"><a href="boardList?kind=3">이벤트</a></li>
+        				<li id="notice"><a href="/board/boardList?kind=1">공지사항</a></li>
+        				<li id="patch"><a href="/board/boardList?kind=2">패치노트</a></li>
+        				<li id="event"><a href="/board/boardList?kind=3">이벤트</a></li>
         			</ul>
         		</li>
         		<li>
         			<span><a href="/reference">자료실</a></span>
         			<ul class="dept02">
-        				<li id="download"><a href="boardList?kind=4">다운로드</a></li>
-        				<li id="guide"><a href="boardList?kind=5">게임 가이드</a></li>
+        				<li id="download"><a href="board/boardList?kind=4">다운로드</a></li>
+        				<li id="guide"><a href="board/boardList?kind=5">게임 가이드</a></li>
         			</ul>
         		</li>
         		<li>
         			<span><a href="/community">커뮤니티</a></span>
         			<ul class="dept02">
-        				<li id="community"><a href="boardList?kind=6">커뮤니티 게시판</a></li>
+        				<li id="free"><a href="board/boardList?kind=6">자유 게시판</a></li>
+        				<li id="screen"><a href="board/boardList?kind=7">스크린샷 게시판</a></li>
         			</ul>
         		</li>
         		<li>
         			<span><a href="/shop">상점</a></span>
         			<ul class="dept02">
-        				<li id="shop"><a href="boardList?kind=7">웹 샵</a></li>
+        				<li id="shop"><a href="board/boardList?kind=8">웹 샵</a></li>
         			</ul>
         		</li>
         		<li>
@@ -147,8 +142,8 @@ body{
         		<li>
         			<span><a href="/customer">고객센터</a></span>
         			<ul class="dept02">
-        				<li id="QA"><a href="boardList?kind=8">1:1 문의</a></li>
-        				<li id="FQ"><a href="boardList?kind=9	">자주하는 질문</a></li>
+        				<li id="QA"><a href="board/boardList?kind=9">1:1 문의</a></li>
+        				<li id="FQ"><a href="board/boardList?kind=10">자주하는 질문</a></li>
         			</ul>
         		</li>
         	</ul>

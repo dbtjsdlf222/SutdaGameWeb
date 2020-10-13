@@ -72,13 +72,13 @@ public class BoardController {
 		String jsp = null;
 		switch(kind) {
 			case 1: 
-				jsp = "board/news";
+				jsp = "board/news/notice";
 			break;
 			case 2: 
-				jsp = "board/reference";
+				jsp = "board/news/patch";
 			break;
 			case 3: 
-				jsp = "board/community";
+				jsp = "board/news/";
 			break;
 			case 4: 
 				jsp = "board/rank";
@@ -86,9 +86,24 @@ public class BoardController {
 			case 5: 
 				jsp = "board/customer";
 			break;
+			case 6: 
+				jsp = "board/customer";
+			break;
+			case 7: 
+				jsp = "board/customer";
+			break;
+			case 8: 
+				jsp = "board/customer";
+			break;
+			case 9: 
+				jsp = "board/customer";
+			break;
+			case 10: 
+				jsp = "board/customer";
+			break;
 		}
 		
-		ModelAndView mav = new ModelAndView("board/" + jsp);
+		ModelAndView mav = new ModelAndView(jsp);
 		
 		mav.addObject("boardList", boardService.selectBoardList(kind, new Page(5,5,p)));
 		return mav;
