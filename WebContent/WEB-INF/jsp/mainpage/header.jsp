@@ -70,7 +70,7 @@ body{
 }
 .login a{
     text-decoration: none;
-    color: white;
+    color: #363636;
     font-size: 20px;
     font-weight: bold;
 }
@@ -86,7 +86,7 @@ body{
 }
 .join a{
     text-decoration: none;
-    color: white;
+    color: #363636;
     font-size: 20px;
     font-weight: bold;
 }
