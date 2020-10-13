@@ -67,11 +67,11 @@ public class MainController {
 			return "board/news";
 		}	//news
 		
-	//자료실
-		@RequestMapping("reference")
+	//다운로드
+		@RequestMapping("download")
 		public String reference(HttpSession session) {
-			return "board/reference";
-		}	//reference
+			return "mainpage/download";
+		}	//download
 		
 	//커뮤니티
 		@RequestMapping("community")
@@ -88,7 +88,7 @@ public class MainController {
 	//명예의 전당
 		@RequestMapping("rank")
 		public String rank(HttpSession session) {
-			return "board/rank";
+			return "mainpage/rank";
 		}	//rank
 		
 	//고객센터

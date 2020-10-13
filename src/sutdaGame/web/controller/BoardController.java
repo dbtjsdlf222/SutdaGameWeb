@@ -72,34 +72,28 @@ public class BoardController {
 		String jsp = null;
 		switch(kind) {
 			case 1: 
-				jsp = "board/news/notice";
+				jsp = "board/notice";
 			break;
 			case 2: 
-				jsp = "board/news/patch";
+				jsp = "board/patch";
 			break;
 			case 3: 
-				jsp = "board/news/";
+				jsp = "board/event";
 			break;
 			case 4: 
-				jsp = "board/rank";
+				jsp = "board/guide";
 			break;
 			case 5: 
-				jsp = "board/customer";
+				jsp = "board/free";
 			break;
 			case 6: 
-				jsp = "board/customer";
+				jsp = "board/screen";
 			break;
 			case 7: 
-				jsp = "board/customer";
+				jsp = "board/QA";
 			break;
 			case 8: 
-				jsp = "board/customer";
-			break;
-			case 9: 
-				jsp = "board/customer";
-			break;
-			case 10: 
-				jsp = "board/customer";
+				jsp = "board/FQ";
 			break;
 		}
 		
