@@ -203,7 +203,6 @@ commentBox{
 	}
 
 	function writeComment1() {
-		alert("댓글 입력")
 		$.ajax({
 	  		url:'/ajax/commentInsert',
 	  		type: 'POST',
@@ -212,7 +211,7 @@ commentBox{
 			      alert("댓글 입력 성공");
 		      },
 		      error:function(textStatus, errorThrown){
-	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	             alert("로그인 후 이용해 주세요");
 	      }
 		});
 	}
