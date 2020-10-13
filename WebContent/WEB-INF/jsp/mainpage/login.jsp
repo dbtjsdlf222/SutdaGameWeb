@@ -61,9 +61,9 @@ form{
     <div class="tab">
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
-                <form action="/owner/loginAction" method="post">
+                <form action="/player/loginAction" method="post">
                     <span class="id"><input type="text" name="id" class="user_id" placeholder="아이디를 입력하세요."></span><br><br>
-                    <span class="pw"><input type="password" name="pw" class="user_pw" placeholder="비밀번호를 입력하세요."></span><br><br>
+                    <span class="pw"><input type="password" name="password" class="user_pw" placeholder="비밀번호를 입력하세요."></span><br><br>
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
 

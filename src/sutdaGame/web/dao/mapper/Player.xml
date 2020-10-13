@@ -22,86 +22,96 @@
 	</select>
 
 	<select id="selectID" parameterType="String" resultType="int">
+	select EXISTS (
 		SELECT
-			count(*)
+			no
 		FROM
 			player
 		WHERE
 			id=#{id}
+		) as success;
 	</select>
 	
-	<select id="rank" parameterType="int" resultType="PlayerVO">
-		SELECT
-			no,id,nickname,money,win,lose,`character`
-		FROM
-			player
-		order by money desc
-	</select>
-	
-	<insert id="join" parameterType="PlayerVO" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+	<insert id="join" parameterType="PlayerVO" >
 		INSERT 
-		INTO owner(
+		INTO player(
 			`name`,
-			`phone`,
 			`id`,
-			`pw`,
-			`email`, 
-			`bank_account`,
-			`bank_name`)
+			password,
+			nickname,
+			email,
+			`character`)
 		VALUES(
 			#{name},
-			#{phone },
-			#{id },
-			#{pw },
-			#{email}, 
-			#{bankAccount},
-			#{bankName})
+			#{id},
+			#{password},
+			#{nickname},
+			#{email},
+			#{character}
+			)
 	</insert>
 	
-	<select id="selectOwner" parameterType="int" resultType="PlayerVO">
+	<select id="selectPlayer" parameterType="int" resultType="PlayerVO">
 		SELECT 
 			`no`,
-			`name`,
-			`phone`,
 			`id`,
-			`pw`,
+			`name`,
+			`password`,
+			`nickname`,
+			`money`,
+			`win`,
+			`lose`,
 			`email`,
-			`join_date` as joinDate,
-			`bank_account` as bankAccount,
-			`bank_name` as bankName
+			`character`
 		FROM
 			player
 		WHERE 
 			no=#{no}
 	</select>
 
-	<update id="updateOwner" parameterType="PlayerVO">
+	<update id="updatePlayer" parameterType="PlayerVO">
 		UPDATE
 			player
 		SET(
-			`phone` =#{phone},
-			`pw`=#{pw},
-			`email`=#{email})
+			`password`=#{password},
+			`email`=#{email},
+			`character`=#{character}
+			)
 		WHERE no=#{no}
 	</update>
 	
-	<delete id="deleteOwner" parameterType="int">
+	<delete id="deletePlayer" parameterType="int">
 		DELETE FROM player
 		WHERE no=#{no}
 	</delete>
-
-<!--
-CREATE TABLE owner
-(
-    `no`               INT            NOT NULL    AUTO_INCREMENT COMMENT '가입 번호', 
-    `name`             VARCHAR(16)    NOT NULL    COMMENT '성함', 
-    `phone`            INT(11)        NOT NULL    COMMENT '핸드폰 번호', 
-    `id`               VARCHAR(24)    NOT NULL    COMMENT '아이디', 
-    `pw`               VARCHAR(24)    NOT NULL    COMMENT '비밀번호', 
-    `email`            VARCHAR(32)    NOT NULL    COMMENT '이메일', 
-    `membership_date`  TIMESTAMP      NOT NULL    DEFAULT CURRENT_TIMESTAMP COMMENT '가입일', 
-    PRIMARY KEY (no)
-);
- -->
+	
+	<select id="rankByMoney" resultType="PlayerVO">
+		SELECT
+			no,id,nickname,money,win,lose,`character`,money as rank
+		FROM
+			player
+		ORDER BY money desc
+		LIMIT 0,100
+	</select>
+	
+	<select id="rankByRounds" resultType="PlayerVO">
+	 	SELECT
+			no,id,nickname,money,win,lose,`character`,win+lose as rank
+		FROM
+			player
+		ORDER BY 8 desc
+		LIMIT 0,100
+	</select>
+	
+	<select id="rankByRate" resultType="PlayerVO">
+		SELECT
+			no,id,nickname,money,win,lose,`character`,round((win/(win+lose))*100,1) as rank
+		FROM
+			player
+		WHERE win+lose > 40
+		ORDER BY 8 desc
+		LIMIT 0,100
+	</select>
+	
 
 </mapper>

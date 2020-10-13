@@ -89,14 +89,12 @@ ul.tabs li.current{
 				<tr>
 					<td id="post_no">No.</td>
 					<td id="post_title">제목</td>
-					<td id="user_id">작성자</td>
 					<td id="post_date">작성일</td>
 				</tr>
 				<c:forEach var="post" items="${boardList}" varStatus="status">
 				<tr>
 					<td><c:out value="${post.no}"/></td>
 					<td><a href="board?no=${post.no}">${post.title}</a></td>
-					<td>관리자</td>
 					<td>${post.writerDate}</td>
 				</tr>
 				</c:forEach>

@@ -22,6 +22,6 @@
 
 <!-- carousel -->
 <script type="text/javascript" src="/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="/js/app.js"></script>
+
 
 <%-- <jsp:include page="../include/nav.jsp" /> --%>	

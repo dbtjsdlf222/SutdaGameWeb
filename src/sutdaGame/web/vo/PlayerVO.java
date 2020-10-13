@@ -13,14 +13,7 @@ public class PlayerVO {
 	private String email;
 	private String name;
 	private boolean admin = false;
-	
-	public boolean isAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
+	private String rank;
 
 	public Integer getNo() {
 		return no;
@@ -29,7 +22,23 @@ public class PlayerVO {
 	public void setNo(Integer no) {
 		this.no = no;
 	}
+	
+	public String getRank() {
+		return rank;
+	}
 
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+	
 	public String getId() {
 		return id;
 	}

@@ -66,6 +66,9 @@
     	width: 500px;
     	border: 1px solid #0A4600;
     }
+    input[type=radio]{
+    	margin-left:40%;
+    }
  </style>
 
 </head>
@@ -73,16 +76,17 @@
 <jsp:include page="header.jsp" flush="false"/>
     <fieldset class="information">
     <legend>회원가입</legend>
-    	<form action="joinAction" method="post">
+    	<form action="/joinAction" method="post">
         <ul id="join_info">
             <li>
                 <label for="join_id">아이디<span class="essential"></span></label><br>
                 <input type="text" id="join_id" name="id" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12" required><br><br>
+                <p style="color:red" id="id_error"></p>
             </li>
             <li>
                 <label for="join_pw">비밀번호</label><br>
-                <input type="password" id="join_pw" name="pw" required placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><br><br>
-                <input type="password" id="join_pwc" name="pwc"  required placeholder="비밀번호 확인"><br><br>
+                <input type="password" id="join_pw" name="password" required placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><br><br>
+                <input type="password" id="join_pwc"  required placeholder="비밀번호 확인"><br><br>
             </li>
         </ul>
         <ul id="privacy">
@@ -90,9 +94,32 @@
                 <label for="name">이름</label><br>
                 <input type="text" id="name" name="name" required><br><br>
             </li>
+			<li>
+                <label for="nickname">이름</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+            </li>
             <li>
                 <label for="email">이메일</label><br>
-                <input type="text" id="email" class="email" required>
+                <input type="text" id="email" name="email" class="email" required>
+            </li>
+            <li>
+            	<h3>캐릭터 선택</h3>
+            	<table>
+            	<tr>
+	            	<% for(int i=0; i<=6;i++){ %>
+	            	<td>
+	                	<label for="cha<%=i%>"><img src="/img/character/cha<%=i%>.png" /></label>
+	                </td>
+		        	<%} %>
+		        </tr>
+		        <tr>
+		        <% for(int i=0; i<=6;i++){ %>
+		                <td>
+		                	<input type="radio" id="cha<%=i%>" name="character" class="character" required style="margin-left:40%">
+		                </td>
+                <%} %>
+                </tr>
+                </table>
             </li>
         </ul><br><br/>
         <div id="commit">
@@ -113,6 +140,16 @@
 </body>
 
 <script>
+	var ok=false;
+	$("form").submit(function(e){
+		if(ok){
+			return true;
+		} else {
+			e.preventDefault();
+			return false;
+		}
+	})
+
 	$('#detail').click(function(){
 		$('#useTerms').toggle();
 		})
@@ -142,13 +179,6 @@
 	// 아이디 정규식
 	var idCheck = RegExp(/^[A-Za-z0-9_]{5,12}$/);						//영어 + 숫자 정규식 (5~12자 입력 가능)
 	var id2Check = RegExp(/[~!@#$%^&*()_+|<>?:{}ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);		//특수문자 + 한글 정규식 (아이디에 특수문자와 한글을 거르기 위함)
-	$('#user_id').keyup(function() {
-		$('#idtag').text("");
-		if (id2Check.test($('#user_id').val())) 
-			$('#idtag').text("특수문자와 한글은 사용불가합니다.").css({"font-size":"13px","margin-right":"0"});
-		else if (idCheck.test($('#user_id').val()))
-			$('#idtag').text("사용가능한 아이디입니다.").css({"margin-right":"30px"});
-		}); // #user_id
 
 	// 비밀번호 정규식
 	var pwCheck = RegExp(/(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$/); //숫자 + 특수문자 + 영어 정규식 (숫자,특수문자,영어를 1개이상 들어가고 8~20자 이하)
@@ -159,5 +189,37 @@
 			$('#pwtag').text("사용가능한 비밀번호입니다.").css({"margin-right":"25px"});
 		}); // #user_pw
 
+
+	var $id = $('#join_id');
+	var $id_error = $('#id_error');
+	$id.keyup(function() {
+		if (id2Check.test($id.val())){
+			$id.text("특수문자와 한글은 사용불가합니다.").css({"color":"red"});
+			ok=false;
+		} else if($id.val().length < 6 || $id.val().length > 20) {
+			$id_error.text("6에서 20자 사이로 입력해주세요").css({"color":"red"});
+			ok=false;
+		} else {
+			$.ajax({
+			    url: "/ajax/ID_check", // 클라이언트가 요청을 보낼 서버의 URL 주소
+			    data: { id: $id.val() },                // HTTP 요청과 함께 서버로 보낼 데이터
+			    type: "POST",                             // HTTP 요청 방식(GET, POST)
+			    dataType: "json" ,                        // 서버에서 보내줄 데이터의 타입
+			    success:function(args){
+			    	if(args==0){
+			    		$id_error.text("사용 가능 아아디 입니다").css({"color":"green"});
+			    		ok=true;
+				    } else {
+				    	$id_error.text("사용중인 아아디 입니다").css({"color":"red"});
+				    	ok=false;
+					}
+			    },
+	           error : function(xhr, status, error) {
+	        	   alert('오류가 발생하였습니다.');
+	           }
+			}) //ajax
+		 } //if~else
+	})
+		
 </script>
 </html>

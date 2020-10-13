@@ -183,26 +183,60 @@
         <div class="logout"><a href="logout">로그아웃</a></div>
     </div>
     </header>
-	<%
-		PlayerVO ownerInfo=(PlayerVO)request.getAttribute("myInfo");
-	%>
     <div class="profile"></div>
     <table class="myinfo">
     	<tr>
-    		<td>이름</td>
-    		<td>&emsp;<%=ownerInfo.getName() %></td>
+    		<td>닉네임</td>
+    		<td>&emsp;${myInfo.nickname }</td>
+    	</tr>
+    	<tr>
+    		<td>가입자 명</td>
+    		<td>&emsp;${myInfo.name }</td>
+    	</tr>
+	    <tr>
+    		<td>아아디</td>
+    		<td>&emsp;${myInfo.id} </td>
     	</tr>
     	<tr>
     		<td>이메일</td>
-    		<td>&emsp;<%=ownerInfo.getEmail() %></td>
+    		<td>&emsp;${myInfo.email} </td>
+    	</tr>
+    	<tr>
+    		<td>머니</td>
+    		<td>&emsp;${myInfo.money} </td>
+    	</tr>
+    	<tr>
+    		<td>전</td>
+    		<td>&emsp;;${myInfo.win+myInfo.lose}</td>
+    	</tr>
+    	<tr>
+    		<td>승</td>
+    		<td>&emsp;${myInfo.win} </td>
+    	</tr>
+    	<tr>
+    		<td>패</td>
+    		<td>&emsp;${myInfo.lose} </td>
+    	</tr>
+    	<tr>
+    		<td>승률</td>
+    		<td>&emsp;${(myInfo.win/(myInfo.win+myInfo.lose))*100} }</td>
+    	</tr>
+    	<tr>
+    		<td>캐릭터</td>
+    		<td>&emsp;<img src="/img/character/cha${myInfo.character} .png" /></td>
     	</tr>
     </table>
         <div class="wrap1">
             <div class="infoRevise"><a href="infoRevise">정보 수정</a></div>
-            <div class="join_cancel">회원 탈퇴</div>
+            <p><button type="button" class="btn btn-success btn-sm">회원 정보 수정</button></p>
+            <p><button type="button" class="btn btn-danger btn-block">회원 탈퇴</button></p>
         </div>
-        <div class="wrap2">
-            <div class="storeSetButton"><a href="/store/">매장 관리</a></div>
-        </div>
+<script>
+	$("#jc").click(function(){
+		var result = confirm('정말 회원 탈퇴를 하시겠습니까? \n 정보는 되돌릴 수 없습니다.'); 
+		if(result) { location.replace('/player/delete'); } 
+		else {  }
+	})
+</script>
 </body>
 </html>

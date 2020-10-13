@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -16,13 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import sutdaGame.web.service.BoardService;
+import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.PlayerVO;
 
-@Controller @RequestMapping("/")
-public class MainController {
+@Controller @RequestMapping("/ajax")
+public class AjaxController {
 	
 	@Autowired
 	JavaMailSender mailSender;
@@ -32,6 +34,9 @@ public class MainController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	//메인
 	@RequestMapping(path={"/","main"})
@@ -72,13 +77,14 @@ public class MainController {
 		} //joinAction
 		
 		@RequestMapping(path="ID_check",method = RequestMethod.POST)
-		public String idCheck(HttpSession session,@RequestParam String id) throws JsonProcessingException {
+		public ResponseEntity<String> idCheck(HttpSession session,@RequestParam String id) throws JsonProcessingException {
 			try {
-				return JsonUtil.convertToJsonString(playerService.selectID(id));
+				System.out.println(id);
+				return JsonUtil.convertToResponseEntity(playerService.selectID(id));
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			return JsonUtil.convertToJsonString(false);
+			return JsonUtil.convertToResponseEntity(false);
 		} // 
 		
 		

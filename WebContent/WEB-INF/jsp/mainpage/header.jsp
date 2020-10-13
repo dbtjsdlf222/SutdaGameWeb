@@ -153,7 +153,7 @@ body{
 	        <div class="login"><a href="/login">로그인</a></div>
 	        <div class="join"><a href="/join">회원가입</a></div>
         <% } else{ %>
-        	<div class="mypage"><a href="/mypage"><img id="slide-menu" src="/img/samsun.png"></a></div>
+        	<div class="mypage"><a href="/player/mypage"><img id="slide-menu" src="/img/samsun.png"></a></div>
         <% } %>
     </div>
     </header>
