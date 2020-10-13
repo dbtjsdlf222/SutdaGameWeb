@@ -64,19 +64,19 @@ public class MainController {
 	//새소식
 		@RequestMapping("news")
 		public String news(HttpSession session) {
-			return "mainpage/news";
+			return "board/news";
 		}	//news
 		
 	//자료실
 		@RequestMapping("reference")
 		public String reference(HttpSession session) {
-			return "mainpage/reference";
+			return "board/reference";
 		}	//reference
 		
 	//커뮤니티
 		@RequestMapping("community")
 		public String community(HttpSession session) {
-			return "mainpage/community";
+			return "board/community";
 		}	//community
 		
 	//상점
@@ -88,13 +88,13 @@ public class MainController {
 	//명예의 전당
 		@RequestMapping("rank")
 		public String rank(HttpSession session) {
-			return "mainpage/rank";
+			return "board/rank";
 		}	//rank
 		
 	//고객센터
 		@RequestMapping("customer")
 		public String customer(HttpSession session) {
-			return "mainpage/customer";
+			return "board/customer";
 		}	//customer
 		
 	//메일보내기

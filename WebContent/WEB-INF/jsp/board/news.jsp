@@ -72,7 +72,7 @@ ul.tabs li.current{
 }
 </style>
 <body>
-<jsp:include page="header.jsp" flush="false" />
+<jsp:include page="../mainpage/header.jsp" flush="false" />
     
  <div class="container">
 	<div class="title">

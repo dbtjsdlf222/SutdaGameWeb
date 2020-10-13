@@ -5,7 +5,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>고객센터</title>
+    <title>커뮤니티</title>
     <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
@@ -13,7 +13,7 @@
 	margin: auto;
 }
 .title{
-	background-color: #A465FD;
+	background-color: #FFFF24;
 	padding-top: 10px;
 	font-weight: bold;
 }
@@ -31,12 +31,12 @@ ul.tabs li{
 	color: white;
 	display: inline-block;
 	cursor: pointer;
-	width: 49.8%;
+	width: 100%;
 	font-size: 30px;
 	text-align: center;
 }
 ul.tabs li.current{
-	border-bottom: 10px solid #5C1DB5;
+	border-bottom: 10px solid #DBC000;
 	color: white;
 }
 .tab-content{
@@ -74,16 +74,31 @@ ul.tabs li.current{
 	font-size: 20px;
 	text-align: center;
 }
+.tab-content.current tr td:nth-child(5){
+	width: 300px;
+	font-size: 20px;
+	text-align: center;
+}
+input[type="button"]{
+	float: right;
+	background-color: #DBC000;
+	color: white;
+	border: none;
+	width: 150px;
+	height: 40px;
+	margin-top: 20px;
+	font-size: 15px;
+	font-weight: bold;
+}
 </style>
 <body>
-	<jsp:include page="header.jsp" flush="false"/>
+	<jsp:include page="../mainpage/header.jsp" flush="false"/>
 	
 <div class="container">
 	<div class="title">
-		<h1>고객센터</h1>
+		<h1>커뮤니티</h1>
 	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">1:1문의</li>
-		<li class="tab-link" data-tab="tab-2">자주묻는 질문</li>
+		<li class="tab-link current" data-tab="tab-1">커뮤니티</li>
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">
@@ -93,45 +108,22 @@ ul.tabs li.current{
 					<td id="post_no">No.</td>
 					<td id="post_title">제목</td>
 					<td id="user_id">작성자</td>
+					<td id="post_like">추천</td>
 					<td id="post_date">작성일</td>
 				</tr>
-				<c:forEach var="post" items="${boardList}" varStatus="status">
+			<c:forEach var="post" items="${boardList}" varStatus="status">
 				<tr>
 					<td><c:out value="${post.no}"/></td>
-					<td><a href="board?no=${post.no}">${post.title}</a></td>
-					<td>관리자</td>
-					<td>${post.writerDate}</td>
+					<td><a href="board/view/${post.no}">${post.title}</a></td>
+			        <td>${post.writerName}</td>
+			        <td>${post.like}</td>
+			        <td>${post.writeDate}</td>
 				</tr>
-				</c:forEach>
+			</c:forEach>
 			</table>
-		</fieldset>
-	</div>
-	<div id="tab-2" class="tab-content">
-		<fieldset>
-			<p>자주하는 질문</p>
-				<div id="FQboardList">
-				<c:forEach var="post" items="${FQboardList}" varStatus="status">
-					<div class="FQ_title"><c:out value="${post.title}"/></div>
-					<div class="FQ_content"><c:out value="${post.content}"/></div>
-				</c:forEach>
-				</div>		
+			<a href="/board/write"><input type="button" value="글 작성" name="write"></a>
 		</fieldset>
 	</div>
 </div>
-
-<script>
-$(document).ready(function(){
-	
-	$('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
-
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-})
-</script>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="false"/>
+	<jsp:include page="../mainpage/header.jsp" flush="false"/>
 	
 </body>
 </html>

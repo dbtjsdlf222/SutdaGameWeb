@@ -69,7 +69,27 @@ public class BoardController {
 	
 	@RequestMapping("boardList")
 	public ModelAndView boardList(@RequestParam int kind, @RequestParam(defaultValue = "1") int p) {
-		ModelAndView mav = new ModelAndView("board/boardList");
+		String jsp = null;
+		switch(kind) {
+			case 1: 
+				jsp = "board/news";
+			break;
+			case 2: 
+				jsp = "board/reference";
+			break;
+			case 3: 
+				jsp = "board/community";
+			break;
+			case 4: 
+				jsp = "board/rank";
+			break;
+			case 5: 
+				jsp = "board/customer";
+			break;
+		}
+		
+		ModelAndView mav = new ModelAndView("board/" + jsp);
+		
 		mav.addObject("boardList", boardService.selectBoardList(kind, new Page(5,5,p)));
 		return mav;
 	}
