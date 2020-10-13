@@ -41,14 +41,16 @@ public class BoardController {
 	@RequestMapping("view/{no}")
 	public ModelAndView view(HttpSession session, @PathVariable int no, @RequestParam(defaultValue = "1") int p) {
 		
-		Page page = new Page(5, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
+		Page page = new Page(10, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
 		
 		ModelAndView mav = new ModelAndView("board/view");
-		
 		HashMap<String, Integer> params = new HashMap<String, Integer>();
+		
 		PlayerVO player = (PlayerVO)session.getAttribute("loginInfo");
+		if(player!=null) {
+			params.put("playerNo",player.getNo());
+		}
 		params.put("boardNo", no);
-		params.put("userNo",player.getNo());
 		mav.addObject("playerNo" , player.getNo());
 		mav.addObject("board"   , boardService.selectOntBoard(no));
 		mav.addObject("comment", commnetService.selectByBoardNo(no, page));
@@ -70,6 +72,7 @@ public class BoardController {
 	@RequestMapping("boardList")
 	public ModelAndView boardList(@RequestParam int kind, @RequestParam(defaultValue = "1") int p) {
 		String jsp = null;
+		ModelAndView mav = new ModelAndView();
 		switch(kind) {
 			case 1: 
 				jsp = "board/notice";
@@ -96,10 +99,9 @@ public class BoardController {
 				jsp = "board/FQ";
 			break;
 		}
-		
-		ModelAndView mav = new ModelAndView(jsp);
-		
+		mav.setViewName(jsp);
 		mav.addObject("boardList", boardService.selectBoardList(kind, new Page(5,5,p)));
+		System.out.println(boardService.selectBoardList(kind, new Page(5,5,p)));
 		return mav;
 	}
 	

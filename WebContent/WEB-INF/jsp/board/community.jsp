@@ -139,7 +139,7 @@ input[type="button"]{
 				<tr>
 					<td><c:out value="${post.no}"/></td>
 					<td><a href="board/view/${post.no}">${post.title}</a></td>
-			        <td>${post.writerName}</td>
+			        <td>${post.nickname}</td>
 			        <td>${post.like}</td>
 			        <td>${post.writeDate}</td>
 				</tr>

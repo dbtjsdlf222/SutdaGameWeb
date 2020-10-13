@@ -94,8 +94,8 @@ ul.tabs li.current{
 				<c:forEach var="post" items="${boardList}" varStatus="status">
 				<tr>
 					<td><c:out value="${post.no}"/></td>
-					<td><a href="board?no=${post.no}">${post.title}</a></td>
-					<td>${post.writerDate}</td>
+					<td><a href="/board/view/${post.no}">${post.title}</a></td>
+					<td>${post.writeDate}</td>
 				</tr>
 				</c:forEach>
 			</table>

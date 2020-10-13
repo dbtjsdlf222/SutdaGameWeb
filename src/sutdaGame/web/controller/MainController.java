@@ -68,7 +68,6 @@ public class MainController {
 			} else {
 				return new RedirectWithAlert("회원가입 - 섯다 온라인","회원가입에 실패하였습니다.\n 다시 회원가입을 해주세요.","join");
 			}
-			
 		} //joinAction
 		
 		@RequestMapping(path="ID_check",method = RequestMethod.POST)

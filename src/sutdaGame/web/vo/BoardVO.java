@@ -9,9 +9,11 @@ public class BoardVO {
 	private String title;
 	private String content;
 	private Integer writerNo;
+	private String writerName;
 	private Timestamp writeDate;
 	private Integer view;
 	private Integer kindNo;
+	private Integer like;
 	private String kindName;
 
 	public Integer getNo() {
@@ -20,6 +22,22 @@ public class BoardVO {
 
 	public void setNo(Integer no) {
 		this.no = no;
+	}
+	
+	public Integer getLike() {
+		return like;
+	}
+
+	public void setLike(Integer like) {
+		this.like = like;
+	}
+
+	public String getWriterName() {
+		return writerName;
+	}
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 
 	public String getKindName() {
