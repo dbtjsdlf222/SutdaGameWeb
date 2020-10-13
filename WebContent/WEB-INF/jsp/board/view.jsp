@@ -50,7 +50,6 @@
 }
 #cancel{
 	margin-top: 20px;
-	margin-left: 200px;
 	width: 150px;
 	height: 40px;
 	border: 1px solid #DB3A00;
@@ -69,6 +68,32 @@
 	text-align: center;
 	align-items: center;
 	color: #DB3A00;
+}
+h3{
+	color: #DB3A00;
+	border-bottom: 1px solid #DB3A00;
+}
+.commentList{
+	width: 1250px;	
+	margin: auto;
+	margin-top: 50px;
+}
+.commentList > div{
+	border-radius: 3%;
+	background-color: #10620A;
+	width: 100%;
+	height: 500px;
+	padding: 20px;
+}
+.perspective{
+	perspective: 1000px;
+}
+.perspective > div{
+	width: 95%;
+	height: 50px;
+	margin-left: 20px;
+	background-color: darkred;
+	transform: perspective(500px) skew(170deg);
 }
 footer{
 	margin-top: 100px;
@@ -96,9 +121,13 @@ footer p{
 	        </form>
 		</div>        	
     </div>
-    <div id="likeBtn"></div>
-    
-    <div class="commentList"><a href="board?no=${post.no }">${post.comment}</a></div>
+    <div id="likeBtn"><img src=""></div>
+    <h3>댓글</h3>
+    <div class="commentList">
+    	<div class="perspective">
+    		<div></div>
+    	</div>
+    </div>
     
     <footer>
         <p></p>
