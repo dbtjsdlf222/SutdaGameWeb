@@ -58,42 +58,29 @@
 	background-color: #363636;
 	float: right;
 }
-#likeBtn{
-	margin: auto;
-	margin-top: 20px;
-	border: 1px solid #DB3A00;
-	border-radius: 100%;
-	width: 50px;
-	height: 50px;
-	text-align: center;
-	align-items: center;
-	color: #DB3A00;
-}
+
 h3{
-	color: #DB3A00;
 	border-bottom: 1px solid #DB3A00;
+	color: #DB3A00;
 }
 .commentList{
 	width: 1250px;	
 	margin: auto;
 	margin-top: 50px;
 }
-.commentList > div{
-	border-radius: 3%;
-	background-color: #10620A;
-	width: 100%;
-	height: 500px;
-	padding: 20px;
+.likeBtn1{
+	margin: auto;
+	cursor: pointer;
 }
-.perspective{
-	perspective: 1000px;
+.likeBtn2{
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s ease-out;
+	margin: 50px;
 }
-.perspective > div{
-	width: 95%;
-	height: 50px;
-	margin-left: 20px;
-	background-color: darkred;
-	transform: perspective(500px) skew(170deg);
+.likeBtn1:hover .likeBtn2{
+	visibility: visible;
+	opacity: 1;
 }
 footer{
 	margin-top: 100px;
@@ -118,15 +105,13 @@ footer p{
 	        	<button id="back" onclick="location.href='boardList'"> 뒤로가기</button>
 	        	<input type="submit" id="revise" value="수정">
 	        	<button id="cancel" onclick="location.href='board/deleteBoard?no=${post.no}'">게시글 삭제하기</button>
+	        	<div id="likeBtn"><img src="../img/likeBtn1.png" class="likeBtn1" width= 50px;><img src="../img/likeBtn2.png" class="likeBtn2" width= 50px;></div>
 	        </form>
 		</div>        	
     </div>
-    <div id="likeBtn"><img src=""></div>
     <h3>댓글</h3>
     <div class="commentList">
-    	<div class="perspective">
-    		<div></div>
-    	</div>
+    	<
     </div>
     
     <footer>
