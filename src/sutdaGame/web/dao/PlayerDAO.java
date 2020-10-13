@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Param;
 
 import sutdaGame.web.vo.PlayerVO;
 
-public interface OwnerDAO {
+public interface PlayerDAO {
 	public int join(PlayerVO PlayerVO);			//회원가입
 	public PlayerVO selectOwner(@Param("no") int no);
 	public void updateOwner(PlayerVO PlayerVO);

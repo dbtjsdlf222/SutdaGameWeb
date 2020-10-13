@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import sutdaGame.web.service.OwnerService;
+import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("owner")
-public class OwnerController {
+public class PlayerController {
 	
 	@Autowired
-	OwnerService ownerService;
+	PlayerService ownerService;
 	
 	//로그인 액션
 	@RequestMapping(value="loginAction", method=RequestMethod.POST)

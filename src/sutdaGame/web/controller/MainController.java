@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sutdaGame.web.service.BoardService;
-import sutdaGame.web.service.OwnerService;
+import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("/")
@@ -21,7 +21,7 @@ public class MainController {
 	JavaMailSender mailSender;
 	
 	@Autowired
-	OwnerService ownerService;
+	PlayerService ownerService;
 	
 	@Autowired
 	BoardService boardService;

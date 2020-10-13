@@ -12,6 +12,15 @@ public class PlayerVO {
 	private Integer character;
 	private String email;
 	private String name;
+	private boolean admin = false;
+	
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 
 	public Integer getNo() {
 		return no;

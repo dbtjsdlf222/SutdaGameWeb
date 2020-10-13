@@ -3,14 +3,14 @@ package sutdaGame.web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sutdaGame.web.dao.OwnerDAO;
+import sutdaGame.web.dao.PlayerDAO;
 import sutdaGame.web.vo.PlayerVO;
 
 @Service
-public class OwnerService {
+public class PlayerService {
 
 	@Autowired
-	OwnerDAO ownerDAO;
+	PlayerDAO ownerDAO;
 	
 	public PlayerVO loginOwner(String id, String pw) { return ownerDAO.login(id, pw); }
 	public int joinOwner(PlayerVO PlayerVO) { return ownerDAO.join(PlayerVO); }
