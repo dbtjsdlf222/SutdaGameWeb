@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,30 +122,30 @@ commentBox{
 	    <textarea class="commentBox" placeholder="댓글 입력">
 	    
 	    </textarea>
-	    <button id="writeComment" value="댓글 치기" onclick="writeComment();">
-	    
+	    <button id="writeComment" onclick="writeComment1()">
+	    댓글 치기
 	    </button>
     </div>
     <div class="commentList">
     	<c:choose>
-    		<c:when test="${comment eq null}">
+    		<c:when test="${comment ne null}">
 		    <table>
 				<c:forEach var="comment" items="${comment}" varStatus="status">
 					<tr>
-						<td>작성일:</td><td>${post.writeDate}</td>
+						<td>작성일:</td><td>${comment.regdate}</td>
 					</tr>
 					<tr>
 						<td><c:out value="${comment.player.nickname}" /></td>
 						<td><c:out value="${comment.content}" /></td>
 					</tr>
 					<tr>
-						<input placeholder="답글 달기[미완성]" class="reCommnet" /><button id="reCommentBtn" onclick="writeReComment();" data-commentNo='<c:out value="${comment.no}"/>'>답글 치기</button>
+						<td><input placeholder="답글 달기[미완성]" class="reCommnet" /><button id="reCommentBtn" onclick="writeReComment(this)" data-no='<c:out value="${comment.no}"/>'>답글 치기</button></td>
 					</tr>
 					<tr>
-						<td><button onclick="selectRecoment();" data-no="<c:out value="${comment.no }" />" data-p="1">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button></td>
+						<td><button onclick="selectRecomment(this)" data-no="<c:out value='${comment.no }' />" data-p="1">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button></td>
 					<tr>
 				</c:forEach>
-				<button onclick="selectComent();">댓글 더 보기</button>
+				<tr><td><button onclick="selectComment(this)" data-p="1" data-no="${post.no}">댓글 더 보기</button></td></tr>
 			</table>
 	    		</c:when>
     		<c:otherwise>
@@ -160,76 +161,72 @@ commentBox{
         Copyrightⓒ2020SUTDA.All rights reserved.</p>
     </footer>
 <script>
-	var mp=1;
-	var selectRecomment_p=1;
-	var selectComment_p=1;
-	function selectRecomment(){
+	
+	function selectRecomment(e){
+		
 		$.ajax({
 	  		url:'/ajax/selectRecomment',
-		      data: {  no:$(this).data("no"),p:$(this).data("p") },
+	  		type: 'POST',
+		      data: {  no:$(e).data("no"), p:$(e).data("p") },
 		      success: function(data) {
 			      alert("댓글 불러오기 성공");
-		    	  $(this).data("p",$(this).data("p")+1);
-			     for(int i=0; i<data.length;i++){
-				     this.parent().parent().prepend(
-						     "<tr><td>작성일:</td><td>"+data[i].writeDate"+</td></tr>"+
-							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+" /></td></tr>");
+			      $(e).data("p",$(e).data("p")+1);
+			     for(var i=0; i<data.length;i++){
+				     $(e).parent().parent().prepend(
+						     "<tr><td>작성일:</td><td>"+data[i].regdate+"</td></tr>"+
+							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+"</td></tr>");
 			     }
 		      },
 		      error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-	             self.close();
 	      }
 		});
 	}
-	function selectComment(){
+	function selectComment(e){
 		$.ajax({
-			alert($(this).data("no")+" "+$(this).data("p"));
 	  		url:'/ajax/selectComment',
-		      data: {  no:$(this).data("no"),p:$(this).data("p") },
+	  		type: 'POST',
+		      data: {  no:$(e).data("no"), p:$(e).data("p") },
 		      success: function(data) {
-		    	  $(this).data("p",$(this).data("p")+1);
 			      alert("댓글 불러오기 성공");
-			     for(int i=0; i<data.length;i++){
-				     this.parent().parent().prepend(
-						     "<tr><td>작성일:</td><td>"+data[i].writeDate"+</td></tr>"+
-							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+" /></td></tr>");
+		    	  $(e).data("p",$(e).data("p")+1);
+			     for(var i=0; data.length;i++){
+				     $(e).parent().parent().prepend(
+						     "<tr><td>작성일:</td><td>"+data[i].regdate+"</td></tr>"+
+							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+"</td></tr>");
 			     }
 		      },
 		      error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-	             self.close();
 	      }
 		});
 	}
 
-	function writeComment() {
+	function writeComment1() {
 		alert("댓글 입력")
 		$.ajax({
 	  		url:'/ajax/commentInsert',
+	  		type: 'POST',
 		      data: {  content:$(".commentBox").val(), boardNo:${post.no } },
 		      success: function() {
 			      alert("댓글 입력 성공");
 		      },
 		      error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-	             self.close();
 	      }
 		});
 	}
 	
-	function writeReComment() {
-
-		alert("답글 입력")
+	function writeReComment(e) {
 		$.ajax({
 	  		url:'/ajax/commentReInsert',
-		      data: {  content:$(this).parent().children(".reCommnet").val(), no:$(this).data("commentNo") },
+	  		type: 'POST',
+		      data: {  content:$(e).parent().children(".reCommnet").val(), no:$(e).data("no") },
 		      success: function() {
 			      alert("댓글 입력 성공");
 		      },
 	    	  error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-	             self.close();
 			}
 		});
 	}

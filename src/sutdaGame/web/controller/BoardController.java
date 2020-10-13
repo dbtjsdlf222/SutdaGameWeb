@@ -44,7 +44,7 @@ public class BoardController {
 	@RequestMapping("view/{no}")
 	public ModelAndView view(HttpSession session, @PathVariable int no, @RequestParam(defaultValue = "1") int p) {
 		
-		Page page = new Page(10, 5, p); //result 개수, 페이징 블록 수, 페이지 넘버
+		Page page = new Page(10, 5, 1); //result 개수, 페이징 블록 수, 페이지 넘버
 		
 		ModelAndView mav = new ModelAndView("board/view");
 		HashMap<String, Integer> params = new HashMap<String, Integer>();

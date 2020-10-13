@@ -46,7 +46,7 @@ public class AjaxController {
 		return JsonUtil.convertToResponseEntity(false);
 	} //
 	
-	@RequestMapping(path="selectReComent",method = RequestMethod.POST,params= {"no","p"})
+	@RequestMapping(path="selectRecomment",method = RequestMethod.POST, params= {"no","p"})
 	public ResponseEntity<String> selectRecoment(HttpSession session,int no,int p) throws JsonProcessingException {
 		try {
 			return JsonUtil.convertToResponseEntity(commentService.selectReComment(no, new Page(10,5,p)));
@@ -55,15 +55,16 @@ public class AjaxController {
 		}
 		return JsonUtil.convertToResponseEntity(false);
 	} //
-	@RequestMapping(path="selectComent",method = RequestMethod.POST)
-	public ResponseEntity<String> selectComent(HttpSession session,@RequestParam int boardNo,@RequestParam(defaultValue = "1") int p) throws JsonProcessingException {
+	@RequestMapping(path="selectComment",method = RequestMethod.POST)
+	public ResponseEntity<String> selectComent(HttpSession session,@RequestParam int no,@RequestParam(defaultValue = "1") int p) throws JsonProcessingException {
 		try {
-			return JsonUtil.convertToResponseEntity(commentService.selectByBoardNo(boardNo, new Page(10,5,p)));
+			return JsonUtil.convertToResponseEntity(commentService.selectByBoardNo(no, new Page(10,5,p)));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		return JsonUtil.convertToResponseEntity(false);
 	} //
+	
 	@RequestMapping(path="commentReInsert",method = RequestMethod.POST,params = {"no","content"})
 	public ResponseEntity<String> commentReInsert(HttpSession session,CommentVO comment) throws JsonProcessingException {
 		try {
