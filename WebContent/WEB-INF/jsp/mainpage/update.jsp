@@ -18,7 +18,7 @@ body{
 	color: #DB3A00;
 }
 </style>
-<body>
+<body onload="window.resizeTo(500,700)">
 <div class="profile"></div>
     <table class="myinfo">
     	<tr>

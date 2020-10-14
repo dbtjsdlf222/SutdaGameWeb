@@ -92,7 +92,7 @@
 	})
 	
 	$(".btn.btn-success.btn-sm").click(function showPopup1(){
-		window.open("/update", "a", "width=300px, height:500px, left=500, top=200");
+		window.open("/update", "a", "left=800, top=300");
 	})
 </script>
 </body>
