@@ -7,7 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>메인 헤더</title>
     <jsp:include page="../include/rel.jsp" flush="false" />
-
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <style type="text/css">
 body{
 	background-color: #363636;

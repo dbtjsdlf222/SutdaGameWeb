@@ -16,7 +16,6 @@
 	margin-bottom: 50px;
 	width: 100px;
 	height: 100px;
-	background-color: #DB3A00;
 }
 .myinfo{
 	margin: auto;
@@ -37,7 +36,9 @@
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false" />
-    <div class="profile"></div>
+    <div class="profile">
+    	<img src="/img/character/cha${myInfo.character}.png" />
+    </div>
     <table class="myinfo">
     	<tr>
     		<td>닉네임</td>
@@ -57,11 +58,11 @@
     	</tr>
     	<tr>
     		<td>머니</td>
-    		<td>&emsp;${myInfo.money} </td>
+    		<td>&emsp;${myInfo.strMoney} </td>
     	</tr>
     	<tr>
     		<td>전</td>
-    		<td>&emsp;;${myInfo.win+myInfo.lose}</td>
+    		<td>&emsp;${myInfo.win+myInfo.lose}</td>
     	</tr>
     	<tr>
     		<td>승</td>
@@ -73,11 +74,7 @@
     	</tr>
     	<tr>
     		<td>승률</td>
-    		<td>&emsp;${(myInfo.win/(myInfo.win+myInfo.lose))*100} }</td>
-    	</tr>
-    	<tr>
-    		<td>캐릭터</td>
-    		<td>&emsp;<img src="/img/character/cha${myInfo.character} .png" /></td>
+    		<td id="winRate">&emsp;</td>
     	</tr>
     </table>
         <div class="wrap1">
@@ -85,6 +82,12 @@
             <p><button type="button" class="btn btn-danger btn-block" onclick="showDeletePopup()">회원 탈퇴</button></p>
         </div>
 <script>
+
+	$(document).ready(function(){
+		var winRate = ${(myInfo.win/(myInfo.win+myInfo.lose))*100};
+		$("#winRate").text(winRate.toFixed(1)+'%');
+	});
+
 	function showDeletePopup(){
 		var result = confirm('정보는 되돌릴 수 없습니다.\n 그래도 회원 탈퇴를 하시겠습니까? \n '); 
 		if(result) { location.replace('/player/delete'); }

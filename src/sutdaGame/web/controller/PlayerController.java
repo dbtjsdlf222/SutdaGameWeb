@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.util.JsonUtil;
+import sutdaGame.web.util.MoneyFormat;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.PlayerVO;
 
@@ -40,7 +41,9 @@ public class PlayerController {
 		try {
 			PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
 			model.setViewName("mainpage/mypage");
-			model.addObject("myInfo", playerService.selectPlayer(vo.getNo()));
+			PlayerVO svo = playerService.selectPlayer(vo.getNo());
+			svo.setStrMoney(new MoneyFormat().format(svo.getMoney()));
+			model.addObject("myInfo", svo);
 		} catch (NullPointerException e) {
 			return new RedirectWithAlert("유저정보 페이지 - 섯다온라인", "유저를 찾을수 없습니다", "/login");
 		}

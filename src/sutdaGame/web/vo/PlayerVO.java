@@ -7,6 +7,7 @@ public class PlayerVO {
 	private String password;
 	private String nickname;
 	private Long money;
+	private String strMoney;
 	private Integer win;
 	private Integer lose;
 	private Integer character;
@@ -14,6 +15,15 @@ public class PlayerVO {
 	private String name;
 	private boolean admin = false;
 	private String rank;
+
+	
+	public String getStrMoney() {
+		return strMoney;
+	}
+
+	public void setStrMoney(String strMoney) {
+		this.strMoney = strMoney;
+	}
 
 	public Integer getNo() {
 		return no;
