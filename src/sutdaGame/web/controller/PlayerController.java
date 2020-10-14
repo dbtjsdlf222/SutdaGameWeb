@@ -69,7 +69,7 @@ public class PlayerController {
 	@RequestMapping(path="update", params = {"name","id"})	//등등
 	public String update(HttpSession session,PlayerVO vo) {
 		
-		return "";
+		return "/mainpage/update";
 	} //
 
 	

@@ -48,6 +48,11 @@ public class MainController {
 			return "redirect:main";
 	} //login
 	
+	@RequestMapping("update")
+	public String login() {
+		return "mainpage/update";
+	} //회원정보 수정
+	
 	//회원가입
 		@RequestMapping("join")
 		public String join(HttpSession session) {
