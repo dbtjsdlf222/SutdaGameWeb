@@ -31,7 +31,7 @@ public class PlayerController {
 			session.setAttribute("loginInfo", PlayerVO);
 			return new ModelAndView("mainpage/main");
 		} else {
-			return new RedirectWithAlert("로그인-섯다온라인","아이디나 비밀번호가 틀렸습니다.","mainpage/main");
+			return new RedirectWithAlert("로그인-섯다온라인","아이디나 비밀번호가 틀렸습니다.","/login");
 		}
 	} //loginAction
 	

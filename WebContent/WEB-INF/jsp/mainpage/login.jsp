@@ -10,7 +10,6 @@
 <style>
 .tab{
     text-align: center;
-    color: #0A4600;
     margin-top: 100px;
 }
 input[type="text"]{
@@ -26,17 +25,14 @@ input[type="password"]{
 input[type="submit"]{
     width: 380px;
     height: 40px;
-    background-color: #0A4600;
+    background-color: #DB3A00;
     color: white;
+    cursor: pointer;
     font-weight: bold;
     font-size: 20px;
-    cursor: pointer;
 }
 form{
     position: relative;
-}
-.tab ul{
-    list-style-type: none;
 }
 .login-option a{
     text-decoration: none;
@@ -49,9 +45,15 @@ form{
 }
 .id-search{
 	margin-right: 100px;
+	border: none;
+	background: #363636;
+	color: #DB3A00;
 }
 .pw-search{
 	margin-left: 100px;
+	border: none;
+	background: #363636;
+	color: #DB3A00;
 }
 </style>
 
@@ -68,8 +70,8 @@ form{
                 </form>
 
                 <ul class="login-option">
-                    <span class="id-search"><a href="#">아이디 찾기</a></span>
-                    <span class="pw-search"><a href="#">비밀번호 찾기</a></span>
+                    <input type="button" name="id-search" class="id-search" value="아이디 찾기">
+                    <input type="button" name="pw-search" class="pw-search" value="비밀번호 찾기">
                 </ul>
             </div>
         </div>
