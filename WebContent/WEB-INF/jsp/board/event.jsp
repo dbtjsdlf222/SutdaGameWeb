@@ -78,9 +78,9 @@ ul.tabs li.current{
 	<div class="title">
 		<h1>새 소식</h1>
 	<ul class="tabs">
-		<li class="tab-link" data-tab="tab-1">공지사항</li>
-		<li class="tab-link" data-tab="tab-2">패치노트</li>
-		<li class="tab-link current" data-tab="tab-3">이벤트</li>
+		<a href="/board/boardList?kind=1"><li class="tab-link" data-tab="tab-1">공지사항</li></a>
+		<a href="/board/boardList?kind=2"><li class="tab-link" data-tab="tab-2">패치노트</li></a>
+		<a href="/board/boardList?kind=3"><li class="tab-link current" data-tab="tab-3">이벤트</li></a>
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content">

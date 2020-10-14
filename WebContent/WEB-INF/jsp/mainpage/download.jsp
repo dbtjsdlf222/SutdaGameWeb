@@ -82,8 +82,8 @@ ul.tabs li.current{
 	<div class="title">
 		<h1>자료실</h1>
 	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">다운로드</li>
-		<li class="tab-link" data-tab="tab-2">게임 가이드</li>
+		<a href="/download"><li class="tab-link current" data-tab="tab-1">다운로드</li></a>
+		<a href="/board/boardList?kind=4"><li class="tab-link" data-tab="tab-2">게임 가이드</li></a>
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">

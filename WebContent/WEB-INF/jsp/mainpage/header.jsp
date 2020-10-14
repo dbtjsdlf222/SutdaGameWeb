@@ -106,7 +106,7 @@ body{
         <div class="top-menu">
         	<ul class="dept01">
         		<li>
-        			<span><a href="/news">새 소식</a></span>
+        			<span><a href="/board/boardList?kind=1">새 소식</a></span>
         			<ul class="dept02">
         				<li id="notice"><a href="/board/boardList?kind=1">공지사항</a></li>
         				<li id="patch"><a href="/board/boardList?kind=2">패치노트</a></li>
@@ -121,7 +121,7 @@ body{
         			</ul>
         		</li>
         		<li>
-        			<span><a href="/community">커뮤니티</a></span>
+        			<span><a href="/board/boardList?kind=5">커뮤니티</a></span>
         			<ul class="dept02">
         				<li id="free"><a href="/board/boardList?kind=5">자유 게시판</a></li>
         				<li id="screen"><a href="/board/boardList?kind=6">스크린샷 게시판</a></li>
@@ -140,7 +140,7 @@ body{
         			</ul>
         		</li>
         		<li>
-        			<span><a href="/customer">고객센터</a></span>
+        			<span><a href="/board/boardList?kind=7">고객센터</a></span>
         			<ul class="dept02">
         				<li id="QA"><a href="/board/boardList?kind=7">1:1 문의</a></li>
         				<li id="FQ"><a href="/board/boardList?kind=8">자주하는 질문</a></li>
