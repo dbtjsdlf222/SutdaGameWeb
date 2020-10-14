@@ -82,14 +82,14 @@
     </table>
         <div class="wrap1">
             <p><button type="button" class="btn btn-success btn-sm">회원 정보 수정</button></p>
-            <p><button type="button" class="btn btn-danger btn-block" onclick="showPopup2();">회원 탈퇴</button></p>
+            <p><button type="button" class="btn btn-danger btn-block" onclick="showDeletePopup()">회원 탈퇴</button></p>
         </div>
 <script>
-	$("#jc").click(function(){
-		var result = confirm('정말 회원 탈퇴를 하시겠습니까? \n 정보는 되돌릴 수 없습니다.'); 
-		if(result) { location.replace('/player/delete'); } 
+	function showDeletePopup(){
+		var result = confirm('정보는 되돌릴 수 없습니다.\n 그래도 회원 탈퇴를 하시겠습니까? \n '); 
+		if(result) { location.replace('/player/delete'); }
 		else {  }
-	})
+	}
 	
 	$(".btn.btn-success.btn-sm").click(function showPopup1(){
 		window.open("/update", "a", "left=800, top=300");
