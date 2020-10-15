@@ -17,4 +17,6 @@ public interface CommentsDAO {
 	public boolean update(CommentVO comment);
 	public boolean commentDelete(CommentVO comment);
 	public boolean reCommentDelete(CommentVO comment);
+	public CommentVO selectOneComment(@Param("no") int no);
+	
 } //interface CommentsDAO;

@@ -69,10 +69,10 @@ $('#comment_write').on('submit', '.inputForm', function(e) {
         } //confirm()
     });
     
-// 댓글 더보기		
+// 댓글 더보기
 	var $more = $("#more");
     var p = 2;
-    
+   	
 	$("#more").click(function(){
 		$('#loadingImg').fadeIn(400);
 		$.ajax({

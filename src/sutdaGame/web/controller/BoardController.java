@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,15 +59,20 @@ public class BoardController {
 			params.put("playerNo",player.getNo());
 		}
 		
-		System.out.println(commnetService.selectByBoardNo(no, page));
-		
 		mav.addObject("post"   , boardService.selectOntBoard(no));
 		mav.addObject("comment", commnetService.selectByBoardNo(no, page));
 		mav.addObject("page"   , page);
 		mav.addObject("like"   , likeService.selectCount(no));
 		mav.addObject("likeCheck", likeService.playerCheck(params));
+		mav.addObject("loginInfo", player);
 		
 		return mav;
+	}
+
+	@RequestMapping("update_form")
+	public String updateForm(@RequestParam int no, Model model) {
+		model.addAttribute("post", boardService.selectOntBoard(no));
+		return "board/update_form";
 	}
 	
 	
@@ -155,23 +161,4 @@ public class BoardController {
 		boardService.deleteBoard(no);
 		return "redirect:/board/boardList";
 	}
-	
-	/*aAjax*/
-	@RequestMapping("like")
-	public ResponseEntity<String> likeInsert(@RequestParam int no, HttpSession session) throws IOException {
-		
-		PlayerVO vo = new PlayerVO();
-		vo = (PlayerVO)session.getAttribute("loginInfo");
-		HashMap<String, Integer> params = new HashMap<String, Integer>();
-		
-		params.put("boardNo", no);
-		params.put("playerNo", vo.getNo());
-		
-		if(likeService.playerCheck(params) == 0)
-		     { likeService.insertLike(params); }
-		else { likeService.deleteLike(params); }
-		
-		return JsonUtil.convertToResponseEntity(likeService.selectCount(no));
-		
-	} //likeInsert()
 }
