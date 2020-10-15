@@ -102,7 +102,7 @@ body{
 <body>
 	<header>
     <div class="nav">
-        <div class="home"><a href="/main"><img src="../img/logo.png"></a></div>
+        <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
         	<ul class="dept01">
         		<li>

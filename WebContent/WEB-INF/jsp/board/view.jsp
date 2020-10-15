@@ -49,7 +49,7 @@
 	color: #DB3A00;
 	background-color: #363636;
 }
-#cancel{
+#deleteBoard{
 	margin-top: 20px;
 	width: 150px;
 	height: 40px;
@@ -106,15 +106,29 @@ commentBox{
 <jsp:include page="../mainpage/header.jsp" flush="false" />
     <div class="container">
 	    <div id="write">
-	         <form action="/board/update">
-	        	<input type="text" name="title" id="title" placeholder="제목을 입력하세요." value="${post.title}">
-	        	<textarea id="contents" name="content" placeholder="내용을 입력하세요.">${post.content }</textarea>
-	        	<input type="hidden" value="${post.no }" name="no"/>
-	        	<button id="back" onclick="location.href='boardList'"> 뒤로가기</button>
-	        	<input type="submit" id="revise" value="수정">
-	        	<button id="cancel" onclick="location.href='/board/delete?no=${post.no}'">게시글 삭제하기</button>
-	        	<div id="likeBtn"><img src="../img/likeBtn1.png" class="likeBtn1" width= 50px;><img src="../img/likeBtn2.png" class="likeBtn2" width= 50px;></div>
-	        </form>
+        	<h1>${post.title}</h1>	
+        	<div>${post.content }</div>
+        	<button id="back" onclick="location.href='boardList'"> 뒤로가기</button>
+        	<c:if test="${post.writerNo eq loginInfo.no}">
+         	<button id="deleteBoard" onclick="location.href='/board/delete?no=${post.no}'">게시글 삭제하기</button>
+         	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'">게시글 수정하기</button>
+	       	
+	       	</c:if>
+	       	${likeCheck}
+	       	${likeCheck}
+	       	${likeCheck}
+	       	
+      			<div id="good_box">
+			<c:choose>
+				<c:when test="${likeCheck eq 1}">
+					<button onclick="likeBoard()"><img id="like" src="/img/likeBtn2.png"/></button>
+				</c:when>
+				<c:otherwise>
+					<button onclick="likeBoard()"><img id="like" src="/img/likeBtn1.png"/></button>
+				</c:otherwise>
+			</c:choose>
+			<span id="likeCount" style="display: block">${like}</span>
+			</div>
 		</div>        	
     </div>
     <h3>댓글</h3>
@@ -122,8 +136,8 @@ commentBox{
 	    <textarea class="commentBox" placeholder="댓글 입력">
 	    
 	    </textarea>
-	    <button id="writeComment" onclick="writeComment1()">
-	    댓글 치기
+	    <button id="writeComment" onclick="writeComment()">
+	    	댓글 치기
 	    </button>
     </div>
     <div class="commentList">
@@ -139,7 +153,7 @@ commentBox{
 						<td><c:out value="${comment.content}" /></td>
 					</tr>
 					<tr>
-						<td><input placeholder="답글 달기[미완성]" class="reCommnet" /><button id="reCommentBtn" onclick="writeReComment(this)" data-no='<c:out value="${comment.no}"/>'>답글 치기</button></td>
+						<td><input placeholder="답글 달기" class="reCommnet" /><button id="reCommentBtn" onclick="writeReComment(this)" data-no='<c:out value="${comment.no}"/>'>답글 치기</button></td>
 					</tr>
 					<tr>
 						<td><button onclick="selectRecomment(this)" data-no="<c:out value='${comment.no }' />" data-p="1">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button></td>
@@ -161,7 +175,7 @@ commentBox{
         Copyrightⓒ2020SUTDA.All rights reserved.</p>
     </footer>
 <script>
-	
+	//답글 더보기
 	function selectRecomment(e){
 		
 		$.ajax({
@@ -169,7 +183,6 @@ commentBox{
 	  		type: 'POST',
 		      data: {  no:$(e).data("no"), p:$(e).data("p") },
 		      success: function(data) {
-			      alert("댓글 불러오기 성공");
 			      $(e).data("p",$(e).data("p")+1);
 			     for(var i=0; i<data.length;i++){
 				     $(e).parent().parent().prepend(
@@ -182,13 +195,13 @@ commentBox{
 	      }
 		});
 	}
+	//댓글 더보기
 	function selectComment(e){
 		$.ajax({
 	  		url:'/ajax/selectComment',
 	  		type: 'POST',
 		      data: {  no:$(e).data("no"), p:$(e).data("p") },
 		      success: function(data) {
-			      alert("댓글 불러오기 성공");
 		    	  $(e).data("p",$(e).data("p")+1);
 			     for(var i=0; data.length;i++){
 				     $(e).parent().parent().prepend(
@@ -202,7 +215,8 @@ commentBox{
 		});
 	}
 
-	function writeComment1() {
+	//댓글 입력
+	function writeComment() {
 		$.ajax({
 	  		url:'/ajax/commentInsert',
 	  		type: 'POST',
@@ -210,12 +224,13 @@ commentBox{
 		      success: function() {
 			      alert("댓글 입력 성공");
 		      },
-		      error:function(textStatus, errorThrown){
-	             alert("로그인 후 이용해 주세요");
-	      }
+		      error: function(statusText) {
+		    	  console.log(statusText);
+			  }
 		});
 	}
-	
+
+	//답글 입력
 	function writeReComment(e) {
 		$.ajax({
 	  		url:'/ajax/commentReInsert',
@@ -229,6 +244,60 @@ commentBox{
 			}
 		});
 	}
-</script>
+	//답글 삭제
+	function deleteComment(e) {
+		$.ajax({
+	  		url:'/ajax/commentDelete',
+	  		type: 'POST',
+		      data: {  content:$(e).parent().children(".reCommnet").val(), no:$(e).data("no") },
+		      success: function() {
+			      alert("댓글 입력 성공");
+		      },
+	    	  error:function(textStatus, errorThrown){
+	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+			}
+		});
+	}
+	
+	//답글 수정
+	function updateComment(e) {
+		$.ajax({
+	  		url:'/ajax/commentUpdate',
+	  		type: 'POST',
+		      data: {  content:$(e).parent().children(".reCommnet").val(), no:$(e).data("no") },
+		      success: function() {
+			      alert("댓글 입력 성공");
+		      },
+	    	  error:function(textStatus, errorThrown){
+	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+			}
+		});
+	}
+
+	//좋아요
+    var likeCheck = ${likeCheck};
+	function likeBoard() {
+		likeCheck = !likeCheck;
+
+		$.ajax({
+	  		url:'/ajax/likeBoard',
+	  		type: 'POST',
+		      data: {  no:${post.no} },
+		      success: function(data) {
+		    	  $('#likeCount').text(data);
+					var src = "/img/";
+		    	  if(likeCheck){
+		    		  src+="likeBtn2.png";
+			   	  } else {
+			   		src+="likeBtn1.png";
+				 }
+			     $('#like').attr("src",src)
+		      },
+	    	  error:function(textStatus, errorThrown){
+	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+			}
+		});
+	}
+	</script>
 </body>
 </html>

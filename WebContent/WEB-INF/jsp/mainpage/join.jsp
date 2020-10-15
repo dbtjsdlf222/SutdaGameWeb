@@ -194,7 +194,7 @@
 	var $id_error = $('#id_error');
 	$id.keyup(function() {
 		if (id2Check.test($id.val())){
-			$id.text("특수문자와 한글은 사용불가합니다.").css({"color":"red"});
+			$id_error.text("특수문자와 한글은 사용불가합니다.").css({"color":"red"});
 			ok=false;
 		} else if($id.val().length < 6 || $id.val().length > 20) {
 			$id_error.text("6에서 20자 사이로 입력해주세요").css({"color":"red"});
