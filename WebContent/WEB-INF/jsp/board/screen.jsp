@@ -104,7 +104,7 @@ input[type="button"]{
 	</div>
 	<div id="tab-1" class="tab-content">
 		<fieldset>
-			<table>
+			<table class="table table-hover">
 				<tr>
 					<td id="post_no">No.</td>
 					<td id="post_title">제목</td>
@@ -115,7 +115,7 @@ input[type="button"]{
 			<c:forEach var="post" items="${boardList}" varStatus="status">
 				<tr>
 					<td><c:out value="${post.no}"/></td>
-					<td><a href="board/view/${post.no}">${post.title}</a></td>
+					<td><a href="/board/view/${post.no}">${post.title}</a></td>
 			        <td>${post.writerName}</td>
 			        <td>${post.like}</td>
 			        <td>${post.writeDate}</td>

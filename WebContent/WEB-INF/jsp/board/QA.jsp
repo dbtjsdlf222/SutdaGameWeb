@@ -112,7 +112,7 @@ input[type="button"]{
 		<fieldset>
 				<c:forEach var="post" items="${boardList}" varStatus="status">
 				<div id="QList">
-					<table>
+					<table class="table table-hover">
 						<tr>
 							<td><a href="/board/view/${post.no}">${post.title}</a></td>
 							<td>${post.writerName}</td>

@@ -88,7 +88,7 @@ ul.tabs li.current{
 	</div>
 	<div id="tab-1" class="tab-content">
 		<fieldset>
-			<table>
+			<table class="table table-hover">
 				<tr>
 					<td id="post_no">No.</td>
 					<td id="post_title">제목</td>
