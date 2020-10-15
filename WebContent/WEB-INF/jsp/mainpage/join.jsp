@@ -101,7 +101,7 @@
             <li>
                 <label for="email">이메일</label><br>
                 <input type="email" id="email" name="email" class="email" required>
-                <button  onclick="email_(this)">이메일 인증하기</button>
+                <button type="button" onclick="email_(this)">이메일 인증하기</button>
                 <p id='success'></p>
             </li>
             <li>
@@ -143,7 +143,6 @@
 <script>
 
 	function email_(e) {
-		$(e).stopPropagation();
 		$.ajax({
 		    url: "/ajax/email_code", // 클라이언트가 요청을 보낼 서버의 URL 주소
 		    data: { email: $("#email").val() },                // HTTP 요청과 함께 서버로 보낼 데이터
