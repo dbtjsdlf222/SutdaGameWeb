@@ -138,7 +138,7 @@ input[type="button"]{
 			<c:forEach var="post" items="${boardList}" varStatus="status">
 				<tr>
 					<td><c:out value="${post.no}"/></td>
-					<td><a href="board/view/${post.no}">${post.title}</a></td>
+					<td><a href="/board/view/${post.no}">${post.title}</a></td>
 			        <td>${post.writerName}</td>
 			        <td>${post.like}</td>
 			        <td>${post.writeDate}</td>
