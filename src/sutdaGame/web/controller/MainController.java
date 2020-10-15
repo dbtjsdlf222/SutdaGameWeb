@@ -139,10 +139,6 @@ public class MainController {
 		sb.append("<h3>환영합니다. " + request.getParameter("title") + "님 </h3>");
 		sb.append("<h4>가입 인증 번호 : "+ dice + " 입니다.</h3>");
 		sb.append("<hr>");
-
-		
-
-
 		
 	    String setfrom = "apdlvmf1562@gmail.com";
 	    String tomail = request.getParameter("tomail"); 		// 받는 사람 이메일

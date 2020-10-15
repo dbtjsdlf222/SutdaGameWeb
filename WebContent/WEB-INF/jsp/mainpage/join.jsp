@@ -100,7 +100,9 @@
             </li>
             <li>
                 <label for="email">이메일</label><br>
-                <input type="text" id="email" name="email" class="email" required>
+                <input type="email" id="email" name="email" class="email" required>
+                <button  onclick="email_(this)">이메일 인증하기</button>
+                <p id='success'></p>
             </li>
             <li>
             	<h3>캐릭터 선택</h3>
@@ -138,88 +140,144 @@
         </form>
 	</fieldset>
 </body>
-
 <script>
+
+	function email_(e) {
+		$(e).stopPropagation();
+		$.ajax({
+		    url: "/ajax/email_code", // 클라이언트가 요청을 보낼 서버의 URL 주소
+		    data: { email: $("#email").val() },                // HTTP 요청과 함께 서버로 보낼 데이터
+		    type: "POST",                             // HTTP 요청 방식(GET, POST)
+		    dataType: "json" ,                        // 서버에서 보내줄 데이터의 타입
+		    success:function(args){
+		    	$(e).append(" <br/><input id='email_code' type='text' placeholder='인증 코드를 입력해주세요'/>  <button id='email_check()'>입력 완료</button>")
+		    },
+           error : function(xhr, status, error) {
+        	   alert('오류가 발생하였습니다.');
+           }
+		}) //ajax
+	}
+
+	function email_check(e) {
+		$.ajax({
+		    url: "/ajax/email_code_check", 				// 클라이언트가 요청을 보낼 서버의 URL 주소
+		    data: { code: $('#email_code').val() }, 	// HTTP 요청과 함께 서버로 보낼 데이터
+		    type: "POST",                             	// HTTP 요청 방식(GET, POST)
+		    dataType: "json" ,                        	// 서버에서 보내줄 데이터의 타입
+		    success:function(args) {
+		    	$('#email_code').attr('readonly', true);
+		    	$(e).remove();
+		    	$('#success').text('이메일 인증에 성공하였습니다.').css("color","red");
+		    },
+           error : function(xhr, status, error) {
+        	   alert('오류가 발생하였습니다.');
+           }
+		}) //ajax
+	}
+	
 	var ok=false;
-	$("form").submit(function(e){
-		if(ok){
-			return true;
-		} else {
-			e.preventDefault();
-			return false;
-		}
-	})
+	   $("form").submit(function(e){
+	      if(ok){
+	         return true;
+	      } else {
+	         e.preventDefault();
+	         return false;
+	      }
+	   })
 
-	$('#detail').click(function(){
-		$('#useTerms').toggle();
-		})
-	
-	$("form").submit(function() {
-		alert("Qweqwe");
-		var result='';
+	   $('#detail').click(function(){
+	      $('#useTerms').toggle();
+	      })
+	   
+	   $("form").submit(function() {
+	      var result='';
 
-		if($("#join_pw").val()!=("#join_pwc").val()) {
-			alert("비밀번호를 확인해주세요");
-			return false;
-		}
-	
-		var arr = [ 'email' ];
-		for(var i=0; i < 3; i++) {
+	      if($("#join_pw").val()!=("#join_pwc").val()) {
+	         alert("비밀번호를 확인해주세요");
+	         return false;
+	      }
+	   
+	      var arr = [ 'email' ];
+	      for(var i=0; i < 3; i++) {
 
-	        result='';
-	        
-			$('.'+arr[i]).map(function() {
-				result +=$(this).val();
-			});
+	           result='';
+	           
+	         $('.'+arr[i]).map(function() {
+	            result +=$(this).val();
+	         });
 
-			$('input[name='+arr[i]+']').val(result);
-		}
-	});
+	         $('input[name='+arr[i]+']').val(result);
+	      }
+	   });
 
-	// 아이디 정규식
-	var idCheck = RegExp(/^[A-Za-z0-9_]{5,12}$/);						//영어 + 숫자 정규식 (5~12자 입력 가능)
-	var id2Check = RegExp(/[~!@#$%^&*()_+|<>?:{}ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);		//특수문자 + 한글 정규식 (아이디에 특수문자와 한글을 거르기 위함)
+	   // 아이디 정규식
+	   var idCheck = RegExp(/^[A-Za-z0-9_]{5,12}$/);                  //영어 + 숫자 정규식 (5~12자 입력 가능)
+	   var id2Check = RegExp(/[~!@#$%^&*()_+|<>?:{}ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);      //특수문자 + 한글 정규식 (아이디에 특수문자와 한글을 거르기 위함)
+	   var $id = $('#join_id');
+	   var $id_error = $('#id_error');
 
-	// 비밀번호 정규식
-	var pwCheck = RegExp(/(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$/); //숫자 + 특수문자 + 영어 정규식 (숫자,특수문자,영어를 1개이상 들어가고 8~20자 이하)
-	var pw2Check = RegExp()
-	$('#user_pw').keyup(function() {
-		$('#pwtag').text("");
-		if (pwCheck.test($('#user_pw').val()))
-			$('#pwtag').text("사용가능한 비밀번호입니다.").css({"margin-right":"25px"});
-		}); // #user_pw
+	   $id.keyup(function() {
+	      
+	      if (id2Check.test($id.val())){
+	         $id_error("특수문자와 한글은 사용불가합니다.").css({"color":"red"});
+	         ok=false;
+	      } else if($id.val().length < 6 || $id.val().length > 20) {
+	         $id_error.text("6에서 20자 사이로 입력해주세요").css({"color":"red"});
+	         ok=false;
+	      } else {
+	         $.ajax({
+	             url: "/ajax/ID_check", // 클라이언트가 요청을 보낼 서버의 URL 주소
+	             data: { id: $id.val() },                // HTTP 요청과 함께 서버로 보낼 데이터
+	             type: "POST",                             // HTTP 요청 방식(GET, POST)
+	             dataType: "json" ,                        // 서버에서 보내줄 데이터의 타입
+	             success:function(args){
+	                if(args==0){
+	                   $id_error.text("사용 가능 아아디 입니다").css({"color":"green"});
+	                   ok=true;
+	                } else {
+	                   $id_error.text("사용중인 아아디 입니다").css({"color":"red"});
+	                   ok=false;
+	               }
+	             },
+	              error : function(xhr, status, error) {
+	                 alert('오류가 발생하였습니다.');
+	              }
+	         }) //ajax
+	       } //if~else
+	   })
 
+	   // 비밀번호 정규식
+	   var pwCheck = RegExp(/(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$/); //숫자 + 특수문자 + 영어 정규식 (숫자,특수문자,영어를 1개이상 들어가고 8~20자 이하)
+	   var $pw = $('#join_pw'); 
+	   var $pwc = $('#join_pwc');
+	   var $pw_error = $('#pwMsg');
+	   var $pwc_error = $('#pwcMsg');
+	   
+	   
+	   $pw.keyup(function() {
+	      $pw_error.text("8~20자 영대 소문자 , 숫자, 특수문자를 포함해야 합니다.").css({"display":"block","color":"red"});
+	      if (pwCheck.test($pw.val())){
+	         $pw_error.text("사용 가능한 비밀번호 입니다.").css({"color":"green"});
+	      }
+	      if($pw.val()==""){
+	         $pw_error.text("필수 입력입니다.");
+	      }
+	   }); // #user_pw
+	   
+	      
 
-	var $id = $('#join_id');
-	var $id_error = $('#id_error');
-	$id.keyup(function() {
-		if (id2Check.test($id.val())){
-			$id_error.text("특수문자와 한글은 사용불가합니다.").css({"color":"red"});
-			ok=false;
-		} else if($id.val().length < 6 || $id.val().length > 20) {
-			$id_error.text("6에서 20자 사이로 입력해주세요").css({"color":"red"});
-			ok=false;
-		} else {
-			$.ajax({
-			    url: "/ajax/ID_check", // 클라이언트가 요청을 보낼 서버의 URL 주소
-			    data: { id: $id.val() },                // HTTP 요청과 함께 서버로 보낼 데이터
-			    type: "POST",                             // HTTP 요청 방식(GET, POST)
-			    dataType: "json" ,                        // 서버에서 보내줄 데이터의 타입
-			    success:function(args){
-			    	if(args==0){
-			    		$id_error.text("사용 가능 아아디 입니다").css({"color":"green"});
-			    		ok=true;
-				    } else {
-				    	$id_error.text("사용중인 아아디 입니다").css({"color":"red"});
-				    	ok=false;
-					}
-			    },
-	           error : function(xhr, status, error) {
-	        	   alert('오류가 발생하였습니다.');
-	           }
-			}) //ajax
-		 } //if~else
-	})
-		
+	   $pwc.keyup(function() {
+	      $pwc_error.text("비밀번호가 일치하지 않습니다.").css({"display" : "block"});
+	      if ($pw.val()==$pwc.val())
+	         $pwc_error.text("비밀번호가 일치합니다.").css({"color" : "green"});
+	      
+	      if($pwc.val()==""){
+	         $pwc_error.text("필수 입력입니다.");
+	      }
+	   }); // #user_pwc
+	      
+	   // 이메일 정규식
+	   var eMailCheck =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
+	   var $email = $("join_email");		
 </script>
 </html>
