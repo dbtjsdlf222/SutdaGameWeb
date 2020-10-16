@@ -1,5 +1,9 @@
 package sutdaGame.web.util;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,11 +28,10 @@ public class JsonUtil {
 		return new ResponseEntity<String>(HttpStatus.OK);
 	} //responseStatusOK();
 	
-	public static ResponseEntity<String> responseStatusBadRequest(String res) throws JsonProcessingException {
+	public static ResponseEntity<String> responseStatusBadRequest(HttpServletResponse response ,String res) throws JsonProcessingException {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);
-		
-		return new ResponseEntity<String>(convertToJsonString(res), headers, HttpStatus.BAD_REQUEST);
+		headers.add("Content-type", MediaType.TEXT_PLAIN.toString());
+		return new ResponseEntity<String>(res, headers, HttpStatus.BAD_REQUEST);
 	} //responseStatusBadRequest();
 	
 } //class JsonUtil;

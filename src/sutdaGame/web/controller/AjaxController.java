@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,17 +78,17 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(path="selectComment",method = RequestMethod.POST)
-	public ResponseEntity<String> selectComent(HttpSession session,@RequestParam int no,@RequestParam(defaultValue = "1") int p) throws JsonProcessingException {
+	public ResponseEntity<String> selectComent(HttpServletResponse res,HttpSession session,@RequestParam int no,@RequestParam(defaultValue = "1") int p) throws JsonProcessingException {
 		try {
 			return JsonUtil.convertToResponseEntity(commentService.selectByBoardNo(no, new Page(10,5,p)));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return JsonUtil.responseStatusBadRequest("error");
+		return JsonUtil.responseStatusBadRequest(res ,"error");
 	}
 	
 	@RequestMapping(path="commentReInsert",method = RequestMethod.POST,params = {"no","content"})
-	public ResponseEntity<String> commentReInsert(HttpSession session,CommentVO comment) throws JsonProcessingException {
+	public ResponseEntity<String> commentReInsert(HttpServletResponse res,HttpSession session,CommentVO comment) throws JsonProcessingException {
 		try {
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 			comment.setPlayer(pvo);
@@ -95,11 +96,11 @@ public class AjaxController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return JsonUtil.responseStatusBadRequest("error");
-	} //
+		return JsonUtil.responseStatusBadRequest(res,"error");
+	}
 	
 	@RequestMapping(path="commentInsert",method = RequestMethod.POST,params = {"boardNo","content"})
-	public ResponseEntity<String> commentInsert(HttpSession session, CommentVO cvo) throws JsonProcessingException {
+	public ResponseEntity<String> commentInsert(HttpServletResponse res, HttpSession session, CommentVO cvo) throws JsonProcessingException {
 		try {
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 			cvo.setPlayer(pvo);
@@ -107,17 +108,17 @@ public class AjaxController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return JsonUtil.responseStatusBadRequest("로그인 해주세요");
+		return JsonUtil.responseStatusBadRequest(res,"로그인 해주세요");
 	}
-		
+	
 	@RequestMapping(path="commentDelete",method = RequestMethod.POST,params = {"no","orderNo"})
-	public ResponseEntity<String> commentSelect(HttpSession session, CommentVO vo) throws JsonProcessingException {
+	public ResponseEntity<String> commentSelect(HttpServletResponse res,HttpSession session, CommentVO vo) throws JsonProcessingException {
 		try {
 			if(commentService.selectOneComment(vo.getNo()).getPlayer().getNo() == ((PlayerVO)session.getAttribute("loginInfo")).getNo()) {
 				
 			}
 		} catch (NullPointerException e) {
-			return JsonUtil.responseStatusBadRequest("삭제된 댓글입니다.");
+			return JsonUtil.responseStatusBadRequest(res,"삭제된 댓글입니다.");
 		}
 			commentService.deleteComment(vo);
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
@@ -147,7 +148,7 @@ public class AjaxController {
 		sb.append("<h1>섯다 가입인증 메일입니다.</h1>");
 		sb.append("<hr>");
 		sb.append("<h3>환영합니다.</h3>");
-		sb.append("<h4>가입 인증 번호 : "+ dice + " 입니다.</h3>");
+		sb.append("<h4>가입 인증 번호는 [<h1>"+ dice + "</h1>] 입니다.</h3>");
 		sb.append("<hr>");
 		
 	    String setfrom = "apdlvmf1562@gmail.com";
@@ -160,32 +161,30 @@ public class AjaxController {
 	        messageHelper.setTo(tomail);						// 받는사람 이메일
 	        messageHelper.setSubject("섯다 가입 인증 메일입니다."); 					// 메일제목은 생략이 가능하다
 	        messageHelper.setText(sb.toString(),true); 					// 메일 내용
-	        System.out.println("센드 163");
 	        mailSender.send(message);
-	        System.out.println("센드 165");
-	        session.setAttribute("code", dice);
+	        session.setAttribute("code", dice+"");
 	        
 	         } catch (Exception e) {
 	            e.printStackTrace();
 	         }
 	    
-		return JsonUtil.responseStatusOK();
+		return JsonUtil.convertToResponseEntity(true);
 	}
 	
 	@RequestMapping(path="email_code_check",method = RequestMethod.POST)
-	public ResponseEntity<String> emailCodeCheck(HttpSession session, String code) throws JsonProcessingException {
+	public ResponseEntity<String> emailCodeCheck(HttpServletResponse res,HttpSession session, String code) throws JsonProcessingException {
 		try {
 			String codeSession = (String)session.getAttribute("code");
 			if(code.equals(codeSession)) {
-				return JsonUtil.responseStatusOK();
-			}else {
-				return JsonUtil.responseStatusBadRequest("코드가 틀렸습니다");
+				session.removeAttribute("code");
+				return JsonUtil.convertToResponseEntity("");
+			} else {     
 			}
 				
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return JsonUtil.convertToResponseEntity(false);
+		return JsonUtil.responseStatusBadRequest(res," ");
 	}
 		
 } //MainController class 

@@ -112,11 +112,7 @@ commentBox{
         	<c:if test="${post.writerNo eq loginInfo.no}">
          	<button id="deleteBoard" onclick="location.href='/board/delete?no=${post.no}'">게시글 삭제하기</button>
          	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'">게시글 수정하기</button>
-	       	
 	       	</c:if>
-	       	${likeCheck}
-	       	${likeCheck}
-	       	${likeCheck}
 	       	
       			<div id="good_box">
 			<c:choose>
@@ -129,7 +125,7 @@ commentBox{
 			</c:choose>
 			<span id="likeCount" style="display: block">${like}</span>
 			</div>
-		</div>        	
+		</div>
     </div>
 <jsp:include page="comment.jsp" flush="false"/>
 <footer>

@@ -39,7 +39,7 @@
         border-radius: 5%;
         color: white;
     }
-    input[type="password"]{
+    input[type="password"],input[type="email"]{
         width: 300px;
         height: 40px;
         padding-left: 10px;
@@ -58,50 +58,75 @@
     }
     #useTerms{
     	display: none;
+    	border: 1px solid #0A4600;
     }
-    #useTerms ul{
+    #useTerms{
     	margin: auto;
     	margin-top: 5px;
     	margin-bottom: 5px;
     	width: 500px;
-    	border: 1px solid #0A4600;
+  
     }
     input[type=radio]{
     	margin-left:40%;
     }
+    #detail{
+     cursor:pointer;
+    }
+    #detail:hover{
+    	text-decoration: underline;
+    }
+    #dtl{
+    	cursor:pointer;
+    }
+    input{
+    	outline:none;
+    }
+    input[type="text"],input[type="password"],input[type="email"]{
+    	transition: .3s;
+    	outline:none;
+    	border-radius:100px
+    }
+     input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus{
+    	border-radius:0px
+    }
+    #inb{
+    	margin-top:10px;
+    	height:40px;
+    }
+    #inb>button{
+    	widht:100px;
+   	 	height:42px;
+    }
  </style>
-
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false"/>
+   	<form action="/joinAction" method="post" autocomplete="off" >
     <fieldset class="information">
     <legend>회원가입</legend>
-    	<form action="/joinAction" method="post">
+    	<ul>
+    		<li>이름</li>
+        	<li><input type="text" placeholder="이름" maxlength="15" minlength="3" required/></li>	
+        </ul>
         <ul id="join_info">
             <li>
                 <label for="join_id">아이디<span class="essential"></span></label><br>
                 <input type="text" id="join_id" name="id" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12" required><br><br>
-                <p style="color:red" id="id_error"></p>
+                <p style="color:red" id="id_error">　</p>
             </li>
             <li>
                 <label for="join_pw">비밀번호</label><br>
-                <input type="password" id="join_pw" name="password" required placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><br><br>
-                <input type="password" id="join_pwc"  required placeholder="비밀번호 확인"><br><br>
+                <input type="password" id="join_pw" name="password" required placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><p id="pwMsg">　</p><br>
+                <input type="password" id="join_pwc"  required placeholder="비밀번호 확인"> <p id="pwcMsg">　</p><br/>
             </li>
         </ul>
+        
         <ul id="privacy">
-			<li>
-                <label for="name">이름</label><br>
-                <input type="text" id="name" name="name" required><br><br>
-            </li>
-			<li>
-                <label for="nickname">이름</label><br>
-                <input type="text" id="name" name="name" required><br><br>
-            </li>
             <li>
                 <label for="email">이메일</label><br>
-                <input type="email" id="email" name="email" class="email" required>
-                <button type="button" onclick="email_(this)">이메일 인증하기</button>
+                <input type="email" id="email" name="email" class="email" placeholder="이메일" required>
+                <button type="button" onclick="email_(this)" id="inb">이메일 인증하기</button>
                 <p id='success'></p>
             </li>
             <li>
@@ -125,39 +150,53 @@
             </li>
         </ul><br><br/>
         <div id="commit">
-        	<input name="commit" type="checkbox" required>개인정보 수집 및 이용
-        	<div id="terms">이용 약관&emsp;<a href="#" id="detail">[자세히 보기]</a></div>
-        		<span id="useTerms">
-        			<ul>
-        				<li>회원가입내의 내용은 정보이용 목적으로 수집합니다.</li>
-        				<li>휴면계정으로 전환 시 삭제합니다.</li>
-        				<li>개인정보 유효기간은 1년으로 설정합니다.</li>
-        			</ul>
-        		</span>
+        	<input name="commit" type="checkbox" required id="lid"/> <label for=lid id="dtl">개인정보 수집 및 이용</label>
+        	<div id="terms">이용 약관&emsp;<span id="detail">[자세히 보기]</span></div>
+       			<ul id="useTerms">
+       				<li>회원가입내의 내용은 정보이용 목적으로 수집합니다.</li>
+       				<li>휴면계정으로 전환 시 삭제합니다.</li>
+       				<li>개인정보 유효기간은 1년으로 설정합니다.</li>
+       			</ul>
         	<input type="submit" value="가입">&emsp;
         	<input type="reset" value="취소">
         </div>
-        </form>
 	</fieldset>
+        </form>
 </body>
-<script>
+<script>	
+	var email=false, name=false, password=false, passwordc=false;
 
+	// 이메일 정규식
+	var eMailCheck =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
+	var email_btn = true;
+	
 	function email_(e) {
+		if(eMailCheck.test($("#email").val())) {
+			alert("메일로 코드를 보내 드렸습니다.");
+			$(e).attr('disabled','true');
+			$('#email').attr('readonly',true);
+		} else {
+			email false;
+			alert("메일을 형식을 확인해주세요");
+			return false;
+		}
+		email_btn = false;
 		$.ajax({
 		    url: "/ajax/email_code", // 클라이언트가 요청을 보낼 서버의 URL 주소
 		    data: { email: $("#email").val() },                // HTTP 요청과 함께 서버로 보낼 데이터
 		    type: "POST",                             // HTTP 요청 방식(GET, POST)
 		    dataType: "json" ,                        // 서버에서 보내줄 데이터의 타입
-		    success:function(args){
-		    	$(e).append(" <br/><input id='email_code' type='text' placeholder='인증 코드를 입력해주세요'/>  <button id='email_check()'>입력 완료</button>")
-		    },
+		    success:function(args) {
+			    $('#email').after('<br/>');
+		    	$(e).append(" <br/><input id='email_code' maxlength='7' type='text' placeholder='인증 코드를 입력해주세요'/>  <button onclick='email_check()' type='button'>입력 완료</button>")
+			},
            error : function(xhr, status, error) {
         	   alert('오류가 발생하였습니다.');
            }
 		}) //ajax
 	}
 
-	function email_check(e) {
+	function email_check() {
 		$.ajax({
 		    url: "/ajax/email_code_check", 				// 클라이언트가 요청을 보낼 서버의 URL 주소
 		    data: { code: $('#email_code').val() }, 	// HTTP 요청과 함께 서버로 보낼 데이터
@@ -165,11 +204,12 @@
 		    dataType: "json" ,                        	// 서버에서 보내줄 데이터의 타입
 		    success:function(args) {
 		    	$('#email_code').attr('readonly', true);
-		    	$(e).remove();
-		    	$('#success').text('이메일 인증에 성공하였습니다.').css("color","red");
+		    	$('#success').text('이메일 인증에 성공하였습니다.').css("color","green");
+		    	$('#inb').remove();
+		    	email=true;
 		    },
            error : function(xhr, status, error) {
-        	   alert('오류가 발생하였습니다.');
+        	   alert("인증코드를 다시 확인하세요");
            }
 		}) //ajax
 	}
@@ -184,9 +224,9 @@
 	      }
 	   })
 
-	   $('#detail').click(function(){
-	      $('#useTerms').toggle();
-	      })
+		$('#detail').click(function(){
+		   $('#useTerms').toggle();
+		})
 	   
 	   $("form").submit(function() {
 	      var result='';
@@ -218,7 +258,7 @@
 	   $id.keyup(function() {
 	      
 	      if (id2Check.test($id.val())){
-	         $id_error("특수문자와 한글은 사용불가합니다.").css({"color":"red"});
+	         $id_error.text("특수문자와 한글은 사용불가합니다.").css({"color":"red"});
 	         ok=false;
 	      } else if($id.val().length < 6 || $id.val().length > 20) {
 	         $id_error.text("6에서 20자 사이로 입력해주세요").css({"color":"red"});
@@ -251,7 +291,7 @@
 	   var $pwc = $('#join_pwc');
 	   var $pw_error = $('#pwMsg');
 	   var $pwc_error = $('#pwcMsg');
-	   
+	   var email=false, name=false, password=false, passwordc=false;
 	   
 	   $pw.keyup(function() {
 	      $pw_error.text("8~20자 영대 소문자 , 숫자, 특수문자를 포함해야 합니다.").css({"display":"block","color":"red"});
@@ -259,24 +299,21 @@
 	         $pw_error.text("사용 가능한 비밀번호 입니다.").css({"color":"green"});
 	      }
 	      if($pw.val()==""){
-	         $pw_error.text("필수 입력입니다.");
+	         $pw_error.text("필수 입력입니다.").css({"color":"red"});
 	      }
-	   }); // #user_pw
-	   
-	      
+	   }); 
 
 	   $pwc.keyup(function() {
-	      $pwc_error.text("비밀번호가 일치하지 않습니다.").css({"display" : "block"});
-	      if ($pw.val()==$pwc.val())
+	      $pwc_error.text("비밀번호가 일치하지 않습니다.");
+	      if ($pw.val()==$pwc.val()){
 	         $pwc_error.text("비밀번호가 일치합니다.").css({"color" : "green"});
-	      
-	      if($pwc.val()==""){
-	         $pwc_error.text("필수 입력입니다.");
+	      } else {
+	    	   $pwc_error.text("비밀번호가 일치 하지 않습니.").css({"color" : "red"});
+		  }
+	      if($pw.val()=="") {
+	         $pw_error.text("필수 입력입니다.");
 	      }
-	   }); // #user_pwc
+	   });
 	      
-	   // 이메일 정규식
-	   var eMailCheck =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
-	   var $email = $("join_email");		
 </script>
 </html>
