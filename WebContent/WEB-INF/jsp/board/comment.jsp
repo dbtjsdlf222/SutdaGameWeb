@@ -30,36 +30,44 @@ textarea{
 	background-color: #363636;
 	color: white;
 }
-#commentImg{
+table{
 	background-image: url('/img/comment.png');
 	background-repeat: no-repeat;
 	width: 472.5px;
+	margin: 20px;
 }
-#reCommentImg{
+table tr:nth-child(2) td{
+	color: white;
+}
+table tr:nth-child(3) td{
+	color: white;
+	float: right;
+}
+table tr:nth-child(4) td{
 	background-image: url('/img/reComment.png');
 	background-repeat: no-repeat;
-	width: 472.5px;
+	display: flex;
 }
 </style>
 <body>
 	<div class="container">
-		<h3>댓글</h3>
+		<h3 style="color: white; font-family: 'Rosewood Std''">댓글</h3>
 		<div class="commentList">
 			<c:choose>
 				<c:when test="${comment ne null}">
 					<c:forEach var="comment" items="${comment}" varStatus="status">
-						<table id="commentImg">
+						<table>
 							<tr>
 								<td>&emsp;&emsp;&emsp;<c:out value="${comment.player.nickname}"/></td>
 							</tr>
 							<tr>
-								<td style="color: white;"><br>&emsp;&emsp;<c:out value="${comment.content}"/></td>
+								<td><br>&emsp;&emsp;<c:out value="${comment.content}"/></td>
 							</tr>
 							<tr>
-								<td style="float: right; color: white; padding-right: -10px;">${comment.regdate}</td>
+								<td>${comment.regdate}</td>
 							</tr>
 							<tr>
-								<td><button onclick="selectRecomment(this)" data-no="<c:out value='${comment.no }' />" data-p="1" style="background-color: #363636; margin-top: 10px; color: white;">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button></td>
+								<td><button onclick="selectRecomment(this)" data-no="<c:out value='${comment.no}' />" data-p="1" style="background-color: #363636; margin-top: 10px; color: white;">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button></td>
 							</tr>
 							<tr>
 								<td><input placeholder="답글" class="reComment" style="background-color: #363636; color: white;"><button id="reCommentBtn" onclick="writeReComment(this)" data-no='<c:out value="{comment.no}"/>' style="background-color: #363636; color: white;">답글 입력</button></td>
@@ -80,6 +88,7 @@ textarea{
 </body>
 
 <script>
+// 	var myno= ${loginInfo.no};
 	//답글 더보기
 	function selectRecomment(e){
 		
@@ -91,8 +100,10 @@ textarea{
 			      $(e).data("p",$(e).data("p")+1);
 			     for(var i=0; i<data.length;i++){
 				     $(e).parent().parent().prepend(
-						     "<tr><td>작성일:</td><td>"+data[i].regdate+"</td></tr>"+
-							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+"</td></tr>");
+						     "<tr><td>&emsp;&emsp;&emsp;"+data[i].player.nickname+"</td></tr>"+"<tr><td><br>&emsp;&emsp;"+data[i].content+"</td></tr>"+"<tr><td>"+data[i].regdate+"</td></tr>");
+// 				     if (data[i].no == myno){
+// 					     "<button value="삭제"></button>"+"<button value="수정"></button>"
+// 					     }
 			     }
 		      },
 		      error:function(textStatus, errorThrown){
@@ -110,8 +121,7 @@ textarea{
 		    	  $(e).data("p",$(e).data("p")+1);
 			     for(var i=0; data.length;i++){
 				     $(e).parent().parent().prepend(
-						     "<tr><td style='background-image: url('/img/reComment.png')'>작성일:</td><td>"+data[i].regdate+"</td></tr>"+
-							"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+"</td></tr>");
+						     "<tr><td>작성일:</td><td>"+data[i].regdate+"</td></tr>"+"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+"</td></tr>");
 			     }
 		      },
 		      error:function(textStatus, errorThrown){
