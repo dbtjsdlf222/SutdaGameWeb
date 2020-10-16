@@ -45,7 +45,6 @@ public class AjaxController {
 		PlayerVO vo = new PlayerVO();
 		vo = (PlayerVO)session.getAttribute("loginInfo");
 		HashMap<String, Integer> params = new HashMap<String, Integer>();
-		System.out.println(vo.getNo());
 		params.put("boardNo", no);
 		params.put("playerNo", vo.getNo());
 		
@@ -140,7 +139,6 @@ public class AjaxController {
 	@RequestMapping(path="email_code",method = RequestMethod.POST)
 	public ResponseEntity<String> commentUpdate(HttpSession session, String email) throws JsonProcessingException {
 		//메일보내기
-		
 		Random r = new Random();
         int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
         
@@ -154,7 +152,7 @@ public class AjaxController {
 		
 	    String setfrom = "apdlvmf1562@gmail.com";
 	    String tomail = email; 		// 받는 사람 이메일
-	    try {  	
+	    try {
 	    	MimeMessage message = mailSender.createMimeMessage();
 	        MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
@@ -162,9 +160,9 @@ public class AjaxController {
 	        messageHelper.setTo(tomail);						// 받는사람 이메일
 	        messageHelper.setSubject("섯다 가입 인증 메일입니다."); 					// 메일제목은 생략이 가능하다
 	        messageHelper.setText(sb.toString(),true); 					// 메일 내용
-	        
-	        mailSender.send(message);	 
-	        
+	        System.out.println("센드 163");
+	        mailSender.send(message);
+	        System.out.println("센드 165");
 	        session.setAttribute("code", dice);
 	        
 	         } catch (Exception e) {
