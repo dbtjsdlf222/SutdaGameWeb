@@ -89,15 +89,15 @@ ul.tabs li.current{
 				<tr>
 					<td id="post_no">No.</td>
 					<td id="post_title">제목</td>
-					<td id="user_id">작성자</td>
 					<td id="post_date">작성일</td>
+					<td id="post_view">조회수</td>
 				</tr>
 				<c:forEach var="post" items="${boardList}" varStatus="status">
 				<tr>
 					<td><c:out value="${post.no}"/></td>
 					<td><a href="/board/view/${post.no}">${post.title}</a></td>
-					<td>관리자</td>
 					<td>${post.writeDate}</td>
+					<td>${post.view}</td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -107,9 +107,14 @@ ul.tabs li.current{
 		<fieldset>
 			<table>
 				<tr>
+					<td>버전</td>
+					<td>제목</td>
 					<td>업데이트 날짜</td>
-					<td>패치 제목</td>
-					<td>패치 내용</td>
+				</tr>
+				<tr>
+					<td>버전</td>
+					<td>${post.title}</td>
+					<td>${post.writeDate}</td>
 				</tr>
 			</table>
 		</fieldset>
@@ -118,9 +123,8 @@ ul.tabs li.current{
 		<fieldset>
 			<table>
 				<tr>
-					<td>이벤트 제목</td>
-					<td>이벤트 내용</td>
-					<td>이벤트 종료일</td>
+					<td>${post.title}</td>
+					<td>이벤트 기간</td>
 				</tr>
 			</table>
 		</fieldset>
