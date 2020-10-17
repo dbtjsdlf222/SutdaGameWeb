@@ -13,6 +13,7 @@ public interface BoardDAO {
 	public void updateBoard(BoardVO boardVO);
 	public ArrayList<BoardVO> selectBoardList(@Param("kindNo")int kindNo,@Param("page") Page page);
 	public BoardVO selectOneBoard(@Param("no") int no);
+	public int boardCount(@Param("kindNo") int kindNo);
 	public void deleteBoard(@Param("no") int no);
 	
 } //BoardDAO interface

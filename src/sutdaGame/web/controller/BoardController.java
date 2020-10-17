@@ -1,12 +1,10 @@
 package sutdaGame.web.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,7 +59,7 @@ public class BoardController {
 		}
 		
 		mav.addObject("post"   , boardService.selectOntBoard(no));
-		mav.addObject("comment", commnetService.selectByBoardNo(no, page));
+		mav.addObject("comment", commnetService.selectByBoardNo(no, page));	
 		mav.addObject("page"   , page);
 		mav.addObject("like"   , likeService.selectCount(no));
 		mav.addObject("loginInfo", player);
@@ -75,39 +73,25 @@ public class BoardController {
 		return "board/update_form";
 	}
 	
-	
 	@RequestMapping("boardList")
 	public ModelAndView boardList(@RequestParam int kind, @RequestParam(defaultValue = "1") int p) {
 		String jsp = null;
 		ModelAndView mav = new ModelAndView();
 		switch(kind) {
-			case 1: 
-				jsp = "board/notice";
-			break;
-			case 2: 
-				jsp = "board/patch";
-			break;
-			case 3: 
-				jsp = "board/event";
-			break;
-			case 4: 
-				jsp = "board/guide";
-			break;
-			case 5: 
-				jsp = "board/free";
-			break;
-			case 6: 
-				jsp = "board/screen";
-			break;
-			case 7: 
-				jsp = "board/QA";
-			break;
-			case 8: 
-				jsp = "board/FQ";
-			break;
+			case 1: jsp = "board/notice"; break;
+			case 2: jsp = "board/patch";  break;
+			case 3: jsp = "board/event";  break;
+			case 4: jsp = "board/guide";  break;
+			case 5: jsp = "board/free";   break;
+			case 6: jsp = "board/screen"; break;
+			case 7: jsp = "board/QA";	  break;
+			case 8: jsp = "board/FQ";	  break;
 		}
 		mav.setViewName(jsp);
-		mav.addObject("boardList", boardService.selectBoardList(kind, new Page(10,5,p)));
+		Page page = new Page(1,5,p);
+		mav.addObject("boardList", boardService.selectBoardList(kind, page));
+		mav.addObject("kind", kind);
+		mav.addObject("page", page);
 		return mav;
 	}
 	

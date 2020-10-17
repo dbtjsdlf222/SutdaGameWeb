@@ -1,7 +1,5 @@
 package sutdaGame.web.util;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpHeaders;
@@ -11,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+/**
+ * @author SUN
+ */
 public class JsonUtil {
 	
 	public static String convertToJsonString(Object obj) throws JsonProcessingException {
@@ -21,6 +21,7 @@ public class JsonUtil {
 	public static ResponseEntity<String> convertToResponseEntity(Object obj) throws JsonProcessingException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);
+		System.out.println(convertToJsonString(obj));
 		return new ResponseEntity<String>(convertToJsonString(obj), headers, HttpStatus.OK);
 	} //ResponseEntity();
 	

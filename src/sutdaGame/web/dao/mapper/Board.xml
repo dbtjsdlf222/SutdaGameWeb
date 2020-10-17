@@ -18,7 +18,8 @@
 		title,
 		content,
 		IFNULL(o.name,"탈퇴한 사용자") as writerName,
-		write_date as writeDate
+		write_date as writeDate,
+		view
 		FROM sutda_board b
 		LEFT JOIN player o
 		ON b.writer_no = o.no
@@ -32,11 +33,19 @@
 		content,
 		IFNULL(o.name,"탈퇴한 사용자") as writerName,
 		write_date as writeDate,
-		(SELECT COUNT(*) FROM `like` WHERE board_no = #{no}) as `like`
+		(SELECT COUNT(*) FROM `like` WHERE board_no = #{no}) as `like`,
+		writer_no writerNo
 		FROM sutda_board b
 		LEFT JOIN player o
 		ON b.writer_no = o.no
 		WHERE b.no=#{no}
+	</select>
+	
+	<select id="boardCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM sutda_board
+		WHERE kind_no = #{kindNo}
+		
 	</select>
 	
 	<delete id="deleteBoard" parameterType="int">

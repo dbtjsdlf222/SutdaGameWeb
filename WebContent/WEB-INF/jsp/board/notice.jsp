@@ -70,6 +70,12 @@ ul.tabs li.current{
 	font-size: 20px;
 	text-align: center;
 }
+.pagination>li>a{
+	board:0px;
+}
+.table tr{
+	cursor: pointer;
+}
 </style>
 <body>
 <jsp:include page="../mainpage/header.jsp" flush="false" />
@@ -79,8 +85,8 @@ ul.tabs li.current{
 		<h1>새 소식</h1>
 	<ul class="tabs">
 		<a href="/board/boardList?kind=1"><li class="tab-link current" data-tab="tab-1">공지사항</li></a>
-		<a href="/board/boardList?kind=2"><li class="tab-link" data-tab="tab-2">패치노트</li></a>
-		<a href="/board/boardList?kind=3"><li class="tab-link" data-tab="tab-3">이벤트</li></a>
+		<!-- <a href="/board/boardList?kind=2"><li class="tab-link" data-tab="tab-2">패치노트</li></a>
+		<a href="/board/boardList?kind=3"><li class="tab-link" data-tab="tab-3">이벤트</li></a> -->
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">
@@ -93,17 +99,18 @@ ul.tabs li.current{
 					<td id="post_view">조회수</td>
 				</tr>
 				<c:forEach var="post" items="${boardList}" varStatus="status">
-				<tr>
+				<tr onclick="location.href='/board/view/${post.no}'">
 					<td><c:out value="${post.no}"/></td>
-					<td><a href="/board/view/${post.no}">${post.title}</a></td>
+					<td>${post.title}</td>
 					<td>${post.writeDate}</td>
 					<td>${post.view}</td>
 				</tr>
 				</c:forEach>
 			</table>
 		</fieldset>
+		<%@ include file="../include/pagination.jsp" %>
 	</div>
-	<div id="tab-2" class="tab-content">
+<%-- 	<div id="tab-2" class="tab-content">
 		<fieldset>
 			<table>
 				<tr>
@@ -128,11 +135,11 @@ ul.tabs li.current{
 				</tr>
 			</table>
 		</fieldset>
-	</div>
+	</div> --%>
 </div>
 
 <script>
-$(document).ready(function(){
+/* $(document).ready(function(){
 	
 	$('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');
@@ -143,7 +150,7 @@ $(document).ready(function(){
 		$(this).addClass('current');
 		$("#"+tab_id).addClass('current');
 	})
-})
+}) */
 </script>
 </body>
 </html>

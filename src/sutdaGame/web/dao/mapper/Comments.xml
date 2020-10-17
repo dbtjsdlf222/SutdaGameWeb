@@ -27,6 +27,8 @@
       player_no = p.no
     WHERE
       c.no = #{no}
+    AND
+       `order` != 0
       LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
@@ -46,7 +48,7 @@
   <select id="selectByBoardNo" parameterType="int" resultType="CommentVO">
 	SELECT
       c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, p.no 'player.no', p.nickname 'player.nickname',
-      (SELECT COUNT(*) FROM sutda_comment WHERE `no`=c.no) replyCount
+      (SELECT COUNT(*) FROM sutda_comment WHERE `no`=c.no AND `order`!=0) replyCount
     FROM
       sutda_comment c
     JOIN
@@ -66,6 +68,8 @@
       sutda_comment
     WHERE
       board_no = #{boardNo}
+        AND
+     `order` = 0
   </select>
   
   <select id="selectReCommentCount" parameterType="int" resultType="int">
@@ -75,6 +79,8 @@
       sutda_comment
     WHERE
       no = #{no}
+    AND
+     `order` != 0
   </select>
   
   <update id="update" parameterType="CommentVO">

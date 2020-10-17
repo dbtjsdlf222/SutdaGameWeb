@@ -112,9 +112,16 @@ table tr:nth-child(4) td{
 					<c:forEach var="comment" items="${comment}" varStatus="status">
 						<div class="commentCon">
 								<div class="nickname"><c:out value="${comment.player.nickname}"/></div>
-								<div class="content"><c:out value="${comment.content}"/></div>
+								<div class="content">${comment.content}</div>
 								<br><div class="regdate">${comment.regdate}</div>
-								<br><button onclick="selectRecomment(this)" data-no='${comment.no}' data-p="1" style="background-color: #363636; margin-top: 10px; color: white;">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button>
+								<br>
+								<c:if test="${comment.replyCount ne 0}">
+								<button onclick="selectRecomment(this)" 
+									data-no='${comment.no}' data-p="1" data-end='${page.end}' 
+									style="background-color: #363636; margin-top: 10px; color: white;">
+									답글이 <span><c:out value="${comment.replyCount}" /></span>개 있습니다.
+								</button>
+								</c:if>
 						</div>
 								<br><input placeholder="답글" class="reComment" style="background-color: #363636; color: white;"><button id="reCommentBtn" onclick="writeReComment(this)"  data-no='<c:out value="${comment.no}"/>' style="background-color: #363636; color: white;" >답글 입력</button>
 					</c:forEach>
@@ -132,33 +139,39 @@ table tr:nth-child(4) td{
 </body>
 
 <script>
-// 	var myno= ${loginInfo.no};
+	// 	var myno= ${loginInfo.no};
 	//답글 더보기
 	function selectRecomment(e){
-		
 		$.ajax({
 	  		url:'/ajax/selectRecomment',
 	  		type: 'POST',
 		      data: {  no:$(e).data("no"), p:$(e).data("p") },
 		      success: function(data) {
-			      if(data.length < 5){
+			     /*  
+			      if(data.length < 5) {
 						$(e).text("더이상 답글이 없습니다.");
 						$(e).attr("disabled","true");
-				      }
+			      } */
 			      $(e).data("p",$(e).data("p")+1);
-			     for(var i=0; i<data.length;i++){
+			      for(var i=0; i<data.length;i++){
 				     $(e).prev().after(
 						     "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+data[i].regdate+"</div></div>");
-// 				     if (data[i].no == myno){
-// 					     "<button value="삭제"></button>"+"<button value="수정"></button>"
-// 					     }
-			     }
+				     /* if (data[i].no == myno){
+					     "<button value="삭제"></button>"+"<button value="수정"></button>"
+				     } */
+			      }
+			      if(data.length < 10) {
+				     $(e).remove();
+				  } else {
+					  $(e).find("span").text($(e).find("span").text()-data.length);
+				  }
 		      },
 		      error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-	      }
+	      	}
 		});
 	}
+
 	//댓글 더보기
 	function selectComment(e){
 		$.ajax({
@@ -171,15 +184,20 @@ table tr:nth-child(4) td{
 				     $(e).parent().parent().prepend(
 						     "<tr><td>작성일:</td><td>"+data[i].regdate+"</td></tr>"+"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+"</td></tr>");
 			     }
+			     if(data.length < 5) {
+			     	$(e).remove();
+			     }
 		      },
 		      error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-	      }
+	      	  }
 		});
 	}
 
 	//댓글 입력
 	function writeComment() {
+		<c:choose>
+		<c:when test="${loginInfo ne null}">
 		$.ajax({
 	  		url:'/ajax/commentInsert',
 	  		type: 'POST',
@@ -191,10 +209,17 @@ table tr:nth-child(4) td{
 		    	  console.log(statusText);
 			  }
 		});
+		</c:when>
+		<c:otherwise>
+			alert("로그인을 해주세요");
+		</c:otherwise>
+		</c:choose>
 	}
 
 	//답글 입력
 	function writeReComment(e) {
+		<c:choose>
+		<c:when test="${loginInfo ne null}">
 		if($(e).prev().val().trim()==""||$(e).data("no")=="") {
 			alert("내용을 입력해주세요");
 			return;
@@ -210,9 +235,17 @@ table tr:nth-child(4) td{
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
 			}
 		});
+		</c:when>
+		<c:otherwise>
+			alert("로그인을 해주세요");
+		</c:otherwise>
+		</c:choose>
 	}
+	
 	//답글 삭제
 	function deleteComment(e) {
+		<c:choose>
+		<c:when test="${loginInfo ne null}">
 		$.ajax({
 	  		url:'/ajax/commentDelete',
 	  		type: 'POST',
@@ -224,10 +257,17 @@ table tr:nth-child(4) td{
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
 			}
 		});
+		</c:when>
+		<c:otherwise>
+			alert("로그인을 해주세요");
+		</c:otherwise>
+		</c:choose>
 	}
 	
 	//답글 수정
 	function updateComment(e) {
+		<c:choose>
+		<c:when test="${loginInfo ne null}">
 		$.ajax({
 	  		url:'/ajax/commentUpdate',
 	  		type: 'POST',
@@ -239,6 +279,11 @@ table tr:nth-child(4) td{
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
 			}
 		});
+		</c:when>
+		<c:otherwise>
+			alert("로그인을 해주세요");
+		</c:otherwise>
+		</c:choose>
 	}
 
 	//좋아요
@@ -270,7 +315,6 @@ table tr:nth-child(4) td{
 		alert("로그인을 해주세요");
 		</c:otherwise>
 	</c:choose>
-		
 	}
 	</script>
 </html>
