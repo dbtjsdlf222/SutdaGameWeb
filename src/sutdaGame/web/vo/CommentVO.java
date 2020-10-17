@@ -91,5 +91,12 @@ public class CommentVO {
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
+
+	@Override
+	public String toString() {
+		return "CommentVO [no=" + no + ", orderNo=" + orderNo + ", boardNo=" + boardNo + ", player=" + player
+				+ ", content=" + content + ", regdate=" + regdate + ", replyCount=" + replyCount + "]";
+	}
+	
 	
 } //class Comment;

@@ -53,17 +53,17 @@ public class BoardController {
 		if(null==boardService.selectOntBoard(no)) {
 			return new RedirectWithAlert("알림","없거나 삭제된 게시글 입니다.","/board/boardList");
 		}
-		
 		PlayerVO player = (PlayerVO)session.getAttribute("loginInfo");
+		params.put("boardNo",no);
 		if(player!=null) {
 			params.put("playerNo",player.getNo());
+			mav.addObject("likeCheck", likeService.playerCheck(params));
 		}
 		
 		mav.addObject("post"   , boardService.selectOntBoard(no));
 		mav.addObject("comment", commnetService.selectByBoardNo(no, page));
 		mav.addObject("page"   , page);
 		mav.addObject("like"   , likeService.selectCount(no));
-		mav.addObject("likeCheck", likeService.playerCheck(params));
 		mav.addObject("loginInfo", player);
 		
 		return mav;
@@ -107,8 +107,7 @@ public class BoardController {
 			break;
 		}
 		mav.setViewName(jsp);
-		mav.addObject("boardList", boardService.selectBoardList(kind, new Page(5,5,p)));
-		System.out.println(boardService.selectBoardList(kind, new Page(5,5,p)));
+		mav.addObject("boardList", boardService.selectBoardList(kind, new Page(10,5,p)));
 		return mav;
 	}
 	

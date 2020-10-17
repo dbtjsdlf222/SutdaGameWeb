@@ -99,7 +99,7 @@ public class AjaxController {
 		return JsonUtil.responseStatusBadRequest(res,"error");
 	}
 	
-	@RequestMapping(path="commentInsert",method = RequestMethod.POST,params = {"boardNo","content"})
+	@RequestMapping(path="commentInsert",method = RequestMethod.POST, params = {"boardNo","content"})
 	public ResponseEntity<String> commentInsert(HttpServletResponse res, HttpSession session, CommentVO cvo) throws JsonProcessingException {
 		try {
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");

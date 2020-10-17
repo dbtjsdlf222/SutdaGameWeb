@@ -7,7 +7,6 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>댓글 작성</title>
 </head>
 <style>
 body{
@@ -81,6 +80,28 @@ table tr:nth-child(4) td{
 	background-image: url('/img/reComment.png');
 	background-repeat: no-repeat;
 }
+#good_box>button:focus{
+	outline:none;
+}
+#like:hover{
+	transform:scale(1.2);
+}
+#like:active{
+	transform:scale(0.7);
+}
+#like{
+-webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+	transition:0.5s;
+}
+
+#good_box>button{
+	outline:none;
+    border-radius: 126px;
+    width: 152px;
+    height: 119px;
+    background-color: firebrick;
+}
 </style>
 <body>
 	<div class="container">
@@ -93,9 +114,9 @@ table tr:nth-child(4) td{
 								<div class="nickname"><c:out value="${comment.player.nickname}"/></div>
 								<div class="content"><c:out value="${comment.content}"/></div>
 								<br><div class="regdate">${comment.regdate}</div>
-								<br><button onclick="selectRecomment(this)" data-no="<c:out value='${comment.no}' />" data-p="1" style="background-color: #363636; margin-top: 10px; color: white;">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button>
+								<br><button onclick="selectRecomment(this)" data-no='${comment.no}' data-p="1" style="background-color: #363636; margin-top: 10px; color: white;">답글이 <c:out value="${comment.replyCount}" />개 있습니다.</button>
 						</div>
-								<br><input placeholder="답글" class="reComment" style="background-color: #363636; color: white;"><button id="reCommentBtn" onclick="writeReComment(this)" data-no='<c:out value="{comment.no}"/>' style="background-color: #363636; color: white;">답글 입력</button>
+								<br><input placeholder="답글" class="reComment" style="background-color: #363636; color: white;"><button id="reCommentBtn" onclick="writeReComment(this)"  data-no='<c:out value="${comment.no}"/>' style="background-color: #363636; color: white;" >답글 입력</button>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
@@ -104,7 +125,7 @@ table tr:nth-child(4) td{
 			</c:choose>
 		</div>
 		<div class="commentWrite">
-			<textarea placeholder="댓글 입력.."></textarea>
+			<textarea placeholder="댓글 입력.." id="commentBox"></textarea>
 			<button id="commentBtn" onclick="writeComment()">확인</button>
 		</div>
 	</div>
@@ -114,14 +135,16 @@ table tr:nth-child(4) td{
 // 	var myno= ${loginInfo.no};
 	//답글 더보기
 	function selectRecomment(e){
+		
 		$.ajax({
 	  		url:'/ajax/selectRecomment',
 	  		type: 'POST',
 		      data: {  no:$(e).data("no"), p:$(e).data("p") },
 		      success: function(data) {
-// 			      if(data.length == 0){
-// 						$(e).toggle().prev().after("<button onclick=hiddenRecomment>"+"</button>")
-// 				      }
+			      if(data.length < 5){
+						$(e).text("더이상 답글이 없습니다.");
+						$(e).attr("disabled","true");
+				      }
 			      $(e).data("p",$(e).data("p")+1);
 			     for(var i=0; i<data.length;i++){
 				     $(e).prev().after(
@@ -160,7 +183,7 @@ table tr:nth-child(4) td{
 		$.ajax({
 	  		url:'/ajax/commentInsert',
 	  		type: 'POST',
-		      data: {  content:$(".commentBox").val(), boardNo:${post.no } },
+		      data: {  content:$("#commentBox").val(), boardNo:${post.no } },
 		      success: function() {
 			      alert("댓글 입력 성공");
 		      },
@@ -172,10 +195,14 @@ table tr:nth-child(4) td{
 
 	//답글 입력
 	function writeReComment(e) {
+		if($(e).prev().val().trim()==""||$(e).data("no")=="") {
+			alert("내용을 입력해주세요");
+			return;
+		}
 		$.ajax({
 	  		url:'/ajax/commentReInsert',
 	  		type: 'POST',
-		      data: {  content:$(e).parent().children(".reCommnet").val(), no:$(e).data("no") },
+		      data: {  content:$(e).prev().val(), no:$(e).data("no") },
 		      success: function() {
 			      alert("댓글 입력 성공");
 		      },
@@ -215,10 +242,10 @@ table tr:nth-child(4) td{
 	}
 
 	//좋아요
-    var likeCheck = ${likeCheck};
+    var likeCheck = ${likeCheck eq 0};
 	function likeBoard() {
-		likeCheck = !likeCheck;
-
+	<c:choose>
+		<c:when test="${loginInfo ne null}">
 		$.ajax({
 	  		url:'/ajax/likeBoard',
 	  		type: 'POST',
@@ -231,12 +258,19 @@ table tr:nth-child(4) td{
 			   	  } else {
 			   		src+="likeBtn1.png";
 				 }
-			     $('#like').attr("src",src)
+			     $('#like').attr("src",src);
+			     likeCheck=!likeCheck;
 		      },
 	    	  error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
 			}
 		});
+		</c:when>
+		<c:otherwise>
+		alert("로그인을 해주세요");
+		</c:otherwise>
+	</c:choose>
+		
 	}
 	</script>
 </html>

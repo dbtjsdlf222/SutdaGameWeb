@@ -94,7 +94,7 @@ footer p{
     text-align: center;
     color: #CACACA;
 }
-commentBox{
+.commentBox{
 	resize: none;
 }
 #writeComment{
@@ -108,19 +108,18 @@ commentBox{
 	    <div id="write">
         	<h1>${post.title}</h1>	
         	<div>${post.content }</div>
-        	<button id="back" onclick="location.href='boardList'"> 뒤로가기</button>
+        	<button id="back" onclick="goBack();"> 뒤로가기</button>
         	<c:if test="${post.writerNo eq loginInfo.no}">
          	<button id="deleteBoard" onclick="location.href='/board/delete?no=${post.no}'">게시글 삭제하기</button>
          	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'">게시글 수정하기</button>
 	       	</c:if>
-	       	
       			<div id="good_box">
 			<c:choose>
 				<c:when test="${likeCheck eq 1}">
-					<button onclick="likeBoard()"><img id="like" src="/img/likeBtn2.png"/></button>
+					<button onclick="likeBoard()"><img id="like" width="90px" src="/img/likeBtn2.png"/></button>
 				</c:when>
 				<c:otherwise>
-					<button onclick="likeBoard()"><img id="like" src="/img/likeBtn1.png"/></button>
+					<button onclick="likeBoard()"><img id="like" width="90px" src="/img/likeBtn1.png"/></button>
 				</c:otherwise>
 			</c:choose>
 			<span id="likeCount" style="display: block">${like}</span>
