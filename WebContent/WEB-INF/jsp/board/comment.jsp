@@ -117,13 +117,16 @@ table tr:nth-child(4) td{
 								<br>
 								<c:if test="${comment.replyCount ne 0}">
 								<button onclick="selectRecomment(this)" 
-									data-no='${comment.no}' data-p="1" data-end='${page.end}' 
-									style="background-color: #363636; margin-top: 10px; color: white;">
+									data-no='${comment.no}' data-p="1" data-end='${page.end}'>
 									답글이 <span><c:out value="${comment.replyCount}" /></span>개 있습니다.
 								</button>
 								</c:if>
 						</div>
-								<br><input placeholder="답글" class="reComment" style="background-color: #363636; color: white;"><button id="reCommentBtn" onclick="writeReComment(this)"  data-no='<c:out value="${comment.no}"/>' style="background-color: #363636; color: white;" >답글 입력</button>
+								<br><input placeholder="답글" class="reComment">
+									<button id="reCommentBtn" 
+											onclick="writeReComment(this)"  
+											data-no='<c:out value="${comment.no}"/>' >답글 입력
+									</button>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
