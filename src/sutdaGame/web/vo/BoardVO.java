@@ -14,6 +14,7 @@ public class BoardVO {
 	private Integer view;
 	private Integer kindNo;
 	private Integer like;
+	private Integer commentCount;
 	private String kindName;
 
 	public Integer getNo() {
@@ -22,6 +23,14 @@ public class BoardVO {
 
 	public void setNo(Integer no) {
 		this.no = no;
+	}
+	
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+	
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
 	}
 	
 	public Integer getLike() {

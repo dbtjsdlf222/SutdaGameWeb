@@ -50,7 +50,7 @@ ul.tabs li.current{
 .tab-content.current tr{
 	border-bottom: 1px solid white;
 }
-.tab-content.current tr td:nth-child(1){
+/* .tab-content.current tr td:nth-child(1){
 	width: 200px;
 	font-size: 20px;
 	text-align: center;
@@ -69,12 +69,21 @@ ul.tabs li.current{
 	width: 300px;
 	font-size: 20px;
 	text-align: center;
-}
+} */
 .pagination>li>a{
 	board:0px;
 }
 .table tr{
 	cursor: pointer;
+}
+.table .table-hover span{
+	display:inline;
+}
+.boardColumn{
+	width: 1100px;
+	>span{
+		margin-left:10px;	
+	}
 }
 </style>
 <body>
@@ -92,18 +101,24 @@ ul.tabs li.current{
 	<div id="tab-1" class="tab-content current">
 		<fieldset>
 			<table class="table table-hover">
-				<tr>
+				<!-- <tr>
 					<td id="post_no">No.</td>
 					<td id="post_title">제목</td>
 					<td id="post_date">작성일</td>
 					<td id="post_view">조회수</td>
-				</tr>
+				</tr> -->
 				<c:forEach var="post" items="${boardList}" varStatus="status">
 				<tr onclick="location.href='/board/view/${post.no}'">
-					<td><c:out value="${post.no}"/></td>
-					<td>${post.title}</td>
-					<td>${post.writeDate}</td>
-					<td>${post.view}</td>
+					<td>
+						<div class="boardColumn">
+							<h3>${post.title}</h3>
+							<span class="nickname">${post.writerName}</span>
+							<span class="date">${post.writeDate}</span>
+							<span><i class="fas fa-eye"></i>${post.view }</span>
+							<%-- <span><i class="far fa-heart"></i>${post.like }</span> --%>
+							<span><i class="far fa-comments"></i>${post.commentCount}</span>
+						</div>
+					</td>
 				</tr>
 				</c:forEach>
 			</table>

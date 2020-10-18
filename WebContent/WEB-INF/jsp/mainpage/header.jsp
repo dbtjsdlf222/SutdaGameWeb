@@ -8,23 +8,41 @@
     <title>메인 헤더</title>
     <jsp:include page="../include/rel.jsp" flush="false" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/reset.css" />
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 body{
 	background-color: #363636;
+	position: relative;
+	padding-top:100px;
 }
 .home{
-    margin-left: 50px;
-    margin-right: 50px;
+    overflow: hidden;
+    margin-top: -19px;
+    transition:0.9s;
 }
 .container{
 	padding: 0px;
 }
 .nav{
-    display: flex;
+	position: absolute;
     padding-top: 30px;
-    border-bottom: 2px solid #DB3A00;
-    height: 200px;
-	list-style: none;
+    border-bottom: 3px solid #DB3A00;
+    height: 100px;
+    list-style: none;
+    transition: 1s;
+    overflow: hidden;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+}
+.nav:hover{
+	height: 200px;
+}
+.nav:hover .home{
+	margin-top:10px;
+	margin-left:10px;
+	height:280px;
 }
 .dept01{
     display: flex;
@@ -32,7 +50,12 @@ body{
     text-align: center;
 }
 .top-menu{
-	margin-right: 150px;
+    position: absolute;
+    left: 255px;
+    top:36px;
+}
+.dept01>li{
+	margin:0 20px
 }
 .dept01 li span{
 	margin-right: 70px;
@@ -43,20 +66,24 @@ body{
 	font-weight: bold;
 }
 .dept02{
- 	visibility: hidden;
- 	opacity: 0;
- 	transition: visibility 0s, opacity 0.5s ease-out;
 	list-style-type: none;
-	padding-left: 0px;
-	font-size: 20px;
+    padding-left: 0px;
+    margin-top: 31px;
+    margin-left: -67px;
+    font-size: 25px;
 }
 .dept02 a{
 	color: #DB3A00;
 	text-decoration: none;
+	transition: .2s;
+}
+.dept02 a:hover{
+	text-shadow: 2px 2px 3px black;
 }
 .dept02 li{
 	align-items: center;
 	padding-left: 0px;
+	margin-bottom: 10px;
 }
 .login{
     width: 120px;
@@ -94,13 +121,106 @@ body{
     font-weight: bold;
 }
 .dept01:hover .dept02{
-	visibility: visible;
-	opacity: 1;
+}
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: #000000 solid 1px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+   	-moz-box-sizing: border-box;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #000000;
+    background-color: #000000;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #000;
+    background-color: #DB3A00;;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #000000;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.button_base:hover {
+    cursor: pointer;
+}
+.login_btn{
+    width: 127px;
+}
+#login_box{
+    position: absolute;
+    right:10px;
+    top:20px;
 }
 </style>
 </head>
 <body>
 	<header>
+
     <div class="nav">
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
@@ -128,12 +248,6 @@ body{
         			</ul>
         		</li>
         		<li>
-        			<span><a href="/shop">상점</a></span>
-        			<ul class="dept02">
-        				<li id="shop"><a href="/shop">웹 샵</a></li>
-        			</ul>
-        		</li>
-        		<li>
         			<span><a href="/rank">명예의 전당</a></span>
         			<ul class="dept02">
         				<li id="rank">랭킹</li>
@@ -148,13 +262,28 @@ body{
         		</li>
         	</ul>
        	</div>
+			<div id="login_box">
         <% if(session.getAttribute("loginInfo")==null){ %>
-        
-	        <div class="login"><a href="/login">로그인</a></div>
-	        <div class="join"><a href="/join">회원가입</a></div>
-        <% } else{ %>
-        	<div class="mypage"><a href="/player/mypage"><img id="slide-menu" src="/img/samsun.png"></a></div>
+			  <div class="button_base b05_3d_roll login_btn" style=" position: absolute; right: 156px;" onclick="location.href='/login'">
+			    <div>LOGIN</div>
+			    <div>로그인</div>
+			  </div>
+			  <div class="button_base b05_3d_roll login_btn" onclick="location.href='/join'">
+			    <div>SIGUP</div>
+			    <div>회원가입</div>
+			  </div> 
+        <% } else { %>
+        	<div class="button_base b05_3d_roll login_btn" onclick="location.href='/logout'">
+			    <div>LOGOUT</div>
+			    <div>로그아웃</div>
+			  </div> 
+        	<div class="button_base b05_3d_roll login_btn" onclick="location.href='/player/mypage'" style=" position: absolute; right: 156px;top:0">
+			    <div>MYPAGE</div>
+			    <div>마이페이지</div>
+			  </div> 
+        	<!-- <div class="mypage"><a href="/player/mypage"><img id="slide-menu" src="/img/samsun.png">마이페이지</a></div> -->
         <% } %>
+			</div>
     </div>
     </header>
 </body>

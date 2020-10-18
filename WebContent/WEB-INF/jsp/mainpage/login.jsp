@@ -10,7 +10,8 @@
 <style>
 .tab{
     text-align: center;
-    margin-top: 100px;
+    position:relative;
+    top:150px;
 }
 input[type="text"]{
     width: 380px;
@@ -30,9 +31,6 @@ input[type="submit"]{
     cursor: pointer;
     font-weight: bold;
     font-size: 20px;
-}
-form{
-    position: relative;
 }
 .login-option a{
     text-decoration: none;
@@ -55,6 +53,7 @@ form{
 	background: #363636;
 	color: #DB3A00;
 }
+
 </style>
 
 </head>
@@ -68,11 +67,8 @@ form{
                     <span class="pw"><input type="password" name="password" class="user_pw" placeholder="비밀번호를 입력하세요."></span><br><br>
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
-
-                <ul class="login-option">
                     <input type="button" name="id-search" class="id-search" value="아이디 찾기">
                     <input type="button" name="pw-search" class="pw-search" value="비밀번호 찾기">
-                </ul>
             </div>
         </div>
     </div>

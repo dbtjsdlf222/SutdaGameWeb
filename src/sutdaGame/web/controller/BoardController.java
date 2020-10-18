@@ -88,7 +88,7 @@ public class BoardController {
 			case 8: jsp = "board/FQ";	  break;
 		}
 		mav.setViewName(jsp);
-		Page page = new Page(1,5,p);
+		Page page = new Page(10,5,p);
 		mav.addObject("boardList", boardService.selectBoardList(kind, page));
 		mav.addObject("kind", kind);
 		mav.addObject("page", page);

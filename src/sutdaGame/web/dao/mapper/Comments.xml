@@ -12,8 +12,23 @@
   <insert id="insertReply" parameterType="CommentVO">
     INSERT INTO sutda_comment
       (`no`, `order`, board_no, player_no, content)
-    VALUES
-      (#{no}, (SELECT MAX(`order`)+1 FROM sutda_comment c WHERE no = #{no}), #{boardNo}, #{player.no}, #{content})
+    VALUES(
+    	#{no},
+	  (SELECT MAX(`order`)+1 
+      FROM 
+   		sutda_comment c 
+      WHERE 
+     	no = #{no}), 
+      (SELECT 
+      	board_no 
+      FROM 
+      	sutda_comment 
+      	WHERE 
+       		no=#{no} 
+      	AND 
+       		`order`=0), 
+   		#{player.no},
+   		#{content})
   </insert>
   
   <select id="selectReComment" resultType="CommentVO" parameterType="int">
