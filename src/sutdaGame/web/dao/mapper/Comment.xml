@@ -14,19 +14,8 @@
       (`no`, `order`, board_no, player_no, content)
     VALUES(
     	#{no},
-	  (SELECT MAX(`order`)+1 
-      FROM 
-   		sutda_comment
-      WHERE 
-     	no = #{no}), 
-      (SELECT 
-      	board_no 
-      FROM 
-      	sutda_comment 
-      	WHERE 
-       		no=#{no} 
-      	AND 
-       		`order`=0), 
+	  (SELECT  `order`  FROM  (SELECT MAX(`order`)+1 as `order`  FROM  sutda_comment WHERE  no = #{no}) as `order`),
+      (SELECT  board_no  FROM  (SELECT  board_no  FROM sutda_comment WHERE  no=#{no}  AND  `order`=0) as board_no), 
    		#{player.no},
    		#{content})
   </insert>
