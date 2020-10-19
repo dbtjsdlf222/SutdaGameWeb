@@ -4,20 +4,21 @@
   
   <insert id="insertComment" parameterType="CommentVO">
     INSERT INTO sutda_comment
-      (`no`, `order`, board_no, player_no, content)
+      (`no`, `order`, board_no, player_no, content, regdate)
     VALUES
-      ((SELECT IFNULL(MAX(no)+1, 0) FROM sutda_comment c), 0, #{boardNo}, #{player.no}, #{content})
+      ((SELECT IFNULL(MAX(no)+1, 0) FROM sutda_comment c), 0, #{boardNo}, #{player.no}, #{content},date_format(now(),'%Y-%m-%d %h:%i'))
   </insert>
   
   <insert id="insertReply" parameterType="CommentVO">
     INSERT INTO sutda_comment
-      (`no`, `order`, board_no, player_no, content)
+      (`no`, `order`, board_no, player_no, content, regdate)
     VALUES(
     	#{no},
 	  (SELECT  `order`  FROM  (SELECT MAX(`order`)+1 as `order`  FROM  sutda_comment WHERE  no = #{no}) as `order`),
       (SELECT  board_no  FROM  (SELECT  board_no  FROM sutda_comment WHERE  no=#{no}  AND  `order`=0) as board_no), 
    		#{player.no},
-   		#{content})
+   		#{content},
+   		date_format(now(),'%Y-%m-%d %h:%i'))
   </insert>
   
   <select id="selectReComment" resultType="CommentVO" parameterType="int">
