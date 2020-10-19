@@ -162,6 +162,8 @@
         </div>
 	</fieldset>
         </form>
+<jsp:include page="footer.jsp" flush="false" />
+
 </body>
 <script>	
 	var email=false, name=false, password=false, passwordc=false;

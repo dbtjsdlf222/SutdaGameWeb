@@ -110,7 +110,7 @@ ul.tabs li.current{
 		</fieldset>
 	</div>
 </div>
-
+<jsp:include page="../mainpage/footer.jsp" flush="false" />
 <script>
 $(document).ready(function(){
 	

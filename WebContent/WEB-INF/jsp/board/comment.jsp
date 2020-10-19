@@ -27,7 +27,7 @@ textarea{
 #commentBtn{
 	width: 10%;
 	background-color: #363636;
-	color: white;
+	color: white;	
 }
 .commentCon{
 	background-image: url('/img/comment.png');
@@ -36,6 +36,8 @@ textarea{
 	margin: 20px;
 	margin-bottom: 0px;
 	color: white;
+	word-wrap: break-word;
+	padding-right: 15px;
 }
 .commentCon .nickname{
 	color: black;
@@ -48,15 +50,23 @@ textarea{
 .commentCon .regdate{
 	float: right;
 }
+.commentCon > button{
+	margin-top: 20px;
+	background-color: #363636;
+	color: white;
+}
 .reCommentCon{
 	background-image: url('/img/reComment.png');
 	background-repeat: no-repeat;
+	background-size: cover;
 	width: 472.5px;
-	height: 90px;
+ 	height: 90px;
 	margin: 20px;
 	margin-left: 100px;
 	margin-bottom: 0px;
 	color: white;
+	word-wrap: break-word;
+	padding-right: 15px;
 }
 .reCommentCon .nickname{
 	color: black;
@@ -79,6 +89,7 @@ table tr:nth-child(3) td{
 table tr:nth-child(4) td{
 	background-image: url('/img/reComment.png');
 	background-repeat: no-repeat;
+	height: auto;
 }
 #good_box>button:focus{
 	outline:none;

@@ -61,6 +61,8 @@
 				<input type="hidden" name="kindNo" value="${kindNo}" />
 		</form>
 	</div>
+<jsp:include page="../mainpage/footer.jsp" flush="false" />
+	
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="/js/summernote/summernote-lite.min.js"></script>
 	<script src="/js/summernote/lang/summernote-ko-KR.js"></script>

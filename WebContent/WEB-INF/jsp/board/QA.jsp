@@ -168,8 +168,7 @@ input[type="button"]{
       </c:if>
    </ul>
 </div>
-
-
+<jsp:include page="../mainpage/footer.jsp" flush="false" />
 <script>
 $(document).ready(function(){
    

@@ -53,7 +53,6 @@ input[type="submit"]{
 	background: #363636;
 	color: #DB3A00;
 }
-
 </style>
 
 </head>

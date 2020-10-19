@@ -220,7 +220,6 @@ body{
 </head>
 <body>
 	<header>
-
     <div class="nav">
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">

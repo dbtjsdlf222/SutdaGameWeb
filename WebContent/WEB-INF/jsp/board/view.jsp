@@ -127,11 +127,6 @@ footer p{
 		</div>
     </div>
 <jsp:include page="comment.jsp" flush="false"/>
-<footer>
-<p></p>
-	<p>서울특별시 구로구 디지털로 306 2층(구로동 182-13, 대륭포스트타워2차)<br/>
-	전화번호: 010-5716-0288 / E-mail: asino0226@gmail.com<br/>
-	Copyrightⓒ2020SUTDA.All rights reserved.</p>
-</footer>
+<jsp:include page="../mainpage/footer.jsp" flush="false" />
 </body>
 </html>

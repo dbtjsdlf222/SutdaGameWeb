@@ -11,5 +11,6 @@
 <body>
 	<jsp:include page="../mainpage/header.jsp" flush="false"/>
 	
+	<jsp:include page="footer.jsp" flush="false" />
 </body>
 </html>
