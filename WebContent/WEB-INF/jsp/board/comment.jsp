@@ -18,14 +18,17 @@ body{
 h3{
 	border-bottom: 1px solid white;
 }
-textarea{
+#commentBox{
+	margin-top: 20px;
 	width: 80%;
+	height: 50px;
 	resize: none;
 	background-color: #363636;
 	color: white;
 }
 #commentBtn{
 	width: 10%;
+	height: 50px;
 	background-color: #363636;
 	color: white;	
 }
@@ -34,7 +37,7 @@ textarea{
 	background-repeat: no-repeat;
 	width: 472.5px;
 	margin: 20px;
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 	color: white;
 	word-wrap: break-word;
 	padding-right: 15px;
@@ -113,6 +116,23 @@ table tr:nth-child(4) td{
     height: 119px;
     background-color: firebrick;
 }
+.asd{
+	display: none;
+}
+.reCommentWrite{
+	background-color: #363636;
+	color: white;
+}
+input[class="reComment"]{
+	width: 400px;
+	background-color: #363636;
+	color: white;
+	margin-top: 10px;
+}
+#reCommentBtn, #reCommentView{
+	background-color: #363636;
+	color: white;
+}
 </style>
 <body>
 	<div class="container">
@@ -126,18 +146,22 @@ table tr:nth-child(4) td{
 								<div class="content">${comment.content}</div>
 								<br><div class="regdate">${comment.regdate}</div>
 								<br>
-								<c:if test="${comment.replyCount ne 0}">
-								<button onclick="selectRecomment(this)" 
+						</div>
+								<c:if test="${comment.replyCount ne 0}">&emsp;
+								<button id="reCommentView" onclick="selectRecomment(this)" 
 									data-no='${comment.no}' data-p="1" data-end='${page.end}'>
 									답글이 <span><c:out value="${comment.replyCount}" /></span>개 있습니다.
 								</button>
 								</c:if>
-						</div>
-								<br><input placeholder="답글" class="reComment">
+								
+								&emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
+								<div class="asd">
+								&emsp;<input placeholder="답글" class="reComment">
 									<button id="reCommentBtn" 
 											onclick="writeReComment(this)"  
 											data-no='<c:out value="${comment.no}"/>' >답글 입력
 									</button>
+								</div>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
@@ -146,7 +170,8 @@ table tr:nth-child(4) td{
 			</c:choose>
 		</div>
 		<div class="commentWrite">
-			<textarea placeholder="댓글 입력.." id="commentBox"></textarea>
+			<input type="text" id="commentBox" placeholder="댓글 입력..">
+<!-- 		<textarea placeholder="댓글 입력.." id="commentBox"></textarea> -->
 			<button id="commentBtn" onclick="writeComment()">확인</button>
 		</div>
 	</div>
@@ -185,7 +210,12 @@ table tr:nth-child(4) td{
 	      	}
 		});
 	}
-
+	
+	//답글 쓰기
+	function reCommentWrite(e){
+		$(e).next().toggle();
+	}
+	
 	//댓글 더보기
 	function selectComment(e){
 		$.ajax({
