@@ -15,6 +15,7 @@ body{
 	background-color: #363636;
 	position: relative;
 	padding-top:100px;
+	min-width:1071px;
 }
 .home{
     overflow: hidden;
@@ -53,15 +54,13 @@ body{
     position: absolute;
     left: 255px;
     top:36px;
+    width:56%;
 }
 .dept01>li{
-	margin:0 20px
-}
-.dept01 li span{
-	margin-right: 70px;
+	margin:0 3%;
 }
 .dept01 li span a{
-	font-size: 30px;
+	font-size: 21px;
 	color: #DB3A00;
 	font-weight: bold;
 }
@@ -69,16 +68,18 @@ body{
 	list-style-type: none;
     padding-left: 0px;
     margin-top: 31px;
-    margin-left: -67px;
+    margin-left: -8px;
     font-size: 25px;
 }
 .dept02 a{
 	color: #DB3A00;
 	text-decoration: none;
 	transition: .2s;
+	font-size:16px;
 }
 .dept02 a:hover{
 	text-shadow: 2px 2px 3px black;
+	font-size:20px;
 }
 .dept02 li{
 	align-items: center;
@@ -132,7 +133,7 @@ body{
     position: absolute;
     text-align: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     padding: 10px;
     border: #000000 solid 1px;
     pointer-events: none;
@@ -140,7 +141,7 @@ body{
     -webkit-box-sizing: border-box;
    	-moz-box-sizing: border-box;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .b05_3d_roll div:nth-child(1) {
@@ -153,21 +154,21 @@ body{
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     transform-origin: 50% 50% -25px;
-    -webkit-transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 31% 72% -25px;
     -moz-transform-origin: 50% 50% -25px;
 }
 
 .b05_3d_roll div:nth-child(2) {
     color: #000;
-    background-color: #DB3A00;;
+    background-color: #DB3A00;
     transform: rotateX(0deg);
     -webkit-transform: rotateX(0deg);
     -moz-transform: rotateX(0deg);
     transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
-    transform-origin: 50% 50% -25px;
-    -webkit-transform-origin: 50% 50% -25px;
+    transform-origin: 50% 30% -25px;
+    -webkit-transform-origin: 17;
     -moz-transform-origin: 50% 50% -25px;
 }
 
@@ -209,7 +210,8 @@ body{
     cursor: pointer;
 }
 .login_btn{
-    width: 127px;
+    width: 110px;
+    height: 47px;
 }
 #login_box{
     position: absolute;
@@ -225,7 +227,7 @@ body{
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
         	<ul class="dept01">
-        		<li>
+        		<li style="width:101px;"> 
         			<span><a href="/board/boardList?kind=1">새 소식</a></span>
         			<ul class="dept02">
         				<li id="notice"><a href="/board/boardList?kind=1">공지사항</a></li>
@@ -233,27 +235,27 @@ body{
         				<li id="event"><a href="/board/boardList?kind=3">이벤트</a></li>
         			</ul>
         		</li>
-        		<li>
+        		<li style="width:93px">
         			<span><a href="/download">자료실</a></span>
         			<ul class="dept02">
         				<li id="download"><a href="/download">다운로드</a></li>
         				<li id="guide"><a href="/board/boardList?kind=4">게임 가이드</a></li>
         			</ul>
         		</li>
-        		<li>
+        		<li style="width:181px">
         			<span><a href="/board/boardList?kind=5">커뮤니티</a></span>
         			<ul class="dept02">
         				<li id="free"><a href="/board/boardList?kind=5">자유 게시판</a></li>
         				<li id="screen"><a href="/board/boardList?kind=6">스크린샷 게시판</a></li>
         			</ul>
         		</li>
-        		<li>
+        		<li style="width:161px">
         			<span><a href="/rank">명예의 전당</a></span>
         			<ul class="dept02">
         				<li id="rank">랭킹</li>
         			</ul>
         		</li>
-        		<li>
+        		<li style="width:134px">
         			<span><a href="/board/boardList?kind=7">고객센터</a></span>
         			<ul class="dept02">
         				<li id="QA"><a href="/board/boardList?kind=7">1:1 문의</a></li>
@@ -264,7 +266,7 @@ body{
        	</div>
 			<div id="login_box">
         <% if(session.getAttribute("loginInfo")==null){ %>
-			  <div class="button_base b05_3d_roll login_btn" style=" position: absolute; right: 156px;" onclick="location.href='/login'">
+			  <div class="button_base b05_3d_roll login_btn" style=" position: absolute; right: 120px;" onclick="location.href='/login'">
 			    <div>LOGIN</div>
 			    <div>로그인</div>
 			  </div>
