@@ -12,10 +12,11 @@
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 body{
-	background-color: #363636;
+	background-color: #3C3D30;
 	position: relative;
 	padding-top:100px;
 	min-width:1071px;
+	
 }
 .home{
     overflow: hidden;
@@ -29,13 +30,14 @@ body{
 	position: absolute;
     padding-top: 30px;
     border-bottom: 3px solid #DB3A00;
-    height: 100px;
+    height: 99px;
     list-style: none;
     transition: 1s;
     overflow: hidden;
     width: 100%;
     top: 0;
     z-index: 999;
+    background-color:black;
 }
 .nav:hover{
 	height: 200px;
@@ -78,7 +80,7 @@ body{
 	font-size:16px;
 }
 .dept02 a:hover{
-	text-shadow: 2px 2px 3px black;
+	text-shadow: 1px 1px 8px #fff;
 	font-size:20px;
 }
 .dept02 li{
@@ -141,7 +143,7 @@ body{
     -webkit-box-sizing: border-box;
    	-moz-box-sizing: border-box;
     font-weight: bold;
-    font-size: 19px;
+    font-size: 17px;
 }
 
 .b05_3d_roll div:nth-child(1) {
@@ -156,6 +158,7 @@ body{
     transform-origin: 50% 50% -25px;
     -webkit-transform-origin: 31% 72% -25px;
     -moz-transform-origin: 50% 50% -25px;
+    border: 2px solid #fff;
 }
 
 .b05_3d_roll div:nth-child(2) {
@@ -216,12 +219,27 @@ body{
 #login_box{
     position: absolute;
     right:10px;
-    top:20px;
+    top:29px;
+}
+footer{
+    width: 100%;
+    height: 70px;
+    display: block;
+}
+footer p{
+    text-align: center;
+    color: #CACACA;
+}
+.write_btn{
+	float:right;
+	width:100px;
+	height:40px;
 }
 </style>
 </head>
 <body>
 	<header>
+
     <div class="nav">
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
@@ -250,9 +268,6 @@ body{
         		</li>
         		<li style="width:161px">
         			<span><a href="/rank">명예의 전당</a></span>
-        			<ul class="dept02">
-        				<li id="rank">랭킹</li>
-        			</ul>
         		</li>
         		<li style="width:134px">
         			<span><a href="/board/boardList?kind=7">고객센터</a></span>

@@ -58,15 +58,15 @@
 				</tr>
 			</table>
 				<input type="submit" class="button" value="글쓰기" />
-				<input type="hidden" name="kindNo" value="${kindNo}" />
+				<input type="hidden" name="kindNo" value="${kind}" />
 		</form>
 	</div>
-<jsp:include page="../mainpage/footer.jsp" flush="false" />
-	
+	 <jsp:include page="../include/rel.jsp" flush="false" />
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="/js/summernote/summernote-lite.min.js"></script>
 	<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
 	
+</body>
 	<!-- codemirror-->
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
@@ -79,7 +79,6 @@
 			  height: 300,                 // 에디터 높이
 			  minHeight: 800,             // 최소 높이
 			  maxHeight: 600,             // 최대 높이
-			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 			  lang: "ko-KR",					// 한글 설정
 			  placeholder: '2글자 이상 작성해주세요.',	//placeholder 설정
 			  codemirror: { // code 수정 용이
@@ -118,5 +117,4 @@
 		}
 
 	</script>
-</body>
 </html>

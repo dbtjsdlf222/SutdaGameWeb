@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>	
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<ul class="pagination" style="border: 1px solid brown">
 		<c:if test="${1 < page.start}">
 			<li ><a href="?kind=${kind}&p=${page.start - page.pageCount}"  aria-label="이전">
@@ -23,3 +23,6 @@
 			<span aria-hidden="true">다음</span></a></li>
 		</c:if>
 	</ul>
+	<c:if test="${ loginInfo ne null }">
+		<a href="/board/write?kind=${kind}"><button type="button" class='write_btn'>글쓰기</button></a>
+	</c:if>

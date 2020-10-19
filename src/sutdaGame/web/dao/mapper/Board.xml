@@ -41,6 +41,7 @@
 		WHERE 
 			kind_no=#{kindNo}
 		GROUP BY b.no
+		ORDER BY write_date DESC
 		LIMIT 
 			#{page.startContent}, #{page.contentCount}
 	</select>

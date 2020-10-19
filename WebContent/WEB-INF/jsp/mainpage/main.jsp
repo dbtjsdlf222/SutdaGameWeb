@@ -1,3 +1,4 @@
+
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -171,15 +172,6 @@
 		font-size: 16px;
 	}
 }
-footer{
-    width: 100%;
-    height: 70px;
-    display: block;
-}
-footer p{
-    text-align: center;
-    color: #CACACA;
-}
 </style>
 </head>
 <body>
@@ -201,8 +193,7 @@ footer p{
 		</div>
 	</div>
 </div>
-<jsp:include page="footer.jsp" flush="false" />
-    
+     <jsp:include page="../include/rel.jsp" flush="false" />
 <script>
 	(function(window){
 		"use strict";
