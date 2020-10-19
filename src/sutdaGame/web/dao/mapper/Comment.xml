@@ -16,7 +16,7 @@
     	#{no},
 	  (SELECT MAX(`order`)+1 
       FROM 
-   		sutda_comment c 
+   		sutda_comment
       WHERE 
      	no = #{no}), 
       (SELECT 

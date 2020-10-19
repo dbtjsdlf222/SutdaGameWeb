@@ -105,7 +105,6 @@ footer p{
 <body>
 <jsp:include page="../mainpage/header.jsp" flush="false" />
     <div class="container">
-	    <div id="write">
         	<h1>${post.title}</h1>	
         	<div>${post.content }</div>
         	<button id="back" onclick="goBack();"> 뒤로가기</button>

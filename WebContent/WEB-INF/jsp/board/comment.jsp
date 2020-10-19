@@ -218,6 +218,7 @@ table tr:nth-child(4) td{
 		      data: {  content:$("#commentBox").val(), boardNo:${post.no } },
 		      success: function() {
 			      alert("댓글 입력 성공");
+			      $("#commentBox").val("");
 		      },
 		      error: function(statusText) {
 		    	  console.log(statusText);
@@ -244,6 +245,7 @@ table tr:nth-child(4) td{
 		      data: {  content:$(e).prev().val(), no:$(e).data("no") },
 		      success: function() {
 			      alert("댓글 입력 성공");
+			      
 		      },
 	    	  error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");

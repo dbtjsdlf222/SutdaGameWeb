@@ -8,15 +8,14 @@
     <title>메인 헤더</title>
     <jsp:include page="../include/rel.jsp" flush="false" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/reset.css" />
+
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-body{
+html>body{
 	background-color: #3C3D30;
 	position: relative;
 	padding-top:100px;
 	min-width:1071px;
-	
 }
 .home{
     overflow: hidden;
@@ -30,7 +29,7 @@ body{
 	position: absolute;
     padding-top: 30px;
     border-bottom: 3px solid #DB3A00;
-    height: 99px;
+    height: 95px;
     list-style: none;
     transition: 1s;
     overflow: hidden;
@@ -71,7 +70,7 @@ body{
     padding-left: 0px;
     margin-top: 31px;
     margin-left: -8px;
-    font-size: 25px;
+    font-size: 24px;
 }
 .dept02 a{
 	color: #DB3A00;
@@ -80,12 +79,14 @@ body{
 	font-size:16px;
 }
 .dept02 a:hover{
+	color: #DB3A00;
 	text-shadow: 1px 1px 8px #fff;
 	font-size:20px;
 }
 .dept02 li{
 	align-items: center;
 	padding-left: 0px;
+	height:20px;
 	margin-bottom: 10px;
 }
 .login{
@@ -237,9 +238,8 @@ footer p{
 }
 </style>
 </head>
-<body>
+<div id="wrap">
 	<header>
-
     <div class="nav">
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
@@ -252,7 +252,7 @@ footer p{
         				<li id="event"><a href="/board/boardList?kind=3">이벤트</a></li>
         			</ul>
         		</li>
-        		<li style="width:93px">
+        		<li style="width:100px">
         			<span><a href="/download">자료실</a></span>
         			<ul class="dept02">
         				<li id="download"><a href="/download">다운로드</a></li>
@@ -280,7 +280,7 @@ footer p{
        	</div>
 			<div id="login_box">
         <% if(session.getAttribute("loginInfo")==null){ %>
-			  <div class="button_base b05_3d_roll login_btn" style=" position: absolute; right: 120px;" onclick="location.href='/login'">
+			  <div class="button_base b05_3d_roll login_btn" style=" position: absolute; right: 108px;" onclick="location.href='/login'">
 			    <div>LOGIN</div>
 			    <div>로그인</div>
 			  </div>
@@ -302,5 +302,4 @@ footer p{
 			</div>
     </div>
     </header>
-</body>
 </html>

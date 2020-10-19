@@ -104,7 +104,7 @@ public class BoardController {
 	@RequestMapping("write")
 	public String write(Model model,@RequestParam int kind) {
 		model.addAttribute("kind", kind);
-		return "board/write";
+		return "redirect:board/boardList&kind="+kind;
 	}
 	
 	@RequestMapping(path="writeAction",params= {"title","content","kindNo"})
