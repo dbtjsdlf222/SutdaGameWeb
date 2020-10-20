@@ -6,7 +6,7 @@
     INSERT INTO sutda_comment
       (`no`, `order`, board_no, player_no, content, regdate)
     VALUES
-      ((SELECT IFNULL(MAX(no)+1, 0) FROM sutda_comment c), 0, #{boardNo}, #{player.no}, #{content},date_format(now(),'%Y-%m-%d %h:%i'))
+      ((SELECT IFNULL(MAX(no)+1, 0) FROM sutda_comment c), 0, #{boardNo}, #{player.no}, #{content},date_format(now(),'%Y-%m-%d %H:%i'))
   </insert>
   
   <insert id="insertReply" parameterType="CommentVO">
@@ -18,7 +18,7 @@
       (SELECT  board_no  FROM  (SELECT  board_no  FROM sutda_comment WHERE  no=#{no}  AND  `order`=0) as board_no),  
    		#{player.no},
    		#{content},
-   		date_format(now(),'%Y-%m-%d %h:%i'))
+   		date_format(now(),'%Y-%m-%d %H:%i'))
   </insert>
   
   <select id="selectReComment" resultType="CommentVO" parameterType="int">

@@ -21,7 +21,6 @@ public class JsonUtil {
 	public static ResponseEntity<String> convertToResponseEntity(Object obj) throws JsonProcessingException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);
-		System.out.println(convertToJsonString(obj));
 		return new ResponseEntity<String>(convertToJsonString(obj), headers, HttpStatus.OK);
 	} //ResponseEntity();
 	
