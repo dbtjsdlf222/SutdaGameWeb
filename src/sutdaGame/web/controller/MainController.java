@@ -125,48 +125,4 @@ public class MainController {
 			return "board/customer";
 		}	//customer
 		
-	//메일보내기
-	@RequestMapping(value = "mailSending")
-    public String mailSending(HttpServletRequest request, HttpSession session, String email, String name) {
-		
-		Random r = new Random();
-        int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
-        
-		StringBuffer sb = new StringBuffer();
-
-		sb.append("<h1>섯다 가입인증 메일입니다.</h1>");
-		sb.append("<hr>");
-		sb.append("<h3>환영합니다. " + request.getParameter("title") + "님 </h3>");
-		sb.append("<h4>가입 인증 번호 : "+ dice + " 입니다.</h3>");
-		sb.append("<hr>");
-		
-	    String setfrom = "apdlvmf1562@gmail.com";
-	    String tomail = request.getParameter("tomail"); 		// 받는 사람 이메일
-	    try {  	
-	    	MimeMessage message = mailSender.createMimeMessage();
-	        MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-
-	        messageHelper.setFrom(setfrom); 					// 보내는사람 생략하면 정상작동을 안함
-	        messageHelper.setTo(tomail);						// 받는사람 이메일
-	        messageHelper.setSubject("섯다 가입 인증 메일입니다."); 					// 메일제목은 생략이 가능하다
-	        messageHelper.setText(sb.toString(),true); 					// 메일 내용
-	        
-	        mailSender.send(message);	 
-	        
-	        session.setAttribute("code", dice);
-	        
-	         } catch (Exception e) {
-	            e.printStackTrace();
-	         }
-	    
-	    return "mailForm";
-	}
-	         
-	         // mailForm
-	         @RequestMapping(value = "/mail")
-	         public String mailForm() {
-	          
-	           return "mail";
-	         }  
-		
 } //MainController class 

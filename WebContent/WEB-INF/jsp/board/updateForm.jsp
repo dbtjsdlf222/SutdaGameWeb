@@ -50,15 +50,15 @@
 <body>
 <jsp:include page="../mainpage/header.jsp" flush="false" />
 	<div class="container">
-		<form action="/board/update" method="POST">
+		<form action="/board/writeAction" method="POST">
 			<table style="width: 100%; border-collapse: collapse">
-				<tr><td colspan="3"><input name="title" size="20" placeholder="제목" value="${post.title}"></td></tr>
+				<tr><td colspan="3"><input name="title" size="20" placeholder="제목"></td></tr>
 				<tr>
-					<td colspan="3"><textarea id="summernote" name="content" required>${post.content}</textarea></td>
+					<td colspan="3"><textarea id="summernote" name="content" required></textarea></td>
 				</tr>
 			</table>
 				<input type="submit" class="button" value="글쓰기" />
-				<input type="hidden" class="button" value="${post.no }" />
+				<input type="hidden" name="kindNo" value="${kind}" />
 		</form>
 	</div>
 	 <jsp:include page="../include/rel.jsp" flush="false" />

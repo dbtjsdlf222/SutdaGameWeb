@@ -68,7 +68,9 @@ public class BoardController {
 	}
 
 	@RequestMapping("update_form")
-	public String updateForm(@RequestParam int no, Model model) {
+	public String updateForm(@RequestParam int no, Model model, HttpSession session) {
+		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
+		
 		model.addAttribute("post", boardService.selectOntBoard(no));
 		return "board/update_form";
 	}

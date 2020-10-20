@@ -22,7 +22,10 @@
   <mvc:interceptors>
 	<mvc:interceptor>
 	  <mvc:mapping path="/logout"/>
-	  <mvc:mapping path="/user/page/**"/>
+	  <mvc:mapping path="/player/mypage"/>
+	  <mvc:mapping path="/player/delete"/>
+	  <mvc:mapping path="/player/update"/>
+	  <mvc:mapping path="/update"/>
 	  <bean class="sutdaGame.web.interceptor.SessionAttributeCheckInterceptor">
 	    <constructor-arg value="loginInfo"/>
 	    <constructor-arg value="false"/>
