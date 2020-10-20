@@ -183,7 +183,7 @@ input[class="reComment"]{
 								
 								&emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
 								<div class="asd">
-								&emsp;<input placeholder="답글" class="reComment">
+								&emsp;<input class="reComment" placeholder="답글">
 									<button id="reCommentBtn" 
 											onclick="writeReComment(this)"  
 											data-no='<c:out value="${comment.no}"/>' >답글 입력
@@ -219,18 +219,19 @@ input[class="reComment"]{
 			      } */
 			      $(e).data("p",$(e).data("p")+1);
 			      for(var i=0; i<data.length;i++){
+				      console.log(data[i].regdate);
 					var writeTime = data[i].regdate;
-						if(writeTime > 524160){
-							writeTime = Math.floor(writeTime/524160) + '년 전';
-						} else if(writeTime > 10080){
-							writeTime = Math.floor(writeTime/10080) + '주 전';
-						} else if(writeTime > 1440){
-							writeTime = Math.floor(writeTime/1440) + '일 전';
+						if(writeTime > 3153600){
+							writeTime = Math.floor(writeTime/3153600) + '년 전';
+						} else if(writeTime > 604800){
+							writeTime = Math.floor(writeTime/604800) + '주 전';
+						} else if(writeTime > 86400){
+							writeTime = Math.floor(writeTime/86400) + '일 전';
+						} else if(writeTime > 3600){
+							writeTime = Math.floor(writeTime/3600) + '시간 전';
 						} else if(writeTime > 60){
-							writeTime = Math.floor(writeTime/60) + '시간 전';
-						} else if(writeTime > 1){
-							writeTime = writeTime + '분 전';
-						} else{
+							writeTime = Math.floor(writeTime/1) + '분 전';
+						} else if(writeTime < 1){
 							writeTime = '방금 전';
 						}
 				     $(e).prev().after(
@@ -251,7 +252,7 @@ input[class="reComment"]{
 		});
 	}
 	
-	//답글 쓰기
+	//답글 쓰기 버튼
 	function reCommentWrite(e){
 		$(e).next().toggle();
 	}
@@ -306,6 +307,7 @@ input[class="reComment"]{
 		<c:choose>
 		<c:when test="${loginInfo ne null}">
 		if($(e).prev().val().trim()==""||$(e).data("no")=="") {
+// 			console.log(val());
 			alert("내용을 입력해주세요");
 			return;
 		}

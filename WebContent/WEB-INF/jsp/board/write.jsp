@@ -50,7 +50,7 @@
 <body>
 <jsp:include page="../mainpage/header.jsp" flush="false" />
 	<div class="container">
-		<form action="/board/update" method="POST">
+		<form action="/board/writeAction" method="POST">
 			<table style="width: 100%; border-collapse: collapse">
 				<tr><td colspan="3"><input name="title" size="20" placeholder="제목" value="${post.title}"></td></tr>
 				<tr>
