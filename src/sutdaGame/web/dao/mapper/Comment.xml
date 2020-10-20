@@ -52,7 +52,7 @@
   
   <select id="selectByBoardNo" parameterType="int" resultType="CommentVO">
 	SELECT
-      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, p.no 'player.no', p.nickname 'player.nickname',
+      c.no no, `order` orderNo, board_no boardNo, content, TRUNCATE((NOW()-c.regdate)/60,0) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname',
       (SELECT COUNT(*) FROM sutda_comment WHERE `no`=c.no AND `order`!=0) replyCount
     FROM
       sutda_comment c
