@@ -221,13 +221,12 @@ public class AjaxController {
 			if(code.equals(codeSession)) {
 				session.removeAttribute("code");
 				return JsonUtil.convertToResponseEntity("");
-			} else {     
 			}
 				
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return JsonUtil.responseStatusBadRequest(res," ");
+		return JsonUtil.convertToResponseEntity("이메일 코드를 확인해주세요");
 	}
 		
 } //MainController class 

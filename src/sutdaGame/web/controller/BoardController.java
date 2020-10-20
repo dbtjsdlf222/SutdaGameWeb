@@ -101,14 +101,14 @@ public class BoardController {
 	@RequestMapping("write")
 	public String write(Model model,@RequestParam int kind) {
 		model.addAttribute("kind", kind);
-		return "redirect:board/boardList&kind="+kind;
+		return "board/write";
 	}
 	
 	@RequestMapping(path="writeAction",params= {"title","content","kindNo"})
 	public String writeAction(BoardVO boardVO, HttpSession session) {
 		boardVO.setWriterNo(((PlayerVO)session.getAttribute("loginInfo")).getNo());
 		boardService.insertBoard(boardVO);
-		return "redirect:";
+		return "redirect:/board/boardList&kind="+boardVO.getKindNo();
 	}
 	
 	@RequestMapping(path="insertBoard",params = {"title","content"})

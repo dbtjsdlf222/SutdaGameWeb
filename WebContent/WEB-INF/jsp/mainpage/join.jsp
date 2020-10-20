@@ -205,13 +205,18 @@
 		    type: "POST",                             	// HTTP 요청 방식(GET, POST)
 		    dataType: "json" ,                        	// 서버에서 보내줄 데이터의 타입
 		    success:function(args) {
+			    if(args==""){
 		    	$('#email_code').attr('readonly', true);
 		    	$('#success').text('이메일 인증에 성공하였습니다.').css("color","green");
 		    	$('#inb').remove();
 		    	email=true;
+			    }else{
+					alert(args);
+				}
+		    	
 		    },
            error : function(xhr, status, error) {
-        	   alert("인증코드를 다시 확인하세요");
+        	   alert('오류가 발생하였습니다.');   
            }
 		}) //ajax
 	}
