@@ -1,7 +1,5 @@
 package sutdaGame.web.vo;
 
-import java.sql.Timestamp;
-
 public class CommentVO {
 	
 	private int no;
@@ -9,7 +7,7 @@ public class CommentVO {
 	private int boardNo;
 	private PlayerVO player;
 	private String content;
-	private Timestamp regdate;
+	private int regdate;
 	private int replyCount;
 
 	public CommentVO() { }
@@ -76,11 +74,12 @@ public class CommentVO {
 		this.content = content;
 	}
 
-	public Timestamp getRegdate() {
+
+	public int getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Timestamp regdate) {
+	public void setRegdate(int regdate) {
 		this.regdate = regdate;
 	}
 

@@ -15,7 +15,7 @@
     VALUES(
     	#{no},
 	  (SELECT  `order`  FROM  (SELECT MAX(`order`)+1 as `order`  FROM  sutda_comment WHERE  no = #{no}) as `order`),
-      (SELECT  board_no  FROM  (SELECT  board_no  FROM sutda_comment WHERE  no=#{no}  AND  `order`=0) as board_no), 
+      (SELECT  board_no  FROM  (SELECT  board_no  FROM sutda_comment WHERE  no=#{no}  AND  `order`=0) as board_no),  
    		#{player.no},
    		#{content},
    		date_format(now(),'%Y-%m-%d %h:%i'))
@@ -23,7 +23,7 @@
   
   <select id="selectReComment" resultType="CommentVO" parameterType="int">
 	SELECT
-      c.no no, `order` orderNo, board_no boardNo, content, c.regdate regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
+       c.no no, `order` orderNo, board_no boardNo, content, TRUNCATE((NOW()-c.regdate)/60,0) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
     FROM
       sutda_comment c
     LEFT JOIN
