@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,7 +144,34 @@ input[class="reComment"]{
 						<div class="commentCon">
 								<div class="nickname"><c:out value="${comment.player.nickname}"/></div>
 								<div class="content">${comment.content}</div>
-								<br><div class="regdate">${comment.regdate}</div>
+								<br><div class="regdate">
+								<c:choose>
+									<c:when test="${comment.regdate gt 524160}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/524160}" integerOnly="true"/>
+										<c:out value="${percent}년 전"/>
+									</c:when>
+									<c:when test="${comment.regdate gt 10080}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/10080}" integerOnly="true"/>
+										<c:out value="${percent}주 전"/>
+									</c:when>
+									<c:when test="${comment.regdate gt 1440}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/1440}" integerOnly="true"/>
+										<c:out value="${percent}일 전"/>
+									</c:when>
+									<c:when test="${comment.regdate gt 60}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/60}" integerOnly="true"/>
+										<c:out value="${percent}시간 전"/>
+									</c:when>
+									<c:when test="${comment.regdate gt 1}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/1}" integerOnly="true"/>
+										<c:out value="${percent}분 전"/>
+									</c:when>
+									<c:when test="${comment.regdate le 1}">
+										<c:out value="방금 전"/>
+									</c:when>
+								</c:choose>
+								</div>
+								
 								<br>
 						</div>
 								<c:if test="${comment.replyCount ne 0}">&emsp;
@@ -171,7 +198,6 @@ input[class="reComment"]{
 		</div>
 		<div class="commentWrite">
 			<input type="text" id="commentBox" placeholder="댓글 입력..">
-<!-- 		<textarea placeholder="댓글 입력.." id="commentBox"></textarea> -->
 			<button id="commentBtn" onclick="writeComment()">확인</button>
 		</div>
 	</div>
@@ -193,8 +219,22 @@ input[class="reComment"]{
 			      } */
 			      $(e).data("p",$(e).data("p")+1);
 			      for(var i=0; i<data.length;i++){
+					var writeTime = data[i].regdate;
+						if(writeTime > 524160){
+							writeTime = Math.floor(writeTime/524160) + '년 전';
+						} else if(writeTime > 10080){
+							writeTime = Math.floor(writeTime/10080) + '주 전';
+						} else if(writeTime > 1440){
+							writeTime = Math.floor(writeTime/1440) + '일 전';
+						} else if(writeTime > 60){
+							writeTime = Math.floor(writeTime/60) + '시간 전';
+						} else if(writeTime > 1){
+							writeTime = writeTime + '분 전';
+						} else{
+							writeTime = '방금 전';
+						}
 				     $(e).prev().after(
-						     "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+data[i].regdate+"</div></div>");
+						     "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>");
 				     /* if (data[i].no == myno){
 					     "<button value="삭제"></button>"+"<button value="수정"></button>"
 				     } */
