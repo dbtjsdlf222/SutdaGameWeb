@@ -13,7 +13,7 @@
 		  board_no = #{boardNo}
 	</select>
 	
-	<select id="userCheck" resultType="int" parameterType="java.util.HashMap">
+	<select id="playerCheck" resultType="int" parameterType="java.util.HashMap">
 		SELECT
 		  COUNT(*)
 		FROM

@@ -98,12 +98,6 @@ public class BoardController {
 		return mav;
 	}
 	
-	/*AJax*/
-	@RequestMapping("boardListAJax")
-	public String boardListAJax(@RequestParam int kindNo,@RequestParam(defaultValue = "1") int p) throws JsonProcessingException {
-		return JsonUtil.convertToJsonString(boardService.selectBoardList(kindNo,new Page(5,5,p)));
-	}
-	
 	@RequestMapping("write")
 	public String write(Model model,@RequestParam int kind) {
 		model.addAttribute("kind", kind);
