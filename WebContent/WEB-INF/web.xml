@@ -18,6 +18,10 @@
 	<servlet-name>springDispatcherServlet</servlet-name>
 	<url-pattern>/</url-pattern>
   </servlet-mapping>
+
+	<error-page>
+	    <location>/error/404</location>
+	</error-page>  
   <error-page>
   	<error-code>404</error-code>
   	<location>/error/404</location>
@@ -25,6 +29,10 @@
   <error-page>
   	<error-code>400</error-code>
   	<location>/error/400</location>
+  </error-page>
+  <error-page>
+  	<error-code>405</error-code>
+  	<location>/error/405</location>
   </error-page>
   <error-page>
   	<error-code>500</error-code>

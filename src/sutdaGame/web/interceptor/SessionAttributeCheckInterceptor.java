@@ -19,7 +19,6 @@ public class SessionAttributeCheckInterceptor extends HandlerInterceptorAdapter 
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		
 		if((request.getSession().getAttribute(attribute) != null) == exist){
 			response.sendRedirect(redirect);
 			return false;

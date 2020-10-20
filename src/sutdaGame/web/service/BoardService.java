@@ -18,6 +18,9 @@ public class BoardService {
 		page.initTotal(boardDAO.boardCount(kindNo)); 
 		return boardDAO.selectBoardList(kindNo,page); 
 	}
+	public void viewUP(int no) {
+		boardDAO.viewUP(no);
+	}
 	public BoardVO selectOntBoard(int no) 	{ return boardDAO.selectOneBoard(no); }
 	public int boardCount(int kindNo) { return boardDAO.boardCount(kindNo); }
 	

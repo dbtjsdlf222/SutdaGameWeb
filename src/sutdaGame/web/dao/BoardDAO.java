@@ -11,6 +11,7 @@ public interface BoardDAO {
 	
 	public void insertBoard(BoardVO boardVO);
 	public void updateBoard(BoardVO boardVO);
+	public void viewUP(@Param("no") int no);
 	public ArrayList<BoardVO> selectBoardList(@Param("kindNo")int kindNo,@Param("page") Page page);
 	public BoardVO selectOneBoard(@Param("no") int no);
 	public int boardCount(@Param("kindNo") int kindNo);

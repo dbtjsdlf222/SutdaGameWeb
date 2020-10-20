@@ -57,7 +57,7 @@
 	  <bean class="sutdaGame.web.interceptor.SessionAttributeCheckInterceptor">
 	    <constructor-arg value="loginInfo"/>
 	    <constructor-arg value="true"/>
-	    <constructor-arg value="../"/>
+	    <constructor-arg value="/main"/>
 	  </bean>
 	</mvc:interceptor>
 

@@ -18,6 +18,15 @@
 			no=#{no}
 	</update>
 	
+	<update id="viewUP" parameterType="int">
+		UPDATE
+			sutda_board
+		SET 
+			view = (SELECT view+1 FROM(SELECT view FROM sutda_board WHERE no=#{no}) as view)
+		WHERE 
+			no=#{no}
+	</update>
+	
 	<select id="selectBoardList" resultType="BoardVO" parameterType="int">
 		SELECT 
 			b.no,

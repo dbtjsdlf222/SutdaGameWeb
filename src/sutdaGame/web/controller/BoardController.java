@@ -1,6 +1,7 @@
 package sutdaGame.web.controller;
 
 import java.util.HashMap;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.LikeService;
-import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.BoardVO;
 import sutdaGame.web.vo.Page;
@@ -42,7 +40,18 @@ public class BoardController {
 	
 	@RequestMapping("view/{no}")
 	public ModelAndView view(HttpSession session, @PathVariable int no, @RequestParam(defaultValue = "1") int p) {
+		TreeSet<Integer> map = (TreeSet<Integer>)session.getAttribute("view");
 		
+		if(map==null){
+			map = new TreeSet<Integer>();
+			map.add(no);
+			session.setAttribute("view", map);
+			boardService.viewUP(no);
+		} else if(!map.contains(no)) {
+			boardService.viewUP(no);
+			map.add(no);
+			session.setAttribute("view", map);
+		}
 		Page page = new Page(10, 5, 1); //result 개수, 페이징 블록 수, 페이지 넘버
 		
 		ModelAndView mav = new ModelAndView("board/view");
@@ -69,8 +78,6 @@ public class BoardController {
 
 	@RequestMapping("update_form")
 	public String updateForm(@RequestParam int no, Model model, HttpSession session) {
-		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
-		
 		model.addAttribute("post", boardService.selectOntBoard(no));
 		return "board/update_form";
 	}
@@ -108,7 +115,7 @@ public class BoardController {
 	public String writeAction(BoardVO boardVO, HttpSession session) {
 		boardVO.setWriterNo(((PlayerVO)session.getAttribute("loginInfo")).getNo());
 		boardService.insertBoard(boardVO);
-		return "redirect:/board/boardList&kind="+boardVO.getKindNo();
+		return "redirect:/board/boardList?kind="+boardVO.getKindNo();
 	}
 	
 	@RequestMapping(path="insertBoard",params = {"title","content"})
@@ -127,15 +134,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(path="update",params = {"title","content","no"},method = RequestMethod.POST)
-	public String updateBoard(@ModelAttribute("post") BoardVO bvo, HttpSession session) {
-		
+	public ModelAndView update(@ModelAttribute("post") BoardVO bvo, HttpSession session) {
 		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
-		
-		bvo.setWriterNo(vo.getNo());
-		
+		if(boardService.selectOntBoard(bvo.getNo()).getWriterNo()!=vo.getNo()) {
+			return new RedirectWithAlert("알림","잘못된 요청입니다.","/main");
+		}
 		boardService.updateBoard(bvo);
-		
-		return "redirect:/board/boardList";
+		return new ModelAndView("redirect:/board/boardList");
 	}
 	
 	@RequestMapping("delete")
