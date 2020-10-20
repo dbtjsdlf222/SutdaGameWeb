@@ -23,7 +23,7 @@
   
   <select id="selectReComment" resultType="CommentVO" parameterType="int">
 	SELECT
-       c.no no, `order` orderNo, board_no boardNo, content, TRUNCATE((NOW()-c.regdate)/60,0) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
+       c.no no, `order` orderNo, board_no boardNo, content,  TIMESTAMPDIFF(SECOND, c.regdate, NOW()-INTERVAL 12 HOUR) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
     FROM
       sutda_comment c
     LEFT JOIN
