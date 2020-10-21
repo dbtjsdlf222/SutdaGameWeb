@@ -118,21 +118,6 @@ public class BoardController {
 		return "redirect:/board/boardList?kind="+boardVO.getKindNo();
 	}
 	
-	@RequestMapping(path="insertBoard",params = {"title","content"})
-	public String insertBoard(String title, String content, HttpSession session) {
-		
-		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
-		
-		BoardVO bvo = new BoardVO();
-		bvo.setTitle(title);
-		bvo.setContent(content);
-		bvo.setWriterNo(vo.getNo());
-		
-		boardService.insertBoard(bvo);
-		
-		return "redirect:/board/boardList";
-	}
-	
 	@RequestMapping(path="update",params = {"title","content","no"},method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute("post") BoardVO bvo, HttpSession session) {
 		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
