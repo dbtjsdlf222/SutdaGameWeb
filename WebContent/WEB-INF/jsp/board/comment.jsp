@@ -146,27 +146,27 @@ input[class="reComment"]{
 								<div class="content">${comment.content}</div>
 								<br><div class="regdate">
 								<c:choose>
-									<c:when test="${comment.regdate gt 524160}">
-										<fmt:parseNumber var="percent" value="${comment.regdate/524160}" integerOnly="true"/>
+									<c:when test="${comment.regdate gt 31536000}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/31536000}" integerOnly="true"/>
 										<c:out value="${percent}년 전"/>
 									</c:when>
-									<c:when test="${comment.regdate gt 10080}">
-										<fmt:parseNumber var="percent" value="${comment.regdate/10080}" integerOnly="true"/>
+									<c:when test="${comment.regdate gt 604800}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/604800}" integerOnly="true"/>
 										<c:out value="${percent}주 전"/>
 									</c:when>
-									<c:when test="${comment.regdate gt 1440}">
-										<fmt:parseNumber var="percent" value="${comment.regdate/1440}" integerOnly="true"/>
+									<c:when test="${comment.regdate gt 86400}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/86400}" integerOnly="true"/>
 										<c:out value="${percent}일 전"/>
+									</c:when>
+									<c:when test="${comment.regdate gt 3600}">
+										<fmt:parseNumber var="percent" value="${comment.regdate/3600}" integerOnly="true"/>
+										<c:out value="${percent}시간 전"/>
 									</c:when>
 									<c:when test="${comment.regdate gt 60}">
 										<fmt:parseNumber var="percent" value="${comment.regdate/60}" integerOnly="true"/>
-										<c:out value="${percent}시간 전"/>
-									</c:when>
-									<c:when test="${comment.regdate gt 1}">
-										<fmt:parseNumber var="percent" value="${comment.regdate/1}" integerOnly="true"/>
 										<c:out value="${percent}분 전"/>
 									</c:when>
-									<c:when test="${comment.regdate le 1}">
+									<c:when test="${comment.regdate le 60}">
 										<c:out value="방금 전"/>
 									</c:when>
 								</c:choose>
@@ -222,7 +222,7 @@ input[class="reComment"]{
 				      console.log(data[i].regdate);
 					var writeTime = data[i].regdate;
 						if(writeTime > 3153600){
-							writeTime = Math.floor(writeTime/3153600) + '년 전';
+							writeTime = Math.floor(writeTime/31536000) + '년 전';
 						} else if(writeTime > 604800){
 							writeTime = Math.floor(writeTime/604800) + '주 전';
 						} else if(writeTime > 86400){
@@ -230,8 +230,8 @@ input[class="reComment"]{
 						} else if(writeTime > 3600){
 							writeTime = Math.floor(writeTime/3600) + '시간 전';
 						} else if(writeTime > 60){
-							writeTime = Math.floor(writeTime/1) + '분 전';
-						} else if(writeTime < 1){
+							writeTime = Math.floor(writeTime/60) + '분 전';
+						} else if(writeTime < 60){
 							writeTime = '방금 전';
 						}
 				     $(e).prev().after(

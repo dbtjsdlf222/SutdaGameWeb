@@ -31,7 +31,7 @@ public class BoardController {
 	@Autowired
 	LikeService likeService;
 	@Autowired
-	CommentService commnetService;
+	CommentService commentService;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -68,7 +68,7 @@ public class BoardController {
 		}
 		
 		mav.addObject("post"   , boardService.selectOntBoard(no));
-		mav.addObject("comment", commnetService.selectByBoardNo(no, page));	
+		mav.addObject("comment", commentService.selectByBoardNo(no, page));	
 		mav.addObject("page"   , page);
 		mav.addObject("like"   , likeService.selectCount(no));
 		mav.addObject("loginInfo", player);
