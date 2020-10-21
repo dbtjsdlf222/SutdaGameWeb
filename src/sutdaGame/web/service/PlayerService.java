@@ -24,5 +24,15 @@ public class PlayerService {
 	public ArrayList<PlayerVO> rankByMoney() { return playerDAO.rankByMoney(); }
 	public ArrayList<PlayerVO> rankByRounds() { return playerDAO.rankByRounds(); }
 	public ArrayList<PlayerVO> rankByRate() { return playerDAO.rankByRate(); }
+	public String findID(String email, String name) {
+		return playerDAO.findID(email, name);
+	}
 	
+	public String findPW(String id, String email) {
+		return playerDAO.findPW(id, email);
+	
+	}
+	public void pwChange(String id, int no) {
+		playerDAO.pwChange(id, no);
+	}
 } //PlayerService();

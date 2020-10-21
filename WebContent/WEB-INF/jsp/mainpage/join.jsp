@@ -101,7 +101,7 @@
  </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="false"/>
+<jsp:include page="../include/header.jsp" flush="false"/>
    	<form action="/joinAction" method="post" autocomplete="off" >
     <fieldset class="information">
     <legend>회원가입</legend>
@@ -129,7 +129,7 @@
                 <button type="button" onclick="email_(this)" id="inb">이메일 인증하기</button>
                 <p id='success'></p>
             </li>
-            <li>
+            <li style="margin-top:43px;">
             	<h3>캐릭터 선택</h3>
             	<table>
             	<tr>
@@ -162,7 +162,7 @@
         </div>
 	</fieldset>
         </form>
-<jsp:include page="footer.jsp" flush="false" />
+<jsp:include page="../include/footer.jsp" flush="false" />
 
 </body>
 <script>	
@@ -178,7 +178,7 @@
 			$(e).attr('disabled','true');
 			$('#email').attr('readonly',true);
 		} else {
-			email false;
+			email = false;
 			alert("메일을 형식을 확인해주세요");
 			return false;
 		}
@@ -213,7 +213,6 @@
 			    }else{
 					alert(args);
 				}
-		    	
 		    },
            error : function(xhr, status, error) {
         	   alert('오류가 발생하였습니다.');   

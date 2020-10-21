@@ -34,7 +34,8 @@
       c.no = #{no}
     AND
        `order` != 0
-      LIMIT #{page.startContent}, #{page.contentCount}
+   	ORDER BY regdate desc
+    LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
   <select id="selectOneComment" resultType="CommentVO" parameterType="int">

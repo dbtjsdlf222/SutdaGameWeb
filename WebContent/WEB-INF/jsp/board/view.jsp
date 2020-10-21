@@ -103,7 +103,7 @@ footer p{
 }
 </style>
 <body>
-<jsp:include page="../mainpage/header.jsp" flush="false" />
+<jsp:include page="../include/header.jsp" flush="false" />
     <div class="container">
         	<h1>${post.title}</h1>	
         	<div>${post.content }</div>
@@ -126,6 +126,6 @@ footer p{
 		</div>
     </div>
 <jsp:include page="comment.jsp" flush="false"/>
-<jsp:include page="../mainpage/footer.jsp" flush="false" />
+<jsp:include page="../include/footer.jsp" flush="false" />
 </body>
 </html>

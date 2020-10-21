@@ -76,7 +76,7 @@ ul.tabs li.current{
 }
 </style>
 <body>
-	<jsp:include page="../mainpage/header.jsp" flush="false"/>
+	<jsp:include page="../include/header.jsp" flush="false"/>
 	
 <div class="container">
 	<div class="title">
@@ -110,7 +110,7 @@ ul.tabs li.current{
 		</fieldset>
 	</div>
 </div>
-<jsp:include page="../mainpage/footer.jsp" flush="false" />
+<jsp:include page="../include/footer.jsp" flush="false" />
 <script>
 $(document).ready(function(){
 	

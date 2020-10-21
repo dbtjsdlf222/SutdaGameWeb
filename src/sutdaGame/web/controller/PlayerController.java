@@ -1,5 +1,7 @@
 package sutdaGame.web.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.MoneyFormat;
 import sutdaGame.web.util.RedirectWithAlert;
+import sutdaGame.web.util.SendMail;
 import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("player")
@@ -50,6 +53,29 @@ public class PlayerController {
 		return model;
 	} // mypage
 	
+	@RequestMapping("findID_form")
+	public String findIDForm() {
+		return "player/find_ID";
+	}
+	@RequestMapping("findID")
+	public ModelAndView findID(@RequestParam String mail, @RequestParam String name) {
+		
+		String id=null;
+		if((id=playerService.findID(mail, name))==null) {
+			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/findID");
+		} else {
+			StringBuffer sb = new StringBuffer();
+			sb.append("<h1>안녕하세요 "+name+"님 가입 아이디 보내드립니다.</h1>");
+			sb.append("<hr>");
+			sb.append("<h2>"+name+"님의 가입 아이디는 [<h1>"+ id + "</h1>] 입니다.</h3>");
+			sb.append("<hr>");
+			String subject = "섯다 아이디 찾기 메일 입니다.";
+			new SendMail().mailSender(mail, subject, sb);
+			return new RedirectWithAlert("알림","메일로 아이디를 전송해 드렸습니다.","/player/findID");
+		}
+	}
+	
+	
 	@RequestMapping("main")
 	public String main() {
 		return "mainpage/main";
@@ -71,7 +97,6 @@ public class PlayerController {
 	
 	@RequestMapping(path="update", params = {"name","id"})	//등등
 	public String update(HttpSession session,PlayerVO vo) {
-		
 		return "/mainpage/update";
 	} //
 

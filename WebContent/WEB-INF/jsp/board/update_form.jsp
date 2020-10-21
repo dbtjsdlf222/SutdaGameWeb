@@ -48,7 +48,7 @@
 	</style>
 </head>
 <body>
-<jsp:include page="../mainpage/header.jsp" flush="false" />
+<jsp:include page="../include/header.jsp" flush="false" />
 	<div class="container">
 		<form action="/board/update" method="POST">
 			<table style="width: 100%; border-collapse: collapse">

@@ -57,7 +57,7 @@ input[type="submit"]{
 
 </head>
 <body>
-<jsp:include page="header.jsp" flush="false" />
+<jsp:include page="../include/header.jsp" flush="false" />
     <div class="tab">
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
@@ -66,7 +66,7 @@ input[type="submit"]{
                     <span class="pw"><input type="password" name="password" class="user_pw" placeholder="비밀번호를 입력하세요."></span><br><br>
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
-                    <input type="button" name="id-search" class="id-search" value="아이디 찾기">
+                    <input type="button" name="id-search" class="id-search" onclick="location.href='/player/findID_form'" value="아이디 찾기">
                     <input type="button" name="pw-search" class="pw-search" value="비밀번호 찾기">
             </div>
         </div>
