@@ -52,7 +52,7 @@ public class MainController {
 	} //login
 	
 	@RequestMapping("update")
-	public String login() {
+	public String update() {
 		return "mainpage/update";
 	} //회원정보 수정
 	
@@ -87,6 +87,11 @@ public class MainController {
 			}
 			return JsonUtil.convertToJsonString(false);
 		} // 
+		
+		@RequestMapping(path="updateAction", params = {"updateNick", "updatePW", "updatePWC"})
+		public ModelAndView updateAction(HttpSession session, PlayerVO playerVO) {
+			
+		}
 		
 		
 	//새소식

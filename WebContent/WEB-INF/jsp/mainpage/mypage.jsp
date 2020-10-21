@@ -36,6 +36,8 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp" flush="false" />
+    
+    
     <div class="profile">
     	<img src="/img/character/cha${myInfo.character}.png" />
     </div>
@@ -78,7 +80,7 @@
     	</tr>
     </table>
         <div class="wrap1">
-            <p><button type="button" class="btn btn-success btn-sm">회원 정보 수정</button></p>
+            <p><button type="button" class="btn btn-success btn-sm" onclick="showUpdatePopup()">회원 정보 수정</button></p>
             <p><button type="button" class="btn btn-danger btn-block" onclick="showDeletePopup()">회원 탈퇴</button></p>
         </div>
 <jsp:include page="../include/footer.jsp" flush="false" />
@@ -94,10 +96,10 @@
 		if(result) { location.replace('/player/delete'); }
 		else {  }
 	}
-	
-	$(".btn.btn-success.btn-sm").click(function showPopup1(){
-		window.open("/update", "a", "left=800, top=300");
-	})
+
+	function showUpdatePopup(){
+		window.open("/update", "a", "left=800", top="300");
+	}
 </script>
 </body>
 </html>

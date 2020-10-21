@@ -11,56 +11,56 @@
 <style>
 body{
 	background-color: #363636;
+	color: white;
 }
-.myinfo{
-	margin: auto;
-	margin-top: 100px;
-	color: #DB3A00;
+ul li{
+	list-style: none;
+	font-size: 20px;
+}
+input[type="text"], input[type="password"]{
+	background-color: #363636;
+	color: white;
+	width: 300px;
+	height: 30px;
 }
 </style>
-<body onload="window.resizeTo(500,700)">
-<div class="profile"></div>
-    <table class="myinfo">
-    	<tr>
-    		<td>닉네임</td>
-    		<td>&emsp;${myInfo.nickname }</td>
-    	</tr>
-    	<tr>
-    		<td>가입자 명</td>
-    		<td>&emsp;${myInfo.name }</td>
-    	</tr>
-	    <tr>
-    		<td>아아디</td>
-    		<td>&emsp;${myInfo.id} </td>
-    	</tr>
-    	<tr>
-    		<td>이메일</td>
-    		<td>&emsp;${myInfo.email} </td>
-    	</tr>
-    	<tr>
-    		<td>머니</td>
-    		<td>&emsp;${myInfo.money} </td>
-    	</tr>
-    	<tr>
-    		<td>전</td>
-    		<td>&emsp;;${myInfo.win+myInfo.lose}</td>
-    	</tr>
-    	<tr>
-    		<td>승</td>
-    		<td>&emsp;${myInfo.win} </td>
-    	</tr>
-    	<tr>
-    		<td>패</td>
-    		<td>&emsp;${myInfo.lose} </td>
-    	</tr>
-    	<tr>
-    		<td>승률</td>
-    		<td>&emsp;${(myInfo.win/(myInfo.win+myInfo.lose))*100} }</td>
-    	</tr>
-    	<tr>
-    		<td>캐릭터</td>
-    		<td>&emsp;<img src="/img/character/cha${myInfo.character} .png" /></td>
-    	</tr>
-    </table>
+<body onload="window.resizeTo(750,600)">
+	<form action="/updateAction" method="post" autocomplete="off">
+		<ul>
+			<li>닉네임</li>
+			<li><input name="updateNick" type="text" placeholder="변경할 닉네임을 입력하세요"></li>
+		</ul>
+		<ul>
+			<li>비밀번호</li>
+			<li><input name="updatePW" type="password" placeholder="변경할 비밀번호를 입력하세요"></li>
+			<li><input name="updatePWC" type="password" placeholder="변경할 비밀번호 확인"></li>
+		</ul>
+		<ul>
+			<li>캐릭터</li>
+			<table>
+				<tr>
+					<% for(int i=0; i<=6; i++){ %>
+					<td>
+						<label for="cha<%=i%>"><img src="/img/character/cha<%=i%>.png" /></label>
+					</td>
+					<%}  %>
+				</tr>
+				<tr>
+				<% for(int i=0; i<=6; i++){ %>
+					<td>
+						<input type="radio" id="cha<%=i %>" name="updateCha" class="character" required style="margin-left:40%">
+					</td>
+				<%} %>
+				</tr>
+			</table>
+		</ul>
+		<div id="confirm">
+			<input type="submit" value="변경">&emsp;
+			<input type="reset" value="취소">
+		</div>
+	</form>
 </body>
+<script>
+	
+</script>
 </html>
