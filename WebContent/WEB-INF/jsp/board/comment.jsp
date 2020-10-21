@@ -133,6 +133,10 @@ input[class="reComment"]{
 	background-color: #363636;
 	color: white;
 }
+.addComment{
+	width: 470px;
+	height: 50px;
+}
 </style>
 <body>
 	<div class="container">
@@ -180,12 +184,11 @@ input[class="reComment"]{
 									답글이 <span><c:out value="${comment.replyCount}" /></span>개 있습니다.
 								</button>
 								</c:if>
-								
 								&emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
 								<div class="asd">
 								&emsp;<input class="reComment" placeholder="답글">
 									<button id="reCommentBtn" 
-											onclick="writeReComment(this)"  
+											onclick="reCommentUpdate(this)"  
 											data-no='<c:out value="${comment.no}"/>' >답글 입력
 									</button>
 								</div>
@@ -196,6 +199,9 @@ input[class="reComment"]{
 				</c:otherwise>
 			</c:choose>
 		</div>
+		<div class="addComment">
+			
+		</div>
 		<div class="commentWrite">
 			<input type="text" id="commentBox" placeholder="댓글 입력..">
 			<button id="commentBtn" onclick="writeComment()">확인</button>
@@ -204,7 +210,6 @@ input[class="reComment"]{
 </body>
 
 <script>
-	// 	var myno= ${loginInfo.no};
 	//답글 더보기
 	function selectRecomment(e){
 		$.ajax({
@@ -282,28 +287,33 @@ input[class="reComment"]{
 	//댓글 입력
 	function writeComment() {
 		<c:choose>
-		<c:when test="${loginInfo ne null}">
-		$.ajax({
-	  		url:'/ajax/commentInsert',
-	  		type: 'POST',
-		      data: {  content:$("#commentBox").val(), boardNo:${post.no } },
-		      success: function() {
-			      alert("댓글 입력 성공");
-			      $("#commentBox").val("");
-		      },
-		      error: function(statusText) {
-		    	  console.log(statusText);
-			  }
-		});
-		</c:when>
+			<c:when test="${loginInfo ne null}">
+				$.ajax({
+			  		url:'/ajax/commentInsert',
+			  		type: 'POST',
+				      data: {  content:$("#commentBox").val(), boardNo:${post.no } },
+				      success: function() {
+					      alert("댓글 입력 성공");
+					      $("#commentBox").val("");
+					      avComment();
+				      },
+				      error: function(statusText) {
+				    	  console.log(statusText);
+					  }
+				});
+			</c:when>
 		<c:otherwise>
 			alert("로그인을 해주세요");
 		</c:otherwise>
 		</c:choose>
 	}
-
+	
+		var myno= ${loginInfo.nickname};
+		function avComment(){
+			$(".commentCon").clone().insertAfter(".addComment");
+		}
 	//답글 입력
-	function writeReComment(e) {
+	function reCommentUpdate(e) {
 		<c:choose>
 		<c:when test="${loginInfo ne null}">
 		if($(e).prev().val().trim()==""||$(e).data("no")=="") {

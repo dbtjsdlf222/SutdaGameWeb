@@ -23,7 +23,7 @@
   
   <select id="selectReComment" resultType="CommentVO" parameterType="int">
 	SELECT
-       c.no no, `order` orderNo, board_no boardNo, content,  TIMESTAMPDIFF(SECOND, c.regdate, NOW()-INTERVAL 12 HOUR) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
+       c.no no, `order` orderNo, board_no boardNo, content,  TIMESTAMPDIFF(SECOND, c.regdate, NOW()) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
     FROM
       sutda_comment c
     LEFT JOIN
@@ -53,7 +53,7 @@
   
   <select id="selectByBoardNo" parameterType="int" resultType="CommentVO">
 	SELECT
-      c.no no, `order` orderNo, board_no boardNo, content, timediff(NOW(),c.regdate) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname',
+      c.no no, `order` orderNo, board_no boardNo, content, TIMESTAMPDIFF(SECOND, c.regdate, NOW()) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname',
       (SELECT COUNT(*) FROM sutda_comment WHERE `no`=c.no AND `order`!=0) replyCount
     FROM
       sutda_comment c
