@@ -62,8 +62,8 @@ input[type="submit"]{
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
                 <form action="/player/loginAction" method="post">
-                    <span class="id"><input type="text" name="id" class="user_id" placeholder="아이디를 입력하세요."></span><br><br>
-                    <span class="pw"><input type="password" name="password" class="user_pw" placeholder="비밀번호를 입력하세요."></span><br><br>
+                    <span class="id"><input type="text" name="id" class="user_id" placeholder="아이디를 입력하세요." required="required"></span><br><br>
+                    <span class="pw"><input type="password" name="password" class="user_pw" placeholder="비밀번호를 입력하세요." required="required"></span><br><br>
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
                     <input type="button" name="id-search" class="id-search" onclick="location.href='/player/findID_form'" value="아이디 찾기">
@@ -73,9 +73,9 @@ input[type="submit"]{
     </div>
     <script>
 	    <c:set var="msg" value="${msg}"/>
-	            <c:if test="${msg != null}">
-	              	alert('아이디나 비밀번호가 일치하지 않습니다.');
-	            </c:if>
+        <c:if test="${msg != null}">
+          	alert('아이디나 비밀번호가 일치하지 않습니다.');
+        </c:if>
     </script>
 </body>
 </html>

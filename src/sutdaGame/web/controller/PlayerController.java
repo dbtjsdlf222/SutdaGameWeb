@@ -63,6 +63,13 @@ public class PlayerController {
 	public String findPWForm() {
 		return "player/find_PW";
 	}
+	
+	@RequestMapping(path="updateAction", params = {"password"})
+	public String updateAction(HttpSession session, PlayerVO playerVO) {
+		playerService.updatePlayer(playerVO);
+		return "redirect:mypage";
+	}
+	
 	@RequestMapping(value="findID",method = RequestMethod.POST)
 	public ModelAndView findID(@RequestParam String mail, @RequestParam String name) {
 		System.out.println(mail);
@@ -136,8 +143,10 @@ public class PlayerController {
 	}
 	
 	@RequestMapping(value="changePWAction",params = {"code","password"},method = RequestMethod.POST)
-	public ModelAndView changePWAction(UUID code,String password, HttpSession session) {
-		if(((UUID)session.getAttribute("code")).equals(code)) {
+	public ModelAndView changePWAction(String code,String password, HttpSession session) {
+		UUID a=UUID.fromString(code);
+		UUID b=(UUID)session.getAttribute("code");
+		if((b).equals(a)) {
 			playerService.pwChange(password, (Integer)session.getAttribute("no"));
 			return new RedirectWithAlert("알림","비밀변호가 정상적으로 변경 되었습니다.","/");
 		}
@@ -163,9 +172,9 @@ public class PlayerController {
 		return new RedirectWithAlert("회원탈퇴","회원탈퇴가 완료되었습니다.","/");
 	} // 
 	
-	@RequestMapping(path="update", params = {"name","id"})	//등등
-	public String update(HttpSession session,PlayerVO vo) {
-		return "/mainpage/update";
+	@RequestMapping(path="update")	//등등
+	public String update() {
+		return "/player/update_form";
 	} //
 
 	

@@ -42,6 +42,8 @@
 	  <mvc:mapping path="/ajax/commentDelete"/>
 	  <mvc:mapping path="/ajax/commentUpdate"/>
 	  <mvc:mapping path="/ajax/logout"/>
+	  <mvc:mapping path="/player/updateAction"/>
+	  <mvc:mapping path="/player/update"/>
 	  <bean class="sutdaGame.web.interceptor.SessionAttributeCheckInterceptor">
 	    <constructor-arg value="loginInfo"/>
 	    <constructor-arg value="false"/>

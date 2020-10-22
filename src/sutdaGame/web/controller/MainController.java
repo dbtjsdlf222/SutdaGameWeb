@@ -88,12 +88,6 @@ public class MainController {
 			return JsonUtil.convertToJsonString(false);
 		} // 
 		
-		@RequestMapping(path="updateAction", params = {"updateNick", "updatePW", "updatePWC"})
-		public ModelAndView updateAction(HttpSession session, PlayerVO playerVO) {
-			
-		}
-		
-		
 	//새소식
 		@RequestMapping("news")
 		public String news(HttpSession session) {
@@ -120,8 +114,8 @@ public class MainController {
 		
 	//명예의 전당
 		@RequestMapping("rank")
-		public String rank(HttpSession session) {
-			return "mainpage/rank";
+		public String rank() {
+			return "board/rank";
 		}	//rank
 		
 	//고객센터

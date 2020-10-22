@@ -37,7 +37,6 @@
 <body>
 <jsp:include page="../include/header.jsp" flush="false" />
     
-    
     <div class="profile">
     	<img src="/img/character/cha${myInfo.character}.png" />
     </div>
@@ -80,12 +79,12 @@
     	</tr>
     </table>
         <div class="wrap1">
-            <p><button type="button" class="btn btn-success btn-sm" onclick="showUpdatePopup()">회원 정보 수정</button></p>
+            <p><button type="button" class="btn btn-success btn-sm" onclick="location.href='/player/update?'">회원 정보 수정</button></p>
             <p><button type="button" class="btn btn-danger btn-block" onclick="showDeletePopup()">회원 탈퇴</button></p>
         </div>
 <jsp:include page="../include/footer.jsp" flush="false" />
+<script type="text/javascript" src="/js/passwordCheck.js" ></script> 
 <script>
-
 	$(document).ready(function(){
 		var winRate = ${(myInfo.win/(myInfo.win+myInfo.lose))*100};
 		$("#winRate").text(winRate.toFixed(1)+'%');
@@ -95,10 +94,6 @@
 		var result = confirm('정보는 되돌릴 수 없습니다.\n 그래도 회원 탈퇴를 하시겠습니까? \n '); 
 		if(result) { location.replace('/player/delete'); }
 		else {  }
-	}
-
-	function showUpdatePopup(){
-		window.open("/update", "a", "left=800", top="300");
 	}
 </script>
 </body>

@@ -4,8 +4,8 @@ import java.text.DecimalFormat;
 import java.util.regex.Pattern;
 
 public class MoneyFormat {
-
-	public String format(long money) {
+	
+	public static String format(long money) {
 		DecimalFormat d = new DecimalFormat("#,####");
 
 		String[] unit = new String[] { "만", "억", "조", "경" };
