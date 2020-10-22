@@ -1,10 +1,14 @@
 package sutdaGame.web.controller;
 
-import java.util.Random;
+import java.util.UUID;
 
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,20 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import sutdaGame.web.service.PlayerService;
-import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.MoneyFormat;
 import sutdaGame.web.util.RedirectWithAlert;
-import sutdaGame.web.util.SendMail;
 import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("player")
 public class PlayerController {
 	
-	@Autowired
-	PlayerService playerService;
+	@Autowired PlayerService playerService;
+	@Autowired JavaMailSender mailSender;
 	
 	//로그인 액션
 	@RequestMapping(value="loginAction", method=RequestMethod.POST)
@@ -57,9 +58,14 @@ public class PlayerController {
 	public String findIDForm() {
 		return "player/find_ID";
 	}
-	@RequestMapping("findID")
+	
+	@RequestMapping("findPW_form")
+	public String findPWForm() {
+		return "player/find_PW";
+	}
+	@RequestMapping(value="findID",method = RequestMethod.POST)
 	public ModelAndView findID(@RequestParam String mail, @RequestParam String name) {
-		
+		System.out.println(mail);
 		String id=null;
 		if((id=playerService.findID(mail, name))==null) {
 			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/findID");
@@ -67,14 +73,76 @@ public class PlayerController {
 			StringBuffer sb = new StringBuffer();
 			sb.append("<h1>안녕하세요 "+name+"님 가입 아이디 보내드립니다.</h1>");
 			sb.append("<hr>");
-			sb.append("<h2>"+name+"님의 가입 아이디는 [<h1>"+ id + "</h1>] 입니다.</h3>");
+			sb.append("<h2 style='display:inline'>"+name+"님의 가입 아이디는<h2><h1 style='display:inline'>["+ id + "]</h1> <h2>입니다.</h2>");
 			sb.append("<hr>");
-			String subject = "섯다 아이디 찾기 메일 입니다.";
-			new SendMail().mailSender(mail, subject, sb);
-			return new RedirectWithAlert("알림","메일로 아이디를 전송해 드렸습니다.","/player/findID");
+			String subject = "섯다 아이디 찾기 인증 메일";
+			
+			 try {
+				    String setfrom = "sutdaonline@gmail.com";
+			    	MimeMessage message = mailSender.createMimeMessage(); //에러 발생
+			        MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+			        messageHelper.setFrom(setfrom); 							// 보내는사람 생략하면 정상작동을 안함
+			        messageHelper.setTo(mail);								// 받는사람 이메일
+			        messageHelper.setSubject(subject); 	// 메일제목은 생략이 가능하다
+			        messageHelper.setText(sb.toString(),true); 					// 메일 내용
+			        mailSender.send(message);
+			        return new RedirectWithAlert("알림","메일로 아이디를 전송해 드렸습니다.","/main");
+				 } catch (Exception e) {
+				    e.printStackTrace();
+				 }
+			return new RedirectWithAlert("알림","잘못된 요청입니다.","/player/findID_form");
 		}
 	}
 	
+	@RequestMapping(value="findPW",method = RequestMethod.POST, params= {"mail","id"})
+	public ModelAndView findPW(String mail, String id,HttpServletRequest request,HttpSession session) {
+		String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+		Integer no = null;
+		if((no=playerService.findPW(id, mail)) == null) {
+			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/findPW_form");
+		} else {
+			UUID uuid =UUID.randomUUID();
+			session.setAttribute("code", uuid);
+			session.setAttribute("no", no);
+			StringBuffer sb = new StringBuffer();
+			sb.append("<h3>비밀번호를 변경 하시려면 <a href=\""+url+"/player/changePW?code="+uuid+"\">비밀번호 변경</a>을 눌러주세요</h3>");
+			String subject = "섯다 비밀번호 찾기 인증 메일 입니다.";
+			 try {
+				    String setfrom = "sutdaonline@gmail.com";
+			    	MimeMessage message = mailSender.createMimeMessage(); //에러 발생
+			        MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+			        messageHelper.setFrom(setfrom); 							// 보내는사람 생략하면 정상작동을 안함
+			        messageHelper.setTo(mail);								// 받는사람 이메일
+			        messageHelper.setSubject(subject); 	// 메일제목은 생략이 가능하다
+			        messageHelper.setText(sb.toString(),true); 					// 메일 내용
+			        mailSender.send(message);
+				 } catch (Exception e) {
+				    e.printStackTrace();
+				 }
+			return new RedirectWithAlert("알림","메일로 링크를 전송해 드렸습니다.","/main");
+		}
+	}
+	
+	@RequestMapping(value="changePW",method = RequestMethod.GET)
+	public ModelAndView changePW(@RequestParam UUID code, HttpSession session) {
+		if(((UUID)session.getAttribute("code")).equals(code)) {
+			ModelAndView mav = new ModelAndView("player/changePW_Form");
+			mav.addObject("code",code);
+			return mav;
+		}
+		return new RedirectWithAlert("알림","잘못된 요청입니다","/");
+	}
+	
+	@RequestMapping(value="changePWAction",params = {"code","password"},method = RequestMethod.POST)
+	public ModelAndView changePWAction(UUID code,String password, HttpSession session) {
+		if(((UUID)session.getAttribute("code")).equals(code)) {
+			playerService.pwChange(password, (Integer)session.getAttribute("no"));
+			return new RedirectWithAlert("알림","비밀변호가 정상적으로 변경 되었습니다.","/");
+		}
+		return new RedirectWithAlert("알림","잘못된 요청입니다","/");
+	}
 	
 	@RequestMapping("main")
 	public String main() {

@@ -17,6 +17,6 @@ public interface PlayerDAO {
 	public ArrayList<PlayerVO> rankByRounds();
 	public ArrayList<PlayerVO> rankByRate();
 	public String findID(@Param("email") String email, @Param("name") String name);
-	public String findPW(@Param("id") String id, @Param("email") String email);
+	public Integer findPW(@Param("id") String id, @Param("email") String email);
 	public void pwChange(@Param("password") String id, @Param("no") int no);
 } //interface PDAO

@@ -314,7 +314,7 @@
 	      if ($pw.val()==$pwc.val()){
 	         $pwc_error.text("비밀번호가 일치합니다.").css({"color" : "green"});
 	      } else {
-	    	   $pwc_error.text("비밀번호가 일치 하지 않습니.").css({"color" : "red"});
+	    	   $pwc_error.text("비밀번호가 일치 하지 않습니다.").css({"color" : "red"});
 		  }
 	      if($pw.val()=="") {
 	         $pw_error.text("필수 입력입니다.");

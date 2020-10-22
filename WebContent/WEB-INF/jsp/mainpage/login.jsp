@@ -67,7 +67,7 @@ input[type="submit"]{
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
                     <input type="button" name="id-search" class="id-search" onclick="location.href='/player/findID_form'" value="아이디 찾기">
-                    <input type="button" name="pw-search" class="pw-search" value="비밀번호 찾기">
+                    <input type="button" name="pw-search" class="pw-search" onclick="location.href='/player/findPW_form'" value="비밀번호 찾기">
             </div>
         </div>
     </div>

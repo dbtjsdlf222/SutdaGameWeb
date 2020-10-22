@@ -17,5 +17,4 @@ public class LikeService {
 	public int playerCheck(HashMap<String, Integer> params){ return likeDAO.playerCheck(params); }
 	public boolean insertLike(HashMap<String, Integer> params){ return likeDAO.insertLike(params); }
 	public boolean deleteLike(HashMap<String, Integer> params){ return likeDAO.deleteLike(params); }
-
 }

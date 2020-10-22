@@ -54,6 +54,13 @@
 		<mvc:mapping path="/loginAction"/>
 		<mvc:mapping path="/join"/>
 		<mvc:mapping path="/joinAction"/>
+		<mvc:mapping path="/player/findID_form"/>
+		<mvc:mapping path="/player/findPW_form"/>
+		<mvc:mapping path="/player/findID"/>
+		<mvc:mapping path="/player/findPW"/>
+		<mvc:mapping path="/player/changePWAction"/>
+		<mvc:mapping path="/player/changePW"/>
+		
 	  <bean class="sutdaGame.web.interceptor.SessionAttributeCheckInterceptor">
 	    <constructor-arg value="loginInfo"/>
 	    <constructor-arg value="true"/>

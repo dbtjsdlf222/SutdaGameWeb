@@ -125,7 +125,7 @@ public class BoardController {
 			return new RedirectWithAlert("알림","잘못된 요청입니다.","/main");
 		}
 		boardService.updateBoard(bvo);
-		return new ModelAndView("redirect:/board/boardList");
+		return new ModelAndView("redirect:/board/view/"+bvo.getNo());
 	}
 	
 	@RequestMapping("delete")

@@ -28,11 +28,10 @@ public class PlayerService {
 		return playerDAO.findID(email, name);
 	}
 	
-	public String findPW(String id, String email) {
+	public Integer findPW(String id, String email) {
 		return playerDAO.findPW(id, email);
-	
 	}
-	public void pwChange(String id, int no) {
-		playerDAO.pwChange(id, no);
+	public void pwChange(String pw, int no) {
+		playerDAO.pwChange(pw, no);
 	}
 } //PlayerService();

@@ -27,7 +27,6 @@ import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.LikeService;
 import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.util.JsonUtil;
-import sutdaGame.web.util.SendMail;
 import sutdaGame.web.vo.CommentVO;
 import sutdaGame.web.vo.Page;
 import sutdaGame.web.vo.PlayerVO;
@@ -188,7 +187,19 @@ public class AjaxController {
 		String subject = "섯다 가입 인증 메일입니다.";
 	    session.setAttribute("code", dice+"");
 	    
-	    new SendMail().mailSender(email, subject, sb);
+		 try {
+			    String setfrom = "sutdaonline@gmail.com";
+		    	MimeMessage message = mailSender.createMimeMessage(); //에러 발생
+		        MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+		        messageHelper.setFrom(setfrom); 							// 보내는사람 생략하면 정상작동을 안함
+		        messageHelper.setTo(email);								// 받는사람 이메일
+		        messageHelper.setSubject(subject); 	// 메일제목은 생략이 가능하다
+		        messageHelper.setText(sb.toString(),true); 					// 메일 내용
+		        mailSender.send(message);
+			 } catch (Exception e) {
+			    e.printStackTrace();
+			 }
 	    
 		return JsonUtil.convertToResponseEntity("");
 	}

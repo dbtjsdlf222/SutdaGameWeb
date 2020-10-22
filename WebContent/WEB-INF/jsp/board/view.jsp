@@ -107,8 +107,8 @@ footer p{
     <div class="container">
         	<h1>${post.title}</h1>	
         	<div>${post.content }</div>
-        	<button id="back" onclick="goBack();"> 뒤로가기</button>
-        	<c:if test="${post.writerNo eq loginInfo.no}">
+        	<button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button>
+        	<c:if test="${(post.writerNo eq loginInfo.no) || (loginInfo.admin) } ">
          	<button id="deleteBoard" onclick="location.href='/board/delete?no=${post.no}'">게시글 삭제하기</button>
          	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'">게시글 수정하기</button>
 	       	</c:if>

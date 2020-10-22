@@ -45,7 +45,7 @@
 			email=#{email};
 	</select>
 	
-	<select id="findPW" parameterType="String" resultType="String">
+	<select id="findPW" parameterType="String" resultType="Integer">
 		SELECT
 			no
 		FROM
