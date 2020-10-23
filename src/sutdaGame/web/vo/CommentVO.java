@@ -9,7 +9,6 @@ public class CommentVO {
 	private String content;
 	private int regdate;
 	private int replyCount;
-	private int commentCount;
 
 	public CommentVO() { }
 	
@@ -92,18 +91,10 @@ public class CommentVO {
 		this.replyCount = replyCount;
 	}
 	
-	public int getCommentCount() {
-		return commentCount;
-	}
-
-	public void setCommentCount(int commentCount) {
-		this.commentCount = commentCount;
-	}
-
 	@Override
 	public String toString() {
 		return "CommentVO [no=" + no + ", orderNo=" + orderNo + ", boardNo=" + boardNo + ", player=" + player
-				+ ", content=" + content + ", regdate=" + regdate + ", replyCount=" + replyCount + ", commentCount" + commentCount + "]";
+				+ ", content=" + content + ", regdate=" + regdate + ", replyCount=" + replyCount + "]";
 	}
 	
 	

@@ -124,7 +124,6 @@ footer p{
 			<span id="likeCount" style="display: block">${like}</span>
 			</div>
 		</div>
-    </div>
 <jsp:include page="comment.jsp" flush="false"/>
 <jsp:include page="../include/footer.jsp" flush="false" />
 </body>
