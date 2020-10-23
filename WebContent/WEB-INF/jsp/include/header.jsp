@@ -12,10 +12,10 @@
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 html>body{
-	background-color: #3C3D30;
+	background-color: darkred;
 	position: relative;
 	padding-top:100px;
-	min-width:1071px;
+	min-width:1400px;
 }
 .home{
     overflow: hidden;
@@ -81,7 +81,6 @@ html>body{
 .dept02 a:hover{
 	color: #DB3A00;
 	text-shadow: 1px 1px 8px #fff;
-	font-size:20px;
 }
 .dept02 li{
 	align-items: center;
@@ -238,7 +237,6 @@ footer p{
 }
 </style>
 </head>
-<div id="wrap">
 	<header>
     <div class="nav">
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
@@ -252,7 +250,7 @@ footer p{
         				<li id="event"><a href="/board/boardList?kind=3">이벤트</a></li>
         			</ul>
         		</li>
-        		<li style="width:100px">
+        		<li style="width:126px">
         			<span><a href="/download">자료실</a></span>
         			<ul class="dept02">
         				<li id="download"><a href="/download">다운로드</a></li>

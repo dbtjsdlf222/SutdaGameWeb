@@ -14,16 +14,14 @@ public class BoardService {
 	
 	@Autowired
 	BoardDAO boardDAO;
+	
 	public ArrayList<BoardVO> selectBoardList(int kindNo, Page page) { 
 		page.initTotal(boardDAO.boardCount(kindNo)); 
 		return boardDAO.selectBoardList(kindNo,page); 
 	}
-	public void viewUP(int no) {
-		boardDAO.viewUP(no);
-	}
+	public void viewUP(int no) { boardDAO.viewUP(no); }
 	public BoardVO selectOntBoard(int no) 	{ return boardDAO.selectOneBoard(no); }
 	public int boardCount(int kindNo) { return boardDAO.boardCount(kindNo); }
-	
 	public void insertBoard(BoardVO boardVO) 	{ boardDAO.insertBoard(boardVO); }
 	public void updateBoard(BoardVO boardVO)	{ boardDAO.updateBoard(boardVO); }
 	public void deleteBoard(int no) 	  	{ boardDAO.deleteBoard(no); }

@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.LikeService;
+import sutdaGame.web.service.PlayerService;
+import sutdaGame.web.util.MoneyFormat;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.BoardVO;
 import sutdaGame.web.vo.Page;
@@ -32,7 +34,8 @@ public class BoardController {
 	LikeService likeService;
 	@Autowired
 	CommentService commentService;
-	
+	@Autowired
+	PlayerService playerService;
 	@RequestMapping("/")
 	public String main() {
 		return "redirect:../main";
@@ -93,7 +96,7 @@ public class BoardController {
 			case 4: jsp = "board/download";  break;
 			case 5: jsp = "board/guide";  break;
 			case 6: jsp = "board/free";   break;
-			case 7: jsp = "board/rank"; break;
+			case 7: jsp = "redirect:board/rank";	  break;
 			case 8: jsp = "board/QA";	  break;
 			case 9: jsp = "board/FQ";	  break;
 		}
@@ -103,6 +106,14 @@ public class BoardController {
 		mav.addObject("kind", kind);
 		mav.addObject("page", page);
 		return mav;
+	}
+	
+	@RequestMapping("rank")
+	public String rank(Model model, int kind) {
+		if(kind==1) { model.addAttribute("ranks", playerService.rankByRate());  } else 
+		if(kind==2) { model.addAttribute("ranks", playerService.rankByMoney()); } else
+				    { model.addAttribute("ranks", playerService.rankByRounds());}
+		return "board/rank";
 	}
 	
 	@RequestMapping("write")

@@ -1,5 +1,7 @@
 package sutdaGame.web.vo;
 
+import sutdaGame.web.util.MoneyFormat;
+
 public class PlayerVO {
 
 	private Integer no;
@@ -78,6 +80,7 @@ public class PlayerVO {
 	}
 
 	public void setMoney(Long money) {
+		setStrMoney(MoneyFormat.format(money));
 		this.money = money;
 	}
 
@@ -119,6 +122,13 @@ public class PlayerVO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerVO [no=" + no + ", id=" + id + ", password=" + password + ", nickname=" + nickname + ", money="
+				+ money + ", strMoney=" + strMoney + ", win=" + win + ", lose=" + lose + ", character=" + character
+				+ ", email=" + email + ", name=" + name + ", admin=" + admin + ", rank=" + rank + "]";
 	}
 
 }
