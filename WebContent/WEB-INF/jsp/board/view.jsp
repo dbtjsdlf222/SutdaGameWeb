@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +11,8 @@
 <style>
 .container{
 	margin: auto;
+	overflow: hidden;
+	color:#fff;
 }
 #write{
     margin: auto;
@@ -101,15 +102,18 @@ footer p{
 	width:150px;
 	height:150px;
 }
+#good_box{
+	text-align: center;
+}
 </style>
 <body>
 <jsp:include page="../include/header.jsp" flush="false" />
     <div class="container">
         	<h1>${post.title}</h1>	
         	<div>${post.content }</div>
-        	<button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button>
-        	<c:if test="${(post.writerNo eq loginInfo.no) || (loginInfo.admin) } ">
-         	<button id="deleteBoard" onclick="location.href='/board/delete?no=${post.no}'">게시글 삭제하기</button>
+        	<%-- <button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button> --%>
+        	<c:if test="${(post.writerNo eq loginInfo.no) || (loginInfo.admin == true) }">
+         	<button id="deleteBoard" onclick="if(confirm('게시글을 삭제하시겠습니까?')){location.href='/board/delete?no=${post.no}'}">게시글 삭제하기</button>
          	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'">게시글 수정하기</button>
 	       	</c:if>
       			<div id="good_box">

@@ -106,9 +106,9 @@
 				<span>승 <c:out value='${ranks.win}'/> </span>
 				<span>패 <c:out value='${ranks.lose}'/> </span>
 			</div>
-				<div class="odds">
-					<span>승률 <fmt:formatNumber value="${(ranks.win/(ranks.win+ranks.lose))*100}" pattern=".0"/>%</span>
-				</div>
+			<div class="odds">
+				<span>승률 <fmt:formatNumber value="${(ranks.win/(ranks.win+ranks.lose))*100}" pattern=".0"/>%</span>
+			</div>
 		</div>
 	</c:forEach>
 	</div>

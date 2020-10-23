@@ -41,6 +41,7 @@ h3{
    color: white;
    word-wrap: break-word;
    padding-right: 15px;
+   height:92px;
 }
 .commentCon .nickname{
    color: black;
@@ -193,7 +194,7 @@ input[class="reComment"]{
                         <div class="asd">
                         &emsp;<input class="reComment" placeholder="답글">
                            <button id="reCommentBtn" 
-                                 onclick="reCommentUpdate(this)"  
+                                 onclick="reCommentInsert(this)"  
                                  data-no='<c:out value="${comment.no}"/>' >답글 입력
                            </button>
                         </div>
@@ -292,7 +293,7 @@ input[class="reComment"]{
                      writeTime = '방금 전';
                   }
 				$(e).parent().parent().append(
-					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>"+"<button id='reCommentView' onclick='selectReComment(this)'>답글 더보기</button><button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button><div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentUpdate(this)'>답글 입력</button></div></div>");
+					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>"+"<button id='reCommentView' onclick='selectReComment(this)'>답글 더보기</button><button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button><div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
               }
               if(data.length < 5) {
                  $(e).remove();
@@ -335,11 +336,10 @@ input[class="reComment"]{
 //          $(".commentCon").clone().insertAfter(".addComment");
 //       }
    //답글 입력
-   function reCommentUpdate(e) {
+   function reCommentInsert(e) {
       <c:choose>
       <c:when test="${loginInfo ne null}">
       if($(e).prev().val().trim()==""||$(e).data("no")=="") {
-//          console.log(val());
          alert("내용을 입력해주세요");
          return;
       }
@@ -349,6 +349,7 @@ input[class="reComment"]{
             data: {  content:$(e).prev().val(), no:$(e).data("no") },
             success: function() {
                alert("댓글 입력 성공");
+               $(e).prev().val("");
             },
             error:function(textStatus, errorThrown){
                 alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -370,7 +371,7 @@ input[class="reComment"]{
            type: 'POST',
             data: {  content:$(e).parent().children(".reCommnet").val(), no:$(e).data("no") },
             success: function() {
-               alert("댓글 입력 성공");
+               alert("댓글 삭제 성공");
             },
             error:function(textStatus, errorThrown){
                 alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");

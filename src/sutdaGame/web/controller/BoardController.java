@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.Builder.Default;
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.LikeService;
@@ -28,14 +29,11 @@ import sutdaGame.web.vo.PlayerVO;
 @Controller @RequestMapping("board")
 public class BoardController {
 	
-	@Autowired
-	BoardService boardService;
-	@Autowired
-	LikeService likeService;
-	@Autowired
-	CommentService commentService;
-	@Autowired
-	PlayerService playerService;
+	@Autowired BoardService boardService;
+	@Autowired LikeService likeService;
+	@Autowired CommentService commentService;
+	@Autowired PlayerService playerService;
+	
 	@RequestMapping("/")
 	public String main() {
 		return "redirect:../main";
@@ -140,8 +138,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("delete")
-	public String deleteBoard(int no) {
+	public String deleteBoard(@RequestParam int no,@RequestParam(defaultValue = "1")int kind) {
 		boardService.deleteBoard(no);
-		return "redirect:/board/boardList";
+		return "redirect:/board/boardList?kind="+kind;
 	}
 }
