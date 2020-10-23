@@ -142,6 +142,10 @@ input[class="reComment"]{
 	<div class="container">
 		<h3 style="color: white; font-family: 'Rosewood Std''">댓글</h3>
 		<div class="commentList">
+		<c:if test="${comment.commentCount eq 0}">
+		<button id="commentView" onclick="selectOneComment(this)"
+			data-no='${comment.boardNo }' data-p="1" data-end='${page.end }'>댓글 더보기</button>
+		</c:if>
 			<c:choose>
 				<c:when test="${comment ne null}">
 					<c:forEach var="comment" items="${comment}" varStatus="status">
@@ -175,9 +179,9 @@ input[class="reComment"]{
 									</c:when>
 								</c:choose>
 								</div>
-								
 								<br>
 						</div>
+						
 								<c:if test="${comment.replyCount ne 0}">&emsp;
 								<button id="reCommentView" onclick="selectRecomment(this)" 
 									data-no='${comment.no}' data-p="1" data-end='${page.end}'>
@@ -224,7 +228,6 @@ input[class="reComment"]{
 			      } */
 			      $(e).data("p",$(e).data("p")+1);
 			      for(var i=0; i<data.length;i++){
-				      console.log(data[i].regdate);
 					var writeTime = data[i].regdate;
 						if(writeTime > 3153600){
 							writeTime = Math.floor(writeTime/31536000) + '년 전';
@@ -245,7 +248,7 @@ input[class="reComment"]{
 					     "<button value="삭제"></button>"+"<button value="수정"></button>"
 				     } */
 			      }
-			      if(data.length < 10) {
+			      if(data.length < 5) {
 				     $(e).remove();
 				  } else {
 					  $(e).find("span").text($(e).find("span").text()-data.length);
@@ -270,12 +273,29 @@ input[class="reComment"]{
 		      data: {  no:$(e).data("no"), p:$(e).data("p") },
 		      success: function(data) {
 		    	  $(e).data("p",$(e).data("p")+1);
+		    	  console.
 			     for(var i=0; data.length;i++){
-				     $(e).parent().parent().prepend(
-						     "<tr><td>작성일:</td><td>"+data[i].regdate+"</td></tr>"+"<tr><td>"+data[i].player.nickname + "</td><td>"+data[i].content+"</td></tr>");
+			    	 var writeTime = data[i].regdate;
+						if(writeTime > 3153600){
+							writeTime = Math.floor(writeTime/31536000) + '년 전';
+						} else if(writeTime > 604800){
+							writeTime = Math.floor(writeTime/604800) + '주 전';
+						} else if(writeTime > 86400){
+							writeTime = Math.floor(writeTime/86400) + '일 전';
+						} else if(writeTime > 3600){
+							writeTime = Math.floor(writeTime/3600) + '시간 전';
+						} else if(writeTime > 60){
+							writeTime = Math.floor(writeTime/60) + '분 전';
+						} else if(writeTime < 60){
+							writeTime = '방금 전';
+						}
+				     $(e).parent().parent().append(
+						     "<div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><div class='regdate'>"+writeTime+"</div></div>");
 			     }
 			     if(data.length < 5) {
 			     	$(e).remove();
+			     } else{
+			    	 $(e).find("span").text($(e).find("span").text()-data.length);
 			     }
 		      },
 		      error:function(textStatus, errorThrown){
@@ -295,7 +315,7 @@ input[class="reComment"]{
 				      success: function() {
 					      alert("댓글 입력 성공");
 					      $("#commentBox").val("");
-					      avComment();
+// 					      avComment();
 				      },
 				      error: function(statusText) {
 				    	  console.log(statusText);
@@ -308,10 +328,10 @@ input[class="reComment"]{
 		</c:choose>
 	}
 	
-		var myno= ${loginInfo.nickname};
-		function avComment(){
-			$(".commentCon").clone().insertAfter(".addComment");
-		}
+// 		var myno= ${loginInfo.nickname};
+// 		function avComment(){
+// 			$(".commentCon").clone().insertAfter(".addComment");
+// 		}
 	//답글 입력
 	function reCommentUpdate(e) {
 		<c:choose>
@@ -327,7 +347,6 @@ input[class="reComment"]{
 		      data: {  content:$(e).prev().val(), no:$(e).data("no") },
 		      success: function() {
 			      alert("댓글 입력 성공");
-			      
 		      },
 	    	  error:function(textStatus, errorThrown){
 	             alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");

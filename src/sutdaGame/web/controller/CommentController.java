@@ -23,6 +23,7 @@ public class CommentController {
 	LikeService likeService;
 	@Autowired
 	CommentService commnetService;
+	
 	@RequestMapping(path="insert",params = {"title","content"})
 	public String insertBoard(String title, String content, HttpSession session) {
 		
