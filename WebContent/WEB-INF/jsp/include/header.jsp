@@ -255,6 +255,7 @@ footer p{
         			<ul class="dept02">
         				<li id="download"><a href="/download">다운로드</a></li>
         				<li id="guide"><a href="/board/boardList?kind=4">게임 가이드</a></li>
+        				<li id="guide"><a href="/board/boardList?kind=4">유튜브 영상 자료실</a></li>
         			</ul>
         		</li>
         		<li style="width:181px">
@@ -265,7 +266,7 @@ footer p{
         			</ul>
         		</li>
         		<li style="width:161px">
-        			<span><a href="/rank">명예의 전당</a></span>
+        			<span><a href="/board/rank">명예의 전당</a></span>
         		</li>
         		<li style="width:134px">
         			<span><a href="/board/boardList?kind=7">고객센터</a></span>

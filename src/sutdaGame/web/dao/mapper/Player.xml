@@ -66,7 +66,7 @@
 	</update>
 	
 	
-	<insert id="join" parameterType="PlayerVO" >
+	<insert id="join" parameterType="PlayerVO">
 		INSERT 
 		INTO player(
 			`name`,
@@ -116,6 +116,28 @@
 		DELETE FROM player
 		WHERE no=#{no}
 	</delete>
+	
+	<select id="selectEmail" resultType="int" parameterType="String">
+		SELECT EXISTS (
+		SELECT
+			email
+		FROM
+			player
+		WHERE
+			email=#{email}
+		) as success;
+	</select>
+	
+	<select id="selectNickname" resultType="int" parameterType="String">
+		SELECT EXISTS (
+		SELECT
+			nickname
+		FROM
+			player
+		WHERE
+			nickname=#{nickname}
+		) as success;
+	</select>
 	
 	<select id="rankByMoney" resultType="PlayerVO">
 		SELECT

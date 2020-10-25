@@ -79,8 +79,8 @@
     	</tr>
     </table>
         <div class="wrap1">
-            <p><button type="button" class="btn btn-success btn-sm" onclick="location.href='/player/update?'">회원 정보 수정</button></p>
-            <p><button type="button" class="btn btn-danger btn-block" onclick="showDeletePopup()">회원 탈퇴</button></p>
+            <p><button type="button" style="width:100%" class="btn btn-success btn-sm" onclick="location.href='/player/update?'">비밀번호 변경</button></p>
+            <p><button type="button" style="width:100%" class="btn btn-danger btn-block" onclick="showDeletePopup()">회원 탈퇴</button></p>
         </div>
 <jsp:include page="../include/footer.jsp" flush="false" />
 <script type="text/javascript" src="/js/passwordCheck.js" ></script> 

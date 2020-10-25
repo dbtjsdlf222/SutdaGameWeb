@@ -63,7 +63,7 @@
 		color: darkgoldenrod;
 	}
 	.rating_box>span:nth-child(2){
-		color: blue;
+		color: skyblue;
 	}
 	.rating_box>span:nth-child(3){
 		color: brown;

@@ -59,7 +59,6 @@ public class AjaxController {
 		else { likeService.deleteLike(params); }
 		
 		return JsonUtil.convertToResponseEntity(likeService.selectCount(no));
-		
 	} //likeInsert()
 	
 	@RequestMapping(path="selectRecomment",method = RequestMethod.POST, params= {"no","p"})
@@ -80,6 +79,16 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		return JsonUtil.responseStatusBadRequest(res ,"error");
+	}
+	
+	@RequestMapping(path="selectEmail",method = RequestMethod.POST)
+	public ResponseEntity<String> selectEmailt(HttpServletResponse res,HttpSession session,@RequestParam String email) throws JsonProcessingException {
+		return JsonUtil.convertToResponseEntity(playerService.selectEmail(email));
+	}
+	
+	@RequestMapping(path="selectNickname",method = RequestMethod.POST)
+	public ResponseEntity<String> selectNickname(HttpServletResponse res,HttpSession session,@RequestParam String nickname) throws JsonProcessingException {
+		return JsonUtil.convertToResponseEntity(playerService.selectNickname(nickname));
 	}
 	
 	@RequestMapping(path="commentReInsert",method = RequestMethod.POST,params = {"no","content"})

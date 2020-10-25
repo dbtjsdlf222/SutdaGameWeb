@@ -19,4 +19,7 @@ public interface PlayerDAO {
 	public String findID(@Param("email") String email, @Param("name") String name);
 	public Integer findPW(@Param("id") String id, @Param("email") String email);
 	public void pwChange(@Param("password") String id, @Param("no") int no);
+	public int selectEmail(@Param("email") String email);
+	public int selectNickname(@Param("nickname") String nickname);
+	
 } //interface PDAO

@@ -134,7 +134,7 @@
 	  <version>4.5.3</version>
 	</dependency>
 	
-		<!--메일 라이브러리  -->
+	<!--메일 라이브러리  -->
 	<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -146,7 +146,7 @@
     <artifactId>activation</artifactId>
     <version>1.1.1</version>
 	</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context-support</artifactId>
@@ -160,5 +160,11 @@
 	    <version>2.0.0</version>
 	</dependency>
 	
+	<!-- Bcrypt -->
+	<dependency>
+	    <groupId>org.mindrot</groupId>
+	    <artifactId>jbcrypt</artifactId>
+	    <version>0.3m</version>
+	</dependency>
   </dependencies>
 </project>

@@ -6,6 +6,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.util.MoneyFormat;
@@ -32,6 +32,7 @@ public class PlayerController {
 	@RequestMapping(value="loginAction", method=RequestMethod.POST)
 	public ModelAndView loginAction(Model model,HttpSession session,@RequestParam(required = true) String id, @RequestParam(required = true) String password) {
 		PlayerVO PlayerVO;
+	    password = BCrypt.hashpw(password, BCrypt.gensalt());
 		if((PlayerVO=playerService.loginPlayer(id,password)) != null) {
 			session.setAttribute("loginInfo", PlayerVO);
 			return new ModelAndView("mainpage/main");
@@ -66,6 +67,7 @@ public class PlayerController {
 	
 	@RequestMapping(path="updateAction", params = {"password"})
 	public String updateAction(HttpSession session, PlayerVO playerVO) {
+		playerVO.setPassword(BCrypt.hashpw(playerVO.getPassword(), BCrypt.gensalt()));
 		playerService.updatePlayer(playerVO);
 		return "redirect:mypage";
 	}
@@ -148,6 +150,8 @@ public class PlayerController {
 		UUID b=(UUID)session.getAttribute("code");
 		if((b).equals(a)) {
 			playerService.pwChange(password, (Integer)session.getAttribute("no"));
+			session.removeAttribute("code");
+			session.removeAttribute("no");
 			return new RedirectWithAlert("알림","비밀변호가 정상적으로 변경 되었습니다.","/");
 		}
 		return new RedirectWithAlert("알림","잘못된 요청입니다","/");

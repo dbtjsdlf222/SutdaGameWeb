@@ -107,7 +107,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("rank")
-	public String rank(Model model, int kind) {
+	public String rank(Model model,@RequestParam(defaultValue = "1") int kind) {
 		if(kind==1) { model.addAttribute("ranks", playerService.rankByRate());  } else 
 		if(kind==2) { model.addAttribute("ranks", playerService.rankByMoney()); } else
 				    { model.addAttribute("ranks", playerService.rankByRounds());}
