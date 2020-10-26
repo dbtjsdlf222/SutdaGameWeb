@@ -12,7 +12,7 @@
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 html>body{
-	background-color: darkred;
+	background:linear-gradient(-212deg, #750000 9%, #000000 44%, #6654F1 98%);
 	position: relative;
 	padding-top:100px;
 	min-width:1400px;
@@ -223,8 +223,12 @@ html>body{
 }
 footer{
     width: 100%;
-    height: 70px;
-    display: block;
+    height: 95px;
+    clear: both;
+    border-top: 3px solid #DB3A00;
+    padding-top: 17px;
+    background: black;
+    margin-top: 10px;
 }
 footer p{
     text-align: center;

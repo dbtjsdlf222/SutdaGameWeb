@@ -58,11 +58,11 @@
 	margin: auto;
 }
 .main_banner .item{
-	padding-top: 323px;
-	height: 800px;
-	box-sizing: border-box;
-	color: #fff;
-	text-align: center;
+	padding-top: 100px;
+    height: 360px;
+    box-sizing: border-box;
+    color: black;
+    text-align: center;
 }
 .main_banner .item .first{
 	background-color: midnightblue;
@@ -172,7 +172,85 @@
 	}
 }
 #wrap{
+	position:relative;
 	width:1000px;
+	left:500px;
+	height:1181px;
+	background: orangered;
+}
+section{
+	width:100%;
+	height:400px;
+	border:1px solid black;
+	text-align:center;
+	margin-top:7px;
+}
+.youtube_list{
+	padding: 10px;
+}
+li{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+.youtube_list li strong{
+    display: block;
+    width: 288px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+ul{
+	margin: 0;
+	padding:0;
+}
+.youtube_list li{
+	list-style: none;
+    margin-left: 10px;
+    border-left: 1px solid black;
+    padding-left: 10px;
+    float: left;
+    width: 300px;
+    height: 220px;
+    overflow: hidden;
+}
+.youtube_list img{
+	width:287px;
+}
+owl-carousel {
+    display: none;
+    width: 100%;
+    z-index: 9;
+    background: wheat;
+    height: 300px;
+}
+.youtube_list li:nth-child(1){
+	margin-left:0;
+	border-left:none;
+}
+.small_box{
+    width: 488px;
+    border: 1px solid black;
+    height: 355px;
+    float: left;
+    margin: 9px 6px;
+}
+.rate_rank_ul,.money_rank_ul{
+	font-size:12px;
+	font-weight: 900;
+}
+.money_rank_ul>li{
+    text-align: justify;
+    font-size: 18px;
+    background: gold;
+    border-radius: 3px 3px 3px 51px;
+    padding-left: 14px;
+    width: 415px;
+    margin: 15px 1px;
+    height: 73px;
+    margin-left: auto;
+}
+.ranker_box{
 	
 }
 </style>
@@ -197,11 +275,82 @@
 			</div>
 		</section>
 		<section>
-				
+			<h3>유튜브 영상 자료실</h3>
+			<hr />
+			<ul class="youtube_list">
+				<li>
+					<div>
+						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306995/78b8da1d98512d4f840e_20201023182122685.jpg">
+						<strong>[속보]보속소복소소소보송보송</strong>
+						<p>속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>				
+					</div>
+				</li>
+				<li>
+					<div>
+						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306995/78b8da1d98512d4f840e_20201023182122685.jpg">
+						<strong>[속보]보속소복소소소보송보송</strong>
+						<p>속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>				
+					</div>
+				</li>
+				<li>
+					<div>
+						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306995/78b8da1d98512d4f840e_20201023182122685.jpg">
+						<strong>[속보]보속소복소소소보송보송</strong>
+						<p>속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>				
+					</div>
+				</li>
+			</ul>
 		</section>
 		
+		<section class="small_box">
+			<h3>재산가</h3>
+			<hr/>
+			<ul class="money_rank_ul">
+				<li>
+					<span>1</span>
+					<div class="ranker_box">
+						<p>현호 짱짱맨</p>
+						<p>10조</p>
+					</div>
+				</li>
+				<li>
+					<span>2</span>
+					<div class="ranker_box">
+						<p>현호 짱짱맨</p>
+						<p>10조</p>
+					</div>
+				</li>
+				<li>
+					<span>3</span>
+					<div class="ranker_box">
+						<p>현호 짱짱맨</p>
+						<p>10조</p>
+					</div>
+				</li>
+			</ul>
+		</section>
+		
+		<section class="small_box">
+			<h3>타짜</h3>
+			<hr/>
+			<ul class="rate_rank_ul">
+				<li>
+					<p>현호 짱짱맨</p>
+					<p>10전 5승 5패 50%</p>
+				</li>
+				<li>
+					<p>test1</p>
+					<p>10전 4승 6패 40%</p>
+				</li>
+				<li>
+					<p>test2</p>
+					<p>10전 2승 8패 20%</p>
+				</li>
+			</ul>
+		</section>
 	</div>
-     <jsp:include page="../include/rel.jsp" flush="false" />
+	<jsp:include page="../include/footer.jsp" flush="false" />
+	<jsp:include page="../include/rel.jsp" flush="false" />
 <script>
 	(function(window){
 		"use strict";
