@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" />
 	<link rel="stylesheet" href="/css/owl.theme.default.css" />
     <jsp:include page="../include/rel.jsp" flush="false" />
-    
 <style>
 .main_banner{
 	position: relative;
@@ -172,27 +171,36 @@
 		font-size: 16px;
 	}
 }
+#wrap{
+	width:1000px;
+	
+}
 </style>
 </head>
 <body>
-<jsp:include page="../include/header.jsp" flush="false" />
-    
-<div class="owl-carousel owl-theme">
-	<div class="main_banner owl-carousel owl-theme">
-		<div class="item first">
-			<h3 class="title">오픈기념<strong class="em">이벤트!!</strong></h3>
-			<span class="subtitle">2020.11 - 2020.12</span>
-		</div>
-		<div class="item second">
-			<h3 class="title">ㅁㄴㅇ<strong class="em">이벤트!!</strong></h3>
-			<span class="subtitle">2020.11 - 2020.12</span>
-		</div>
-		<div class="item first">
-			<h3 class="title">ㅂㅈㄷ<strong class="em">이벤트!!</strong></h3>
-			<span class="subtitle">2020.11 - 2020.12</span>
-		</div>
+	<jsp:include page="../include/header.jsp" flush="false" />
+ 	<div id="wrap">
+		<section class="owl-carousel owl-theme">
+			<div class="main_banner owl-carousel owl-theme">
+				<div class="item first">
+					<h3 class="title">오픈기념<strong class="em">이벤트!!</strong></h3>
+					<span class="subtitle">2020.11 - 2020.12</span>
+				</div>
+				<div class="item second">
+					<h3 class="title">ㅁㄴㅇ<strong class="em">이벤트!!</strong></h3>
+					<span class="subtitle">2020.11 - 2020.12</span>
+				</div>
+				<div class="item first">
+					<h3 class="title">ㅂㅈㄷ<strong class="em">이벤트!!</strong></h3>
+					<span class="subtitle">2020.11 - 2020.12</span>
+				</div>
+			</div>
+		</section>
+		<section>
+				
+		</section>
+		
 	</div>
-</div>
      <jsp:include page="../include/rel.jsp" flush="false" />
 <script>
 	(function(window){

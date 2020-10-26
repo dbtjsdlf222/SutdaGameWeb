@@ -91,8 +91,10 @@
     	border-radius:0px
     }
     #inb{
-    	margin-top:10px;
-    	height:40px;
+   	    left: 305px;
+	    position: relative;
+	    top: -63px;
+	    height: 40px;
     }
     #inb>button{
     	widht:100px;
