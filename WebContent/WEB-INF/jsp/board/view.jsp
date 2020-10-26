@@ -6,7 +6,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>게시물 작성</title>
+    <title>게시물 보기</title>
 </head>
 <style>
 .container{
@@ -14,32 +14,9 @@
 	overflow: hidden;
 	color:#fff;
 }
-#write{
-    margin: auto;
-    padding-left: 50px;
-    padding-top: 20px;
-    text-align: center;
-}
-#title{
-	margin-top: 100px;
-    width: 1100px;
-    height: 30px;
-}
-#contents{
+#contentBox{
 	margin-top: 20px;
-    width: 1100px;
-    height: 500px;
-}
-#revise{
-	margin-top: 20px;
-	margin-left: 20px;
-	width: 150px;
-	height: 40px;
-	border: 1px solid #DB3A00;
-	border-radius: 30%;
-	color: #DB3A00;
-	background-color: #363636;
-	float: right;
+	min-height: 300px;
 }
 #back{
 	margin-top: 20px;
@@ -65,25 +42,6 @@ h3{
 	border-bottom: 1px solid #DB3A00;
 	color: #DB3A00;
 }
-.commentList{
-	width: 1250px;	
-	margin: auto;
-	margin-top: 50px;
-}
-.likeBtn1{
-	margin: auto;
-	cursor: pointer;
-}
-.likeBtn2{
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 0s, opacity 0.5s ease-out;
-	margin: 50px;
-}
-.likeBtn1:hover .likeBtn2{
-	visibility: visible;
-	opacity: 1;
-}
 footer{
 	margin-top: 100px;
     width: 100%;
@@ -95,13 +53,6 @@ footer p{
     text-align: center;
     color: #CACACA;
 }
-.commentBox{
-	resize: none;
-}
-#writeComment{
-	width:150px;
-	height:150px;
-}
 #good_box{
 	text-align: center;
 }
@@ -110,7 +61,7 @@ footer p{
 <jsp:include page="../include/header.jsp" flush="false" />
     <div class="container">
         	<h1>${post.title}</h1>	
-        	<div>${post.content }</div>
+        	<div id="contentBox">${post.content }</div>
         	<%-- <button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button> --%>
         	<c:if test="${(post.writerNo eq loginInfo.no) || (loginInfo.admin == true) }">
          	<button id="deleteBoard" onclick="if(confirm('게시글을 삭제하시겠습니까?')){location.href='/board/delete?no=${post.no}'}">게시글 삭제하기</button>
