@@ -61,8 +61,8 @@ public class AjaxController {
 		return JsonUtil.convertToResponseEntity(likeService.selectCount(no));
 	} //likeInsert()
 	
-	@RequestMapping(path="selectRecomment",method = RequestMethod.POST, params= {"no","p"})
-	public ResponseEntity<String> selectRecoment(HttpSession session,int no,int p) throws JsonProcessingException {
+	@RequestMapping(path="selectReComment",method = RequestMethod.POST, params= {"no","p"})
+	public ResponseEntity<String> selectReComent(HttpSession session,int no,int p) throws JsonProcessingException {
 		try {
 			return JsonUtil.convertToResponseEntity(commentService.selectReComment(no, new Page(10,5,p)));
 		} catch (JsonProcessingException e) {

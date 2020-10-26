@@ -185,7 +185,7 @@ input[class="reComment"]{
                   </div>
                   
                         <c:if test="${comment.replyCount ne 0}">&emsp;
-                        <button id="reCommentView" onclick="selectRecomment(this)" 
+                        <button id="reCommentView" onclick="selectReComment(this)" 
 							data-no='${comment.no}' data-p="1" data-end='${page.end}'>
 							답글이 <span><c:out value="${comment.replyCount}" /></span>개 있습니다.
                         </button>
@@ -218,9 +218,9 @@ input[class="reComment"]{
 
 <script>
    //답글 더보기
-   function selectRecomment(e){
+   function selectReComment(e){
       $.ajax({
-           url:'/ajax/selectRecomment',
+           url:'/ajax/selectReComment',
            type: 'POST',
             data: {  no:$(e).data("no"), p:$(e).data("p") },
             success: function(data) {
@@ -276,9 +276,8 @@ input[class="reComment"]{
             data: {  no:$(e).data("no"), p:$(e).data("p") },
             success: function(data) {
                $(e).data("p",$(e).data("p")+1);
-              for(var i=0; data.length;i++){
+              for(var i=0; i<data.length;i++){
                  var writeTime = data[i].regdate;
-                 console.log(data[i].regdate);
                   if(writeTime > 3153600){
                      writeTime = Math.floor(writeTime/31536000) + '년 전';
                   } else if(writeTime > 604800){
@@ -292,8 +291,8 @@ input[class="reComment"]{
                   } else if(writeTime < 60){
                      writeTime = '방금 전';
                   }
-				$(e).parent().parent().append(
-					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>"+"<button id='reCommentView' onclick='selectReComment(this)'>답글 더보기</button><button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button><div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
+				$(e).parent().append(
+					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>"+"<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button><div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
               }
               if(data.length < 5) {
                  $(e).remove();
