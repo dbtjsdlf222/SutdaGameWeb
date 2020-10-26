@@ -172,11 +172,11 @@
 	}
 }
 #wrap{
-	position:relative;
-	width:1000px;
-	left:500px;
-	height:1181px;
-	background: orangered;
+    position: relative;
+    width: 1000px;
+    left: 50%;
+    margin-left: -562px;
+    height: 1181px;
 }
 section{
 	width:100%;
@@ -184,6 +184,8 @@ section{
 	border:1px solid black;
 	text-align:center;
 	margin-top:7px;
+	background:#363636;
+	color:#DB3600;
 }
 .youtube_list{
 	padding: 10px;
@@ -239,6 +241,17 @@ owl-carousel {
 	font-size:12px;
 	font-weight: 900;
 }
+.rate_rank_ul>li{
+   	text-align: justify;
+    font-size: 18px;
+    background: black;
+    border-radius: 0 0px 80px 0;
+    padding-left: 14px;
+    width: 415px;
+    margin: 15px 1px;
+    height: 73px;
+}
+
 .money_rank_ul>li{
     text-align: justify;
     font-size: 18px;
@@ -258,6 +271,7 @@ owl-carousel {
 <body>
 	<jsp:include page="../include/header.jsp" flush="false" />
  	<div id="wrap">
+ 	<jsp:include page="../include/righter.jsp" flush="false" />
 		<section class="owl-carousel owl-theme">
 			<div class="main_banner owl-carousel owl-theme">
 				<div class="item first">

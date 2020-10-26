@@ -6,12 +6,11 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>우측 내비</title>
-    <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
 .wrap{
-	float: right;
-	margin-right: 200px;
+    position: absolute;
+    right: -315px;
 }
 #playBox{
 	margin: 10px;
@@ -36,10 +35,10 @@
 	font-size: 30px;
 	margin-bottom: 10px;
 	cursor: pointer;
+	transition: 1s;
 }
 #startGame:hover{
 	background: linear-gradient(120deg, red 0%, black 50%, blue 100%);
-	transition: 1s;
 }
 #loginBox{
 	margin: 10px;
