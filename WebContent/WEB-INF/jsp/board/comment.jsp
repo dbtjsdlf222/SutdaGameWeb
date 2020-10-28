@@ -138,6 +138,14 @@ input[class="reComment"]{
    width: 470px;
    height: 50px;
 }
+#commentDelete{
+	background-color: #363636;
+	color: white;
+}
+#commentUpdate{
+	background-color: #363636;
+	color: white;
+}
 </style>
 <body>
    <div class="container">
@@ -191,11 +199,11 @@ input[class="reComment"]{
                         </button>
                         </c:if>
                         &emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
+                        &emsp;<button id="commentDelete">수정</button>
+                        &emsp;<button id="commentUpdate" onclick="deleteComment(this)" data-no='${comment.no }' data-orderNo='${comment.orderNo }'>삭제</button>
                         <div class="asd">
                         &emsp;<input class="reComment" placeholder="답글">
-                           <button id="reCommentBtn" 
-                                 onclick="reCommentInsert(this)"  
-                                 data-no='<c:out value="${comment.no}"/>' >답글 입력
+                           <button id="reCommentBtn" onclick="reCommentInsert(this)" data-no='<c:out value="${comment.no}"/>' >답글 입력
                            </button>
                         </div>
                     </div>
@@ -292,7 +300,7 @@ input[class="reComment"]{
                      writeTime = '방금 전';
                   }
 				$(e).parent().append(
-					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>"+"<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button><div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
+					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>"+(data[i].replyCount != 0 ? "&emsp;<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>" : ' ') +"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp;<button class='updateComment'>수정</button>&emsp;<button class='deleteComment' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button><div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
               }
               if(data.length < 5) {
                  $(e).remove();

@@ -119,7 +119,7 @@ public class AjaxController {
 	public ResponseEntity<String> commentSelect(HttpServletResponse res,HttpSession session, CommentVO vo) throws JsonProcessingException {
 		try {
 			if(commentService.selectOneComment(vo.getNo()).getPlayer().getNo() == ((PlayerVO)session.getAttribute("loginInfo")).getNo()) {
-				
+				commentService.deleteComment(vo);
 			}
 		} catch (NullPointerException e) {
 			return JsonUtil.responseStatusBadRequest(res,"삭제된 댓글입니다.");
