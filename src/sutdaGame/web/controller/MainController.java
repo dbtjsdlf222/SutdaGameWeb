@@ -51,11 +51,6 @@ public class MainController {
 			return "redirect:main";
 	} //login
 	
-	@RequestMapping("update")
-	public String update() {
-		return "mainpage/update";
-	} //회원정보 수정
-	
 	//회원가입
 		@RequestMapping("join")
 		public String join(HttpSession session) {
@@ -87,23 +82,5 @@ public class MainController {
 			}
 			return JsonUtil.convertToJsonString(false);
 		} // 
-		
-	//새소식
-		@RequestMapping("news")
-		public String news(HttpSession session) {
-			return "board/news";
-		}	//news
-		
-	//다운로드
-		@RequestMapping("download")
-		public String reference(HttpSession session) {
-			return "mainpage/download";
-		}	//download
-		
-	//고객센터
-		@RequestMapping("customer")
-		public String customer(HttpSession session) {
-			return "board/customer";
-		}	//customer
 		
 } //MainController class 

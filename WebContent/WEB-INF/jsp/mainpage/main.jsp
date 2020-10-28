@@ -217,7 +217,8 @@ ul{
     overflow: hidden;
 }
 .youtube_list img{
-	width:287px;
+	width:320px;
+	height:180px;
 }
 owl-carousel {
     display: none;
@@ -242,27 +243,44 @@ owl-carousel {
 	font-weight: 900;
 }
 .rate_rank_ul>li{
-   	text-align: justify;
+    text-align: center;
     font-size: 18px;
     background: black;
-    border-radius: 0 0px 80px 0;
+    border-radius: 6px 5px 80px 8px;
     padding-left: 14px;
     width: 415px;
-    margin: 15px 1px;
+    margin: 15px 14px;
     height: 73px;
+    padding-top: 6px;
 }
 
+.rate_rank_ul img{
+    position: relative;
+    left: -140px;
+    top: -72px;
+    width: 59px;
+    border: 2px solid darkgoldenrod;
+}
+.money_rank_ul img{
+    position: relative;
+    left: -140px;
+    top: -72px;
+    width: 59px;
+    border: 2px solid darkgoldenrod;
+}
 .money_rank_ul>li{
-    text-align: justify;
+    text-align: center;
     font-size: 18px;
     background: gold;
     border-radius: 3px 3px 3px 51px;
     padding-left: 14px;
     width: 415px;
-    margin: 15px 1px;
+    margin: 15px 16px;
     height: 73px;
     margin-left: auto;
+    padding-top: 6px;
 }
+
 .ranker_box{
 	
 }
@@ -296,7 +314,7 @@ owl-carousel {
 					<div>
 						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306995/78b8da1d98512d4f840e_20201023182122685.jpg">
 						<strong>[속보]보속소복소소소보송보송</strong>
-						<p>속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>				
+						<p>속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>
 					</div>
 				</li>
 				<li>
@@ -321,24 +339,24 @@ owl-carousel {
 			<hr/>
 			<ul class="money_rank_ul">
 				<li>
-					<span>1</span>
 					<div class="ranker_box">
 						<p>현호 짱짱맨</p>
-						<p>10조</p>
+						<p>1,000,000,000,000</p>
+						<img src="/img/character/cha0.png">
 					</div>
 				</li>
 				<li>
-					<span>2</span>
 					<div class="ranker_box">
 						<p>현호 짱짱맨</p>
-						<p>10조</p>
+						<p>1,000,000,000,000</p>
+						<img src="/img/character/cha1.png">
 					</div>
 				</li>
 				<li>
-					<span>3</span>
 					<div class="ranker_box">
 						<p>현호 짱짱맨</p>
-						<p>10조</p>
+						<p>1,000,000,000,000</p>
+						<img src="/img/character/cha3.png">
 					</div>
 				</li>
 			</ul>
@@ -351,14 +369,17 @@ owl-carousel {
 				<li>
 					<p>현호 짱짱맨</p>
 					<p>10전 5승 5패 50%</p>
+					<img src="/img/character/cha0.png">
 				</li>
 				<li>
 					<p>test1</p>
 					<p>10전 4승 6패 40%</p>
+					<img src="/img/character/cha0.png">
 				</li>
 				<li>
 					<p>test2</p>
 					<p>10전 2승 8패 20%</p>
+					<img src="/img/character/cha0.png">
 				</li>
 			</ul>
 		</section>
