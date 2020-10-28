@@ -275,10 +275,10 @@ footer p{
         			<span><a href="/board/rank">명예의 전당</a></span>
         		</li>
         		<li style="width:134px">
-        			<span><a href="/board/boardList?kind=7">고객센터</a></span>
+        			<span><a href="/board/boardList?kind=8">고객센터</a></span>
         			<ul class="dept02">
-        				<li id="QA"><a href="/board/boardList?kind=7">1:1 문의</a></li>
-        				<li id="FQ"><a href="/board/boardList?kind=8">자주하는 질문</a></li>
+        				<li id="QA"><a href="/board/boardList?kind=8">1:1 문의</a></li>
+        				<li id="FQ"><a href="/board/boardList?kind=9">자주하는 질문</a></li>
         			</ul>
         		</li>
         	</ul>

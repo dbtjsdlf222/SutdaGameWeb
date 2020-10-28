@@ -91,9 +91,9 @@ public class BoardController {
 			case 1: jsp = "board/notice"; break;
 			case 2: jsp = "board/patch";  break;
 			case 3: jsp = "board/event";  break;
-			case 4: jsp = "board/download";  break;
-			case 5: jsp = "board/guide";  break;
-			case 6: jsp = "board/free";   break;
+			case 4: jsp = "board/guide";  break;
+			case 5: jsp = "board/free";  break;
+			case 6: jsp = "board/screen";   break;
 			case 7: jsp = "redirect:board/rank";	  break;
 			case 8: jsp = "board/QA";	  break;
 			case 9: jsp = "board/FQ";	  break;
