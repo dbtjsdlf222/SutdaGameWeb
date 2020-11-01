@@ -273,7 +273,7 @@ input[class="reComment"]{
    
    //답글 쓰기 버튼
    function reCommentWrite(e){
-      $(e).next().toggle();
+      $(e).next().next().next().toggle();
    }
    
    //댓글 더보기
