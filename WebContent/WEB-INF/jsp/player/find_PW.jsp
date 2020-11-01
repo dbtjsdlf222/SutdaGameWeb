@@ -8,6 +8,9 @@
     <title>비밀번호 찾기</title>
    	<jsp:include page="../include/rel.jsp" flush="false" />
 <style>
+table{
+	margin: auto;
+}
 .tab{
     text-align: center;
     position:relative;
@@ -17,11 +20,13 @@ input[type="text"]{
     width: 380px;
     height: 40px;
     padding-left: 10px;
+    margin-bottom: 10px;
 }
 input[type="email"]{
     width: 380px;
     height: 40px;
     padding-left: 10px;
+    margin-bottom: 10px;
 }
 input[type="submit"]{
     width: 380px;
@@ -41,8 +46,8 @@ input[type="submit"]{
             <div id="user" data-tab-content class="active">
                 <form action="/player/findPW" method="POST">
                 <table>
-               	 	<tr><td><span>아이디</span><span class="id"><input type="text" name="id" class="id_input" placeholder="아이디를 입력해 주세요." required="required"></span></td></tr>
-                    <tr><td><span>이메일</span><span class="pw"><input type="email" name="mail" class="email_input" placeholder="이메일을 입력해 주세요" required="required"></span></td></tr>
+               	 	<tr><td><span class="id"><input type="text" name="id" class="id_input" placeholder="아이디를 입력해 주세요." required="required"></span></td></tr>
+                    <tr><td><span class="pw"><input type="email" name="mail" class="email_input" placeholder="이메일을 입력해 주세요" required="required"></span></td></tr>
                     <tr><td colspan="2"><span class="login-sub"><input type="submit" value="비밀번호 찾기"></span></td>
                 </table>
                 </form>
