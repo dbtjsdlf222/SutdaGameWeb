@@ -149,7 +149,7 @@
 		        <tr>
 		        <% for(int i=0; i<=6;i++){ %>
 		                <td>
-		                	<input type="radio" id="cha<%=i%>" name="character" class="character" required style="margin-left:40%" <%if(i==0){ %> checked <%} %>>
+		                	<input type="radio" id="cha<%=i%>" name="character" value="<%=i%>" class="character" required style="margin-left:40%" <%if(i==0){ %> checked <%} %>>
 		                </td>
                 <%} %>
                 </tr>

@@ -181,7 +181,7 @@ public class AjaxController {
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping(path="email_code",method = RequestMethod.POST)
-	public ResponseEntity<String> commentUpdate(HttpSession session, String email) throws JsonProcessingException {
+	public ResponseEntity<String> mailSender(HttpSession session, String email) throws JsonProcessingException {
 		//메일보내기
 		Random r = new Random();
         int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)

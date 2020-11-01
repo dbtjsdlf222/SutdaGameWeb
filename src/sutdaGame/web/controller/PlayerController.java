@@ -47,7 +47,7 @@ public class PlayerController {
 			PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
 			model.setViewName("mainpage/mypage");
 			PlayerVO svo = playerService.selectPlayer(vo.getNo());
-			svo.setStrMoney(new MoneyFormat().format(svo.getMoney()));
+			svo.setStrMoney(MoneyFormat.format(svo.getMoney()));
 			model.addObject("myInfo", svo);
 		} catch (NullPointerException e) {
 			return new RedirectWithAlert("유저정보 페이지 - 섯다온라인", "유저를 찾을수 없습니다", "/login");
