@@ -42,13 +42,19 @@ input[type="submit"]{
     position: static;
 }
 .id-search{
-	margin-right: 100px;
+	margin-right: 30px;
 	border: none;
 	background: #363636;
 	color: #DB3A00;
 }
 .pw-search{
-	margin-left: 100px;
+	margin-left: 30px;
+	border: none;
+	background: #363636;
+	color: #DB3A00;
+}
+.joinBtn{
+	margin-left: 50px;
 	border: none;
 	background: #363636;
 	color: #DB3A00;
@@ -66,8 +72,11 @@ input[type="submit"]{
                     <span class="pw"><input type="password" name="password" class="user_pw" placeholder="비밀번호를 입력하세요." required="required"></span><br><br>
                     <span class="login-sub"><input type="submit" value="로그인"></span>
                 </form>
+                <div class="login-option">
                     <input type="button" name="id-search" class="id-search" onclick="location.href='/player/findID_form'" value="아이디 찾기">
                     <input type="button" name="pw-search" class="pw-search" onclick="location.href='/player/findPW_form'" value="비밀번호 찾기">
+                    <input type="button" name="join" class="joinBtn" onclick="location.href='/join'" value="회원가입">
+                </div>
             </div>
         </div>
     </div>

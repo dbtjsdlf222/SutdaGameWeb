@@ -17,12 +17,10 @@
         padding-bottom: 50px;
         margin: auto;
         margin-top: 100px;
-        color: #0A4600;
+        color: #DB3600;
     }
     legend{
         text-align: center;
-        font-size: 30px;
-        color: #0A4600;
     }
     .information ul{
         list-style-type: none;
@@ -35,7 +33,7 @@
     input[type="button"]{
         width: 100px;
         height: 30px;
-        background-color: #0A4600;
+        background-color: #363636;
         border-radius: 5%;
         color: white;
     }
@@ -47,7 +45,7 @@
     input[type="submit"], input[type="reset"]{
         width: 200px;
         height: 40px;
-        background-color: #0A4600;
+        background-color: #363636;
         color: white;
         font-weight: bold;
         font-size: 20px;
@@ -58,7 +56,7 @@
     }
     #useTerms{
     	display: none;
-    	border: 1px solid #0A4600;
+    	border: 1px solid #DB3600;
     }
     #useTerms{
     	margin: auto;
@@ -71,7 +69,7 @@
     	margin-left:40%;
     }
     #detail{
-     cursor:pointer;
+    	cursor:pointer;
     }
     #detail:hover{
     	text-decoration: underline;
@@ -106,7 +104,7 @@
 <jsp:include page="../include/header.jsp" flush="false"/>
    	<form action="/joinAction" method="post" autocomplete="off" >
     <fieldset class="information">
-    <legend>회원가입</legend>
+    <legend style="color: #DB3600; font-size: 30px;">회원가입</legend>
     	<ul>
     		<li>성함</li>
         	<li><input type="text" name="name" placeholder="성함" maxlength="15" minlength="3" required/></li>	

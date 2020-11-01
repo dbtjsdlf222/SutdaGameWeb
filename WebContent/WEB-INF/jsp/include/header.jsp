@@ -78,9 +78,9 @@ html>body{
 	font-size:16px;
 }
 /* .dept02 a:hover{ */
-	color:black;
-	text-shadow: 1px 1px 8px #fff;
-}
+/* 	color:black; */
+/* 	text-shadow: 1px 1px 8px #fff; */
+/* } */
 a:hover{
 	text-decoration:none;
 }
@@ -127,12 +127,11 @@ a:hover{
 }
 .dept01:hover .dept02{
 }
-/* .b05_3d_roll {
+.b05_3d_roll {
     perspective: 500px;
     -webkit-perspective: 500px;
     -moz-perspective: 500px;
 }
-
 .b05_3d_roll div {
     position: absolute;
     text-align: center;
@@ -222,7 +221,7 @@ a:hover{
     position: absolute;
     right:10px;
     top:29px;
-} */
+}
 footer{
     width: 100%;
     height: 95px;
@@ -283,7 +282,7 @@ footer p{
         		</li>
         	</ul>
        	</div>
-<%-- 			<div id="login_box">
+			<div id="login_box">
         <% if(session.getAttribute("loginInfo")==null){ %>
 			  <div class="button_base b05_3d_roll login_btn" style=" position: absolute; right: 108px;" onclick="location.href='/login'">
 			    <div>LOGIN</div>
@@ -302,9 +301,9 @@ footer p{
 			    <div>MYPAGE</div>
 			    <div>마이페이지</div>
 			  </div> 
-        	<!-- <div class="mypage"><a href="/player/mypage"><img id="slide-menu" src="/img/samsun.png">마이페이지</a></div> -->
+        	<div class="mypage"><a href="/player/mypage"><img id="slide-menu" src="/img/samsun.png">마이페이지</a></div>
         <% } %>
-			</div> --%>
+			</div>
     </div>
     </header>
 </html>
