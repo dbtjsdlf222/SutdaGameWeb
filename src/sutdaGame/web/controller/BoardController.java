@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.org.slf4j.internal.LoggerFactory;
+
 import lombok.Builder.Default;
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
@@ -91,7 +93,6 @@ public class BoardController {
 			case 1: jsp = "board/notice"; break;
 			case 2: jsp = "board/patch";  break;
 			case 3: jsp = "board/event";  break;
-			case 4: jsp = "board/guide";  break;
 			case 5: jsp = "board/free";  break;
 			case 6: jsp = "board/screen";   break;
 			case 7: jsp = "redirect:board/rank";	  break;
