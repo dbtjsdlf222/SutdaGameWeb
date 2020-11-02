@@ -13,7 +13,9 @@
 <body>
 <div id="wrapper">
 	<div id="guide-wrapper">
-		<iframe name="frame-main" id="frame-main" src="./guideHeader" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="ture"></iframe>
+		<iframe name="frame-header" id="frame-header" src="./guideHeader" width="100%" height="100%" frameborder="1" scrolling="no" allowtransparency="ture"></iframe>
+		<iframe name="frame-menu" id="frame-menu" src="./guideMenu" width="20%" height="100%" frameborder="1"></iframe>
+		<iframe name="frame-screen" id="frame-screen" src="./guideScreen" width="80%" height="100%" frameborder="1"></iframe>
 	</div>
 </div>
 </body>

@@ -1,37 +1,28 @@
 package sutdaGame.web.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
-
-@Controller
+@Controller @RequestMapping("guide")
 public class GuideController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(GuideController.class);
-	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String guide(Model model) {
-		logger.info("guide call...");
+	@RequestMapping("guide")
+	public String guide() {
 		return "guide/guide";
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String guideHeader(Model model) {
-		logger.info("guideHeader call...");
+	@RequestMapping("guideHeader")
+	public String guideHeader() {
 		return "guide/guideHeader";
-		
-	}@RequestMapping(value="/", method=RequestMethod.GET)
-	public String guideMenu(Model model) {
-		logger.info("guideMenu call...");
+	}
+	
+	@RequestMapping("guideMenu")
+	public String guideMenu() {
 		return "guide/guideMenu";
-		
-	}@RequestMapping(value="/", method=RequestMethod.GET)
-	public String guideScreen(Model model) {
-		logger.info("guideScreen call...");
+	}
+	
+	@RequestMapping("guideScreen")
+	public String guideScreen() {
 		return "guide/guideScreen";
 	}
+
 }
