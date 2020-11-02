@@ -31,10 +31,9 @@ public class PlayerController {
 	//로그인 액션
 	@RequestMapping(value="loginAction", method=RequestMethod.POST)
 	public ModelAndView loginAction(Model model,HttpSession session,@RequestParam(required = true) String id, @RequestParam(required = true) String password) {
-		PlayerVO PlayerVO;
-	    password = BCrypt.hashpw(password, BCrypt.gensalt());
-		if((PlayerVO=playerService.loginPlayer(id,password)) != null) {
-			session.setAttribute("loginInfo", PlayerVO);
+		PlayerVO playerVO = playerService.loginPlayer(id);
+		if((playerVO=playerService.loginPlayer(id)) != null && BCrypt.checkpw(password, playerVO.getPassword())) {
+			session.setAttribute("loginInfo", playerVO);
 			return new ModelAndView("mainpage/main");
 		} else {
 			return new RedirectWithAlert("로그인-섯다온라인","아이디나 비밀번호가 틀렸습니다.","/login");

@@ -8,7 +8,7 @@ import sutdaGame.web.vo.PlayerVO;
 
 public interface PlayerDAO {
 	public int join(PlayerVO PlayerVO);			//회원가입
-	public PlayerVO login(@Param("id") String id,@Param("password") String pw);
+	public PlayerVO login(@Param("id") String id);
 	public PlayerVO selectPlayer(@Param("no") int no);
 	public int updatePlayer(PlayerVO PlayerVO);
 	public int deletePlayer(@Param("no") int no);

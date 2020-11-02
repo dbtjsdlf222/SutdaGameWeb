@@ -301,7 +301,7 @@ footer p{
 			    <div>MYPAGE</div>
 			    <div>마이페이지</div>
 			  </div> 
-        	<div class="mypage"><a href="/player/mypage"><img id="slide-menu" src="/img/samsun.png">마이페이지</a></div>
+        	<!-- <div class="mypage"><a href="/player/mypage"><img id="slide-menu" src="/img/samsun.png">마이페이지</a></div> -->
         <% } %>
 			</div>
     </div>

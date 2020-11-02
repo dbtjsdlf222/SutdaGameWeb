@@ -15,7 +15,7 @@ public class PlayerService {
 	@Autowired
 	PlayerDAO playerDAO;
 	
-	public PlayerVO loginPlayer(String id, String pw) { return playerDAO.login(id, pw); }
+	public PlayerVO loginPlayer(String id) { return playerDAO.login(id); }
 	public int selectID(@Param("id") String id) { return playerDAO.selectID(id); }
 	public PlayerVO selectPlayer(@Param("no") int no) { return playerDAO.selectPlayer(no); }
 	public ArrayList<PlayerVO> rankByMoney() { return playerDAO.rankByMoney(); }
