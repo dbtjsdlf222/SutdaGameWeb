@@ -17,7 +17,7 @@
 	background-color: #363636;
 	color: #DB3600;
 	text-align: center;
-	padding: 20px;
+	padding: 24px;
 }
 #playBox ul li{
 	list-style: none;

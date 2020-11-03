@@ -9,15 +9,11 @@
     <title>게시물 보기</title>
 </head>
 <style>
-.container{
-	margin: auto;
-	overflow: hidden;
-	color:#fff;
-}
 #contentBox{
 	text-align: center;
 	margin-top: 20px;
 	min-height: 300px;
+	overflow-wrap: anywhere;
 }
 #back{
 	margin-top: 20px;
@@ -28,7 +24,7 @@
 	color: #DB3A00;
 	background-color: #363636;
 }
-#deleteBoard{
+#deleteBoard, #updateBoard{
 	margin-top: 20px;
 	width: 150px;
 	height: 40px;
@@ -37,8 +33,8 @@
 	color: #DB3A00;
 	background-color: #363636;
 	float: right;
+	position: absolute;
 }
-
 h3{
 	border-bottom: 1px solid #DB3A00;
 	color: #DB3A00;
@@ -61,7 +57,7 @@ footer p{
 <body>
 <jsp:include page="../include/header.jsp" flush="false" />
 <jsp:include page="../include/righter.jsp" flush="false" />
-    <div class="container">
+    <div id="container" style="width:890px;margin: auto;color: bisque;">
         	<h1>${post.title}</h1>
         	<c:choose>
         	<c:when test="${post.kindNo==10}">	<%-- 유튜브 게시판일 경우 --%>
@@ -74,9 +70,9 @@ footer p{
         	</c:otherwise>
         	</c:choose>
         	<%-- <button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button> --%>
-        	<c:if test="${(post.writerNo eq loginInfo.no) || (loginInfo.admin == true) }">
+        	<c:if test="${(post.writerNo eq loginInfo.no) || (admin eq true) }">
          	<button id="deleteBoard" onclick="if(confirm('게시글을 삭제하시겠습니까?')){location.href='/board/delete?no=${post.no}'}">게시글 삭제하기</button>
-         	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'">게시글 수정하기</button>
+         	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'" style="left: 669px;">게시글 수정하기</button>
 	       	</c:if>
       			<div id="good_box">
 			<c:choose>
@@ -87,7 +83,7 @@ footer p{
 					<button onclick="likeBoard()"><img id="like" width="90px" src="/img/likeBtn1.png"/></button>
 				</c:otherwise>
 			</c:choose>
-			<span id="likeCount" style="display: block">${like}</span>
+			<span id="likeCount" style="display: block; font-size: 27px;color: burlywood;">${like}</span>
 			</div>
 		</div>
 <jsp:include page="comment.jsp" flush="false"/>

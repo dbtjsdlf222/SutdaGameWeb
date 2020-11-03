@@ -6,16 +6,18 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>새 소식</title>
-    <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
-.container{
+#container{
 	margin: auto;
+	margin-top: -9px;
+    width: 890px;
 }
 .title{
 	background-color: #FF8224;
-	padding-top: 10px;
+	padding: 10px;
 	font-weight: bold;
+	margin-top:20px;
 }
 .title h1{
 	font-weight: bold;
@@ -50,26 +52,6 @@ ul.tabs li.current{
 .tab-content.current tr{
 	border-bottom: 1px solid white;
 }
-/* .tab-content.current tr td:nth-child(1){
-	width: 200px;
-	font-size: 20px;
-	text-align: center;
-}
-.tab-content.current tr td:nth-child(2){
-	width: 800px;
-	font-size: 20px;
-	text-align: center;
-}
-.tab-content.current tr td:nth-child(3){
-	width: 300px;
-	font-size: 20px;
-	text-align: center;
-}
-.tab-content.current tr td:nth-child(4){
-	width: 300px;
-	font-size: 20px;
-	text-align: center;
-} */
 .pagination>li>a{
 	board:0px;
 }
@@ -80,27 +62,45 @@ ul.tabs li.current{
 	display:inline;
 }
 .boardColumn{
-	width: 1100px;
-	>span{
-		margin-left:10px;	
-	}
+	color: #ddd;
+}
+#board-list{
+	width:100%;
+}
+#board-list tr:hover{
+	background:linear-gradient(120deg, red -40%, black 50%, blue 150%);
+	cursor:pointer
+	padding:10px;
+}
+#board-list tr{
+	border-bottom:1px solid #fff;
+	cursor:pointer;
+}
+@keyframes back {
+     0% {
+     background:linear-gradient(0deg, red 0%, black 50%, blue 100%);
+     }
+     25% {
+       background:linear-gradient(90deg, red 0%, black 50%, blue 100%);
+     }
+     50% {
+       background:linear-gradient(180deg, red 0%, black 50%, blue 100%);
+     }
+     100% {
+       background:linear-gradient(300deg, red 0%, black 50%, blue 100%);
+     }
 }
 </style>
 <body>
 <jsp:include page="../include/header.jsp" flush="false" />
     
- <div class="container">
+<div id="container">
 	<div class="title">
-		<h1>새 소식</h1>
-	<ul class="tabs">
-		<a href="/board/boardList?kind=1"><li class="tab-link current" data-tab="tab-1">공지사항</li></a>
-		<!-- <a href="/board/boardList?kind=2"><li class="tab-link" data-tab="tab-2">패치노트</li></a>
-		<a href="/board/boardList?kind=3"><li class="tab-link" data-tab="tab-3">이벤트</li></a> -->
-	</ul>
+		<h1>공지사항</h1>
 	</div>
-	<div id="tab-1" class="tab-content current">
+	<div>
 		<fieldset>
-			<table class="table table-hover">
+			<table id="board-list">
 				<!-- <tr>
 					<td id="post_no">No.</td>
 					<td id="post_title">제목</td>

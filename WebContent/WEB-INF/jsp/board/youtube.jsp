@@ -49,6 +49,7 @@ img {
     margin: -1rem -1rem;
 	margin-top: 20px;
     padding-bottom: 3rem;
+    padding-left: 17px;
 }
 .youtube-item {
     position: relative;
@@ -56,7 +57,17 @@ img {
     margin: 1rem;
     color: #fff;
     cursor: pointer;
+    overflow: hidden;
+    width:280px;
+    height:160px;
 }
+.youtube-item:hover img {
+	transform:scale(1.1);
+}
+.youtube-item img {
+	transition:.4s
+}
+
 .youtube-item-type {
     position: absolute;
     top: 1rem;

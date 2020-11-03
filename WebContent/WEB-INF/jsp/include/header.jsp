@@ -11,11 +11,16 @@
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+html,body{
+	margin:0;
+	height:100%;
+}
 html>body{
 	background:linear-gradient(-212deg, #750000 9%, #000000 44%, #6654F1 98%);
 	position: relative;
 	padding-top:100px;
 	min-width:1400px;
+	background-attachment: fixed;
 }
 .home{
     overflow: hidden;
@@ -229,7 +234,8 @@ footer{
     border-top: 3px solid #DB3A00;
     padding-top: 17px;
     background: black;
-    margin-top: 10px;
+    position: fixed;
+    bottom: 0;
 }
 footer p{
     text-align: center;

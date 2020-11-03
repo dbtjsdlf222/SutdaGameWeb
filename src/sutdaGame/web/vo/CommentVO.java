@@ -13,29 +13,29 @@ public class CommentVO {
 
 	public CommentVO() { }
 	
-	public CommentVO(int boardNo, String content) {
+	public CommentVO(Integer boardNo, String content) {
 		this.boardNo = boardNo;
 		this.content = content;
 	}
 
-	public CommentVO(int boardNo, int no, int orderNo) {
+	public CommentVO(Integer boardNo, Integer no, Integer orderNo) {
 		this.boardNo=boardNo;
 		this.no = no;
 		this.orderNo = orderNo;
 	}
 	
-	public CommentVO(int no, Integer orderNo, String content) {
+	public CommentVO(Integer no, Integer orderNo, String content) {
 		this.no = no;
 		this.orderNo = orderNo;
 		this.content = content;
 	} //Comment();
 	
-	public CommentVO(int no, Integer orderNo) {
+	public CommentVO(Integer no, Integer orderNo) {
 		this.orderNo = orderNo;
 		this.no = no;
 	} //Comment();
 
-	public int getNo() {
+	public Integer getNo() {
 		return no;
 	}
 
@@ -47,7 +47,7 @@ public class CommentVO {
 		this.myComment = myComment;
 	}
 
-	public void setNo(int no) {
+	public void setNo(Integer no) {
 		this.no = no;
 	}
 
@@ -59,11 +59,11 @@ public class CommentVO {
 		this.orderNo = orderNo;
 	}
 
-	public int getBoardNo() {
+	public Integer getBoardNo() {
 		return boardNo;
 	}
 
-	public void setBoardNo(int boardNo) {
+	public void setBoardNo(Integer boardNo) {
 		this.boardNo = boardNo;
 	}
 
@@ -84,19 +84,19 @@ public class CommentVO {
 	}
 
 
-	public int getRegdate() {
+	public Integer getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(int regdate) {
+	public void setRegdate(Integer regdate) {
 		this.regdate = regdate;
 	}
 
-	public int getReplyCount() {
+	public Integer getReplyCount() {
 		return replyCount;
 	}
 
-	public void setReplyCount(int replyCount) {
+	public void setReplyCount(Integer replyCount) {
 		this.replyCount = replyCount;
 	}
 

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,11 @@
 body{
    background-color: #363636;
 }
-.container{
-   margin: auto;
-}
 h3{
    border-bottom: 1px solid white;
+}
+.comment-box{
+	width:890px;
 }
 #commentBox{
    margin-top: 20px;
@@ -149,12 +150,16 @@ input[class="reComment"]{
 	background-color: #363636;
 	color: white;
 }
+.commentWrite{
+	margin-bottom:134px;
+}
 </style>
 <body>
-   <div class="container">
-      <h3 style="color: white; font-family: 'Rosewood Std''">댓글</h3>
+   <div class="comment-box container">
+      <h3 style="color: white; font-family: 'Rosewood Std'">댓글</h3>
       <div class="commentList">
-      <c:if test="${comment ne null}">
+      
+      <c:if test="${fn:length(comment)>=10}">
       <button id="commentView" onclick="selectComment(this)"
          data-no='${post.no }' data-p="2" data-end='${page.end }'>댓글 더보기</button>
       </c:if>
@@ -192,20 +197,18 @@ input[class="reComment"]{
                            </c:when>
                         </c:choose>
                         </div>
-                        <div class="myComment">${comment.myComment}</div>
                         <br>
                   </div>
-                  
                         <c:if test="${comment.replyCount ne 0}">&emsp;
-                        <button id="reCommentView" onclick="selectReComment(this)" 
+                        <button id="reCommentView" onclick="selectReComment(this)"
 							data-no='${comment.no}' data-p="1" data-end='${page.end}'>
 							답글이 <span><c:out value="${comment.replyCount}" /></span>개 있습니다.
                         </button>
                         </c:if>
                         &emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
                         <c:if test="${comment.myComment eq 1 || admin eq true}">
-                       		&emsp;<button id="commentUpdate" onclick="updateComment(this)" data-no='${comment.no }' data-orderNo='${comment.orderNo }'>수정</button>
-                        	&emsp;<button id="commentDelete" onclick="deleteComment(this)" data-no='${comment.no }' data-orderNo='${comment.orderNo }'>삭제</button>
+                       		&emsp;<button id="commentUpdate" onclick="updateComment(this)" data-no='${comment.no }' data-orderno='${comment.orderNo }'>수정</button>
+                        	&emsp;<button id="commentDelete" onclick="deleteComment(this)" data-no='${comment.no }' data-orderno='${comment.orderNo }'>삭제</button>
                         </c:if>
                         <div class="asd">
                         &emsp;<input class="reComment" placeholder="답글">
@@ -223,7 +226,7 @@ input[class="reComment"]{
       <div class="addComment">
          
       </div>
-      <div class="commentWrite">
+      <div class="commentWrite" >
          <input type="text" id="commentBox" placeholder="댓글 입력..">
          <button id="commentBtn" onclick="writeComment()">확인</button>
       </div>
@@ -259,8 +262,10 @@ input[class="reComment"]{
                   } else if(writeTime < 60){
                      writeTime = '방금 전';
                   }
+                  var btn="";
+                  if(data[i].myComment == 1||admin){btn="<button class='updateComment'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='deleteComment(this)'>삭제</button>"; }
                  $(e).prev().after(
-                       "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>");
+                       "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div>"+btn+"</div>");
                  /* if (data[i].no == myno){
                     "<button value="삭제"></button>"+"<button value="수정"></button>"
                  } */
@@ -279,9 +284,9 @@ input[class="reComment"]{
    
    //답글 쓰기 버튼
    function reCommentWrite(e){
-      $(e).next().next().next().toggle();
+      $(e).parent().find(".asd").toggle();
    }
-   
+   var admin = ${admin};
    //댓글 더보기
    function selectComment(e){
       $.ajax({
@@ -305,9 +310,16 @@ input[class="reComment"]{
                   } else if(writeTime < 60){
                      writeTime = '방금 전';
                   }
+                  var btn = "";
+                  if(data[i].myComment == 1||admin){ btn = "<button class='updateComment'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button>"; }
 				$(e).parent().append(
-					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div></div>"+(data[i].replyCount != 0 ? "&emsp;<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>" : ' ') +"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp;<button class='updateComment'>수정</button>&emsp;<button class='deleteComment' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button><div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
-              }
+					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"
+					+data[i].player.nickname+"</div><div class='content'>"+data[i].content+
+					"</div><br><div class='regdate'>"+writeTime+"</div></div>"+
+					(data[i].replyCount != 0 ? "&emsp;<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +
+					"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>" : " ") +
+					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; :"+btn+" <div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
+              } 
               if(data.length < 5) {
                  $(e).remove();
               } else{
@@ -382,9 +394,10 @@ input[class="reComment"]{
       $.ajax({
            url:'/ajax/commentDelete',
            type: 'POST',
-            data: {  content:$(e).parent().children(".reCommnet").val(), no:$(e).data("no") },
+            data: {  no:$(e).data("no"), orderNo: $(e).data("orderno") },
             success: function() {
                alert("댓글 삭제 성공");
+               $(e).parent().remove();
             },
             error:function(textStatus, errorThrown){
                 alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -404,7 +417,7 @@ input[class="reComment"]{
       $.ajax({
            url:'/ajax/commentUpdate',
            type: 'POST',
-            data: {  content:$(e).parent().children(".reCommnet").val(), no:$(e).data("no") },
+            data: {  content:$(e).parent().children(".reCommnet").val(), orderNo:$(e).data("no"),no:$(e).data("orderno") },
             success: function() {
                alert("댓글 입력 성공");
             },

@@ -18,6 +18,7 @@ import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.RedirectWithAlert;
+import sutdaGame.web.vo.Page;
 import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("/")
@@ -32,6 +33,7 @@ public class MainController {
 	public String main(Model model) {
 		model.addAttribute("money",playerService.rankByMoney());
 		model.addAttribute("rate",playerService.rankByRate());
+		model.addAttribute("youtube",boardService.selectBoardList(10, new Page(4,4,1)));
 		return "mainpage/main";
 	} // main
 	

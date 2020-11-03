@@ -73,12 +73,16 @@ public class BoardController {
 	            myComment = vo.getNo();
 	         }
 		mav.addObject("post"   , boardService.selectOntBoard(no));
-		mav.addObject("comment", commentService.selectByBoardNo(no, page, myComment));	
+		mav.addObject("comment", commentService.selectByBoardNo(no, page, myComment));
 		mav.addObject("page"   , page);
 		mav.addObject("like"   , likeService.selectCount(no));
 		mav.addObject("loginInfo", player);
-		mav.addObject("admin", ((PlayerVO)session.getAttribute("loginInfo")).isAdmin());
 		
+		if(session.getAttribute("loginInfo") == null) {
+			mav.addObject("admin", false);	
+		} else {
+			mav.addObject("admin", ((PlayerVO)session.getAttribute("loginInfo")).isAdmin());
+		}
 		return mav;
 	}
 
@@ -101,7 +105,7 @@ public class BoardController {
 			case 7: jsp = "redirect:board/rank"; break;
 			case 8: jsp = "board/QA";	  break;
 			case 9: jsp = "board/FQ";	  break;
-			case 10: jsp = "board/youtube";	page = new Page(9,5,p);  break;
+			case 10: jsp = "board/youtube";	page = new Page(7,5,p);  break;
 		}
 		mav.setViewName(jsp);
 		
@@ -147,7 +151,8 @@ public class BoardController {
 	@RequestMapping(path="update",params = {"title","content","no"},method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute("post") BoardVO bvo, HttpSession session) {
 		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
-		if(boardService.selectOntBoard(bvo.getNo()).getWriterNo()!=vo.getNo()) {
+		
+		if((!((PlayerVO)session.getAttribute("loginInfo")).isAdmin()) || boardService.selectOntBoard(bvo.getNo()).getWriterNo()!=vo.getNo()) {
 			return new RedirectWithAlert("알림","잘못된 요청입니다.","/main");
 		}
 		boardService.updateBoard(bvo);

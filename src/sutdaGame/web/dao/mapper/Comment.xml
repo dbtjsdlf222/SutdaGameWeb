@@ -45,6 +45,28 @@
     LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   
+  <select id="selectOneComment" resultType="CommentVO" parameterType="int">
+	SELECT
+       c.no no, 
+       `order` orderNo, 
+       board_no boardNo,
+        content,  
+        TIMESTAMPDIFF(SECOND, c.regdate, NOW()) regdate,
+        p.no 'player.no', 
+        IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
+    FROM
+      sutda_comment c
+    LEFT JOIN
+      player p
+    ON
+      player_no = p.no
+    WHERE
+      c.no = #{no} AND c.order=#{orderNo}
+    AND
+       `order` != 0
+   	ORDER BY regdate desc
+  </select>
+  
   <select id="selectByBoardNo" parameterType="int" resultType="CommentVO">
 	SELECT
       c.no no, `order` orderNo, board_no boardNo, content, TIMESTAMPDIFF(SECOND, c.regdate, NOW()) regdate, p.no 'player.no', IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname',

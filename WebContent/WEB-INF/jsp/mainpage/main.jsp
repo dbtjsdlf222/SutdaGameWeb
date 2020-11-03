@@ -19,7 +19,7 @@
 	top: 0;
 	bottom: 0;
 	left: 0;
-	height: 100%;
+	height: 300px;
 	width: 100px;
 	outline: none;
 }
@@ -112,12 +112,12 @@
 }
 @media screen and (max-width: 998px){
 	.main_banner{
-		height: 645px;
+		height: 345px;
 	}
 	.main_banner .item{
 		background: no-repeat;
 		padding-top: 241px;
-		height: 645px;
+		height: 345px;
 	}
 	.main_banner .item .title{
 		font-size: 35px;
@@ -128,11 +128,11 @@
 }
 @media screen and (max-width: 768px){
 	.main_banner{
-		height: 645px;
+		height: 345px;
 	}
 	.main_banner .item{
 		padding-top: 241px;
-		height: 645px;
+		height: 345px;
 	}
 	.main_banner .item .title{
 		font-size: 30px;
@@ -146,12 +146,12 @@
 }
 @media screen and (max-width: 475px){
 	.main_banner{
-		height: 645px;
+		height: 345px;
 	}
 	.main_banner .item{
 		background: no-repeat url("../img/mb_main_banner.png") 0/cover;
 		padding-top: 241px;
-		height: 645px;
+		height: 345px;
 	}
 	.main_banner .item .title{
 		font-size: 24px;
@@ -201,6 +201,7 @@ li{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 19px;
 }
 ul{
 	margin: 0;
@@ -212,7 +213,7 @@ ul{
     border-left: 1px solid black;
     padding-left: 10px;
     float: left;
-    width: 300px;
+    width: 319px;
     height: 220px;
     overflow: hidden;
 }
@@ -290,49 +291,36 @@ owl-carousel {
 	<jsp:include page="../include/header.jsp" flush="false" />
  	<jsp:include page="../include/righter.jsp" flush="false" />
  	<div id="wrap">
-		<section class="owl-carousel owl-theme">
-			<div class="main_banner owl-carousel owl-theme">
+		<section class="owl-carousel owl-theme" >
+			<div class="main_banner owl-carousel owl-theme" style="height:400px">
 				<div class="item first">
 					<h3 class="title">오픈기념<strong class="em">이벤트!!</strong></h3>
 					<span class="subtitle">2020.11 - 2020.12</span>
 				</div>
 				<div class="item second">
-					<h3 class="title">ㅁㄴㅇ<strong class="em">이벤트!!</strong></h3>
-					<span class="subtitle">2020.11 - 2020.12</span>
+					<h3 class="title">더 조은 컴퓨터 학원<strong class="em">6개월 동안 수고많으셨습니다</strong></h3>
+					<span class="subtitle">2020.5 - 2020.11</span>
 				</div>
 				<div class="item first">
-					<h3 class="title">ㅂㅈㄷ<strong class="em">이벤트!!</strong></h3>
+					<h3 class="title">N7팀<strong class="em">취업기원!!</strong></h3>
 					<span class="subtitle">2020.11 - 2020.12</span>
 				</div>
 			</div>
 		</section>
-		<section>
+		<section style="height: 317px;">
 			<h3>유튜브 영상 자료실</h3>
 			<hr />
 			<ul class="youtube_list">
+			<c:forEach items="${youtube }" var="youtube" end="3" begin="1" varStatus="num" step="1">
 				<li>
 					<div>
-						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306995/78b8da1d98512d4f840e_20201023182122685.jpg">
-						<strong>[속보]보속소복소소소보송보송</strong>
-						<p>속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>
+						<a href="board/view/${youtube.no }"><img src="https://img.youtube.com/vi/${youtube.content }/0.jpg" class="youtube-image"  alt="${youtube.title}"></a>
+						<strong>${youtube.title}</strong>
 					</div>
 				</li>
-				<li>
-					<div>
-						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306995/78b8da1d98512d4f840e_20201023182122685.jpg">
-						<strong>[속보]보속소복소소소보송보송</strong>
-						<p>속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>				
-					</div>
-				</li>
-				<li>
-					<div>
-						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306995/78b8da1d98512d4f840e_20201023182122685.jpg">
-						<strong>[속보]보속소복소소소보송보송</strong>
-						<p>속보였던속보이던글인걸알리는속보이자속보이는기사입니다.</p>				
-					</div>
-				</li>
+				</c:forEach>
 			</ul>
-		</section>
+ 		</section> 
 		
 		<section class="small_box">
 			<h3>재산가</h3>

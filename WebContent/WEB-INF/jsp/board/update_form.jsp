@@ -49,7 +49,7 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp" flush="false" />
-	<div class="container">
+	<div class="container " style="width: 870px;">
 		<form action="/board/update" method="POST">
 			<table style="width: 100%; border-collapse: collapse">
 				<tr><td colspan="3"><input name="title" size="20" placeholder="제목" value="${post.title}"></td></tr>
@@ -59,6 +59,7 @@
 			</table>
 				<input type="submit" class="button" value="글쓰기" />
 				<input type="hidden" name="kindNo" value="${kind}" />
+				<input type="hidden" name="no" value="${post.no}" />
 		</form>
 	</div>
 	 <jsp:include page="../include/rel.jsp" flush="false" />
