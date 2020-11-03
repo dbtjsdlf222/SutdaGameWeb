@@ -8,7 +8,7 @@
     <title>게임 가이드</title>
     <jsp:include page="../include/rel.jsp" flush="false" />
     <frameset rows="15%, 85%" frameborder="1">
-		<frame src="guideHeader">
+		<frame src="guideHeader" scrolling="no">
 		<frameset cols="15%, 85%">
 			<frame src="guideMenu">
 			<frame src="" name="guideScreen">

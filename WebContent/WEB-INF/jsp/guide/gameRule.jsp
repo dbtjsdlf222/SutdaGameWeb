@@ -37,9 +37,9 @@ body{
 			</tr>
 			<tr>
 				<td><img src="../../img/pae/Pae.png"></td>
-				<td><img src="../../img/Call.png"></td>
+				<td><img src="../../img/bet/Call.png"></td>
 				<td><img src="../../img/pae/Pae.png">&emsp;<img src="../../img/pae/Pae.png"></td>
-				<td><img src="../../img/Call.png"></td>
+				<td><img src="../../img/bet/Call.png"></td>
 				<td><img src="../../img/pae/1.png">&emsp;<img src="../../img/pae/2.png"></td>
 				<td><img src="../../img/money.jpg" style="width: 180px; height: 200px; border-radius: 30%"></td>
 			</tr>
