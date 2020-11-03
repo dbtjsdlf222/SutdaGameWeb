@@ -10,8 +10,8 @@ import sutdaGame.web.vo.Page;
 public interface CommentsDAO {
 	public boolean insertComment(CommentVO comment);
 	public boolean insertReply(CommentVO reply);
-	public List<CommentVO> selectByBoardNo(@Param(value = "boardNo")int no, @Param(value = "page") Page page);
-	public List<CommentVO> selectReComment(@Param(value = "no")int no, @Param(value = "page")Page page);
+	public List<CommentVO> selectByBoardNo(@Param(value = "boardNo")int no, @Param(value = "page") Page page,@Param(value = "myCommnet")int myCommnet);
+	public List<CommentVO> selectReComment(@Param(value = "no")int no, @Param(value = "page")Page page,@Param(value = "myCommnet")int myCommnet);
 	public int selectCommentCount(@Param(value = "boardNo")int boardNo);
 	public int selectReCommentCount(@Param(value = "no")int no);
 	public boolean update(CommentVO comment);

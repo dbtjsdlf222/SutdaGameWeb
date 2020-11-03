@@ -17,8 +17,8 @@ public class CommentService {
 	
 	public boolean insertComment(CommentVO comment){ return commentDAO.insertComment(comment); }
 	public boolean insertReply(CommentVO reply){ return commentDAO.insertReply(reply); }
-	public List<CommentVO> selectByBoardNo(int no, Page page){ return commentDAO.selectByBoardNo(no, page.initTotal(commentDAO.selectCommentCount(no))); }
-	public List<CommentVO> selectReComment(int no,Page page){ return commentDAO.selectReComment(no,page.initTotal(commentDAO.selectReCommentCount(no))); }
+	public List<CommentVO> selectByBoardNo(int no, Page page,int myCommnet){ return commentDAO.selectByBoardNo(no, page.initTotal(commentDAO.selectCommentCount(no)),myCommnet); }
+	public List<CommentVO> selectReComment(int no,Page page,int myCommnet){ return commentDAO.selectReComment(no,page.initTotal(commentDAO.selectReCommentCount(no)),myCommnet); }
 	public CommentVO selectOneComment(int no){ return commentDAO.selectOneComment(no); }
 	public boolean updateCommtent(CommentVO comment){ return commentDAO.update(comment); }
 	public boolean deleteComment(CommentVO comment) {

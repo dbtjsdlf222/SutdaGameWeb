@@ -63,8 +63,13 @@ public class AjaxController {
 	
 	@RequestMapping(path="selectReComment",method = RequestMethod.POST, params= {"no","p"})
 	public ResponseEntity<String> selectReComent(HttpSession session,int no,int p) throws JsonProcessingException {
+		int myComment = 0;
+		PlayerVO vo = null;
 		try {
-			return JsonUtil.convertToResponseEntity(commentService.selectReComment(no, new Page(10,5,p)));
+			if((vo=(PlayerVO)session.getAttribute("loginInfo")) != null) {
+				myComment = vo.getNo();
+			}
+			return JsonUtil.convertToResponseEntity(commentService.selectReComment(no, new Page(10,5,p),myComment));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -73,8 +78,13 @@ public class AjaxController {
 	
 	@RequestMapping(path="selectComment",method = RequestMethod.POST)
 	public ResponseEntity<String> selectComent(HttpServletResponse res,HttpSession session,@RequestParam int no,@RequestParam(defaultValue = "1") int p) throws JsonProcessingException {
+		int myComment = 0;
+		PlayerVO vo = null;
 		try {
-			return JsonUtil.convertToResponseEntity(commentService.selectByBoardNo(no, new Page(10,5,p)));
+			if((vo=(PlayerVO)session.getAttribute("loginInfo")) != null) {
+				myComment = vo.getNo();
+			}
+			return JsonUtil.convertToResponseEntity(commentService.selectByBoardNo(no, new Page(10,5,p),myComment));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
