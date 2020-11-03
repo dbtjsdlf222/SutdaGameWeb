@@ -10,6 +10,7 @@
 </head>
 <style>
 #guideHeader{
+	margin-top: 20px;
 	font-size: 50px;
 	text-align: center;
 	padding-top: 10px;

@@ -9,17 +9,24 @@
    	<jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
-.guideMenuCon{
+.guideMenu{
+	padding: 0;
 	list-style: none;
+	line-height: 5.0em;
+	font-size: 30px;
+	text-align: center;
+}
+.guideMenu li a{
+	cursor: pointer;
 }
 </style>
 <body>
 <div class="guideMenuCon">
 	<ul class="guideMenu">
-		<li>섯다란?</li>
-		<li>게임 룰</li>
-		<li>섯다 족보</li>
-		<li>베팅</li>
+		<a href="intro" target="guideScreen"><li>섯다란?</li></a>
+		<a href="gameRule" target="guideScreen"><li>게임 룰</li></a>
+		<a href="jokbo" target="guideScreen"><li>섯다 족보</li></a>
+		<a href="betting" target="guideScreen"><li>베팅</li></a>
 	</ul>
 </div>
 </body>

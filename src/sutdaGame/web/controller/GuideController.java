@@ -5,10 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller @RequestMapping("guide")
 public class GuideController {
-	@RequestMapping("guide")
-	public String guide() {
-		return "guide/guide";
-	}
 	
 	@RequestMapping("guideHeader")
 	public String guideHeader() {
@@ -20,9 +16,19 @@ public class GuideController {
 		return "guide/guideMenu";
 	}
 	
-	@RequestMapping("guideScreen")
-	public String guideScreen() {
-		return "guide/guideScreen";
+	@RequestMapping("guideView")
+	public String guideView() {
+		return "guide/guideView";
+	}
+	
+	@RequestMapping("intro")
+	public String intro() {
+		return "guide/intro";
+	}
+	
+	@RequestMapping("jokbo")
+	public String jokbo() {
+		return "guide/jokbo";
 	}
 
 }
