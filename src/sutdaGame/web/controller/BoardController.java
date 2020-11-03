@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sun.org.slf4j.internal.LoggerFactory;
-
 import lombok.Builder.Default;
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
@@ -45,7 +43,7 @@ public class BoardController {
 	public ModelAndView view(HttpSession session, @PathVariable int no, @RequestParam(defaultValue = "1") int p) {
 		TreeSet<Integer> map = (TreeSet<Integer>)session.getAttribute("view");
 		
-		if(map==null){
+		if(map==null) {
 			map = new TreeSet<Integer>();
 			map.add(no);
 			session.setAttribute("view", map);
@@ -89,19 +87,20 @@ public class BoardController {
 	public ModelAndView boardList(@RequestParam int kind, @RequestParam(defaultValue = "1") int p) {
 		String jsp = null;
 		ModelAndView mav = new ModelAndView();
+		Page page = new Page(10,5,p);
 		switch(kind) {
 			case 1: jsp = "board/notice"; break;
 			case 2: jsp = "board/patch";  break;
 			case 3: jsp = "board/event";  break;
-			case 5: jsp = "board/free";  break;
-			case 6: jsp = "board/screen";   break;
-			case 7: jsp = "redirect:board/rank";	  break;
+			case 5: jsp = "board/free";   break;
+			case 7: jsp = "redirect:board/rank"; break;
 			case 8: jsp = "board/QA";	  break;
 			case 9: jsp = "board/FQ";	  break;
+			case 10: jsp = "board/youtube";	page = new Page(9,5,p);  break;
 		}
 		mav.setViewName(jsp);
-		Page page = new Page(10,5,p);
-		mav.addObject("boardList", boardService.selectBoardList(kind, page));
+		
+		mav.addObject("boardList",boardService.selectBoardList(kind, page) );
 		mav.addObject("kind", kind);
 		mav.addObject("page", page);
 		return mav;
@@ -123,6 +122,13 @@ public class BoardController {
 	
 	@RequestMapping(path="writeAction",params= {"title","content","kindNo"})
 	public String writeAction(BoardVO boardVO, HttpSession session) {
+		if(!((PlayerVO)session.getAttribute("loginInfo")).isAdmin()) {
+			return "redirect:error/500";
+		}
+		if(boardVO.getKindNo()==10) {
+			boardVO.getContent().replaceAll("https://www.youtube.com/watch?v=", "");
+			boardVO.getContent().replaceAll("https://youtu.be/TA8TARtcxhU", "");
+		}
 		boardVO.setWriterNo(((PlayerVO)session.getAttribute("loginInfo")).getNo());
 		boardService.insertBoard(boardVO);
 		return "redirect:/board/boardList?kind="+boardVO.getKindNo();

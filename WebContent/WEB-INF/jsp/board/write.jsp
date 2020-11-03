@@ -7,9 +7,9 @@
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
-	<title>게시글 수정</title>
+	<title>게시글 작성</title>
 	<style>
-	@CHARSET "UTF-8";
+		@CHARSET "UTF-8";
 			input[name="packageable"] {
 			width:15px;
 			height:15px;
@@ -41,7 +41,6 @@
         .jumbotron table{
             font-size: 18px;
         }
-
         ul{
             list-style: none;
         }
@@ -52,10 +51,17 @@
 	<div class="container">
 		<form action="/board/writeAction" method="POST">
 			<table style="width: 100%; border-collapse: collapse">
-				<tr><td colspan="3"><input name="title" size="20" placeholder="제목" value="${post.title}"></td></tr>
+				<tr><td colspan="3"><input name="title" size="20" placeholder="제목" ></td></tr>
+				<c:choose>
+					<c:when test="${kind eq 10 }">
+				<tr><td colspan="3"><input name="content" size="20" placeholder="유튜브 링크" ></td></tr>
+					</c:when>
+					<c:otherwise>
 				<tr>
-					<td colspan="3"><textarea id="summernote" name="content" required>${post.content}</textarea></td>
+					<td colspan="3"><textarea id="summernote" name="content" required></textarea></td>
 				</tr>
+					</c:otherwise>
+				</c:choose>
 			</table>
 				<input type="submit" class="button" value="글쓰기" />
 				<input type="hidden" name="kindNo" value="${kind}" />

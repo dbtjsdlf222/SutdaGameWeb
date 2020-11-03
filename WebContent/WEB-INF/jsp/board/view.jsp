@@ -58,10 +58,19 @@ footer p{
 }
 </style>
 <body>
-<jsp:include page="../include/header.jsp" flush="false" />
     <div class="container">
-        	<h1>${post.title}</h1>	
+    		<jsp:include page="../include/righter.jsp" flush="false" />
+        	<h1>${post.title}</h1>
+        	<c:choose>
+        	<c:when test="${post.kindNo==10}">	<%-- 유튜브 게시판일 경우 --%>
+        	<div id="contentBox">
+        	<iframe width="900" height="500" src="https://www.youtube.com/embed/${post.content }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        	</div>
+        	</c:when>
+        	<c:otherwise>
         	<div id="contentBox">${post.content }</div>
+        	</c:otherwise>
+        	</c:choose>
         	<%-- <button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button> --%>
         	<c:if test="${(post.writerNo eq loginInfo.no) || (loginInfo.admin == true) }">
          	<button id="deleteBoard" onclick="if(confirm('게시글을 삭제하시겠습니까?')){location.href='/board/delete?no=${post.no}'}">게시글 삭제하기</button>

@@ -4,9 +4,9 @@
 	
 	<insert id="insertBoard" parameterType="BoardVO">
 		INSERT INTO 
-			sutda_board (title, content, writer_no,kind_no)
-		VALUES 
-			(#{title}, #{content}, #{writerNo}, #{kindNo});
+			sutda_board (title, content, writer_no,kind_no, additional_info)
+		VALUES
+			(#{title}, #{content}, #{writerNo}, #{kindNo},#{additionalInfo});
 	</insert>
 	
 	<update id="updateBoard" parameterType="BoardVO">
@@ -46,7 +46,6 @@
 			sutda_comment c
 		ON
 			b.no = c.board_no
-
 		WHERE 
 			kind_no=#{kindNo}
 		GROUP BY b.no
@@ -63,7 +62,9 @@
 			IFNULL(o.name,"탈퇴한 사용자") as writerName,
 			write_date as writeDate,
 			(SELECT COUNT(*) FROM `like` WHERE board_no = #{no}) as `like`,
-			writer_no writerNo
+			writer_no writerNo,
+			kind_no kindNo,
+			additional_info additionalInfo
 		FROM 
 			sutda_board b
 		LEFT JOIN 
@@ -78,7 +79,6 @@
 		SELECT COUNT(*)
 		FROM sutda_board
 		WHERE kind_no = #{kindNo}
-		
 	</select>
 	
 	<delete id="deleteBoard" parameterType="int">

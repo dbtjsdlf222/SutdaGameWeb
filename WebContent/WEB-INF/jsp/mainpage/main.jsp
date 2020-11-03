@@ -338,27 +338,15 @@ owl-carousel {
 			<h3>재산가</h3>
 			<hr/>
 			<ul class="money_rank_ul">
+				<c:forEach items="${money }" var="money" end="3" begin="1" varStatus="num" step="1">
 				<li>
 					<div class="ranker_box">
-						<p>현호 짱짱맨</p>
-						<p>1,000,000,000,000</p>
-						<img src="/img/character/cha0.png">
+						<p><c:out value="${money.nickname}"></c:out></p>
+						<p><c:out value="${money.money}만원"></c:out></p>
+						<img src="/img/character/cha<c:out value="${money.character}"></c:out>.png">
 					</div>
 				</li>
-				<li>
-					<div class="ranker_box">
-						<p>현호 짱짱맨</p>
-						<p>1,000,000,000,000</p>
-						<img src="/img/character/cha1.png">
-					</div>
-				</li>
-				<li>
-					<div class="ranker_box">
-						<p>현호 짱짱맨</p>
-						<p>1,000,000,000,000</p>
-						<img src="/img/character/cha3.png">
-					</div>
-				</li>
+				</c:forEach>
 			</ul>
 		</section>
 		
@@ -366,21 +354,15 @@ owl-carousel {
 			<h3>타짜</h3>
 			<hr/>
 			<ul class="rate_rank_ul">
+				<c:forEach items="${rate }" var="rate" end="3" begin="1" varStatus="num" step="1">
 				<li>
-					<p>현호 짱짱맨</p>
-					<p>10전 5승 5패 50%</p>
-					<img src="/img/character/cha0.png">
+					<div class="ranker_box">
+						<p><c:out value="${ rate.nickname }"></c:out></p>
+						<p><c:out value="승률 ${ rate.rank }%"></c:out></p>
+						<img src="/img/character/cha<c:out value="${rate.character}"></c:out>.png">
+					</div>
 				</li>
-				<li>
-					<p>test1</p>
-					<p>10전 4승 6패 40%</p>
-					<img src="/img/character/cha0.png">
-				</li>
-				<li>
-					<p>test2</p>
-					<p>10전 2승 8패 20%</p>
-					<img src="/img/character/cha0.png">
-				</li>
+				</c:forEach>
 			</ul>
 		</section>
 	</div>

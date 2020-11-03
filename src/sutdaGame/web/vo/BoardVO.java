@@ -16,6 +16,15 @@ public class BoardVO {
 	private Integer like;
 	private Integer commentCount;
 	private String kindName;
+	private String additionalInfo;
+
+	public String getAdditionalInfo() {
+		return additionalInfo;
+	}
+
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
 
 	public Integer getNo() {
 		return no;
