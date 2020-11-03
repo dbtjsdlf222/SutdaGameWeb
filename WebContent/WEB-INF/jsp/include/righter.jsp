@@ -10,7 +10,7 @@
 <style>
 .wrap{
     position: absolute;
-    right: -315px;
+    right: 200px;
 }
 #playBox{
 	margin: 10px;

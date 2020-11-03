@@ -288,8 +288,8 @@ owl-carousel {
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false" />
- 	<div id="wrap">
  	<jsp:include page="../include/righter.jsp" flush="false" />
+ 	<div id="wrap">
 		<section class="owl-carousel owl-theme">
 			<div class="main_banner owl-carousel owl-theme">
 				<div class="item first">
