@@ -15,6 +15,7 @@
 	color:#fff;
 }
 #contentBox{
+	text-align: center;
 	margin-top: 20px;
 	min-height: 300px;
 }
@@ -58,8 +59,9 @@ footer p{
 }
 </style>
 <body>
+<jsp:include page="../include/header.jsp" flush="false" />
+<jsp:include page="../include/righter.jsp" flush="false" />
     <div class="container">
-    		<jsp:include page="../include/righter.jsp" flush="false" />
         	<h1>${post.title}</h1>
         	<c:choose>
         	<c:when test="${post.kindNo==10}">	<%-- 유튜브 게시판일 경우 --%>

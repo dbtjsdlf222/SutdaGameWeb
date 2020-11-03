@@ -120,6 +120,9 @@ table tr:nth-child(4) td{
 .asd{
    display: none;
 }
+.mycomment{
+	display: none;
+}
 .reCommentWrite{
    background-color: #363636;
    color: white;
@@ -189,6 +192,7 @@ input[class="reComment"]{
                            </c:when>
                         </c:choose>
                         </div>
+                        <div class="myComment">${comment.myComment}</div>
                         <br>
                   </div>
                   
@@ -199,8 +203,10 @@ input[class="reComment"]{
                         </button>
                         </c:if>
                         &emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
-                        &emsp;<button id="commentDelete">수정</button>
-                        &emsp;<button id="commentUpdate" onclick="deleteComment(this)" data-no='${comment.no }' data-orderNo='${comment.orderNo }'>삭제</button>
+                        <c:if test="${comment.myComment eq 1 || admin eq true}">
+                       		&emsp;<button id="commentUpdate" onclick="updateComment(this)" data-no='${comment.no }' data-orderNo='${comment.orderNo }'>수정</button>
+                        	&emsp;<button id="commentDelete" onclick="deleteComment(this)" data-no='${comment.no }' data-orderNo='${comment.orderNo }'>삭제</button>
+                        </c:if>
                         <div class="asd">
                         &emsp;<input class="reComment" placeholder="답글">
                            <button id="reCommentBtn" onclick="reCommentInsert(this)" data-no='<c:out value="${comment.no}"/>' >답글 입력

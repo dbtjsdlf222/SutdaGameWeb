@@ -73,6 +73,7 @@ public class BoardController {
 		mav.addObject("page"   , page);
 		mav.addObject("like"   , likeService.selectCount(no));
 		mav.addObject("loginInfo", player);
+		mav.addObject("admin", ((PlayerVO)session.getAttribute("loginInfo")).isAdmin());
 		
 		return mav;
 	}
@@ -84,7 +85,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("boardList")
-	public ModelAndView boardList(@RequestParam int kind, @RequestParam(defaultValue = "1") int p) {
+	public ModelAndView boardList(@RequestParam int kind, @RequestParam(defaultValue = "1") int p, HttpSession session) {
 		String jsp = null;
 		ModelAndView mav = new ModelAndView();
 		Page page = new Page(10,5,p);
@@ -103,6 +104,11 @@ public class BoardController {
 		mav.addObject("boardList",boardService.selectBoardList(kind, page) );
 		mav.addObject("kind", kind);
 		mav.addObject("page", page);
+		if(session.getAttribute("loginInfo") == null) {
+			mav.addObject("admin", "false");
+		} else {
+			mav.addObject("admin", ((PlayerVO)session.getAttribute("loginInfo")).isAdmin());
+		}
 		return mav;
 	}
 	

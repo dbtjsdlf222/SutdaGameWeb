@@ -2,13 +2,14 @@ package sutdaGame.web.vo;
 
 public class CommentVO {
 	
-	private int no;
+	private Integer no;
 	private Integer orderNo;
-	private int boardNo;
+	private Integer boardNo;
 	private PlayerVO player;
 	private String content;
-	private int regdate;
-	private int replyCount;
+	private Integer regdate;
+	private Integer replyCount;
+	private Integer myComment;
 
 	public CommentVO() { }
 	
@@ -36,6 +37,14 @@ public class CommentVO {
 
 	public int getNo() {
 		return no;
+	}
+
+	public Integer getMyComment() {
+		return myComment;
+	}
+
+	public void setMyComment(Integer myComment) {
+		this.myComment = myComment;
 	}
 
 	public void setNo(int no) {
@@ -90,12 +99,14 @@ public class CommentVO {
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "CommentVO [no=" + no + ", orderNo=" + orderNo + ", boardNo=" + boardNo + ", player=" + player
-				+ ", content=" + content + ", regdate=" + regdate + ", replyCount=" + replyCount + "]";
+				+ ", content=" + content + ", regdate=" + regdate + ", replyCount=" + replyCount + ", myComment="
+				+ myComment + "]";
 	}
 	
+
 	
 } //class Comment;
