@@ -67,9 +67,13 @@ public class BoardController {
 			params.put("playerNo",player.getNo());
 			mav.addObject("likeCheck", likeService.playerCheck(params));
 		}
-		
+		int myComment = 0;
+	      PlayerVO vo = null;
+	         if((vo=(PlayerVO)session.getAttribute("loginInfo")) != null) {
+	            myComment = vo.getNo();
+	         }
 		mav.addObject("post"   , boardService.selectOntBoard(no));
-		mav.addObject("comment", commentService.selectByBoardNo(no, page));	
+		mav.addObject("comment", commentService.selectByBoardNo(no, page, myComment));	
 		mav.addObject("page"   , page);
 		mav.addObject("like"   , likeService.selectCount(no));
 		mav.addObject("loginInfo", player);
