@@ -260,7 +260,7 @@ footer p{
         			<ul class="dept02">
         				<li id="download"><a href="/download">다운로드</a></li>
         				<li id="guide"><a href="/guide/guideView">게임 가이드</a></li>
-        				<li id="youtube"><a href="/board/boardList?kind=4">유튜브 영상 자료실</a></li>
+        				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 영상 자료실</a></li>
         			</ul>
         		</li>
         		<li style="width:181px">
@@ -305,5 +305,6 @@ footer p{
         <% } %>
 			</div>
     </div>
+    <jsp:include page="../include/righter.jsp" flush="false"/>
     </header>
 </html>
