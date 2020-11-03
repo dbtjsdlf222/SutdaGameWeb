@@ -9,6 +9,9 @@
    	<jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
+body{
+	background-color: #363636;
+}
 .guideMenu{
 	padding: 0;
 	list-style: none;
@@ -16,8 +19,10 @@
 	font-size: 30px;
 	text-align: center;
 }
-.guideMenu li a{
+.guideMenu a{
+	text-decoration: none;
 	cursor: pointer;
+	color: white;
 }
 </style>
 <body>

@@ -30,5 +30,15 @@ public class GuideController {
 	public String jokbo() {
 		return "guide/jokbo";
 	}
+	
+	@RequestMapping("gameRule")
+	public String gameRule() {
+		return "guide/gameRule";
+	}
+	
+	@RequestMapping("betting")
+	public String betting() {
+		return "guide/betting";
+	}
 
 }

@@ -7,6 +7,9 @@
 <title>섯다란?</title>
 </head>
 <style>
+body{
+	background-color: #363636;
+}
 .introCon{
 	margin: 50px;
 }
@@ -18,9 +21,11 @@
 	width: 1080px;
 	line-height: 2.0em;
 	margin-top: 50px;
+	color: white;
 }
 #introduce a{
 	margin-left: 900px;
+	color: white;
 }
 </style>
 <body>
