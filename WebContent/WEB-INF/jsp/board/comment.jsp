@@ -342,6 +342,7 @@ input[class="reComment"]{
                   data: {  content:$("#commentBox").val(), boardNo:${post.no } },
                   success: function() {
                      alert("댓글 입력 성공");
+                     location.reload();
                      $("#commentBox").val("");
 //                      avComment();
                   },
@@ -374,6 +375,7 @@ input[class="reComment"]{
             data: {  content:$(e).prev().val(), no:$(e).data("no") },
             success: function() {
                alert("댓글 입력 성공");
+               location.reload();
                $(e).prev().val("");
             },
             error:function(textStatus, errorThrown){
