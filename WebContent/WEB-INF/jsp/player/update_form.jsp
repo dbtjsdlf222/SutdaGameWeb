@@ -10,6 +10,10 @@
     <jsp:include page="../include/rel.jsp" flush="false" />
 </head>
 <style>
+#updatePW{
+	margin-top: 300px;
+	text-align: center;
+}
 body{
 	background-color: #363636;
 	color: white;
@@ -26,13 +30,14 @@ input[type="text"], input[type="password"]{
 }
 </style>
 <body>
+	<div id="updatePW">
 	<form action="/player/updateAction" method="post" autocomplete="off">
 		<%-- <ul>
 			<li>닉네임</li>
 			<li><input name="nickname" type="text" placeholder="변경할 닉네임을 입력하세요" value="${playerInfo.nickname}"></li>
 		</ul> --%>
 		<ul>
-			<li>비밀번호</li>
+			<li>비밀번호 변경</li>
 			<li><input name="password" id="change_pw" type="password" placeholder="변경할 비밀번호를 입력하세요"></li>
 			<li><p id="pwMsg"></p></li>
 			<li><input type="password" id="change_pwc" placeholder="변경할 비밀번호 확인"></li>
@@ -65,6 +70,7 @@ input[type="text"], input[type="password"]{
 			<input type="reset" value="취소">
 		</div>
 	</form>
+	</div>
 </body>
 <script type="text/javascript" src="/js/passwordCheck.js"></script>
 </html>
