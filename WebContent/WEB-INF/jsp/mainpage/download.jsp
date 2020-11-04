@@ -83,7 +83,7 @@ ul.tabs li.current{
 		<h1>자료실</h1>
 	<ul class="tabs">
 		<a href="/download"><li class="tab-link current" data-tab="tab-1">다운로드</li></a>
-		<a href="/guide/guideView" ><li class="tab-link" data-tab="tab-2">게임 가이드</li></a>
+		<a href="/guide/guideView" onclick="window.open(this.href, '_blank', 'width=1200, height=800, toolbar=no, menubar=no, scrollbars=no, resizeable=yes'); return false;"><li class="tab-link" data-tab="tab-2">게임 가이드</li></a>
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">

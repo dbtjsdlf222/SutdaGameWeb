@@ -103,11 +103,6 @@ body{
 
 </style>
 <body>
-	<div id="guideHeader">게임 가이드
-		<div class="button_base b05_3d_roll home_btn" style="position: absolute; right: 108px; bottom: 30px;" onclick="location.href='../main'">
-			<div>HOME</div>
-			<div>홈으로</div>
-		</div>
-	</div>
+	<div id="guideHeader">게임 가이드</div>
 </body>
 </html>
