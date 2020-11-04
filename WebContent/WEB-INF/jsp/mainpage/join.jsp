@@ -53,6 +53,7 @@
     }
     #commit{
         text-align: center;
+        margin-bottom: 100px;
     }
     #useTerms{
     	display: none;
