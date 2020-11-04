@@ -61,21 +61,21 @@
 }
 </style>
 <body>
-	<div class="wrap">
-		<div id="playBox">
-			<div id="startGame">게임 시작</div>
-			<ul>
-				<li onclick="location.href='download'">게임 다운로드</li>
-				<li onclick="location.href='guide/guideView'">게임 가이드</li>
-			</ul>
-		</div>
-		<div id="loginBox">
-			<div>로그인 후 이용 가능합니다.</div>
-			<div id="login" onclick="location.href='/login'">로그인</div>
-		</div>
-		<div id="newsBox">
+<!-- 	<div class="wrap"> -->
+<!-- 		<div id="playBox"> -->
+<!-- 			<div id="startGame">게임 시작</div> -->
+<!-- 			<ul> -->
+<!-- 				<li onclick="location.href='download'">게임 다운로드</li> -->
+<!-- 				<li onclick="location.href='guide/guideView'">게임 가이드</li> -->
+<!-- 			</ul> -->
+<!-- 		</div> -->
+<!-- 		<div id="loginBox"> -->
+<!-- 			<div>로그인 후 이용 가능합니다.</div> -->
+<!-- 			<div id="login" onclick="location.href='/login'">로그인</div> -->
+<!-- 		</div> -->
+<!-- 		<div id="newsBox"> -->
 			
-		</div>
-	</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
 </body>
 </html>
