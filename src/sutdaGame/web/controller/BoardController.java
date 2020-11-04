@@ -105,7 +105,7 @@ public class BoardController {
 			case 7: jsp = "redirect:board/rank"; break;
 			case 8: jsp = "board/QA";	  break;
 			case 9: jsp = "board/FQ";	  break;
-			case 10: jsp = "board/youtube";	page = new Page(7,5,p);  break;
+			case 10: jsp = "board/youtube";	page = new Page(9,5,p);  break;
 		}
 		mav.setViewName(jsp);
 		
