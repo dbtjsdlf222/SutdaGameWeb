@@ -74,7 +74,7 @@ input[type="submit"]{
                 </form>
                 <div class="login-option">
                     <input type="button" name="id-search" class="id-search" onclick="location.href='/player/findID_form'" value="아이디 찾기">
-                    <input type="button" name="pw-search" class="pw-search" onclick="location.href='/player/findPW_form'" value="비밀번호 찾기">
+                    <input type="button" name="pw-search" class="pw-search" onclick="location.href='/player/find_PW'" value="비밀번호 찾기">
                     <input type="button" name="join" class="joinBtn" onclick="location.href='/join'" value="회원가입">
                 </div>
             </div>

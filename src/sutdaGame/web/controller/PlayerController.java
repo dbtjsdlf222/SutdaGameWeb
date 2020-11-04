@@ -73,7 +73,6 @@ public class PlayerController {
 	
 	@RequestMapping(value="findID",method = RequestMethod.POST)
 	public ModelAndView findID(@RequestParam String mail, @RequestParam String name) {
-		System.out.println(mail);
 		String id=null;
 		if((id=playerService.findID(mail, name))==null) {
 			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/find_ID");
