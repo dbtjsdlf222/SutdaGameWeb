@@ -66,7 +66,7 @@
 			<div id="startGame">게임 시작</div>
 			<ul>
 				<li onclick="location.href='download'">게임 다운로드</li>
-				<li onclick="location.href='board/boardList?kind=4'">게임 가이드</li>
+				<li onclick="location.href='guide/guideView'">게임 가이드</li>
 			</ul>
 		</div>
 		<div id="loginBox">
