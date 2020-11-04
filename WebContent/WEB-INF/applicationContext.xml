@@ -40,7 +40,7 @@
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
  		<property name="username" value="sutdaonline" />
-		<property name="password" value="sutda123" />
+		<property name="password" value="rllepxesjimaknqd" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
