@@ -142,7 +142,7 @@ input[type="button"]{
             </div>
             </c:forEach>
       </fieldset>
-      <a href="/board/write"><input type="button" value="글 작성" name="write" id="write"></a>
+      <a href="/board/write?kind=8"><input type="button" value="글 작성" name="write" id="write"></a>
    </div>
    <div id="tab-2" class="tab-content">
       <fieldset>
