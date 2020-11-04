@@ -208,7 +208,7 @@ input[class="reComment"]{
                         &emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
                         <c:if test="${comment.myComment eq 1 || admin eq true}">
                        		&emsp;<button id="commentUpdate" onclick="updateComment(this)" data-no='${comment.no }' data-orderno='${comment.orderNo }'>수정</button>
-                        	&emsp;<button id="commentDelete" onclick="deleteComment(this)" data-no='${comment.no }' data-orderno='${comment.orderNo }'>삭제</button>
+                        	&emsp;<button id="commentDelete" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="deleteComment(this)">삭제</button>
                         </c:if>
                         <div class="asd">
                         &emsp;<input class="reComment" placeholder="답글">
@@ -319,16 +319,16 @@ input[class="reComment"]{
 					(data[i].replyCount != 0 ? "&emsp;<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +
 					"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>" : " ") +
 					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; :"+btn+" <div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
-              } 
+              }
               if(data.length < 5) {
                  $(e).remove();
-              } else{
+              } else {
                  $(e).find("span").text($(e).find("span").text()-data.length);
               }
             },
             error:function(textStatus, errorThrown){
                 alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-              }
+            }
       });
    }
 
@@ -391,6 +391,7 @@ input[class="reComment"]{
    function deleteComment(e) {
       <c:choose>
       <c:when test="${loginInfo ne null}">
+      console.log($(e).data("no")+' : '+$(e).data("orderno"));
       $.ajax({
            url:'/ajax/commentDelete',
            type: 'POST',

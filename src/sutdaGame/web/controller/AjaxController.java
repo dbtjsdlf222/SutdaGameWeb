@@ -127,14 +127,15 @@ public class AjaxController {
 	
 	@RequestMapping(path="commentDelete",method = RequestMethod.POST,params = {"no","orderNo"})
 	public ResponseEntity<String> commentSelect(HttpServletResponse res,HttpSession session, CommentVO vo) throws JsonProcessingException {
+		
 		try {
 			if(commentService.selectOneComment(vo.getNo(),vo.getOrderNo()).getPlayer().getNo() == ((PlayerVO)session.getAttribute("loginInfo")).getNo()) {
 				commentService.deleteComment(vo);
 			}
 		} catch (NullPointerException e) {
+			e.printStackTrace();
 			return JsonUtil.responseStatusBadRequest(res,"삭제된 댓글입니다.");
 		}
-		commentService.deleteComment(vo);
 		return JsonUtil.convertToResponseEntity("");
 	}
 	

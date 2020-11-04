@@ -59,7 +59,7 @@ public class PlayerController {
 		return "player/find_ID";
 	}
 	
-	@RequestMapping("findPW_form")
+	@RequestMapping("find_PW")
 	public String findPWForm() {
 		return "player/find_PW";
 	}
@@ -76,7 +76,7 @@ public class PlayerController {
 		System.out.println(mail);
 		String id=null;
 		if((id=playerService.findID(mail, name))==null) {
-			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/findID");
+			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/find_ID");
 		} else {
 			StringBuffer sb = new StringBuffer();
 			sb.append("<h1>안녕하세요 "+name+"님 가입 아이디 보내드립니다.</h1>");
@@ -99,7 +99,7 @@ public class PlayerController {
 				 } catch (Exception e) {
 				    e.printStackTrace();
 				 }
-			return new RedirectWithAlert("알림","잘못된 요청입니다.","/player/findID_form");
+			return new RedirectWithAlert("알림","잘못된 요청입니다.","/player/find_ID");
 		}
 	}
 	
@@ -108,7 +108,7 @@ public class PlayerController {
 		String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
 		Integer no = null;
 		if((no=playerService.findPW(id, mail)) == null) {
-			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/findPW_form");
+			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/find_PW");
 		} else {
 			UUID uuid =UUID.randomUUID();
 			session.setAttribute("code", uuid);
@@ -148,7 +148,7 @@ public class PlayerController {
 		UUID a=UUID.fromString(code);
 		UUID b=(UUID)session.getAttribute("code");
 		if((b).equals(a)) {
-			playerService.pwChange(password, (Integer)session.getAttribute("no"));
+			playerService.pwChange(BCrypt.hashpw(password,BCrypt.gensalt()), (Integer)session.getAttribute("no"));
 			session.removeAttribute("code");
 			session.removeAttribute("no");
 			return new RedirectWithAlert("알림","비밀변호가 정상적으로 변경 되었습니다.","/");

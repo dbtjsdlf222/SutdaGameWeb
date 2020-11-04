@@ -46,7 +46,7 @@
   </select>
   
   <select id="selectOneComment" resultType="CommentVO" parameterType="int">
-	SELECT
+	SELECT 
        c.no no, 
        `order` orderNo, 
        board_no boardNo,
@@ -62,8 +62,6 @@
       player_no = p.no
     WHERE
       c.no = #{no} AND c.order=#{orderNo}
-    AND
-       `order` != 0
    	ORDER BY regdate desc
   </select>
   
