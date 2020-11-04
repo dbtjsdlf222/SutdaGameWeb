@@ -87,7 +87,11 @@
 <script>
 	$(document).ready(function(){
 		var winRate = ${(myInfo.win/(myInfo.win+myInfo.lose))*100};
-		$("#winRate").text(winRate.toFixed(1)+'%');
+		if(isNaN(winRate)){
+			$("#winRate").text('0%');
+		} else {
+			$("#winRate").text(winRate.toFixed(1)+'%');
+		}
 	});
 
 	function showDeletePopup(){
