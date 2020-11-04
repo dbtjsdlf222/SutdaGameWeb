@@ -57,6 +57,11 @@ public class MainController {
 		session.removeAttribute("loginInfo");
 		return "mainpage/main";
 	} //logout
+	
+	@RequestMapping("download")
+	public String download() {
+		return "mainpage/download";
+	}	//download
 		
 	//회원가입 액션
 	@RequestMapping(path="joinAction", params = {"name","id","password","nickname","email","character"})

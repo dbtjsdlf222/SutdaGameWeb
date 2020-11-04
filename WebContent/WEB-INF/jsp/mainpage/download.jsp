@@ -83,31 +83,14 @@ ul.tabs li.current{
 		<h1>자료실</h1>
 	<ul class="tabs">
 		<a href="/download"><li class="tab-link current" data-tab="tab-1">다운로드</li></a>
-		<a href="/board/boardList?kind=4"><li class="tab-link" data-tab="tab-2">게임 가이드</li></a>
+		<a href="/guide/guideView" ><li class="tab-link" data-tab="tab-2">게임 가이드</li></a>
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">
-		다운로드~~
+		<a href="https://drive.google.com/file/d/1VgB5D-FMcEDagahr3ARGa-b3HPRpZJg6/view?usp=sharing">다운로드</a>
 	</div>
 	<div id="tab-2" class="tab-content">
-		<fieldset>
-			<table>
-				<tr>
-					<td id="post_no">No.</td>
-					<td id="post_title">제목</td>
-					<td id="user_id">작성자</td>
-					<td id="post_date">작성일</td>
-				</tr>
-				<c:forEach var="post" items="${boardList}" varStatus="status">
-				<tr>
-					<td><c:out value="${post.no}"/></td>
-					<td><a href="/board/view/${post.no}">${post.title}</a></td>
-					<td>관리자</td>
-					<td>${post.writeDate}</td>
-				</tr>
-				</c:forEach>
-			</table>
-		</fieldset>
+		
 	</div>
 </div>
 <jsp:include page="../include/footer.jsp" flush="false" />

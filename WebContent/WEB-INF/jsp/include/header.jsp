@@ -265,7 +265,7 @@ footer p{
         			<span><a href="/download">자료실</a></span>
         			<ul class="dept02">
         				<li id="download"><a href="/download">다운로드</a></li>
-        				<li id="guide"><a href="/guide/guideView">게임 가이드</a></li>
+        				<li id="guide"><a href="/guide/guideView" onclick="window.open(this.href, '팝업창', 'width=1200, height=800')">게임 가이드</a></li>
         				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 영상 자료실</a></li>
         			</ul>
         		</li>
@@ -311,6 +311,15 @@ footer p{
         <% } %>
 			</div>
     </div>
+    <script>
+		function popupOpen(){
+			url = "/guide/guideView";
+			name = "팝업";
+			specs = "width=1200, height=800, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizeable=yes";
+			window.open(url, name, specs);
+			return false;
+			}
+    </script>
     <jsp:include page="../include/righter.jsp" flush="false"/>
     </header>
 </html>
