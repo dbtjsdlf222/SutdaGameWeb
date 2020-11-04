@@ -96,7 +96,7 @@ public class BoardController {
 	public ModelAndView boardList(@RequestParam int kind, @RequestParam(defaultValue = "1") int p, HttpSession session) {
 		String jsp = null;
 		ModelAndView mav = new ModelAndView();
-		Page page = new Page(10,5,p);
+		Page page = new Page(7,5,p);
 		switch(kind) {
 			case 1: jsp = "board/notice"; break;
 			case 2: jsp = "board/patch";  break;
