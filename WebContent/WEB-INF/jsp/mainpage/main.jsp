@@ -9,6 +9,7 @@
     <title>메인 페이지</title>
     <link rel="stylesheet" href="/css/owl.carousel.min.css" />
 	<link rel="stylesheet" href="/css/owl.theme.default.css" />
+	<script data-ad-client="ca-pub-5130943994790960" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <jsp:include page="../include/rel.jsp" flush="false" />
 <style>
 .main_banner{
