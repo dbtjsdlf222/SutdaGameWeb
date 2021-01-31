@@ -234,7 +234,6 @@ footer{
     border-top: 3px solid #DB3A00;
     padding-top: 17px;
     background: black;
-    position: fixed;
     bottom: 0;
 }
 footer p{
