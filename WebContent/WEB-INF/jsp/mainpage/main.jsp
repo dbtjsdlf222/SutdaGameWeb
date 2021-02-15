@@ -331,7 +331,7 @@ owl-carousel {
 				<li>
 					<div class="ranker_box">
 						<p><c:out value="${money.nickname}"></c:out></p>
-						<p><c:out value="${money.money}만원"></c:out></p>
+						<p><c:out value="${money.strMoney}"></c:out></p>
 						<img src="/img/character/cha<c:out value="${money.character}"></c:out>.png">
 					</div>
 				</li>

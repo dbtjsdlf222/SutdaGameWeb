@@ -8,8 +8,8 @@ public class PlayerVO {
 	private String id;
 	private String password;
 	private String nickname;
-	private Long money;
-	private String strMoney;
+	private Long money;			//숫자로 출력
+	private String strMoney;	//억만조경으로 출력
 	private Integer win;
 	private Integer lose;
 	private Integer character;

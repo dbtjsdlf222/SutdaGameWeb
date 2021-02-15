@@ -31,6 +31,7 @@ public class MainController {
 	//메인
 	@RequestMapping(path={"/","main"})
 	public String main(Model model) {
+		
 		model.addAttribute("money",playerService.rankByMoney());
 		model.addAttribute("rate",playerService.rankByRate());
 		model.addAttribute("youtube",boardService.selectBoardList(10, new Page(4,4,1)));

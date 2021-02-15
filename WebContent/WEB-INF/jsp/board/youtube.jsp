@@ -54,10 +54,9 @@ img {
 .youtube-item {
     position: relative;
     flex: 1 0 22rem;
-    margin: 1rem;
+    margin: 10px;
     color: #fff;
     cursor: pointer;
-    overflow: hidden;
     width:280px;
     height:160px;
 }
@@ -110,9 +109,9 @@ img {
 					<div onclick="location.href='/board/view/${post.no }'">
 		 				<div class="youtube-item" tabindex="0">
 							<img src="https://img.youtube.com/vi/${post.content }/0.jpg" class="youtube-image" alt="${post.title}">
-							<div class="youtube-item-info">
+							<p class="youtube-item-info">
 								${post.title}
-							</div>
+							</p>
 						</div>
 					</div>
 				</c:forEach>
@@ -120,7 +119,7 @@ img {
 <!-- 페이지네이션 -->
 	<ul class="pagination" style="border: 1px solid brown">
 		<c:if test="${1 < page.start}">
-			<li ><a href="?kind=10&p=${page.start - page.pageCount}"  aria-label="이전">
+			<li><a href="?kind=10&p=${page.start - page.pageCount}"  aria-label="이전">
 			<span aria-hidden="true">이전</span></a></li>
 		</c:if>
 		<c:forEach var="p" begin="${page.start}" end="${page.end}">

@@ -327,7 +327,7 @@ input[class="reComment"]{
                   }
                   var btn = "";
                   if(data[i].myComment == 1||admin){ btn = "<button class='updateComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button>"; }
-				$(e).parent().find('.asd').after(
+				$(e).before(
 					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"
 					+data[i].player.nickname+"</div><div class='content'>"+data[i].content+
 					"</div><br><div class='regdate'>"+writeTime+"</div></div>"+

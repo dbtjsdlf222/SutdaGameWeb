@@ -253,37 +253,32 @@ footer p{
         <div class="top-menu">
         	<ul class="dept01">
         		<li style="width:101px;"> 
-        			<span><a href="/board/boardList?kind=1">새 소식</a></span>
-        			<ul class="dept02">
+        			<span><a href="/board/boardList?kind=1">공지사항</a></span>
+        			<!-- <ul class="dept02">
         				<li id="notice"><a href="/board/boardList?kind=1">공지사항</a></li>
         				<li id="patch"><a href="/board/boardList?kind=2">패치노트</a></li>
         				<li id="event"><a href="/board/boardList?kind=3">이벤트</a></li>
-        			</ul>
+        			</ul> -->
         		</li>
         		<li style="width:126px">
         			<span><a href="/download">자료실</a></span>
         			<ul class="dept02">
-        				<li id="download"><a href="/download">다운로드</a></li>
         				<li id="guide"><a href="/guide/guideView" onclick="window.open(this.href, '_blank', 'width=1200, height=800, toolbar=no, menubar=no, scrollbars=no, resizeable=yes'); return false;">게임 가이드</a></li>
-        				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 영상 자료실</a></li>
+        				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 추천 영상</a></li>
         			</ul>
         		</li>
         		<li style="width:181px">
         			<span><a href="/board/boardList?kind=5">커뮤니티</a></span>
-        			<ul class="dept02">
-        				<li id="free"><a href="/board/boardList?kind=5">자유 게시판</a></li>
-        				<li id="screen"><a href="/board/boardList?kind=6">스크린샷 게시판</a></li>
-        			</ul>
         		</li>
         		<li style="width:161px">
         			<span><a href="/board/rank">명예의 전당</a></span>
         		</li>
         		<li style="width:134px">
-        			<span><a href="/board/boardList?kind=8">고객센터</a></span>
-        			<ul class="dept02">
+        			<span><a href="https://drive.google.com/file/d/1pkjSCJg5_KFpaW67MfsgLPa24rtpq7X4/view">다운로드</a></span>
+        			<!-- <ul class="dept02">
         				<li id="QA"><a href="/board/boardList?kind=8">1:1 문의</a></li>
         				<li id="FQ"><a href="/board/boardList?kind=9">자주하는 질문</a></li>
-        			</ul>
+        			</ul> -->
         		</li>
         	</ul>
        	</div>
