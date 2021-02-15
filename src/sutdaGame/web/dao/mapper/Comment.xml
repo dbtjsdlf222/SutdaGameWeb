@@ -78,7 +78,7 @@
       player_no = p.no
     WHERE
       board_no = #{boardNo} AND `order` = 0
-    ORDER BY c.no ASC, `order` DESC
+    ORDER BY c.no DESC, `order` DESC
     LIMIT #{page.startContent}, #{page.contentCount}
   </select>
   

@@ -154,7 +154,7 @@ input[class="reComment"]{
 	background-color: #363636;
 	color: white;
 }
-#commentUpdate{
+.commentUpdate{
 	background-color: #363636;
 	color: white;
 }
@@ -173,6 +173,7 @@ input[class="reComment"]{
     height: 50px;
     border-radius: 7px;
     font-size: 11px;
+    margin-bottom: 20px;
 }
 </style>
 <body>
@@ -228,7 +229,7 @@ input[class="reComment"]{
                         </c:if>
                         &emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
                         <c:if test="${comment.myComment eq 1 || admin eq true}">
-                       		&emsp;<button id="commentUpdate" onclick="updateComment(this)" data-no='${comment.no }' data-orderno='${comment.orderNo }'>수정</button>
+                       		&emsp;<button class="updateComment" data-no='${comment.no }' data-orderno='${comment.orderNo }'>수정</button>
                         	&emsp;<button id="commentDelete" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="deleteComment(this)">삭제</button>
                         </c:if>
                         <div class="asd">
@@ -236,7 +237,7 @@ input[class="reComment"]{
                            <button id="reCommentBtn" onclick="reCommentInsert(this)" data-no='<c:out value="${comment.no}"/>' >답글 입력
                            </button>
                         </div>
-                    </div>
+              		</div>
                </c:forEach>
             </c:when>
             <c:otherwise>
@@ -281,11 +282,8 @@ input[class="reComment"]{
                   }
                   var btn="";
                   if(data[i].myComment == 1||admin){btn="<button class='updateComment'  data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='deleteComment(this)'>삭제</button>"; }
-                 $(e).prev().after(
+                 $(e).parent().append(
                        "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div>"+btn+"</div>");
-                 /* if (data[i].no == myno){
-                    "<button value="삭제"></button>"+"<button value="수정"></button>"
-                 } */
                }
                if(data.length < 5) {
                  $(e).remove();
@@ -329,7 +327,7 @@ input[class="reComment"]{
                   }
                   var btn = "";
                   if(data[i].myComment == 1||admin){ btn = "<button class='updateComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button>"; }
-				$(e).parent().append(
+				$(e).parent().find('.asd').after(
 					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"
 					+data[i].player.nickname+"</div><div class='content'>"+data[i].content+
 					"</div><br><div class='regdate'>"+writeTime+"</div></div>"+
@@ -432,22 +430,23 @@ input[class="reComment"]{
       </c:choose>
    }
 
-	$('.commentList').on("click",".updateComment",function(){
+   /* 대, 댓글 수정 */
+	$('.commentConPa').on("click",".updateComment",function(){
 		var $content = $(this).parent().find(".content");
 		$content.replaceWith("<input class='updateInputBox' value='"+$content.text()+"'/>");
 		$(this).addClass("updateCommentAction");
 		$(this).parent().find(".updateInputBox").focus();
 	})
-
-	$('.commentList').on("click",".updateCommentAction",function(){
+		
+		
+	$('.commentConPa').on("click",".updateCommentAction",function(){
 		$(this).removeClass("updateCommentAction");
 		var $updateInputBox = $(this).parent().find(".updateInputBox");
 		$updateInputBox.replaceWith("<div class='content'>"+$updateInputBox.val()+"</div>");
 		updateComment($(this).data('no'),$(this).data('orderno'),$updateInputBox.val());
 	})
-		
+	
   function updateComment(no,orderNo,content){
-		  console.log(no,orderNo,content);
 		<c:choose>
 	      <c:when test="${loginInfo ne null}">
 	      $.ajax({
@@ -456,7 +455,6 @@ input[class="reComment"]{
 	            data: {  content:content, orderNo:orderNo, no:no },
 	            success: function() {
 	               alert("댓글 수정 성공");
-	               location.reload();
 	            },
 	            error:function(textStatus, errorThrown){
 	                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -469,30 +467,6 @@ input[class="reComment"]{
 	      </c:choose>
   }
    
-    //답글 수정
-<%--    function updateCommentAction(e) {
-      <c:choose>
-      <c:when test="${loginInfo ne null}">
-      $.ajax({
-           url:'/ajax/commentUpdate',
-           type: 'POST',
-            data: {  content:$(e).parent().children(".reCommnet").val(), orderNo:$(e).data("no"),no:$(e).data("orderno") },
-            success: function() {
-               alert("댓글 수정 성공");
-               location.reload();
-            },
-            error:function(textStatus, errorThrown){
-                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-         }
-      });
-      </c:when>
-      <c:otherwise>
-         alert("로그인을 해주세요");
-      </c:otherwise>
-      </c:choose>
-   }
---%>
-
    //좋아요
     var likeCheck = ${likeCheck eq 0};
    function likeBoard() {
