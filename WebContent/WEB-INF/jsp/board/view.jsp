@@ -29,11 +29,10 @@
 	width: 150px;
 	height: 40px;
 	border: 1px solid #DB3A00;
-	border-radius: 30%;
 	color: #DB3A00;
 	background-color: #363636;
-	float: right;
 	position: absolute;
+	bottom:0;
 }
 h3{
 	border-bottom: 1px solid #DB3A00;
@@ -53,11 +52,15 @@ footer p{
 #good_box{
 	text-align: center;
 }
-</style>
+.updateComment,.deleteComment{
+	background: #363636;
+    margin-top: -3px;
+	color:#fff;
+}</style>
 <body>
 <jsp:include page="../include/header.jsp" flush="false" />
 <jsp:include page="../include/righter.jsp" flush="false" />
-    <div id="container" style="width:890px;margin: auto;color: bisque;">
+    <div id="container" style="width:890px;margin: auto;color: bisque; position:relative;">
         	<h1>${post.title}</h1>
         	<c:choose>
         	<c:when test="${post.kindNo==10}">	<%-- 유튜브 게시판일 경우 --%>
@@ -65,14 +68,14 @@ footer p{
         	<iframe width="900" height="500" src="https://www.youtube.com/embed/${post.content }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         	</div>
         	</c:when>
-        	<c:otherwise>
+        	<c:otherwise> 
         	<div id="contentBox">${post.content }</div>
         	</c:otherwise>
         	</c:choose>
         	<%-- <button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button> --%>
         	<c:if test="${(post.writerNo eq loginInfo.no) || (admin eq true) }">
          	<button id="deleteBoard" onclick="if(confirm('게시글을 삭제하시겠습니까?')){location.href='/board/delete?no=${post.no}'}">게시글 삭제하기</button>
-         	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'" style="left: 669px;">게시글 수정하기</button>
+         	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'" style="right: 0;">게시글 수정하기</button>
 	       	</c:if>
       			<div id="good_box">
 			<c:choose>

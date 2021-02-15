@@ -13,6 +13,9 @@
 body{
    background-color: #363636;
 }
+.commentList button{
+	color:#fff;
+}
 h3{
    border-bottom: 1px solid white;
 }
@@ -20,12 +23,14 @@ h3{
 	width:890px;
 }
 #commentBox{
-   margin-top: 20px;
-   width: 80%;
-   height: 50px;
-   resize: none;
-   background-color: #363636;
-   color: white;
+    margin-top: 20px;
+    width: 80%;
+    height: 50px;
+    resize: none;
+    color: white;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px #fff solid;
 }
 #commentBtn{
    width: 10%;
@@ -49,11 +54,18 @@ h3{
    margin-left: 30px;
    height: 30px;
 }
+.content{
+    width: 448px;
+    height: 50px;
+}
 .commentCon .content{
    margin-left: 20px;
+   margin-top: -5px;
 }
-.commentCon .regdate{
-   float: right;
+.regdate{
+    position: relative;
+    right: -6px;
+    float:right;
 }
 .commentCon > button{
    margin-top: 20px;
@@ -68,7 +80,7 @@ h3{
     height: 90px;
    margin: 20px;
    margin-left: 100px;
-   margin-bottom: 0px;
+   margin-bottom: 43px;
    color: white;
    word-wrap: break-word;
    padding-right: 15px;
@@ -80,9 +92,6 @@ h3{
 }
 .reCommentCon .content{
    margin-left: 20px;
-}
-.reCommentCon .regdate{
-   float: right;
 }
 table tr:nth-child(2) td{
    color: white;
@@ -133,14 +142,13 @@ input[class="reComment"]{
    background-color: #363636;
    color: white;
    margin-top: 10px;
+   border:none;
+   border-bottom:2px #fff solid;
+   background:transparent;
 }
 #reCommentBtn, #reCommentView, #commentView, #commentBtn{
    background-color: #363636;
    color: white;
-}
-.addComment{
-   width: 470px;
-   height: 50px;
 }
 #commentDelete{
 	background-color: #363636;
@@ -150,19 +158,32 @@ input[class="reComment"]{
 	background-color: #363636;
 	color: white;
 }
-.commentWrite{
-	margin-bottom:134px;
+#commentView{
+    margin-top: 20px;
+    width: 100px;
+    margin-left: 13px;
+}
+.updateInputBox{
+	border: none;
+    opacity: 0.4;
+    color: black;
+    font-weight: 900;
+    margin-left: 12px;
+    width: 448px;
+    height: 50px;
+    border-radius: 7px;
+    font-size: 11px;
 }
 </style>
 <body>
    <div class="comment-box container">
       <h3 style="color: white; font-family: 'Rosewood Std'">댓글</h3>
+      <div class="commentWrite" >
+         <input type="text" id="commentBox" placeholder="댓글 입력.." maxlength="60" minlength="3">
+         <button id="commentBtn" onclick="writeComment()">확인</button>
+      </div>
       <div class="commentList">
       
-      <c:if test="${fn:length(comment)>=10}">
-      <button id="commentView" onclick="selectComment(this)"
-         data-no='${post.no }' data-p="2" data-end='${page.end }'>댓글 더보기</button>
-      </c:if>
          <c:choose>
             <c:when test="${comment ne null}">
                <c:forEach var="comment" items="${comment}" varStatus="status">
@@ -211,7 +232,7 @@ input[class="reComment"]{
                         	&emsp;<button id="commentDelete" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="deleteComment(this)">삭제</button>
                         </c:if>
                         <div class="asd">
-                        &emsp;<input class="reComment" placeholder="답글">
+                        &emsp;<input class="reComment" placeholder="답글" maxlength="60">
                            <button id="reCommentBtn" onclick="reCommentInsert(this)" data-no='<c:out value="${comment.no}"/>' >답글 입력
                            </button>
                         </div>
@@ -223,13 +244,9 @@ input[class="reComment"]{
             </c:otherwise>
          </c:choose>
       </div>
-      <div class="addComment">
-         
-      </div>
-      <div class="commentWrite" >
-         <input type="text" id="commentBox" placeholder="댓글 입력..">
-         <button id="commentBtn" onclick="writeComment()">확인</button>
-      </div>
+      <c:if test="${fn:length(comment)>=10}">
+      	<button id="commentView" onclick="selectComment(this)" data-no='${post.no }' data-p="2" data-end='${page.end }'>댓글 더보기</button>
+      </c:if>
    </div>
 </body>
 
@@ -263,7 +280,7 @@ input[class="reComment"]{
                      writeTime = '방금 전';
                   }
                   var btn="";
-                  if(data[i].myComment == 1||admin){btn="<button class='updateComment'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='deleteComment(this)'>삭제</button>"; }
+                  if(data[i].myComment == 1||admin){btn="<button class='updateComment'  data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='deleteComment(this)'>삭제</button>"; }
                  $(e).prev().after(
                        "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div>"+btn+"</div>");
                  /* if (data[i].no == myno){
@@ -311,14 +328,14 @@ input[class="reComment"]{
                      writeTime = '방금 전';
                   }
                   var btn = "";
-                  if(data[i].myComment == 1||admin){ btn = "<button class='updateComment'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button>"; }
+                  if(data[i].myComment == 1||admin){ btn = "<button class='updateComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button>"; }
 				$(e).parent().append(
 					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"
 					+data[i].player.nickname+"</div><div class='content'>"+data[i].content+
 					"</div><br><div class='regdate'>"+writeTime+"</div></div>"+
 					(data[i].replyCount != 0 ? "&emsp;<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +
 					"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>" : " ") +
-					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; :"+btn+" <div class='asd'><input class='reComment' placeholder='답글'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
+					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; :"+btn+" <div class='asd'><input class='reComment' placeholder='답글' maxlength='60'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
               }
               if(data.length < 5) {
                  $(e).remove();
@@ -336,20 +353,23 @@ input[class="reComment"]{
    function writeComment() {
       <c:choose>
          <c:when test="${loginInfo ne null}">
-            $.ajax({
-                 url:'/ajax/commentInsert',
-                 type: 'POST',
-                  data: {  content:$("#commentBox").val(), boardNo:${post.no } },
-                  success: function() {
-                     alert("댓글 입력 성공");
-                     location.reload();
-                     $("#commentBox").val("");
-//                      avComment();
-                  },
-                  error: function(statusText) {
-                     console.log(statusText);
-                 }
-            });
+	         if($.trim($("#commentBox").val())==""){
+	        	 alert("글자를 입력 해주세요");
+	           }else{
+	            $.ajax({
+	                 url:'/ajax/commentInsert',
+	                 type: 'POST',
+	                  data: {  content:$("#commentBox").val(), boardNo:${post.no } },
+	                  success: function() {
+	                     alert("댓글 입력 성공");
+	                     location.reload();
+	                     $("#commentBox").val("");
+	                  },
+	                  error:function(textStatus, errorThrown){
+	                      alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	                 }
+	            });
+	         }
          </c:when>
       <c:otherwise>
          alert("로그인을 해주세요");
@@ -393,7 +413,6 @@ input[class="reComment"]{
    function deleteComment(e) {
       <c:choose>
       <c:when test="${loginInfo ne null}">
-      console.log($(e).data("no")+' : '+$(e).data("orderno"));
       $.ajax({
            url:'/ajax/commentDelete',
            type: 'POST',
@@ -412,9 +431,46 @@ input[class="reComment"]{
       </c:otherwise>
       </c:choose>
    }
+
+	$('.commentList').on("click",".updateComment",function(){
+		var $content = $(this).parent().find(".content");
+		$content.replaceWith("<input class='updateInputBox' value='"+$content.text()+"'/>");
+		$(this).addClass("updateCommentAction");
+		$(this).parent().find(".updateInputBox").focus();
+	})
+
+	$('.commentList').on("click",".updateCommentAction",function(){
+		$(this).removeClass("updateCommentAction");
+		var $updateInputBox = $(this).parent().find(".updateInputBox");
+		$updateInputBox.replaceWith("<div class='content'>"+$updateInputBox.val()+"</div>");
+		updateComment($(this).data('no'),$(this).data('orderno'),$updateInputBox.val());
+	})
+		
+  function updateComment(no,orderNo,content){
+		  console.log(no,orderNo,content);
+		<c:choose>
+	      <c:when test="${loginInfo ne null}">
+	      $.ajax({
+	           url:'/ajax/commentUpdate',
+	           type: 'POST',
+	            data: {  content:content, orderNo:orderNo, no:no },
+	            success: function() {
+	               alert("댓글 수정 성공");
+	               location.reload();
+	            },
+	            error:function(textStatus, errorThrown){
+	                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	         }
+	      });
+	      </c:when>
+	      <c:otherwise>
+	         alert("로그인을 해주세요");
+	      </c:otherwise>
+	      </c:choose>
+  }
    
-   //답글 수정
-   function updateComment(e) {
+    //답글 수정
+<%--    function updateCommentAction(e) {
       <c:choose>
       <c:when test="${loginInfo ne null}">
       $.ajax({
@@ -422,7 +478,8 @@ input[class="reComment"]{
            type: 'POST',
             data: {  content:$(e).parent().children(".reCommnet").val(), orderNo:$(e).data("no"),no:$(e).data("orderno") },
             success: function() {
-               alert("댓글 입력 성공");
+               alert("댓글 수정 성공");
+               location.reload();
             },
             error:function(textStatus, errorThrown){
                 alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -434,6 +491,7 @@ input[class="reComment"]{
       </c:otherwise>
       </c:choose>
    }
+--%>
 
    //좋아요
     var likeCheck = ${likeCheck eq 0};

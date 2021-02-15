@@ -144,7 +144,7 @@ public class AjaxController {
 		try {
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 			cvo.setPlayer(pvo);
-			return JsonUtil.convertToResponseEntity(commentService.insertComment(cvo));
+			return JsonUtil.convertToResponseEntity(commentService.updateCommtent(cvo));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

@@ -12,6 +12,7 @@ import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.LikeService;
 import sutdaGame.web.vo.BoardVO;
+import sutdaGame.web.vo.CommentVO;
 import sutdaGame.web.vo.PlayerVO;
 
 @Controller @RequestMapping("comment")
@@ -35,15 +36,6 @@ public class CommentController {
 		bvo.setWriterNo(vo.getNo());
 		
 		boardService.insertBoard(bvo);
-		
-		return "redirect:/board/boardList";
-	}
-	
-	@RequestMapping(path="update",params = {"title","content","no"},method = RequestMethod.POST)
-	public String updateBoard(@ModelAttribute("post") BoardVO bvo, HttpSession session) {
-		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
-		bvo.setWriterNo(vo.getNo());
-		boardService.updateBoard(bvo);
 		
 		return "redirect:/board/boardList";
 	}

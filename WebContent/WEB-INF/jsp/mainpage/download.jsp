@@ -87,7 +87,7 @@ ul.tabs li.current{
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">
-		<a href="https://drive.google.com/file/d/1VgB5D-FMcEDagahr3ARGa-b3HPRpZJg6/view?usp=sharing">다운로드</a>
+		<a href="https://drive.google.com/file/d/1pkjSCJg5_KFpaW67MfsgLPa24rtpq7X4/view?usp=sharing">다운로드</a>
 	</div>
 	<div id="tab-2" class="tab-content">
 		
