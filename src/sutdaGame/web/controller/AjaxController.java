@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.mail.BodyPart;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -194,27 +197,27 @@ public class AjaxController {
 	public ResponseEntity<String> mailSender(HttpSession session, String email) throws JsonProcessingException {
 		//메일보내기
 		Random r = new Random();
-        int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
+        int code = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
         
 		StringBuffer sb = new StringBuffer();
 
 		sb.append("<h1>섯다 가입인증 메일입니다.</h1>");
 		sb.append("<hr>");
 		sb.append("<h3>환영합니다.</h3>");
-		sb.append("<h4>가입 인증 번호는 [<h1>"+ dice + "</h1>] 입니다.</h3>");
+		sb.append("<h4>가입 인증 번호는 [<h1>"+ code + "</h1>] 입니다.</h3>");
 		sb.append("<hr>");
 		String subject = "섯다 가입 인증 메일입니다.";
-	    session.setAttribute("code", dice+"");
+	    session.setAttribute("code", code+"");
 	    
 		 try {
 			    String setfrom = "sutdaonline@gmail.com";
-		    	MimeMessage message = mailSender.createMimeMessage(); //에러 발생
+		    	MimeMessage message = mailSender.createMimeMessage();
 		        MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
-		        messageHelper.setFrom(setfrom); 							// 보내는사람 생략하면 정상작동을 안함
-		        messageHelper.setTo(email);								// 받는사람 이메일
-		        messageHelper.setSubject(subject); 	// 메일제목은 생략이 가능하다
-		        messageHelper.setText(sb.toString(),true); 					// 메일 내용
+		        messageHelper.setFrom(setfrom); 				// 보내는사람 생략하면 정상작동을 안함
+		        messageHelper.setTo(email);						// 받는사람 이메일
+		        messageHelper.setSubject(subject); 				// 메일제목은 생략이 가능하다
+	        	messageHelper.setText(sb.toString(),true); 		// 메일 내용
 		        mailSender.send(message);
 			 } catch (Exception e) {
 			    e.printStackTrace();
