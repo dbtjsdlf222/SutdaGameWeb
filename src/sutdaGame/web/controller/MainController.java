@@ -1,9 +1,25 @@
 package sutdaGame.web.controller;
 
+import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.PlayerService;
+import sutdaGame.web.util.DownloadTimer;
 import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.Page;
@@ -27,7 +45,6 @@ public class MainController {
 	@Autowired JavaMailSender mailSender;
 	@Autowired PlayerService  playerService;
 	@Autowired BoardService   boardService;
-	
 	//메인
 	@RequestMapping(path={"/","main"})
 	public String main(Model model) {
@@ -60,10 +77,25 @@ public class MainController {
 	} //logout
 	
 	@RequestMapping("download")
-	public String download() {
-		return "mainpage/download";
-	}	//download
-		
+	public ModelAndView download(HttpSession session)  throws URISyntaxException, IOException {
+			Object obj = session.getAttribute("number");
+			long number;
+			
+			if(obj==null) {
+				session.setAttribute("number",DownloadTimer.userNumber++);
+			} else {
+				number = (long)session.getAttribute("number");
+			}
+			number = ((long) session.getAttribute("number"));
+			
+			if(DownloadTimer.downloadIpList.contains(number)) {
+				return new RedirectWithAlert("섯다온라인-알림", "짧은 기간내에 다중 다운로드는 불가능합니다. 잠시후 다시 시도해 주시기 바랍니다.", "/");
+			} else {
+				DownloadTimer.downloadIpList.add(number);
+				return new ModelAndView("redirect:/SutdaClient.exe");
+			}
+	} //download
+	
 	//회원가입 액션
 	@RequestMapping(path="joinAction", params = {"name","id","password","nickname","email","character"})
 	public ModelAndView joinAction(HttpSession session, PlayerVO playerVO) {
