@@ -63,7 +63,7 @@ html>body{
     width:56%;
 }
 .dept01>li{
-	margin:0 3%;
+	width:130px;
 }
 .dept01 li span a{
 	font-size: 21px;
@@ -252,7 +252,7 @@ footer p{
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
         	<ul class="dept01">
-        		<li style="width:101px;"> 
+        		<li> 
         			<span><a href="/board/boardList?kind=1">공지사항</a></span>
         			<!-- <ul class="dept02">
         				<li id="notice"><a href="/board/boardList?kind=1">공지사항</a></li>
@@ -260,20 +260,17 @@ footer p{
         				<li id="event"><a href="/board/boardList?kind=3">이벤트</a></li>
         			</ul> -->
         		</li>
-        		<li style="width:126px">
+        		<li>
         			<span><a href="/board/boardList?kind=10">자료실</a></span>
         			<ul class="dept02">
         				<li id="guide"><a href="/guide/guideView" onclick="window.open(this.href, '_blank', 'width=1200, height=800, toolbar=no, menubar=no, scrollbars=no, resizeable=yes'); return false;">게임 가이드</a></li>
-        				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 영상 자료실</a></li>
+        				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 영상</a></li>
         			</ul>
         		</li>
-        		<li style="width:181px">
-        			<span><a href="/board/boardList?kind=5">커뮤니티</a></span>
-        		</li>
-        		<li style="width:161px">
+        		<li>
         			<span><a href="/board/rank">명예의 전당</a></span>
         		</li>
-        		<li style="width:134px">
+        		<li>
         			<span><a href="/download">다운로드</a></span>
         		</li>
         	</ul>

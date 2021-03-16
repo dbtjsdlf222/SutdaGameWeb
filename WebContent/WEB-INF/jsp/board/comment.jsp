@@ -437,8 +437,8 @@ input[class="reComment"]{
 		$(this).addClass("updateCommentAction");
 		$(this).parent().find(".updateInputBox").focus();
 	})
-		
-		
+	
+	
 	$('.commentConPa').on("click",".updateCommentAction",function(){
 		$(this).removeClass("updateCommentAction");
 		var $updateInputBox = $(this).parent().find(".updateInputBox");
