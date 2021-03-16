@@ -99,7 +99,6 @@ input[type="button"]{
 		<h1>커뮤니티</h1>
 	<ul class="tabs">
 		<a href="/board/boardList?kind=5"><li class="tab-link" data-tab="tab-1">자유게시판</li></a>
-		<a href="/board/boardList?kind=6"><li class="tab-link current" data-tab="tab-2">스크린샷 게시판</li></a>
 	</ul>
 	</div>
 	<div id="tab-1" class="tab-content">
