@@ -261,10 +261,10 @@ footer p{
         			</ul> -->
         		</li>
         		<li style="width:126px">
-        			<span><a href="/download">자료실</a></span>
+        			<span><a href="/board/boardList?kind=10">자료실</a></span>
         			<ul class="dept02">
         				<li id="guide"><a href="/guide/guideView" onclick="window.open(this.href, '_blank', 'width=1200, height=800, toolbar=no, menubar=no, scrollbars=no, resizeable=yes'); return false;">게임 가이드</a></li>
-        				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 추천 영상</a></li>
+        				<li id="youtube"><a href="/board/boardList?kind=10">유튜브 영상 자료실</a></li>
         			</ul>
         		</li>
         		<li style="width:181px">
