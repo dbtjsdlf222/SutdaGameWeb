@@ -12,8 +12,7 @@
 						   http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
 
-	<bean id="downloadTimer" class="sutdaGame/web/util/DownloadTimer">
-	    <constructor-arg />
+	<bean id="downloadTimer" class="sutdaGame.web.util.DownloadTimer">
 	</bean>
 
 	<bean id="sqlSessionFactory"

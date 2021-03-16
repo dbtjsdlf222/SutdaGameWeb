@@ -11,7 +11,6 @@ public class DownloadTimer {
 	private int i=60;
 	
 	public DownloadTimer() {
-		System.out.println("D");
 		Timer t = new Timer();
 	    tt = new TimerTask() {
 	    	

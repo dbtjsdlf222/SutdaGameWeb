@@ -274,11 +274,7 @@ footer p{
         			<span><a href="/board/rank">명예의 전당</a></span>
         		</li>
         		<li style="width:134px">
-        			<span><a href="https://drive.google.com/file/d/16x4C26oYnqRG9y3U_gO_LohbEPFemHWp/view">다운로드</a></span>
-        			<!-- <ul class="dept02">
-        				<li id="QA"><a href="/board/boardList?kind=8">1:1 문의</a></li>
-        				<li id="FQ"><a href="/board/boardList?kind=9">자주하는 질문</a></li>
-        			</ul> -->
+        			<span><a href="/download">다운로드</a></span>
         		</li>
         	</ul>
        	</div>
