@@ -252,7 +252,7 @@ footer p{
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
         	<ul class="dept01">
-        		<li> 
+        		<li>
         			<span><a href="/board/boardList?kind=1">공지사항</a></span>
         			<!-- <ul class="dept02">
         				<li id="notice"><a href="/board/boardList?kind=1">공지사항</a></li>

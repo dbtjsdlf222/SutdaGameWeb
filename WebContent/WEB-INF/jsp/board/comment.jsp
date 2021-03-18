@@ -432,16 +432,15 @@ input[class="reComment"]{
 
    /* 대, 댓글 수정 */
 	$('.commentConPa').on("click",".updateComment",function(){
-		var $content = $(this).parent().find(".content");
+		var $content = $(this).parent().children(".content");
 		$content.replaceWith("<input class='updateInputBox' value='"+$content.text()+"'/>");
 		$(this).addClass("updateCommentAction");
 		$(this).parent().find(".updateInputBox").focus();
 	})
 	
-	
 	$('.commentConPa').on("click",".updateCommentAction",function(){
 		$(this).removeClass("updateCommentAction");
-		var $updateInputBox = $(this).parent().find(".updateInputBox");
+		var $updateInputBox = $(this).parent().children(".updateInputBox");
 		$updateInputBox.replaceWith("<div class='content'>"+$updateInputBox.val()+"</div>");
 		updateComment($(this).data('no'),$(this).data('orderno'),$updateInputBox.val());
 	})
@@ -450,15 +449,15 @@ input[class="reComment"]{
 		<c:choose>
 	      <c:when test="${loginInfo ne null}">
 	      $.ajax({
-	           url:'/ajax/commentUpdate',
-	           type: 'POST',
-	            data: {  content:content, orderNo:orderNo, no:no },
-	            success: function() {
-	               alert("댓글 수정 성공");
-	            },
-	            error:function(textStatus, errorThrown){
-	                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
-	         }
+			 url:'/ajax/commentUpdate',
+			 type: 'POST',
+			  data: {  content:content, orderNo:orderNo, no:no },
+			  success: function() {
+			     alert("댓글 수정 성공");
+			  },
+			  error:function(textStatus, errorThrown){
+			      alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+			  }
 	      });
 	      </c:when>
 	      <c:otherwise>
