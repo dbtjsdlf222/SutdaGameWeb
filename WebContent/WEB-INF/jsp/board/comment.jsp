@@ -31,6 +31,7 @@ h3{
     border: none;
     background-color: transparent;
     border-bottom: 2px #fff solid;
+    outline: none;
 }
 #commentBtn{
    width: 10%;
@@ -47,7 +48,6 @@ h3{
    color: white;
    word-wrap: break-word;
    padding-right: 15px;
-   height:92px;
 }
 .commentCon .nickname{
    color: black;
@@ -68,7 +68,6 @@ h3{
     float:right;
 }
 .commentCon > button{
-   margin-top: 20px;
    background-color: #363636;
    color: white;
 }
@@ -145,6 +144,7 @@ input[class="reComment"]{
    border:none;
    border-bottom:2px #fff solid;
    background:transparent;
+   outline:none;
 }
 #reCommentBtn, #reCommentView, #commentView, #commentBtn{
    background-color: #363636;
@@ -219,8 +219,6 @@ input[class="reComment"]{
                            </c:when>
                         </c:choose>
                         </div>
-                        <br>
-                  </div>
                         <c:if test="${comment.replyCount ne 0}">&emsp;
                         <button id="reCommentView" onclick="selectReComment(this)"
 							data-no='${comment.no}' data-p="1" data-end='${page.end}'>
@@ -232,6 +230,7 @@ input[class="reComment"]{
                        		&emsp;<button class="updateComment" data-no='${comment.no }' data-orderno='${comment.orderNo }'>수정</button>
                         	&emsp;<button id="commentDelete" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="deleteComment(this)">삭제</button>
                         </c:if>
+                  </div>
                         <div class="asd">
                         &emsp;<input class="reComment" placeholder="답글" maxlength="60">
                            <button id="reCommentBtn" onclick="reCommentInsert(this)" data-no='<c:out value="${comment.no}"/>' >답글 입력
@@ -299,7 +298,7 @@ input[class="reComment"]{
    
    //답글 쓰기 버튼
    function reCommentWrite(e){
-      $(e).parent().find(".asd").toggle();
+      $(e).parent().parent().find(".asd").toggle();
    }
    var admin = ${admin};
    //댓글 더보기
