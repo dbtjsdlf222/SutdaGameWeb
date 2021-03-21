@@ -1,3 +1,4 @@
+<%@page import="sutdaGame.web.vo.PlayerVO"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -252,6 +253,13 @@ footer p{
         <div class="home"><a href="/main"><img src="/img/logo.png"></a></div>
         <div class="top-menu">
         	<ul class="dept01">
+        	<% 
+        		if(session.getAttribute("loginInfo")!=null && ((PlayerVO)session.getAttribute("loginInfo")).isAdmin()){
+       		%>  
+        		<li>
+        			<span color="red">관리자</span>
+        		</li>
+        	<% } %>
         		<li>
         			<span><a href="/board/boardList?kind=1">공지사항</a></span>
         			<!-- <ul class="dept02">

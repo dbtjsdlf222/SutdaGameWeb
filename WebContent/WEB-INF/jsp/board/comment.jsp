@@ -126,7 +126,7 @@ table tr:nth-child(4) td{
     height: 119px;
     background-color: firebrick;
 }
-.asd{
+.commentBox{
    display: none;
 }
 .mycomment{
@@ -231,7 +231,7 @@ input[class="reComment"]{
                         	&emsp;<button id="commentDelete" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="deleteComment(this)">삭제</button>
                         </c:if>
                   </div>
-                        <div class="asd">
+                        <div class="commentBox">
                         &emsp;<input class="reComment" placeholder="답글" maxlength="60">
                            <button id="reCommentBtn" onclick="reCommentInsert(this)" data-no='<c:out value="${comment.no}"/>' >답글 입력
                            </button>
@@ -298,7 +298,7 @@ input[class="reComment"]{
    
    //답글 쓰기 버튼
    function reCommentWrite(e){
-      $(e).parent().parent().find(".asd").toggle();
+      $(e).parent().parent().find(".commentBox").toggle();
    }
    var admin = ${admin};
    //댓글 더보기
@@ -332,7 +332,7 @@ input[class="reComment"]{
 					"</div><br><div class='regdate'>"+writeTime+"</div></div>"+
 					(data[i].replyCount != 0 ? "&emsp;<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +
 					"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>" : " ") +
-					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; :"+btn+" <div class='asd'><input class='reComment' placeholder='답글' maxlength='60'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
+					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; :"+btn+" <div class='commentBox'><input class='reComment' placeholder='답글' maxlength='60'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
               }
               if(data.length < 5) {
                  $(e).remove();
@@ -352,18 +352,22 @@ input[class="reComment"]{
          <c:when test="${loginInfo ne null}">
 	         if($.trim($("#commentBox").val())==""){
 	        	 alert("글자를 입력 해주세요");
-	           }else{
+	           } else { 
 	            $.ajax({
 	                 url:'/ajax/commentInsert',
 	                 type: 'POST',
 	                  data: {  content:$("#commentBox").val(), boardNo:${post.no } },
-	                  success: function() {
-	                     alert("댓글 입력 성공");
+	                  success: function(data) {
+		                  if(data=='limit'){
+		                	  alert("요청이 너무 많습니다. \n잠시후 시도해 주세요");
+			               }else{
+			            	   alert("댓글이 입력 되었습니다.");
+			               }
 	                     location.reload();
 	                     $("#commentBox").val("");
 	                  },
 	                  error:function(textStatus, errorThrown){
-	                      alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+	                      alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n나중에 다시 시도해주세요");
 	                 }
 	            });
 	         }
@@ -413,10 +417,14 @@ input[class="reComment"]{
       $.ajax({
            url:'/ajax/commentDelete',
            type: 'POST',
-            data: {  no:$(e).data("no"), orderNo: $(e).data("orderno") },
-            success: function() {
-               alert("댓글 삭제 성공");
-               $(e).parent().remove();
+           data: {  no:$(e).data("no"), orderNo: $(e).data("orderno") },
+           success: function(data) {
+                if(data=="error") { alert("권한이 없습니다.");
+                } else if(data=="remove") { alert("이미 삭제 되었습니다.");
+				} else {
+					alert("댓글 삭제 성공");
+               		$(e).parent().remove();
+				}
             },
             error:function(textStatus, errorThrown){
                 alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -440,19 +448,23 @@ input[class="reComment"]{
 	$('.commentConPa').on("click",".updateCommentAction",function(){
 		$(this).removeClass("updateCommentAction");
 		var $updateInputBox = $(this).parent().children(".updateInputBox");
-		$updateInputBox.replaceWith("<div class='content'>"+$updateInputBox.val()+"</div>");
-		updateComment($(this).data('no'),$(this).data('orderno'),$updateInputBox.val());
+		updateComment($(this).data('no'),$(this).data('orderno'),$updateInputBox.val(),$updateInputBox);
 	})
 	
-  function updateComment(no,orderNo,content){
+  function updateComment(no,orderNo,content,$updateInputBox){
 		<c:choose>
 	      <c:when test="${loginInfo ne null}">
 	      $.ajax({
 			 url:'/ajax/commentUpdate',
 			 type: 'POST',
 			  data: {  content:content, orderNo:orderNo, no:no },
-			  success: function() {
-			     alert("댓글 수정 성공");
+			  success: function(data) {
+				  if(data=='error'){
+					  alert("권한이 없습니다.");
+				  } else {
+					  $updateInputBox.replaceWith("<div class='content'>"+$updateInputBox.val()+"</div>");
+					  alert("댓글이 수정 되었습니다.");
+				  }
 			  },
 			  error:function(textStatus, errorThrown){
 			      alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");

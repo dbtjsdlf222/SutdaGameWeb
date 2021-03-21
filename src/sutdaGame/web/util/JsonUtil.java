@@ -30,8 +30,8 @@ public class JsonUtil {
 	
 	public static ResponseEntity<String> responseStatusBadRequest(HttpServletResponse response ,String res) throws JsonProcessingException {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-type", MediaType.TEXT_PLAIN.toString());
-		return new ResponseEntity<String>(res, headers, HttpStatus.BAD_REQUEST);
+		headers.add("a", "a");
+		return new ResponseEntity<String>(res, headers, HttpStatus.INTERNAL_SERVER_ERROR);
 	} //responseStatusBadRequest();
 	
 } //class JsonUtil;

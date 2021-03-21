@@ -16,7 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -24,7 +26,9 @@ import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.LikeService;
 import sutdaGame.web.service.PlayerService;
+import sutdaGame.web.util.LimitTimer;
 import sutdaGame.web.util.JsonUtil;
+import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.CommentVO;
 import sutdaGame.web.vo.Page;
 import sutdaGame.web.vo.PlayerVO;
@@ -44,7 +48,7 @@ public class AjaxController {
 	
 	/*------ 게시판 Start------*/
 
-	/*
+	/**
 	 * 게시판 좋아요
 	 */
 	@RequestMapping(path="likeBoard",method = RequestMethod.POST)
@@ -63,8 +67,7 @@ public class AjaxController {
 		return JsonUtil.convertToResponseEntity(likeService.selectCount(no));
 	} //likeInsert()
 	
-	
-	/*
+	/**
 	 * 이메일 검색
 	 */
 	@RequestMapping(path="selectEmail",method = RequestMethod.POST)
@@ -72,7 +75,7 @@ public class AjaxController {
 		return JsonUtil.convertToResponseEntity(playerService.selectEmail(email));
 	}
 	
-	/*
+	/**
 	 * 닉네임 검색
 	 */
 	@RequestMapping(path="selectNickname",method = RequestMethod.POST)
@@ -80,7 +83,7 @@ public class AjaxController {
 		return JsonUtil.convertToResponseEntity(playerService.selectNickname(nickname));
 	}
 	
-	/*
+	/**
 	 * 대댓글 검색
 	 */
 	@RequestMapping(path="selectReComment",method = RequestMethod.POST, params= {"no","p"})
@@ -98,7 +101,7 @@ public class AjaxController {
 		return JsonUtil.convertToResponseEntity(false);
 	}
 	
-	/*
+	/**
 	 * 댓글 검색
 	 */
 	@RequestMapping(path="selectComment",method = RequestMethod.POST)
@@ -116,7 +119,6 @@ public class AjaxController {
 		return JsonUtil.responseStatusBadRequest(res ,"error");
 	}
 
-	
 	/**
 	 * 대댓글 입력
 	 */
@@ -135,53 +137,55 @@ public class AjaxController {
 	/**
 	 * 댓글 입력
 	 */
+	@ResponseBody
 	@RequestMapping(path="commentInsert",method = RequestMethod.POST, params = {"boardNo","content"})
-	public ResponseEntity<String> commentInsert(HttpServletResponse res, HttpSession session, CommentVO cvo) throws JsonProcessingException {
-		try {
-			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
-			cvo.setPlayer(pvo);
-			return JsonUtil.convertToResponseEntity(commentService.insertComment(cvo));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+	public String commentInsert(HttpServletResponse res, HttpSession session, CommentVO cvo) throws JsonProcessingException {
+		PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
+		cvo.setPlayer(pvo);
+		int count = LimitTimer.commentMap.get(pvo.getNo());
+		if(count > 2) {
+			return "limit";
+		} else {
+			LimitTimer.commentMap.put(pvo.getNo(),++count);
+			commentService.insertComment(cvo);
+			return "success";
 		}
-		return JsonUtil.responseStatusBadRequest(res,"로그인 해주세요");
 	}
 	
 	/**
 	 * 댓글 삭제
 	 */
+	@ResponseBody
 	@RequestMapping(path="commentDelete",method = RequestMethod.POST,params = {"no","orderNo"})
-	public ResponseEntity<String> commentSelect(HttpServletResponse res,HttpSession session, CommentVO vo) throws JsonProcessingException {
-		
+	public String commentDelete(HttpServletResponse res,HttpSession session, CommentVO vo) throws JsonProcessingException {
 		try {
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
-			if(commentService.selectOneComment(vo.getNo(),vo.getOrderNo()).getPlayer().getNo() == pvo.getNo() || !pvo.isAdmin()) {
+			//작성자==로그인
+			if(commentService.selectOneComment(vo.getNo(),vo.getOrderNo()).getPlayer().getNo() == pvo.getNo() || pvo.isAdmin()) {
 				commentService.deleteComment(vo);
+				return "success";
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			return JsonUtil.responseStatusBadRequest(res,"삭제된 댓글입니다.");
+			return "remove";
 		}
-		return JsonUtil.convertToResponseEntity("");
+		return "error";
 	}
 	
 	/**
 	 *	댓글 수정 
 	 */
+	@ResponseBody
 	@RequestMapping(path="commentUpdate",method = RequestMethod.POST,params = {"no","orderNo","content"})
-	public ResponseEntity<String> commentUpdate(HttpSession session, CommentVO cvo, HttpServletResponse res) throws JsonProcessingException {
-		try {
+	public String commentUpdate(HttpSession session, CommentVO cvo, HttpServletResponse res) throws JsonProcessingException {
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 			//작성자==로그인
-			if(commentService.selectOneComment(cvo.getNo(), cvo.getOrderNo()).getPlayer().getNo()!=pvo.getNo()){
-				return JsonUtil.responseStatusBadRequest(res,"error");
+			if(commentService.selectOneComment(cvo.getNo(), cvo.getOrderNo()).getPlayer().getNo()==pvo.getNo() || pvo.isAdmin()){
+				cvo.setPlayer(pvo);
+				commentService.updateCommtent(cvo);
+				return "success";
 			}
-			cvo.setPlayer(pvo);
-			return JsonUtil.convertToResponseEntity(commentService.updateCommtent(cvo));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return JsonUtil.convertToResponseEntity(false);
+			return "error";
 	}
 	
 	/**

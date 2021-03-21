@@ -19,7 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.PlayerService;
-import sutdaGame.web.util.DownloadTimer;
+import sutdaGame.web.util.LimitTimer;
 import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.Page;
@@ -68,16 +68,16 @@ public class MainController {
 			long number;
 			
 			if(obj==null) {
-				session.setAttribute("number",DownloadTimer.userNumber++);
+				session.setAttribute("number",LimitTimer.userNumber++);
 			} else {
 				number = (long)session.getAttribute("number");
 			}
 			number = ((long) session.getAttribute("number"));
 			
-			if(DownloadTimer.downloadIpList.contains(number)) {
+			if(LimitTimer.downloadList.contains(number)) {
 				return new RedirectWithAlert("섯다온라인-알림", "짧은 기간내에 다중 다운로드는 불가능합니다. 잠시후 다시 시도해 주시기 바랍니다.", "/");
 			} else {
-				DownloadTimer.downloadIpList.add(number);
+				LimitTimer.downloadList.add(number);
 				return new ModelAndView("redirect:/SutdaClient.exe");
 			}
 	} //download

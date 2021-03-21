@@ -99,13 +99,14 @@ public class BoardController {
 		Page page = new Page(7,5,p);
 		switch(kind) {
 			case 1: jsp = "board/notice"; break;
-			case 2: jsp = "board/patch";  break;
-			case 3: jsp = "board/event";  break;
-			case 5: jsp = "board/free";   break;
+//			case 2: jsp = "board/patch";  break;
+//			case 3: jsp = "board/event";  break;
+//			case 5: jsp = "board/free";   break;
 			case 7: jsp = "redirect:board/rank"; break;
-			case 8: jsp = "board/QA";	  break;
-			case 9: jsp = "board/FQ";	  break;
+//			case 8: jsp = "board/QA";	  break;
+//			case 9: jsp = "board/FQ";	  break;
 			case 10: jsp = "board/youtube";	page = new Page(9,5,p);  break;
+			default: jsp = "board/notice";
 		}
 		mav.setViewName(jsp);
 		
@@ -135,13 +136,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(path="writeAction",params= {"title","content","kindNo"})
-	public String writeAction(BoardVO boardVO, HttpSession session) {
+	public String writeAction(BoardVO boardVO, HttpSession session)  {
 		if(!((PlayerVO)session.getAttribute("loginInfo")).isAdmin()) {
 			return "redirect:error/500";
 		}
 		if(boardVO.getKindNo()==10) {
-			boardVO.getContent().replaceAll("https://www.youtube.com/watch?v=", "");
-			boardVO.getContent().replaceAll("https://youtu.be/TA8TARtcxhU", "");
+			boardVO.getContent().replaceAll("https://www.youtube.com/watch?v= |http://www.youtube.com/watch?v=|https://youtu.be/", "");
 		}
 		boardVO.setWriterNo(((PlayerVO)session.getAttribute("loginInfo")).getNo());
 		boardService.insertBoard(boardVO);
