@@ -49,6 +49,7 @@
        <!-- url disable이 true이면 지정한 url 내의 모든 파라메터는 필터링 되지 않는다. -->
        <url-rule>
            <url disable="true">/board/writeAction</url>
+           <url disable="true">/board/update</url>
            <url disable="true">/board/updateAction</url>
        </url-rule>
        

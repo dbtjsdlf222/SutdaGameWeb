@@ -53,7 +53,8 @@
         content,  
         TIMESTAMPDIFF(SECOND, c.regdate, NOW()) regdate,
         p.no 'player.no', 
-        IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname'
+        IFNULL(p.nickname ,'탈퇴한 사용자') 'player.nickname',
+        p.admin 'player.admin'
     FROM
       sutda_comment c
     LEFT JOIN

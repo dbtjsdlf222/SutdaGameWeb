@@ -82,21 +82,18 @@
 	
 	<script>
 		$('#summernote').summernote({
-			  height: 300,                 // 에디터 높이
-			  minHeight: 800,             // 최소 높이
-			  maxHeight: 600,             // 최대 높이
-			  lang: "ko-KR",					// 한글 설정
+			  height: 300,              // 에디터 높이
+			  minHeight: 800,           // 최소 높이
+			  maxHeight: 600,           // 최대 높이
+			  lang: "ko-KR",			// 한글 설정
 			  placeholder: '2글자 이상 작성해주세요.',	//placeholder 설정
-			  codemirror: { // code 수정 용이
-				    theme: 'monokai'
-			  }
 		});
 	
 		var $inputTitle = $("input[name='title']"),
 			$inputContent = $("textarea[name='content']");
 		
 		$('form').submit(function(e){
-			if($inputTitle.val().length < 5 || $inputTitle.val().length > 50){ alert("제목은 5자에서 50자여야 합니다."); return false; }
+			if($inputTitle.val().length < 2 || $inputTitle.val().length > 15){ alert("제목은 2자에서 15자여야 합니다."); return false; }
 			if($inputContent.val().length < 2){ alert("내용은 2글자 이상이여야 합니다."); return false; }
 			if(byteCheck($inputContent.val().length) > 16777200){ alert("내용이 최대 용량을 초과 했습니다."); return false; }
 			$(this).submit(function(e){e.preventDefault()})
@@ -104,8 +101,6 @@
 		
 		var $image = $('#image'),
 			$summernote = $('#summernote');
-		
-		$('#imageInput').change(function() { fileUpload('img/upload', this.files, function(json) { $image.val(json.result) }) });
 		
 		function byteCheck(el){
 		    var codeByte = 0;
