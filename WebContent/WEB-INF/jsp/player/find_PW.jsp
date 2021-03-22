@@ -45,6 +45,7 @@ input[type="submit"]{
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
                 <form action="/player/findPW" method="POST">
+                <input type="hidden" name="csrf_token" value="${csrf_token}">
                 <table>
                	 	<tr><td><span class="id"><input type="text" name="id" class="id_input" placeholder="아이디를 입력해 주세요." required="required"></span></td></tr>
                     <tr><td><span class="pw"><input type="email" name="mail" class="email_input" placeholder="이메일을 입력해 주세요" required="required"></span></td></tr>

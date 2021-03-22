@@ -79,7 +79,7 @@
     	</tr>
     </table>
         <div class="wrap1">
-            <p><button type="button" style="width:100%" class="btn btn-success btn-sm" onclick="location.href='/player/update?'">비밀번호 변경</button></p>
+            <p><button type="button" style="width:100%" class="btn btn-success btn-sm" onclick="location.href='/player/update?csrf_token=${csrf_token}'">비밀번호 변경</button></p>
             <p><button type="button" style="width:100%" class="btn btn-danger btn-block" onclick="showDeletePopup()">회원 탈퇴</button></p>
         </div>
 <jsp:include page="../include/footer.jsp" flush="false" />
@@ -96,7 +96,7 @@
 
 	function showDeletePopup(){
 		var result = confirm('정보는 되돌릴 수 없습니다.\n 그래도 회원 탈퇴를 하시겠습니까? \n '); 
-		if(result) { location.replace('/player/delete'); }
+		if(result) { location.replace('/player/delete?csrf_token=${csrf_token}'); }
 		else {  }
 	}
 </script>

@@ -18,9 +18,9 @@
 	<servlet-name>springDispatcherServlet</servlet-name>
 	<url-pattern>/</url-pattern>
   </servlet-mapping>
-<!-- 	<error-page> -->
-<!-- 	    <location>/error/error.jsp</location> -->
-<!-- 	</error-page> -->
+	<error-page>
+	    <location>/error/error.jsp</location>
+	</error-page>
   <context-param>
 	<param-name>contextConfigLocation</param-name>
 	<param-value>/WEB-INF/applicationContext.xml</param-value>

@@ -55,24 +55,25 @@ public class PlayerController {
 	} // mypage
 	
 	@RequestMapping("findID_form")
-	public String findIDForm() {
+	public String findIDForm(Model model,HttpSession session) {
+		
 		return "player/find_ID";
 	}
 	
-	@RequestMapping("find_PW")
-	public String findPWForm() {
+	@RequestMapping("findPW_form")
+	public String findPWForm(Model model,HttpSession session) {
+		
 		return "player/find_PW";
 	}
 	
-	@RequestMapping(path="updateAction", params = {"password"})
-	public String updateAction(HttpSession session, PlayerVO playerVO) {
-		playerVO.setPassword(BCrypt.hashpw(playerVO.getPassword(), BCrypt.gensalt()));
-		playerService.updatePlayer(playerVO);
-		return "redirect:mypage";
+	@RequestMapping(path="update")
+	public String update(Model model,HttpSession session) {
+		
+		return "/player/update_form";
 	}
 	
 	@RequestMapping(value="findID",method = RequestMethod.POST)
-	public ModelAndView findID(@RequestParam String mail, @RequestParam String name) {
+	public ModelAndView findID(@RequestParam String mail, @RequestParam String name, HttpSession session) {
 		String id=null;
 		if((id=playerService.findID(mail, name))==null) {
 			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/find_ID");
@@ -94,7 +95,7 @@ public class PlayerController {
 			        messageHelper.setSubject(subject); 	// 메일제목은 생략이 가능하다
 			        messageHelper.setText(sb.toString(),true); 					// 메일 내용
 			        mailSender.send(message);
-			        return new RedirectWithAlert("알림","메일로 아이디를 전송해 드렸습니다.","/main");
+			        return new RedirectWithAlert("알림","메일로 아이디를 전송해 드렸습니다.","/login");
 				 } catch (Exception e) {
 				    e.printStackTrace();
 				 }
@@ -103,11 +104,12 @@ public class PlayerController {
 	}
 	
 	@RequestMapping(value="findPW",method = RequestMethod.POST, params= {"mail","id"})
-	public ModelAndView findPW(String mail, String id,HttpServletRequest request,HttpSession session) {
+	public ModelAndView findPW(String mail, String id,HttpServletRequest request, HttpSession session){
+		
 		String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
 		Integer no = null;
 		if((no=playerService.findPW(id, mail)) == null) {
-			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/find_PW");
+			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/findPW_form");
 		} else {
 			UUID uuid =UUID.randomUUID();
 			session.setAttribute("code", uuid);
@@ -132,6 +134,13 @@ public class PlayerController {
 		}
 	}
 	
+	@RequestMapping(path="updateAction", params = {"password"}, method = RequestMethod.POST)
+	public String updateAction(HttpSession session, PlayerVO playerVO) {
+		playerVO.setPassword(BCrypt.hashpw(playerVO.getPassword(), BCrypt.gensalt()));
+		playerService.updatePlayer(playerVO);
+		return "redirect:mypage";
+	}
+	
 	@RequestMapping(value="changePW",method = RequestMethod.GET)
 	public ModelAndView changePW(@RequestParam UUID code, HttpSession session) {
 		if(((UUID)session.getAttribute("code")).equals(code)) {
@@ -142,7 +151,7 @@ public class PlayerController {
 		return new RedirectWithAlert("알림","잘못된 요청입니다","/");
 	}
 	
-	@RequestMapping(value="changePWAction",params = {"code","password"},method = RequestMethod.POST)
+	@RequestMapping(value="changePWAction",params = {"code","password","csrf_token"},method = RequestMethod.POST)
 	public ModelAndView changePWAction(String code,String password, HttpSession session) {
 		UUID a=UUID.fromString(code);
 		UUID b=(UUID)session.getAttribute("code");
@@ -153,18 +162,18 @@ public class PlayerController {
 			return new RedirectWithAlert("알림","비밀변호가 정상적으로 변경 되었습니다.","/");
 		}
 		return new RedirectWithAlert("알림","잘못된 요청입니다","/");
-	}
+	} //changePWAction();
 	
 	@RequestMapping("main")
 	public String main() {
 		return "mainpage/main";
-	} // main
+	} // main();
 	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("loginInfo");
+		session.getAttribute("loginInfo");
 		return "mainpage/main";
-	} // logout
+	} // logout();
 	
 	@RequestMapping("delete")
 	public ModelAndView deletePlayer(HttpSession session) {
@@ -172,12 +181,6 @@ public class PlayerController {
 		playerService.deletePlayer(vo.getNo());
 		session.removeAttribute("loginInfo");
 		return new RedirectWithAlert("회원탈퇴","회원탈퇴가 완료되었습니다.","/");
-	} // 
-	
-	@RequestMapping(path="update")	//등등
-	public String update() {
-		return "/player/update_form";
-	} //
-
+	} //deletePlayer();
 	
 } //playerController();

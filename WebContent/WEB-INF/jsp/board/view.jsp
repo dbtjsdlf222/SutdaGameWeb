@@ -74,7 +74,7 @@ footer p{
         	</c:choose>
         	<%-- <button id="back" onclick="goBack();"> 뒤로가기 ${loginInfo.admin}</button> --%>
         	<c:if test="${(post.writerNo eq loginInfo.no) || (admin eq true) }">
-         	<button id="deleteBoard" onclick="if(confirm('게시글을 삭제하시겠습니까?')){location.href='/board/delete?no=${post.no}'}">게시글 삭제하기</button>
+         	<button id="deleteBoard" onclick="if(confirm('게시글을 삭제하시겠습니까?')){location.href='/board/delete?no=${post.no}&csrf_token=${csrf_token}'}">게시글 삭제하기</button>
          	<button id="updateBoard" onclick="location.href='/board/update_form?no=${post.no}'" style="right: 0;">게시글 수정하기</button>
 	       	</c:if>
       			<div id="good_box">

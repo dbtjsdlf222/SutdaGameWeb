@@ -40,6 +40,7 @@ input[type="submit"]{
         <div class="tab-content">
             <div id="user" data-tab-content class="active">
                 <form action="/player/changePWAction" method="POST">
+                <input type="hidden" name="csrf_token" value="${csrf_token}">
                 <table>
                	 	<tr><td>비밀번호</td><td>
 				        <input type="password" id="change_pw" name="password" required placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><p id="pwMsg">　</p>

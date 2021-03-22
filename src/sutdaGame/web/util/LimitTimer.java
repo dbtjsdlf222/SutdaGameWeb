@@ -1,17 +1,14 @@
 package sutdaGame.web.util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class LimitTimer {
-	public static ArrayList<Long> downloadList = new ArrayList<Long>();
+	public static Map<Long,Boolean> downloadList = new ConcurrentHashMap<Long,Boolean>();
 	public static Map<Integer, Integer> commentMap = new ConcurrentHashMap<Integer, Integer>();
-	public static ArrayList<Integer> boardList = new ArrayList<Integer>();
+	public static Map<Integer, Integer> boardList = new ConcurrentHashMap<Integer,Integer>();
 	public static long userNumber = 1;
 	private TimerTask tt;
 	private int i = 60;
@@ -25,9 +22,9 @@ public class LimitTimer {
 				if (i > 0) {
 					i--;
 				} else {
-					downloadList = new ArrayList<Long>();
-					commentMap = new HashMap<Integer, Integer>();
-					boardList = new ArrayList<Integer>();
+					downloadList = new ConcurrentHashMap<Long,Boolean>();
+					commentMap = new ConcurrentHashMap<Integer, Integer>();
+					boardList = new ConcurrentHashMap<Integer,Integer>();
 					i = 60;
 				}
 			}

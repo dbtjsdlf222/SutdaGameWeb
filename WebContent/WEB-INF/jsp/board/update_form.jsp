@@ -51,6 +51,7 @@
 <jsp:include page="../include/header.jsp" flush="false" />
 	<div class="container " style="width: 870px;">
 		<form action="/board/update" method="POST">
+		<input type="hidden" name="csrf_token" value="${csrf_token}">
 			<table style="width: 100%; border-collapse: collapse">
 				<tr><td colspan="3"><input name="title" size="20" placeholder="제목" value="${post.title}"></td></tr>
 				<tr>
@@ -91,7 +92,7 @@
 			$inputContent = $("textarea[name='content']");
 		
 		$('form').submit(function(e){
-			if($inputTitle.val().length < 5 || $inputTitle.val().length > 50){ alert("제목은 5자에서 50자여야 합니다."); return false; }
+			if($inputTitle.val().length < 2 || $inputTitle.val().length > 15){ alert("제목은 2자에서 15자여야 합니다."); return false; }
 			if($inputContent.val().length < 2){ alert("내용은 2글자 이상이여야 합니다."); return false; }
 			if(byteCheck($inputContent.val().length) > 16777200){ alert("내용이 최대 용량을 초과 했습니다."); return false; }
 			$(this).submit(function(e){e.preventDefault()})

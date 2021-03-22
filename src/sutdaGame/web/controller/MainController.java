@@ -74,16 +74,16 @@ public class MainController {
 			}
 			number = ((long) session.getAttribute("number"));
 			
-			if(LimitTimer.downloadList.contains(number)) {
-				return new RedirectWithAlert("섯다온라인-알림", "짧은 기간내에 다중 다운로드는 불가능합니다. 잠시후 다시 시도해 주시기 바랍니다.", "/");
+			if(LimitTimer.downloadList.get(number)!=null) {
+				return new RedirectWithAlert("섯다온라인-알림", "짧은 기간내에 다중 다운로드는 불가능합니다. 잠시 후 다시 시도해 주시기 바랍니다.", "/");
 			} else {
-				LimitTimer.downloadList.add(number);
+				LimitTimer.downloadList.put(number,false);
 				return new ModelAndView("redirect:/SutdaClient.exe");
 			}
 	} //download
 	
 	//회원가입 액션
-	@RequestMapping(path="joinAction", params = {"name","id","password","nickname","email","character"})
+	@RequestMapping(path="joinAction", params = {"name","id","password","nickname","email","character"}, method = RequestMethod.POST)
 	public ModelAndView joinAction(HttpSession session, PlayerVO playerVO) {
 		playerVO.setPassword(BCrypt.hashpw(playerVO.getPassword(), BCrypt.gensalt()));
 		if(playerService.playerJoin(playerVO)==1) {

@@ -122,16 +122,24 @@ public class AjaxController {
 	/**
 	 * 대댓글 입력
 	 */
-	@RequestMapping(path="commentReInsert",method = RequestMethod.POST,params = {"no","content"})
-	public ResponseEntity<String> commentReInsert(HttpServletResponse res,HttpSession session,CommentVO comment) throws JsonProcessingException {
-		try {
-			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
-			comment.setPlayer(pvo);
-			return JsonUtil.convertToResponseEntity(commentService.insertReply(comment));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+	@ResponseBody
+	@RequestMapping(path="commentReInsert",method = RequestMethod.POST,params = {"no","content","csrf_token"})
+	public String commentReInsert(HttpServletResponse res,HttpSession session,CommentVO comment)  {
+		PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
+		comment.setPlayer(pvo);
+		Integer count;
+		
+		if(null == (count = LimitTimer.commentMap.get(pvo.getNo()))) {
+			LimitTimer.commentMap.put(pvo.getNo(), 0);
+			count = 0;
 		}
-		return JsonUtil.responseStatusBadRequest(res,"error");
+		if(count >= 2) {
+			return "limit";
+		} else {
+			LimitTimer.commentMap.put(pvo.getNo(),++count);
+			commentService.insertReply(comment);
+			return "success";
+		}
 	}
 	
 	/**
@@ -142,8 +150,12 @@ public class AjaxController {
 	public String commentInsert(HttpServletResponse res, HttpSession session, CommentVO cvo) throws JsonProcessingException {
 		PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 		cvo.setPlayer(pvo);
-		int count = LimitTimer.commentMap.get(pvo.getNo());
-		if(count > 2) {
+		Integer count;
+		if(null == (count = LimitTimer.commentMap.get(pvo.getNo()))) {
+			LimitTimer.commentMap.put(pvo.getNo(), 0);
+			count = 0;
+		}
+		if(count >= 2) {
 			return "limit";
 		} else {
 			LimitTimer.commentMap.put(pvo.getNo(),++count);

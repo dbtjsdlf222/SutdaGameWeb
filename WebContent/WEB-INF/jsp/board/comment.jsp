@@ -356,10 +356,10 @@ input[class="reComment"]{
 	            $.ajax({
 	                 url:'/ajax/commentInsert',
 	                 type: 'POST',
-	                  data: {  content:$("#commentBox").val(), boardNo:${post.no } },
+	                  data: {  content:$("#commentBox").val(), boardNo:${post.no} ,csrf_token:"${csrf_token}" },
 	                  success: function(data) {
 		                  if(data=='limit'){
-		                	  alert("요청이 너무 많습니다. \n잠시후 시도해 주세요");
+		                	  alert("요청이 너무 많습니다. \n잠시 후 시도해 주세요");
 			               }else{
 			            	   alert("댓글이 입력 되었습니다.");
 			               }
@@ -378,10 +378,6 @@ input[class="reComment"]{
       </c:choose>
    }
    
-//       var myno= ${loginInfo.nickname};
-//       function avComment(){
-//          $(".commentCon").clone().insertAfter(".addComment");
-//       }
    //답글 입력
    function reCommentInsert(e) {
       <c:choose>
@@ -393,9 +389,13 @@ input[class="reComment"]{
       $.ajax({
            url:'/ajax/commentReInsert',
            type: 'POST',
-            data: {  content:$(e).prev().val(), no:$(e).data("no") },
-            success: function() {
-               alert("댓글 입력 성공");
+            data: {  content:$(e).prev().val(), no:$(e).data("no"), csrf_token:"${csrf_token}" },
+            success: function(data) {
+            	if(data=='limit'){
+               	  alert("요청이 너무 많습니다. \n잠시 후 시도해 주세요");
+	           }else{
+	              alert("댓글이 입력 되었습니다.");
+	           }
                location.reload();
                $(e).prev().val("");
             },
@@ -417,7 +417,7 @@ input[class="reComment"]{
       $.ajax({
            url:'/ajax/commentDelete',
            type: 'POST',
-           data: {  no:$(e).data("no"), orderNo: $(e).data("orderno") },
+           data: {  no:$(e).data("no"), orderNo: $(e).data("orderno") ,csrf_token:"${csrf_token}"},
            success: function(data) {
                 if(data=="error") { alert("권한이 없습니다.");
                 } else if(data=="remove") { alert("이미 삭제 되었습니다.");
@@ -437,10 +437,10 @@ input[class="reComment"]{
       </c:choose>
    }
 
-   /* 대, 댓글 수정 */
+   <%-- 대, 댓글 수정 --%>
 	$('.commentConPa').on("click",".updateComment",function(){
 		var $content = $(this).parent().children(".content");
-		$content.replaceWith("<input class='updateInputBox' value='"+$content.text()+"'/>");
+		$content.replaceWith("<textarea class='updateInputBox'> value='"+$content.text()+"'</textarea>");
 		$(this).addClass("updateCommentAction");
 		$(this).parent().find(".updateInputBox").focus();
 	})
@@ -448,6 +448,10 @@ input[class="reComment"]{
 	$('.commentConPa').on("click",".updateCommentAction",function(){
 		$(this).removeClass("updateCommentAction");
 		var $updateInputBox = $(this).parent().children(".updateInputBox");
+		if($updateInputBox.val().trim().length  < 1){
+			alert("글자를 입력해 주세요");
+			return;
+		}
 		updateComment($(this).data('no'),$(this).data('orderno'),$updateInputBox.val(),$updateInputBox);
 	})
 	
@@ -457,7 +461,7 @@ input[class="reComment"]{
 	      $.ajax({
 			 url:'/ajax/commentUpdate',
 			 type: 'POST',
-			  data: {  content:content, orderNo:orderNo, no:no },
+			  data: {  content:content, orderNo:orderNo, no:no ,csrf_token:"${csrf_token}"},
 			  success: function(data) {
 				  if(data=='error'){
 					  alert("권한이 없습니다.");
@@ -485,7 +489,7 @@ input[class="reComment"]{
       $.ajax({
            url:'/ajax/likeBoard',
            type: 'POST',
-            data: {  no:${post.no} },
+            data: {  no:${post.no} ,csrf_token:"${csrf_token}"},
             success: function(data) {
                $('#likeCount').text(data);
                var src = "/img/";

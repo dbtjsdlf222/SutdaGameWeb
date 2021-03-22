@@ -257,11 +257,11 @@ footer p{
         		if(session.getAttribute("loginInfo")!=null && ((PlayerVO)session.getAttribute("loginInfo")).isAdmin()){
        		%>  
         		<li>
-        			<span color="red">관리자</span>
+        			<span style='color:red'>관리자</span>
         		</li>
         	<% } %>
         		<li>
-        			<span><a href="/board/boardList?kind=1">공지사항</a></span>
+        			<span><a href="/board/boardList?kind=1">커뮤니티</a></span>
         			<!-- <ul class="dept02">
         				<li id="notice"><a href="/board/boardList?kind=1">공지사항</a></li>
         				<li id="patch"><a href="/board/boardList?kind=2">패치노트</a></li>
@@ -279,7 +279,7 @@ footer p{
         			<span><a href="/board/rank">명예의 전당</a></span>
         		</li>
         		<li>
-        			<span><a href="/download">다운로드</a></span>
+        			<span><a href="/download?csrf_token=${csrf_token}">다운로드</a></span>
         		</li>
         	</ul>
        	</div>
@@ -294,7 +294,7 @@ footer p{
 			    <div>회원가입</div>
 			  </div> 
         <% } else { %>
-        	<div class="button_base b05_3d_roll login_btn" onclick="location.href='/logout'">
+        	<div class="button_base b05_3d_roll login_btn" onclick="location.href='/logout?csrf_token=${csrf_token}'">
 			    <div>LOGOUT</div>
 			    <div>로그아웃</div>
 			  </div> 

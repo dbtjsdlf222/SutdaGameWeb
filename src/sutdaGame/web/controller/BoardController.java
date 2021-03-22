@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import lombok.Builder.Default;
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.CommentService;
 import sutdaGame.web.service.LikeService;
 import sutdaGame.web.service.PlayerService;
-import sutdaGame.web.util.MoneyFormat;
+import sutdaGame.web.util.LimitTimer;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.vo.BoardVO;
 import sutdaGame.web.vo.Page;
@@ -88,8 +87,15 @@ public class BoardController {
 
 	@RequestMapping("update_form")
 	public String updateForm(@RequestParam int no, Model model, HttpSession session) {
-		model.addAttribute("post", boardService.selectOntBoard(no));
-		return "board/update_form";
+		PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
+		BoardVO  bvo = boardService.selectOntBoard(no);
+		if(bvo.getWriterNo().equals(pvo.getNo())) {
+			model.addAttribute("post", boardService.selectOntBoard(no));
+			return "board/update_form";
+		} else {
+			return "error/500";
+		}
+		
 	}
 	
 	@RequestMapping("boardList")
@@ -99,12 +105,7 @@ public class BoardController {
 		Page page = new Page(7,5,p);
 		switch(kind) {
 			case 1: jsp = "board/notice"; break;
-//			case 2: jsp = "board/patch";  break;
-//			case 3: jsp = "board/event";  break;
-//			case 5: jsp = "board/free";   break;
 			case 7: jsp = "redirect:board/rank"; break;
-//			case 8: jsp = "board/QA";	  break;
-//			case 9: jsp = "board/FQ";	  break;
 			case 10: jsp = "board/youtube";	page = new Page(9,5,p);  break;
 			default: jsp = "board/notice";
 		}
@@ -130,37 +131,51 @@ public class BoardController {
 	}
 	
 	@RequestMapping("write")
-	public String write(Model model,@RequestParam int kind) {
+	public String write(Model model,HttpSession session,@RequestParam int kind) {
 		model.addAttribute("kind", kind);
+		
 		return "board/write";
 	}
 	
-	@RequestMapping(path="writeAction",params= {"title","content","kindNo"})
-	public String writeAction(BoardVO boardVO, HttpSession session)  {
-		if(!((PlayerVO)session.getAttribute("loginInfo")).isAdmin()) {
-			return "redirect:error/500";
-		}
-		if(boardVO.getKindNo()==10) {
+	@RequestMapping(path="writeAction",params= {"title","content","kindNo","csrf_token"})
+	public String writeAction(BoardVO boardVO, HttpSession session, Model model)  {
+		PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
+		if(boardVO.getKindNo()==10) { //유튜브 게시판
+			if(!pvo.isAdmin()) {
+				return "redirect:error/500";
+			}
 			boardVO.getContent().replaceAll("https://www.youtube.com/watch?v= |http://www.youtube.com/watch?v=|https://youtu.be/", "");
 		}
-		boardVO.setWriterNo(((PlayerVO)session.getAttribute("loginInfo")).getNo());
-		boardService.insertBoard(boardVO);
+		boardVO.setWriterNo(pvo.getNo());
+		
+		if((LimitTimer.boardList.get(pvo.getNo())) == null) {
+			LimitTimer.boardList.put(pvo.getNo(), 0);
+			boardService.insertBoard(boardVO);
+		} else {
+			LimitTimer.boardList.put(pvo.getNo(), 0);
+			model.addAttribute("message", "요청이 너무 많습니다. 잠시 후 시도해 주세요");
+			model.addAttribute("redirect", "/board/boardlist");
+			return "util/redirectWithAlert";
+		}
+		
 		return "redirect:/board/boardList?kind="+boardVO.getKindNo();
 	}
 	
-	@RequestMapping(path="update",params = {"title","content","no"},method = RequestMethod.POST)
+	@RequestMapping(path="update",params = {"title","content","no","csrf_token"},method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute("post") BoardVO bvo, HttpSession session) {
+		
 		PlayerVO vo = (PlayerVO)session.getAttribute("loginInfo");
 		
-		if((!((PlayerVO)session.getAttribute("loginInfo")).isAdmin()) || boardService.selectOntBoard(bvo.getNo()).getWriterNo()!=vo.getNo()) {
+		if(boardService.selectOntBoard(bvo.getNo()).getWriterNo()==vo.getNo()||((PlayerVO)session.getAttribute("loginInfo")).isAdmin()) {
+			boardService.updateBoard(bvo);
+			return new ModelAndView("redirect:/board/view/"+bvo.getNo());
+		} else {
 			return new RedirectWithAlert("알림","잘못된 요청입니다.","/main");
 		}
-		boardService.updateBoard(bvo);
-		return new ModelAndView("redirect:/board/view/"+bvo.getNo());
 	}
 	
 	@RequestMapping("delete")
-	public String deleteBoard(@RequestParam int no,@RequestParam(defaultValue = "1")int kind) {
+	public String deleteBoard(@RequestParam int no,@RequestParam(defaultValue = "1")int kind,Model model,HttpSession session) {
 		boardService.deleteBoard(no);
 		return "redirect:/board/boardList?kind="+kind;
 	}

@@ -80,6 +80,9 @@ public class CommentVO {
 	}
 
 	public void setContent(String content) {
+		if(content.length() > 60) {
+			content = content.substring(0,60);
+		}
 		this.content = content;
 	}
 

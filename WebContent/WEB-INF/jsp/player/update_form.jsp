@@ -30,17 +30,19 @@ input[type="text"], input[type="password"]{
 }
 </style>
 <body>
+<jsp:include page="../include/header.jsp" flush="false" />
 	<div id="updatePW">
-	<form action="/player/updateAction" method="post" autocomplete="off">
+	<form action="/player/updateAction" method="post" autocomplete="off" >
+		<input type="hidden" name="csrf_token" value="${csrf_token}">
 		<%-- <ul>
 			<li>닉네임</li>
 			<li><input name="nickname" type="text" placeholder="변경할 닉네임을 입력하세요" value="${playerInfo.nickname}"></li>
 		</ul> --%>
 		<ul>
 			<li>비밀번호 변경</li>
-			<li><input name="password" id="change_pw" type="password" placeholder="변경할 비밀번호를 입력하세요"></li>
+			<li><input name="password" id="change_pw" type="password" placeholder="변경할 비밀번호를 입력하세요" style="background:black"></li>
 			<li><p id="pwMsg"></p></li>
-			<li><input type="password" id="change_pwc" placeholder="변경할 비밀번호 확인"></li>
+			<li><input type="password" id="change_pwc" placeholder="변경할 비밀번호 확인" style="background:black"></li>
 			<li><p id="pwcMsg"></p></li>
 		</ul>
 		<%-- <ul>
@@ -73,4 +75,15 @@ input[type="text"], input[type="password"]{
 	</div>
 </body>
 <script type="text/javascript" src="/js/passwordCheck.js"></script>
+<script>
+	$("form").submit(function(e){
+	    if(password && passwordc){
+	       return true;
+	    } else {
+	       e.preventDefault();
+	       alert("입력 값을 확인해 주세요");
+	       return false;
+	    }
+	 })
+ </script>
 </html>
