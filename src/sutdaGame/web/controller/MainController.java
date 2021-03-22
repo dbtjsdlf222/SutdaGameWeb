@@ -89,12 +89,10 @@ public class MainController {
 		playerVO.setPassword(BCrypt.hashpw(playerVO.getPassword(), BCrypt.gensalt()));
 		
 		String error = new RegularChecker().join(playerVO, passwordc, playerService);
-		System.out.println(error);
 		if(!error.equals("")) {
 			return new RedirectWithAlert("회원가입 - 섯다 온라인","회원가입에 실패하였습니다. "+error+"(을)를 확인 해주세요.","/join");
 		}
 		if(playerService.playerJoin(playerVO) == 1) {
-			System.out.println("회원가입 완료");
 			return new RedirectWithAlert("회원가입 - 섯다 온라인","회원가입에 성공하였습니다. 로그인 해주세요.","/main");
 		} else {
 			return new RedirectWithAlert("회원가입 - 섯다 온라인","회원가입에 실패하였습니다. 다시 회원가입을 해주세요.","/join");

@@ -76,7 +76,7 @@ public class PlayerController {
 	public ModelAndView findID(@RequestParam String mail, @RequestParam String name, HttpSession session) {
 		String id=null;
 		if((id=playerService.findID(mail, name)) == null) {
-			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/find_ID");
+			return new RedirectWithAlert("알림","일치하는 정보가 없습니다.","/player/findID_form");
 		} else {
 			StringBuffer sb = new StringBuffer();
 			sb.append("<h1>안녕하세요 "+name+"님 가입 아이디 보내드립니다.</h1>");
@@ -99,7 +99,7 @@ public class PlayerController {
 				 } catch (Exception e) {
 				    e.printStackTrace();
 				 }
-			return new RedirectWithAlert("알림","잘못된 요청입니다.","/player/find_ID");
+			return new RedirectWithAlert("알림","잘못된 요청입니다.","/player/findID_form");
 		}
 	}
 	
