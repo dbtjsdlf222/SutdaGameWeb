@@ -3,7 +3,6 @@ package sutdaGame.web.vo;
 import sutdaGame.web.util.MoneyFormat;
 
 public class PlayerVO {
-
 	private Integer no;
 	private String id;
 	private String password;

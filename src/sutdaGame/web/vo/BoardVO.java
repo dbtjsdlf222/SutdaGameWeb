@@ -72,8 +72,13 @@ public class BoardVO {
 
 	public void setTitle(String title) {
 		try {
-			this.title = title.substring(0,20);
-		} catch (Exception e) {}
+			if(title.length() > 20) {
+				title = title.substring(0,20);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.title = title;
 	}
 
 	public String getContent() {
@@ -81,7 +86,7 @@ public class BoardVO {
 	}
 
 	public void setContent(String content) {
-		this.content = content.substring(beginIndex);
+		this.content = content;
 	}
 
 	public Integer getWriterNo() {

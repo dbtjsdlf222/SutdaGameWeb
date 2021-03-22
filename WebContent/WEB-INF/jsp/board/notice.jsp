@@ -5,7 +5,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>새 소식</title>
+    <title>섯다-커뮤니티</title>
 </head>
 <style>
 #container{
@@ -96,7 +96,7 @@ ul.tabs li.current{
     
 <div id="container">
 	<div class="title">
-		<h1>공지사항</h1>
+		<h1>커뮤니티</h1>
 	</div>
 	<div>
 		<fieldset>
