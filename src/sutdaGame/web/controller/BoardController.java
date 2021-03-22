@@ -89,13 +89,12 @@ public class BoardController {
 	public String updateForm(@RequestParam int no, Model model, HttpSession session) {
 		PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 		BoardVO  bvo = boardService.selectOntBoard(no);
-		if(bvo.getWriterNo().equals(pvo.getNo())) {
+		if(bvo.getWriterNo().equals(pvo.getNo())||pvo.isAdmin()) {
 			model.addAttribute("post", boardService.selectOntBoard(no));
 			return "board/update_form";
 		} else {
 			return "error/500";
 		}
-		
 	}
 	
 	@RequestMapping("boardList")
