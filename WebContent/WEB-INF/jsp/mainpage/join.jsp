@@ -109,7 +109,7 @@
     <legend style="color: #DB3600; font-size: 30px;">회원가입</legend>
     	<ul>
     		<li>성함</li>
-        	<li><input type="text" id="name" value="${vo.name }" name="name" placeholder="성함" value="${vo.name }" maxlength="15" minlength="3" required/>
+        	<li><input type="text" id="name" name="name" placeholder="성함" value="${vo.name }" maxlength="15" minlength="2" required/>
                 <p style="color:red" id="name_error">　</p>
         	</li>	
         </ul>
@@ -137,7 +137,7 @@
             </li>
             <li>
                 <label for="nickname">닉네임</label><br>
-                <input type="text" id="nickname" name="nickname" class="nickname" value="${vo.nicname }" placeholder="닉네임" minlength="2" maxlength="6" required>
+                <input type="text" id="nickname" name="nickname" class="nickname" value="${vo.nickname }" placeholder="닉네임" minlength="2" maxlength="6" required>
                 <p id="nickMsg">　</p>
             </li>
             <li style="margin-top:43px;">
@@ -246,7 +246,6 @@
 			    success:function(data) {
 				    if(data=="0") {
 				    	$('#success').text('사용 가능한 이메일 입니다').css({"color":"green"});
-				    	email=true;
 				    	email_not_using=true;
 				    } else {
 					    $("#success").text("이미 사용중인 이메일 입니다").css({"color":"red"});
