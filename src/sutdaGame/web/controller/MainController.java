@@ -22,6 +22,7 @@ import sutdaGame.web.service.PlayerService;
 import sutdaGame.web.util.LimitTimer;
 import sutdaGame.web.util.JsonUtil;
 import sutdaGame.web.util.RedirectWithAlert;
+import sutdaGame.web.util.RegularChecker;
 import sutdaGame.web.vo.Page;
 import sutdaGame.web.vo.PlayerVO;
 
@@ -83,12 +84,19 @@ public class MainController {
 	} //download
 	
 	//회원가입 액션
-	@RequestMapping(path="joinAction", params = {"name","id","password","nickname","email","character"}, method = RequestMethod.POST)
-	public ModelAndView joinAction(HttpSession session, PlayerVO playerVO) {
+	@RequestMapping(path="joinAction", params = {"name","id","password","passwordc","nickname","email","character","csrf_token"}, method = RequestMethod.POST)
+	public ModelAndView joinAction(HttpSession session, PlayerVO playerVO, String passwordc, Model model) {
 		playerVO.setPassword(BCrypt.hashpw(playerVO.getPassword(), BCrypt.gensalt()));
-		if(playerService.playerJoin(playerVO)==1) {
+		
+		String error = new RegularChecker().join(playerVO, passwordc);
+		if(!error.equals("")) {
+			model.addAttribute("vo",playerVO);
+			return new RedirectWithAlert("회원가입 - 섯다 온라인","회원가입에 실패하였습니다.\n "+error+"(을)를 확인 해주세요.","/join");
+		}
+		if(playerService.playerJoin(playerVO) == 1) {
 			return new RedirectWithAlert("회원가입 - 섯다 온라인","회원가입에 성공하였습니다.\n 로그인 해주세요.","/main");
 		} else {
+			model.addAttribute("vo",playerVO);
 			return new RedirectWithAlert("회원가입 - 섯다 온라인","회원가입에 실패하였습니다.\n 다시 회원가입을 해주세요.","/join");
 		}
 	} //joinAction

@@ -74,7 +74,6 @@
 	  <mvc:mapping path="/logout"/>
 	  <mvc:mapping path="/player/delete"/>
 	  <mvc:mapping path="/player/update"/>
-	  <mvc:mapping path="/board/write"/>
 	  <mvc:mapping path="/board/writeAction"/>
 	  <mvc:mapping path="/board/update"/>
 	  <mvc:mapping path="/board/delete"/>

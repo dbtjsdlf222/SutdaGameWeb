@@ -104,37 +104,40 @@
 <body>
 <jsp:include page="../include/header.jsp" flush="false"/>
    	<form action="/joinAction" method="post" autocomplete="off" >
+   	<input type="hidden" name="csrf_token" value="${csrf_token}">
     <fieldset class="information">
     <legend style="color: #DB3600; font-size: 30px;">회원가입</legend>
     	<ul>
     		<li>성함</li>
-        	<li><input type="text" name="name" placeholder="성함" maxlength="15" minlength="3" required/></li>	
+        	<li><input type="text" id="name" value="${vo.name }" name="name" placeholder="성함" value="${vo.name }" maxlength="15" minlength="3" required/>
+                <p style="color:red" id="name_error">　</p>
+        	</li>	
         </ul>
         <br/>
         <ul id="join_info">
             <li>
                 <label for="join_id">아이디<span class="essential"></span></label><br>
-                <input type="text" id="join_id" name="id" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12" required><br><br>
+                <input type="text" id="join_id" name="id" value="${vo.id }" placeholder="아이디 입력(6~12자)" minlength="6" maxlength="12" required><br><br>
                 <p style="color:red" id="id_error">　</p>
             </li>
             <li>
                 <label for="change_pw">비밀번호</label><br>
                 <input type="password" id="change_pw" name="password" required placeholder="비밀번호 입력(8~14자)" minlength="8" maxlength="14"><p id="pwMsg">　</p><br>
                 <label for="change_pw">비밀번호 확인</label><br>
-                <input type="password" id="change_pwc"  required placeholder="비밀번호 확인"> <p id="pwcMsg">　</p><br/>
+                <input type="password" name="passwordc" id="change_pwc"  required placeholder="비밀번호 확인"> <p id="pwcMsg">　</p><br/>
             </li>
         </ul>
         
         <ul id="privacy">
             <li>
                 <label for="email">이메일</label><br>
-                <input type="email" id="email" name="email" class="email" placeholder="이메일" required>
+                <input type="email" id="email" name="email" value="${vo.email }" class="email" placeholder="이메일" required>
                 <button type="button" onclick="email_(this)" id="inb">이메일 인증하기</button>
                 <p id='success'></p>
             </li>
             <li>
                 <label for="nickname">닉네임</label><br>
-                <input type="text" id="nickname" name="nickname" class="nickname" placeholder="닉네임" minlength="2" maxlength="6" required>
+                <input type="text" id="nickname" name="nickname" class="nickname" value="${vo.nicname }" placeholder="닉네임" minlength="2" maxlength="6" required>
                 <p id="nickMsg">　</p>
             </li>
             <li style="margin-top:43px;">
@@ -162,8 +165,7 @@
         	<div id="terms">이용 약관&emsp;<span id="detail">[자세히 보기]</span></div>
        			<ul id="useTerms">
        				<li>회원가입내의 내용은 정보이용 목적으로 수집합니다.</li>
-       				<li>휴면계정으로 전환 시 삭제합니다.</li>
-       				<li>개인정보 유효기간은 1년으로 설정합니다.</li>
+       				<li>탈퇴시 모든 정보는 삭제 됩니다.</li>
        			</ul>
         	<input type="submit" value="가입">&emsp;
         	<input type="reset" value="취소">
@@ -179,22 +181,34 @@
 
 	// 이메일 정규식
 	var eMailCheck =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
-
+	var $name_test = RegExp(/^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/);
+	var $name = $("#name");
+	var $name_msg = $("#name_error");
 	var $nick_msg = $("#nickMsg");
 	var $nickname = $("#nickname");
 	var nick_test = RegExp(/^[a-zA-Z0-9가-힣]*$/);
 	
+	$name.keyup(function () {
+		if ($name_test.test($name.val())) {
+			name = true;
+			$name_msg.text("");
+		} else {
+			$name_msg.text("이름을 확인해주세요");
+			name = false;
+		}
+	})
+	
 	$nickname.keyup(function () {
 		if (nick_test.test($nickname.val())) {
 			if ($nickname.val()=="") {
-				$nick_msg.text("닉네임을 입력해주세요.").css({"color":"red"});
+				$nick_msg.text("닉네임을 입력해 주세요.").css({"color":"red"});
 			} else if (2 > $nickname.val().length || $nickname.val().lengt > 6) {
 				$nick_msg.text("2 ~ 6자리 미만만 가능합니다.").css({"color":"red"});
 			} else {
 				selectNick();
 			}
 		} else {
-			$nick_msg.text("사용 불가능합니다.").css({"color":"red"});
+			$nick_msg.text("사용 불가능 합니다.").css({"color":"red"});
 		}
 	})
 	
