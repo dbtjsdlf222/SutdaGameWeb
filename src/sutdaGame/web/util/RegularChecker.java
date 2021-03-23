@@ -54,27 +54,7 @@ public class RegularChecker {
 			return false;
 		}
 	}
-	public static void main(String[] args) {
-		String pwc = "sunil123@"; 
-		String pw = "$2a$10$/vxmHNbHSXL4WUi0OeadRebSVskZjvGpeMeC6DNQZotlcmt2iL9D2"; 
-		try {
-			System.out.println("pw  "+pw);
-			System.out.println("pwc  "+pwc);
-			if (!Pattern.matches("(?=.*\\d{1,20})(?=.*[~`!@#$%\\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$", pwc)) {
-				System.out.println("f1");
-			} else if (pw == "" || pw == null || pwc==""|| pwc == null) {
-				System.out.println("f2");
-			} else if (!BCrypt.checkpw(pwc, pw)) {
-				System.out.println("f3");
-			} else {
-				System.out.println("t4");
-			}
-		} catch (Exception e) {
-			System.out.println("4");
-			e.printStackTrace();
-		}
-	}
-		
+
 	private boolean pw(String pw, String pwc) {
 		try {
 			if (!Pattern.matches("(?=.*\\d{1,20})(?=.*[~`!@#$%\\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$", pwc)) {

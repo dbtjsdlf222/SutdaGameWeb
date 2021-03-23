@@ -243,15 +243,15 @@ input[class="reComment"]{
                <h3>댓글이 없습니다.</h3>
             </c:otherwise>
          </c:choose>
-      </div>
       <c:if test="${fn:length(comment)>=10}">
       	<button id="commentView" onclick="selectComment(this)" data-no='${post.no }' data-p="2" data-end='${page.end }'>댓글 더보기</button>
       </c:if>
+      </div>
    </div>
 </body>
 
 <script>
-   //답글 더보기
+	<%--답글 더보기--%>
    function selectReComment(e){
       $.ajax({
            url:'/ajax/selectReComment',
@@ -296,12 +296,12 @@ input[class="reComment"]{
       });
    }
    
-   //답글 쓰기 버튼
+   <%--답글 쓰기 버튼--%>
    function reCommentWrite(e){
       $(e).parent().parent().find(".commentBox").toggle();
    }
    var admin = ${admin};
-   //댓글 더보기
+   <%--댓글 더보기--%>
    function selectComment(e){
       $.ajax({
            url:'/ajax/selectComment',
@@ -329,10 +329,10 @@ input[class="reComment"]{
 				$(e).before(
 					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"
 					+data[i].player.nickname+"</div><div class='content'>"+data[i].content+
-					"</div><br><div class='regdate'>"+writeTime+"</div></div>"+
+					"</div><br><div class='regdate'>"+writeTime+"</div>"+
 					(data[i].replyCount != 0 ? "&emsp;<button id='reCommentView' onclick='selectReComment(this)' data-no='"+ data[i].no +
-					"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>" : " ") +
-					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; :"+btn+" <div class='commentBox'><input class='reComment' placeholder='답글' maxlength='60'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
+					"' data-p='1'>답글이 <span>"+data[i].replyCount+"개 있습니다.</button>":"") +
+					"&emsp;<button class='reCommentWrite' onclick='reCommentWrite(this)'>답글 쓰기</button>&emsp; "+btn+" </div><div class='commentBox'><input class='reComment' placeholder='답글' maxlength='60'><button id='reCommentBtn' onclick='reCommentInsert(this)'>답글 입력</button></div></div>");
               }
               if(data.length < 5) {
                  $(e).remove();
@@ -346,7 +346,7 @@ input[class="reComment"]{
       });
    }
 
-   //댓글 입력
+   <%--댓글 입력--%>
    function writeComment() {
       <c:choose>
          <c:when test="${loginInfo ne null}">
@@ -378,7 +378,7 @@ input[class="reComment"]{
       </c:choose>
    }
    
-   //답글 입력
+   <%--답글 입력--%>
    function reCommentInsert(e) {
       <c:choose>
       <c:when test="${loginInfo ne null}">
@@ -410,7 +410,7 @@ input[class="reComment"]{
       </c:choose>
    }
    
-   //답글 삭제
+   <%--답글 삭제--%>
    function deleteComment(e) {
       <c:choose>
       <c:when test="${loginInfo ne null}">
@@ -438,14 +438,14 @@ input[class="reComment"]{
    }
 
    <%-- 대, 댓글 수정 --%>
-	$('.commentConPa').on("click",".updateComment",function(){
+	$('.commentList>.commentConPa>.commentCon').on("click",".updateComment",function(){
 		var $content = $(this).parent().children(".content");
-		$content.replaceWith("<textarea class='updateInputBox'> value='"+$content.text()+"'</textarea>");
+		$content.replaceWith("<textarea class='updateInputBox'> "+$content.text()+"</textarea>");
 		$(this).addClass("updateCommentAction");
 		$(this).parent().find(".updateInputBox").focus();
 	})
 	
-	$('.commentConPa').on("click",".updateCommentAction",function(){
+	$('.commentList>.commentConPa').on("click",".updateCommentAction",function(){
 		$(this).removeClass("updateCommentAction");
 		var $updateInputBox = $(this).parent().children(".updateInputBox");
 		if($updateInputBox.val().trim().length  < 1){
@@ -481,7 +481,7 @@ input[class="reComment"]{
 	      </c:choose>
   }
    
-   //좋아요
+	<%--좋아요--%>
     var likeCheck = ${likeCheck eq 0};
    function likeBoard() {
    <c:choose>
@@ -497,7 +497,7 @@ input[class="reComment"]{
                   src+="likeBtn2.png";
                  } else {
                   src+="likeBtn1.png";
-             }
+            }
               $('#like').attr("src",src);
               likeCheck=!likeCheck;
             },

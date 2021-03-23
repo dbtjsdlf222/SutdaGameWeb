@@ -34,6 +34,11 @@ public class PlayerController {
 		PlayerVO playerVO = playerService.loginPlayer(id);
 		if((playerVO=playerService.loginPlayer(id)) != null && BCrypt.checkpw(password, playerVO.getPassword())) {
 			session.setAttribute("loginInfo", playerVO);
+			String referer=(String)session.getAttribute("referer");
+			if(referer != null) {
+				session.removeAttribute("referer");
+				return new ModelAndView("redirect:"+referer.toString());
+			}
 			return new ModelAndView("mainpage/main");
 		} else {
 			return new RedirectWithAlert("로그인-섯다온라인","아이디나 비밀번호가 틀렸습니다.","/login");

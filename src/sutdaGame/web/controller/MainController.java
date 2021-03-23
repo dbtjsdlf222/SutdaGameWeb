@@ -3,6 +3,7 @@ package sutdaGame.web.controller;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -19,8 +20,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import sutdaGame.web.service.BoardService;
 import sutdaGame.web.service.PlayerService;
-import sutdaGame.web.util.LimitTimer;
 import sutdaGame.web.util.JsonUtil;
+import sutdaGame.web.util.LimitTimer;
 import sutdaGame.web.util.RedirectWithAlert;
 import sutdaGame.web.util.RegularChecker;
 import sutdaGame.web.vo.Page;
@@ -44,7 +45,8 @@ public class MainController {
 	
 	//로그인
 	@RequestMapping("login")
-	public String login(HttpSession session) {
+	public String login(HttpSession session,HttpServletRequest request) {
+		session.setAttribute("referer",request.getHeader("Referer"));
 		if(session.getAttribute("loginInfo") == null)
 			return "mainpage/login";
 		 else 
@@ -60,7 +62,7 @@ public class MainController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginInfo");
-		return "mainpage/main";
+		return "redirect:/";
 	} //logout
 	
 	@RequestMapping("download")

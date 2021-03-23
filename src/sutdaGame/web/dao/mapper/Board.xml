@@ -4,9 +4,9 @@
 	
 	<insert id="insertBoard" parameterType="BoardVO">
 		INSERT INTO 
-			sutda_board (title, content, writer_no,kind_no, additional_info)
+			sutda_board (title, content, writer_no,kind_no)
 		VALUES
-			(#{title}, #{content}, #{writerNo}, #{kindNo},#{additionalInfo});
+			(#{title}, #{content}, #{writerNo}, #{kindNo});
 	</insert>
 	
 	<update id="updateBoard" parameterType="BoardVO">
@@ -63,8 +63,7 @@
 			write_date as writeDate,
 			(SELECT COUNT(*) FROM `like` WHERE board_no = #{no}) as `like`,
 			writer_no writerNo,
-			kind_no kindNo,
-			additional_info additionalInfo
+			kind_no kindNo
 		FROM 
 			sutda_board b
 		LEFT JOIN 
