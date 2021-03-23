@@ -122,5 +122,4 @@ public class RegularChecker {
 			return false;
 		}
 	}
-
 }

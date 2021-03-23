@@ -227,8 +227,8 @@ input[class="reComment"]{
                         </c:if>
                         &emsp;<button class="reCommentWrite" onclick="reCommentWrite(this)">답글 쓰기</button>
                         <c:if test="${comment.myComment eq 1 || admin eq true}">
-                       		&emsp;<button class="updateComment" data-no='${comment.no }' data-orderno='${comment.orderNo }'>수정</button>
-                        	&emsp;<button id="commentDelete" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="deleteComment(this)">삭제</button>
+                       		&emsp;<button class="updateComment" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="uc_Func(this)">수정</button>
+                        	&emsp;<button id="commentDelete" data-no='${comment.no }' data-orderno='${comment.orderNo }' onclick="if(confirm('댓글을 삭제하시겠습니까?')){deleteComment(this);}">삭제</button>
                         </c:if>
                   </div>
                         <div class="commentBox">
@@ -243,7 +243,7 @@ input[class="reComment"]{
                <h3>댓글이 없습니다.</h3>
             </c:otherwise>
          </c:choose>
-      <c:if test="${fn:length(comment)>=10}">
+      <c:if test="${fn:length(comment) >= 9}">
       	<button id="commentView" onclick="selectComment(this)" data-no='${post.no }' data-p="2" data-end='${page.end }'>댓글 더보기</button>
       </c:if>
       </div>
@@ -258,37 +258,22 @@ input[class="reComment"]{
            type: 'POST',
             data: {  no:$(e).data("no"), p:$(e).data("p") },
             success: function(data) {
-              /*  
-               if(data.length < 5) {
-                  $(e).text("더이상 답글이 없습니다.");
-                  $(e).attr("disabled","true");
-               } */
                $(e).data("p",$(e).data("p")+1);
                for(var i=0; i<data.length;i++){
                var writeTime = data[i].regdate;
-                  if(writeTime > 3153600){
-                     writeTime = Math.floor(writeTime/31536000) + '년 전';
-                  } else if(writeTime > 604800){
-                     writeTime = Math.floor(writeTime/604800) + '주 전';
-                  } else if(writeTime > 86400){
-                     writeTime = Math.floor(writeTime/86400) + '일 전';
-                  } else if(writeTime > 3600){
-                     writeTime = Math.floor(writeTime/3600) + '시간 전';
-                  } else if(writeTime > 60){
-                     writeTime = Math.floor(writeTime/60) + '분 전';
-                  } else if(writeTime < 60){
-                     writeTime = '방금 전';
-                  }
+               	  writeTime = timeTranslator(writeTime);
                   var btn="";
-                  if(data[i].myComment == 1||admin){btn="<button class='updateComment'  data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='deleteComment(this)'>삭제</button>"; }
+                  if(data[i].myComment == 1||admin){btn="<button class='updateComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick=\"uc_Func(this)\">수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick=\"if(confirm('댓글을 삭제하시겠습니까?')){deleteComment(this);}\">삭제</button>"; }
                  $(e).parent().append(
                        "<div class='reCommentCon'><div class='nickname'>"+data[i].player.nickname+"</div><div class='content'>"+data[i].content+"</div><br><div class='regdate'>"+writeTime+"</div>"+btn+"</div>");
                }
+                 $(e).find("span").text($(e).find("span").text()-data.length);
+                 $(e).insertAfter($(e).parent().children(".reCommentCon:last-child") );
+                 $(e).parent().children(".reCommentWrite").insertAfter($(e));
+                 
                if(data.length < 5) {
                  $(e).remove();
-              } else {
-                 $(e).find("span").text($(e).find("span").text()-data.length);
-              }
+              } 
             },
             error:function(textStatus, errorThrown){
                 alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
@@ -306,26 +291,14 @@ input[class="reComment"]{
       $.ajax({
            url:'/ajax/selectComment',
            type: 'POST',
-            data: {  no:$(e).data("no"), p:$(e).data("p") },
+            data: { no:$(e).data("no"), p:$(e).data("p") },
             success: function(data) {
                $(e).data("p",$(e).data("p")+1);
               for(var i=0; i<data.length;i++){
                  var writeTime = data[i].regdate;
-                  if(writeTime > 3153600){
-                     writeTime = Math.floor(writeTime/31536000) + '년 전';
-                  } else if(writeTime > 604800){
-                     writeTime = Math.floor(writeTime/604800) + '주 전';
-                  } else if(writeTime > 86400){
-                     writeTime = Math.floor(writeTime/86400) + '일 전';
-                  } else if(writeTime > 3600){
-                     writeTime = Math.floor(writeTime/3600) + '시간 전';
-                  } else if(writeTime > 60){
-                     writeTime = Math.floor(writeTime/60) + '분 전';
-                  } else if(writeTime < 60){
-                     writeTime = '방금 전';
-                  }
-                  var btn = "";
-                  if(data[i].myComment == 1||admin){ btn = "<button class='updateComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"'>수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick='if(confirm('댓글을 삭제하시겠습니까?))'>삭제</button>"; }
+                 writeTime = timeTranslator(writeTime);
+                 var btn = "";
+                 if(data[i].myComment == 1||admin){ btn = "<button class='updateComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick=\"uc_Func(this)\">수정</button>&emsp;<button class='deleteComment' data-no='"+data[i].no+"' data-orderno='"+data[i].orderNo+"' onclick=\"if(confirm('댓글을 삭제하시겠습니까?')){deleteComment(this);}\">삭제</button>"; }
 				$(e).before(
 					"<div class='commentConPa'><div class='commentCon'><div class='nickname'>"
 					+data[i].player.nickname+"</div><div class='content'>"+data[i].content+
@@ -345,6 +318,23 @@ input[class="reComment"]{
             }
       });
    }
+
+	function timeTranslator(writeTime){
+		if(writeTime > 3153600){
+		    writeTime = Math.floor(writeTime/31536000) + '년 전';
+		} else if(writeTime > 604800){
+		   writeTime = Math.floor(writeTime/604800) + '주 전';
+		} else if(writeTime > 86400){
+		   writeTime = Math.floor(writeTime/86400) + '일 전';
+		} else if(writeTime > 3600){
+		   writeTime = Math.floor(writeTime/3600) + '시간 전';
+		} else if(writeTime > 60){
+		   writeTime = Math.floor(writeTime/60) + '분 전';
+		} else if(writeTime < 60){
+		   writeTime = '방금 전';
+		}
+        return writeTime;
+	}
 
    <%--댓글 입력--%>
    function writeComment() {
@@ -367,7 +357,7 @@ input[class="reComment"]{
 	                     $("#commentBox").val("");
 	                  },
 	                  error:function(textStatus, errorThrown){
-	                      alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n나중에 다시 시도해주세요");
+	                      alert("죄송합니다\n예상치 못한 에러가 발생하였습니다\n나중에 다시 시도해주세요");
 	                 }
 	            });
 	         }
@@ -400,7 +390,7 @@ input[class="reComment"]{
                $(e).prev().val("");
             },
             error:function(textStatus, errorThrown){
-                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+                alert("죄송합니다\n예상치 못한 에러가 발생하였습니다.\n나중에 다시 시도해주세요");
          }
       });
       </c:when>
@@ -427,7 +417,7 @@ input[class="reComment"]{
 				}
             },
             error:function(textStatus, errorThrown){
-                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+                alert("죄송합니다\n예상치 못한 에러가 발생하였습니다.\n나중에 다시 시도해주세요");
          }
       });
       </c:when>
@@ -438,24 +428,25 @@ input[class="reComment"]{
    }
 
    <%-- 대, 댓글 수정 --%>
-	$('.commentList>.commentConPa>.commentCon').on("click",".updateComment",function(){
-		var $content = $(this).parent().children(".content");
+	function uc_Func(e){
+		var $content = $(e).parent().children(".content");
 		$content.replaceWith("<textarea class='updateInputBox'> "+$content.text()+"</textarea>");
-		$(this).addClass("updateCommentAction");
-		$(this).parent().find(".updateInputBox").focus();
-	})
+		$(e).attr("onclick","uca_Func(this)");
+		$(e).parent().find(".updateInputBox").focus();
+	}
 	
-	$('.commentList>.commentConPa').on("click",".updateCommentAction",function(){
-		$(this).removeClass("updateCommentAction");
-		var $updateInputBox = $(this).parent().children(".updateInputBox");
+	function uca_Func(e){
+		var $updateInputBox = $(e).parent().children(".updateInputBox");
 		if($updateInputBox.val().trim().length  < 1){
 			alert("글자를 입력해 주세요");
 			return;
 		}
-		updateComment($(this).data('no'),$(this).data('orderno'),$updateInputBox.val(),$updateInputBox);
-	})
+		$(e).attr("onclick","uc_Func(this)");
+		updateComment($(e).data('no'),$(e).data('orderno'),$updateInputBox);
+	}
 	
-  function updateComment(no,orderNo,content,$updateInputBox){
+  function updateComment(no,orderNo,$updateInputBox){
+	  var content = $updateInputBox.val();
 		<c:choose>
 	      <c:when test="${loginInfo ne null}">
 	      $.ajax({
@@ -466,12 +457,12 @@ input[class="reComment"]{
 				  if(data=='error'){
 					  alert("권한이 없습니다.");
 				  } else {
-					  $updateInputBox.replaceWith("<div class='content'>"+$updateInputBox.val()+"</div>");
+					  $updateInputBox.replaceWith("<div class='content'>"+content+"</div>");
 					  alert("댓글이 수정 되었습니다.");
 				  }
 			  },
 			  error:function(textStatus, errorThrown){
-			      alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+			      alert("죄송합니다\n예상치 못한 에러가 발생하였습니다.\n나중에 다시 시도해주세요");
 			  }
 	      });
 	      </c:when>
@@ -502,7 +493,7 @@ input[class="reComment"]{
               likeCheck=!likeCheck;
             },
             error:function(textStatus, errorThrown){
-                alert("죄송합니다\n 예상치 못한 에러가 발생하였습니다.\n 나중에 다시 시도해주세요");
+                alert("죄송합니다\n예상치 못한 에러가 발생하였습니다.\n나중에 다시 시도해주세요");
          }
       });
       </c:when>

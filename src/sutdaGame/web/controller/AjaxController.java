@@ -94,7 +94,7 @@ public class AjaxController {
 			if((vo=(PlayerVO)session.getAttribute("loginInfo")) != null) {
 				myComment = vo.getNo();
 			}
-			return JsonUtil.convertToResponseEntity(commentService.selectReComment(no, new Page(10,5,p),myComment));
+			return JsonUtil.convertToResponseEntity(commentService.selectReComment(no, new Page(5,5,p),myComment));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -146,7 +146,7 @@ public class AjaxController {
 	 * 댓글 입력
 	 */
 	@ResponseBody
-	@RequestMapping(path="commentInsert",method = RequestMethod.POST, params = {"boardNo","content"})
+	@RequestMapping(path="commentInsert",method = RequestMethod.POST, params = {"boardNo","content","csrf_token"})
 	public String commentInsert(HttpServletResponse res, HttpSession session, CommentVO cvo) throws JsonProcessingException {
 		PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 		cvo.setPlayer(pvo);
@@ -188,7 +188,7 @@ public class AjaxController {
 	 *	댓글 수정 
 	 */
 	@ResponseBody
-	@RequestMapping(path="commentUpdate",method = RequestMethod.POST,params = {"no","orderNo","content"})
+	@RequestMapping(path="commentUpdate",method = RequestMethod.POST,params = {"no","orderNo","content","csrf_token"})
 	public String commentUpdate(HttpSession session, CommentVO cvo, HttpServletResponse res) throws JsonProcessingException {
 			PlayerVO pvo = (PlayerVO)session.getAttribute("loginInfo");
 			//작성자==로그인
