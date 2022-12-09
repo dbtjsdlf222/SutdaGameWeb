@@ -25,4 +25,4 @@ OWASP를 참고하여 여러 해킹 방법에 대한 대비책을 적용하여 �
 **자세한 게임 기능들에 대한 설명은 <a href="https://github.com/dbtjsdlf222/SutdaGameClient">Github 섯다 클라이언트</a>에 있습니다.**
 
 
-<blockquote><a href="http://sunx.cafe24.com/">홈페이지 바로가기</a> 관리자 계정 id:1 pw:1</blockquote>
+<del><a href="http://sunx.cafe24.com/">홈페이지 바로가기</a> 관리자 계정 id:1 pw:1</del>
